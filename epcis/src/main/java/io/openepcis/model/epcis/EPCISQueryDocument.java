@@ -39,6 +39,10 @@ public class EPCISQueryDocument {
   @JsonProperty("@context")
   private List<Object> context;
 
+  @JsonProperty("id")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String id;
+
   @JsonProperty("type")
   private String type;
 
