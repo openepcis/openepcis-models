@@ -44,7 +44,6 @@ public class CommonConstants {
   public static final String EPCIS_DEFAULT_NAMESPACE =
       "https://ref.gs1.org/standards/epcis/2.0.0/epcis-context.jsonld";
   public static final String _SOURCE = "_source";
-  public static final String DEFAULT_EPCIS_QUERY_DOC_ID = "https://id.example.org/document1";
   public static final String EPCIS_QUERY_DOC = "EPCISQueryDocument";
   public static final String SCHEMA_VERSION = "2.0";
   public static final String GS1_EPCIS_Capture_Limit = "GS1-EPCIS-Capture-Limit";

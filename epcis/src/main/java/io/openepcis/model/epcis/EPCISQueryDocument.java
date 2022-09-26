@@ -39,9 +39,6 @@ public class EPCISQueryDocument {
   @JsonProperty("@context")
   private List<Object> context;
 
-  @JsonProperty("id")
-  private String id;
-
   @JsonProperty("type")
   private String type;
 
@@ -56,7 +53,6 @@ public class EPCISQueryDocument {
 
   public EPCISQueryDocument(EPCISBody epcisBody) {
     this.epcisBody = epcisBody;
-    this.id = CommonConstants.DEFAULT_EPCIS_QUERY_DOC_ID;
     this.type = CommonConstants.EPCIS_QUERY_DOC;
     this.schemaVersion = CommonConstants.SCHEMA_VERSION;
     this.createdAt = OffsetDateTime.now();
