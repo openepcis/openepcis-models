@@ -47,8 +47,6 @@ import org.eclipse.persistence.oxm.annotations.XmlPath;
 @XmlType(propOrder = {"sensorMetadata", "sensorReport", "extension", "anyElements"})
 public class SensorElementList implements Serializable {
 
-  @XmlTransient private String type = "epcis:SensorElement";
-
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
 
   private SensorMetadata sensorMetadata;
