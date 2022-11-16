@@ -13,23 +13,16 @@
  *     See the License for the specific language governing permissions and
  *     limitations under the License.
  */
-package io.openepcis.model.epcis;
+package io.openepcis.model.rest;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.xml.bind.annotation.XmlRegistry;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@XmlRootElement
-public class EpcisQueryResult {
-  @XmlElement private String subscriptionID;
-  @XmlElement private String queryName;
-  @XmlElement private String queryType;
-  @XmlElement private ResultBody resultBody;
+@XmlRegistry
+public final class ObjectFactory {
+
+  private ObjectFactory() {}
+
+  public static ProblemResponseBody createProblemResponseBody() {
+    return new ProblemResponseBody();
+  }
 }

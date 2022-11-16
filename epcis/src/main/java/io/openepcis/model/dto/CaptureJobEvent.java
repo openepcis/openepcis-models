@@ -15,9 +15,9 @@
  */
 package io.openepcis.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import jakarta.xml.bind.annotation.*;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import lombok.AllArgsConstructor;
@@ -26,8 +26,15 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+// @JsonIgnoreProperties(ignoreUnknown = true)
 @RegisterForReflection
+@XmlRootElement
+@XmlType(
+    name = "CaptureJob",
+    factoryClass = ObjectFactory.class,
+    factoryMethod = "createCaptureJobEvent")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso(InvalidEPCISEventInfo.class)
 public class CaptureJobEvent extends CaptureDataEvent {
 
   public CaptureJobEvent(

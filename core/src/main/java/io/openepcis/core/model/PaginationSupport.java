@@ -17,6 +17,9 @@ package io.openepcis.core.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.time.OffsetDateTime;
 import java.time.temporal.ChronoUnit;
 import lombok.AllArgsConstructor;
@@ -27,14 +30,19 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlTransient
 public abstract class PaginationSupport {
   @JsonProperty("nextPageToken")
+  @XmlTransient
   protected String nextPageToken;
 
   @JsonProperty("rel")
+  @XmlTransient
   protected String rel;
 
   @JsonProperty("tokenExpiryTime")
+  @XmlTransient
   protected OffsetDateTime tokenExpiryTime;
 
   public OffsetDateTime getTokenExpiryTime() {

@@ -21,22 +21,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.openepcis.model.epcis.EPCISEvent;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.exception.QueryExecutionException;
+import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Slf4j
+@XmlType(factoryClass = ObjectFactory.class, factoryMethod = "createEpcisEventResponseEvent")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@NoArgsConstructor
 public class EPCISEventResponseEvent {
 
   @JsonProperty("@context")
+  @XmlTransient
   private List<Object> contextInfo;
 
   @JsonProperty("event")
+  @XmlElement
   private EPCISEvent epcisEvent;
 
   public EPCISEventResponseEvent(final EPCISEvent epcisEvent) {

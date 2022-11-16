@@ -20,6 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.exception.QueryExecutionException;
+import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,24 +38,37 @@ import org.apache.commons.collections4.CollectionUtils;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement
+@XmlType(
+    name = "EPCISQueryDocument",
+    factoryClass = ObjectFactory.class,
+    factoryMethod = "createEpcisQueryDocument")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISQueryDocument {
   @JsonProperty("@context")
+  @XmlTransient
   private List<Object> context;
 
   @JsonProperty("id")
   @JsonInclude(JsonInclude.Include.NON_NULL)
+  @XmlTransient
   private String id;
 
   @JsonProperty("type")
+  @XmlAttribute
   private String type;
 
   @JsonProperty("schemaVersion")
+  @XmlElement
   private String schemaVersion;
 
   @JsonProperty("createdAt")
+  @XmlElement(name = "createdAt")
+  @XmlJavaTypeAdapter(CustomInstantAdapter.class)
   private OffsetDateTime createdAt;
 
   @JsonProperty("epcisBody")
+  @XmlElement(name = "epcisBody", required = true)
   private EPCISBody epcisBody;
 
   public EPCISQueryDocument(EPCISBody epcisBody) {
