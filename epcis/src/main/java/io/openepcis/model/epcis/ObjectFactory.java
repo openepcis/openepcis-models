@@ -46,4 +46,8 @@ public final class ObjectFactory {
   public static AssociationEvent createAssociationEvent() {
     return new AssociationEvent();
   }
+
+  public static EPCISQueryDocument createEpcisQueryDocument() {
+    return new EPCISQueryDocument();
+  }
 }

@@ -17,6 +17,7 @@ package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.openepcis.core.model.PaginationSupport;
+import jakarta.xml.bind.annotation.*;
 import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.Data;
@@ -25,9 +26,17 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @NoArgsConstructor
+@XmlRootElement
+@XmlType(
+    propOrder = {"captureJobEvents"},
+    name = "CaptureJobPage",
+    factoryClass = ObjectFactory.class,
+    factoryMethod = "createCaptureJobPageEvent")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso(CaptureJobEvent.class)
 public class CaptureJobPageEvent extends PaginationSupport {
 
-  private List<CaptureJobEvent> captureJobEvents;
+  @XmlAnyElement private List<CaptureJobEvent> captureJobEvents;
 
   public CaptureJobPageEvent(
       final String rel,

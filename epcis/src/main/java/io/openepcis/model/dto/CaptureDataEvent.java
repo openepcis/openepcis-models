@@ -17,7 +17,10 @@ package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.beans.Transient;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -31,14 +34,33 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso(InvalidEPCISEventInfo.class)
 @RegisterForReflection
 public class CaptureDataEvent {
+
+  @XmlElement(name = "captureID")
   protected String captureID;
+
+  @XmlElement(name = "createdAt", required = true)
+  @XmlJavaTypeAdapter(CustomInstantAdapter.class)
   protected OffsetDateTime createdAt;
+
+  @XmlElement(name = "finishedAt", required = true)
+  @XmlJavaTypeAdapter(CustomInstantAdapter.class)
   protected OffsetDateTime finishedAt;
+
+  @XmlElement(name = "running")
   protected boolean running;
+
+  @XmlElement(name = "success")
   protected boolean success;
+
+  @XmlElement(name = "captureErrorBehaviour")
   protected String captureErrorBehaviour;
+
+  @XmlElementWrapper(name = "errors")
+  @XmlElement(name = "error")
   protected List<InvalidEPCISEventInfo> errors = new ArrayList<>();
 
   @Transient

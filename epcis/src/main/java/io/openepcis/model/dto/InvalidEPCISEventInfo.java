@@ -17,26 +17,38 @@ package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.openepcis.model.rest.ProblemResponseBodyForCapture;
+import jakarta.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+@XmlType(
+    name = "InvalidEPCISEventInfo",
+    factoryClass = ObjectFactory.class,
+    factoryMethod = "createInvalidEPCISEventInfo")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class InvalidEPCISEventInfo {
   @JsonProperty("type")
+  @XmlElement
   private String type = null;
 
   @JsonProperty("title")
+  @XmlElement
   private String title = null;
 
   @JsonProperty("status")
+  @XmlElement
   private Integer status = null;
 
   @JsonProperty("detail")
+  @XmlElement
   private String detail = null;
 
   @JsonProperty("instance")
+  @XmlElement
   private String instance = null;
 
   @JsonProperty("sequenceInEPCISDoc")
+  @XmlElement
   private List<Integer> sequenceInEPCISDoc = null;
 
   public InvalidEPCISEventInfo() {}

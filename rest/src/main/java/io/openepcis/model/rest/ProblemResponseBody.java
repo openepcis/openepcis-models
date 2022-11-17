@@ -16,24 +16,39 @@
 package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
+import lombok.NoArgsConstructor;
 
 /** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */
+@XmlRootElement
+@NoArgsConstructor
+@XmlType(
+    name = "ProblemResponseBody",
+    factoryClass = ObjectFactory.class,
+    factoryMethod = "createProblemResponseBody")
 public class ProblemResponseBody {
   @JsonProperty("type")
+  @XmlElement
   private String type = null;
 
   @JsonProperty("title")
+  @XmlElement
   private String title = null;
 
   @JsonProperty("status")
+  @XmlElement
   private Integer status = null;
 
   @JsonProperty("detail")
+  @XmlElement
   private String detail = null;
 
   @JsonProperty("instance")
+  @XmlElement
   private String instance = null;
 
   public ProblemResponseBody type(String type) {
