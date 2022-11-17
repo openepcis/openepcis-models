@@ -19,39 +19,23 @@ import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
+import java.time.format.DateTimeParseException;
 
 public class CustomInstantAdapter extends XmlAdapter<String, OffsetDateTime> {
-  private final List<String> formatStrings =
-      Arrays.asList(
-          "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
-          "yyyy-MM-dd'T'HH:mm:ss Z",
-          "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
   @Override
   public String marshal(OffsetDateTime v) {
-    // Commenting the code as it is producing null value during JSON -> XML conversion.
-    /*for (String format : formatStrings) {
-      try {
-        return new SimpleDateFormat(format).format(v);
-      } catch (Exception e) {
-      }
-    }
-    return null;*/
-    return v.toString();
+    return v.format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
   }
 
   @Override
   public OffsetDateTime unmarshal(String v) {
-    for (String format : formatStrings) {
-      try {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        return ZonedDateTime.parse(v, formatter).toOffsetDateTime();
-
-      } catch (Exception e) {
-      }
+    try {
+      return ZonedDateTime.parse(v, DateTimeFormatter.ISO_ZONED_DATE_TIME).toOffsetDateTime();
+    } catch (DateTimeParseException e) {
+      throw e;
+    } catch (Exception e) {
+      throw new RuntimeException(e.getMessage(), e);
     }
-    return null;
   }
 }

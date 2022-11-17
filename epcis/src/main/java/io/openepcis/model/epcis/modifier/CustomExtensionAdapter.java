@@ -220,5 +220,5 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
 
 class MapWrapper {
 
-  @Getter @Setter @XmlAnyElement List<Object> elements;
+  @Getter @Setter @XmlAnyElement List<Object> elements = new ArrayList<>();
 }
