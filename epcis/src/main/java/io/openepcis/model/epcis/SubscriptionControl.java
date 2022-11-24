@@ -16,6 +16,9 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 import java.net.URI;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -26,6 +29,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+    name = "SubscriptionControl",
+    propOrder = {"QuerySchedule", "trigger", "initialRecordTime", "reportIfEmpty"})
 public class SubscriptionControl {
 
   private String QuerySchedule;
