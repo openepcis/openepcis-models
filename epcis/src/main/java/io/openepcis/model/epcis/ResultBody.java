@@ -16,9 +16,7 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlElementWrapper;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ResultBody {
   @XmlElementWrapper(name = "eventList")
   @XmlElement(name = "epcisEvent")
