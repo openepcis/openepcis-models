@@ -30,6 +30,12 @@ import lombok.NoArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ResultBody {
   @XmlElementWrapper(name = "eventList")
-  @XmlElement(name = "epcisEvent")
-  private List<EPCISEvent> eventList;
+  @XmlElements({
+    @XmlElement(name = "ObjectEvent", type = ObjectEvent.class),
+    @XmlElement(name = "TransformationEvent", type = TransformationEvent.class),
+    @XmlElement(name = "AggregationEvent", type = AggregationEvent.class),
+    @XmlElement(name = "AssociationEvent", type = AssociationEvent.class),
+    @XmlElement(name = "TransactionEvent", type = TransactionEvent.class)
+  })
+  private List<? extends EPCISEvent> eventList;
 }
