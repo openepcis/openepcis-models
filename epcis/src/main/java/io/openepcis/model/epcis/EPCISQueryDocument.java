@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.epcis;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,11 +39,8 @@ import org.apache.commons.collections4.CollectionUtils;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement
-@XmlType(
-    name = "EPCISQueryDocument",
-    factoryClass = ObjectFactory.class,
-    factoryMethod = "createEpcisQueryDocument")
+@XmlRootElement(name = "EPCISQueryDocument", namespace = "urn:epcglobal:epcis-query:xsd:2")
+@XmlType(propOrder = {"epcisHeader", "epcisBody"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISQueryDocument {
   @JsonProperty("@context")
@@ -55,21 +53,25 @@ public class EPCISQueryDocument {
   private String id;
 
   @JsonProperty("type")
-  @XmlAttribute
+  @XmlTransient
   private String type;
 
   @JsonProperty("schemaVersion")
-  @XmlElement
+  @XmlAttribute
   private String schemaVersion;
 
   @JsonProperty("createdAt")
-  @XmlElement(name = "createdAt")
+  @XmlAttribute(name = "createdAt")
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
   private OffsetDateTime createdAt;
 
   @JsonProperty("epcisBody")
-  @XmlElement(name = "epcisBody", required = true)
+  @XmlElement(name = "EPCISBody", required = true)
   private EPCISBody epcisBody;
+
+  @JsonIgnore
+  @XmlElement(name = "EPCISHeader")
+  private EPCISHeader epcisHeader;
 
   public EPCISQueryDocument(EPCISBody epcisBody) {
     this.epcisBody = epcisBody;
@@ -82,7 +84,7 @@ public class EPCISQueryDocument {
     }
   }
 
-  private List<Object> getContextInfoFromEventList(List<EPCISEvent> epcisEvents) {
+  private List<Object> getContextInfoFromEventList(List<? extends EPCISEvent> epcisEvents) {
     final List<Object> contextInfoList = new ArrayList<>();
 
     contextInfoList.add(CommonConstants.EPCIS_DEFAULT_NAMESPACE);

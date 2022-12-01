@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @XmlRootElement
 public class EPCISBody {
 
-  @XmlTransient private List<EPCISEvent> eventList;
+  @XmlTransient private List<? extends EPCISEvent> eventList;
   @XmlTransient private EPCISEvent event;
   @XmlElement private EpcisQueryResult queryResults;
 
