@@ -19,11 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.openepcis.model.epcis.Schedule;
 import java.net.URI;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.DateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -35,8 +35,8 @@ public class QuerySubscriptionEvent {
   private String queryName;
   private URI callbackUrl;
   private String secret;
-  private DateTime initialRecordTime;
+  private OffsetDateTime initialRecordTime;
   private boolean reportIfEmpty;
   private Schedule schedule;
-  private DateTime createdAt;
+  private OffsetDateTime createdAt;
 }

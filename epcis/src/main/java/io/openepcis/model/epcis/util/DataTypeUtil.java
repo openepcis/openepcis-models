@@ -20,8 +20,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import org.joda.time.DateTime;
 
 public class DataTypeUtil {
 
@@ -85,7 +85,7 @@ public class DataTypeUtil {
 
   public static boolean isDate(String value) {
     try {
-      new DateTime(value);
+      ZonedDateTime.parse(value, DateTimeFormatter.ISO_ZONED_DATE_TIME);
       return true;
     } catch (Exception e) {
       return false;

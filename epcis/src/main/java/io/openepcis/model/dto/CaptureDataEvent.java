@@ -18,7 +18,6 @@ package io.openepcis.model.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.beans.Transient;
@@ -36,7 +35,6 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(InvalidEPCISEventInfo.class)
-@RegisterForReflection
 public class CaptureDataEvent {
 
   @XmlElement(name = "captureID")
