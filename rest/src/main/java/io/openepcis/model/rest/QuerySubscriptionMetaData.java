@@ -16,11 +16,10 @@
 package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.UUID;
 import javax.validation.Valid;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 
 /** QuerySubscriptionMetaData */
 public class QuerySubscriptionMetaData {
@@ -31,13 +30,13 @@ public class QuerySubscriptionMetaData {
   private EventCallbackUrls callbacks = null;
 
   @JsonProperty("createdAt")
-  private DateTime createdAt = null;
+  private OffsetDateTime createdAt = null;
 
   @JsonProperty("reportIfEmpty")
   private Boolean reportIfEmpty = null;
 
   @JsonProperty("initialRecordTime")
-  private DateTime initialRecordTime = null;
+  private OffsetDateTime initialRecordTime = null;
 
   @JsonProperty("schedule")
   private String schedule = null;
@@ -80,7 +79,7 @@ public class QuerySubscriptionMetaData {
     this.callbacks = callbacks;
   }
 
-  public QuerySubscriptionMetaData createdAt(DateTime createdAt) {
+  public QuerySubscriptionMetaData createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -91,14 +90,12 @@ public class QuerySubscriptionMetaData {
    * @return createdAt
    */
   @Valid
-  public DateTime getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(DateTime createdAt) {
-    DateTime now = new DateTime();
-    DateTime dateTime = now.toDateTime(DateTimeZone.UTC);
-    this.createdAt = createdAt != null ? createdAt : dateTime;
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt != null ? createdAt : OffsetDateTime.now();
   }
 
   public Boolean getReportIfEmpty() {
@@ -109,11 +106,11 @@ public class QuerySubscriptionMetaData {
     this.reportIfEmpty = reportIfEmpty;
   }
 
-  public DateTime getInitialRecordTime() {
+  public OffsetDateTime getInitialRecordTime() {
     return initialRecordTime;
   }
 
-  public void setInitialRecordTime(DateTime initialRecordTime) {
+  public void setInitialRecordTime(OffsetDateTime initialRecordTime) {
     this.initialRecordTime = initialRecordTime;
   }
 

@@ -17,11 +17,11 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.net.URI;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.DateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -33,12 +33,12 @@ public class NamedQuerySubscription {
   private String queryName;
   private URI callbackUrl;
   private String secret;
-  private DateTime minRecordTime;
-  private DateTime initialRecordTime;
+  private OffsetDateTime minRecordTime;
+  private OffsetDateTime initialRecordTime;
   private boolean reportIfEmpty;
   private Schedule schedule;
   private boolean deleted = false;
-  private DateTime createdAt;
+  private OffsetDateTime createdAt;
   private String epcFormat;
   private String cbvFormat;
 }

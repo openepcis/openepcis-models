@@ -17,14 +17,13 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 
 /** NamedQueryMetaData */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -40,7 +39,7 @@ public class NamedQueryMetaData {
   private Boolean deleted;
 
   @JsonProperty("createdAt")
-  private DateTime createdAt = null;
+  private OffsetDateTime createdAt = null;
 
   @JsonProperty("query")
   private Map<String, Object> epcisQuery = null;
@@ -63,7 +62,7 @@ public class NamedQueryMetaData {
     this.name = name;
   }
 
-  public NamedQueryMetaData createdAt(DateTime createdAt) {
+  public NamedQueryMetaData createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -73,14 +72,12 @@ public class NamedQueryMetaData {
    *
    * @return createdAt
    */
-  public DateTime getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(DateTime createdAt) {
-    DateTime now = new DateTime();
-    DateTime dateTime = now.toDateTime(DateTimeZone.UTC);
-    this.createdAt = createdAt != null ? createdAt : dateTime;
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt != null ? createdAt : OffsetDateTime.now();
   }
 
   public NamedQueryMetaData epcisQuery(Map<String, Object> epcisQuery) {

@@ -16,7 +16,6 @@
 package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.xml.bind.annotation.*;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -26,8 +25,6 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @AllArgsConstructor
-// @JsonIgnoreProperties(ignoreUnknown = true)
-@RegisterForReflection
 @XmlRootElement
 @XmlType(
     name = "CaptureJob",
