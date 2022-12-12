@@ -18,9 +18,9 @@ package io.openepcis.model.epcis.format;
 import java.util.Optional;
 
 public enum EPCFormat {
-  Always_Digital_Link("always_digital_link"),
+  Always_GS1_Digital_Link("always_gs1_digital_link"),
   Always_EPC_URN("always_epc_urn"),
-  Never_Translate("never_translate"),
+  Never_Translate("never_translates"),
   No_Preference("no_preference");
 
   private String epcFormat;
