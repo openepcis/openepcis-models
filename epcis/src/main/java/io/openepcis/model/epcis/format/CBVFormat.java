@@ -20,7 +20,7 @@ import java.util.Optional;
 public enum CBVFormat {
   Always_URN("always_urn"),
   Always_Web_URI("always_web_uri"),
-  Never_Translate("never_translate"),
+  Never_Translates("never_translates"),
   No_Preference("no_preference");
 
   private String cbvFormat;
