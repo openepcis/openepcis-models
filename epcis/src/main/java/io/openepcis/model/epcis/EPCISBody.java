@@ -16,9 +16,7 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.*;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +24,9 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @NoArgsConstructor
-@XmlRootElement
+@XmlRootElement(name = "EPCISBody")
+@XmlType(propOrder = {"queryResults"})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISBody {
 
   @XmlTransient private List<? extends EPCISEvent> eventList;
