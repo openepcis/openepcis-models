@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 @XmlSeeAlso(InvalidEPCISEventInfo.class)
 public class CaptureDataEvent {
 
-  @XmlElement(name = "captureID")
+  @XmlAttribute(name = "captureID")
   protected String captureID;
 
   @XmlElement(name = "createdAt", required = true)
@@ -48,10 +48,10 @@ public class CaptureDataEvent {
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
   protected OffsetDateTime finishedAt;
 
-  @XmlElement(name = "running")
+  @XmlAttribute(name = "running")
   protected boolean running;
 
-  @XmlElement(name = "success")
+  @XmlAttribute(name = "success")
   protected boolean success;
 
   @XmlElement(name = "captureErrorBehaviour")

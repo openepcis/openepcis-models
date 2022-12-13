@@ -26,10 +26,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @XmlRootElement
-@XmlType(
-    name = "CaptureJob",
-    factoryClass = ObjectFactory.class,
-    factoryMethod = "createCaptureJobEvent")
+@XmlType(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(InvalidEPCISEventInfo.class)
 public class CaptureJobEvent extends CaptureDataEvent {
