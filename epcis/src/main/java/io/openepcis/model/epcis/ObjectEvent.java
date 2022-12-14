@@ -39,6 +39,7 @@ import lombok.*;
       "eventTimeZoneOffset",
       "eventID",
       "errorDeclaration",
+      "certificationInfo",
       "baseExtension",
       "epcList",
       "action",
@@ -71,6 +72,7 @@ import lombok.*;
   "recordTime",
   "eventTimeZoneOffset",
   "eventID",
+  "certificationInfo",
   "errorDeclaration",
   "epcList",
   "action",
@@ -136,6 +138,7 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
+      String certificationInfo,
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
@@ -166,6 +169,7 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
         userExtensions,
         innerUserExtensions,
         contextInfo,
+        certificationInfo,
         null);
     this.action = action;
     this.quantityList = quantityList;

@@ -38,6 +38,7 @@ import lombok.*;
       "eventTimeZoneOffset",
       "eventID",
       "errorDeclaration",
+      "certificationInfo",
       "baseExtension",
       "parentID",
       "childEPCs",
@@ -72,6 +73,7 @@ import lombok.*;
   "recordTime",
   "eventTimeZoneOffset",
   "eventID",
+  "certificationInfo",
   "errorDeclaration",
   "parentID",
   "childEPCs",
@@ -126,6 +128,7 @@ public class AggregationEvent extends EPCISEvent implements XmlSupportExtension 
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
+      String certificationInfo,
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
@@ -156,6 +159,7 @@ public class AggregationEvent extends EPCISEvent implements XmlSupportExtension 
         userExtensions,
         innerUserExtensions,
         contextInfo,
+        certificationInfo,
         null);
     this.action = action;
     this.childQuantityList = childQuantityList;
