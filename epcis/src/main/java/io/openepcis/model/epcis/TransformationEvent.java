@@ -37,6 +37,7 @@ import lombok.*;
       "eventTimeZoneOffset",
       "eventID",
       "errorDeclaration",
+      "certificationInfo",
       "baseExtension",
       "inputEPCList",
       "inputQuantityList",
@@ -78,6 +79,7 @@ import lombok.*;
   "recordTime",
   "eventTimeZoneOffset",
   "eventID",
+  "certificationInfo",
   "errorDeclaration",
   "inputEPCList",
   "inputQuantityList",
@@ -150,6 +152,7 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
+      String certificationInfo,
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
@@ -182,6 +185,7 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
         userExtensions,
         innerUserExtensions,
         contextInfo,
+        certificationInfo,
         null);
     this.inputEPCList = inputEPCList;
     this.outputEPCList = outputEPCList;

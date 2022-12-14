@@ -34,6 +34,7 @@ import lombok.*;
       "recordTime",
       "eventID",
       "errorDeclaration",
+      "certificationInfo",
       "baseExtension",
       "parentID",
       "childEPCs",
@@ -71,6 +72,7 @@ import lombok.*;
   "recordTime",
   "eventID",
   "errorDeclaration",
+  "certificationInfo",
   "parentID",
   "childEPCs",
   "childQuantityList",
@@ -84,7 +86,7 @@ import lombok.*;
   "destinationList",
   "sensorElementList",
   "persistentDisposition",
-  "anyElements"
+  "userExtensions"
 })
 public class AssociationEvent extends EPCISEvent implements XmlSupportExtension {
 
@@ -124,6 +126,7 @@ public class AssociationEvent extends EPCISEvent implements XmlSupportExtension 
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
+      String certificationInfo,
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
@@ -154,6 +157,7 @@ public class AssociationEvent extends EPCISEvent implements XmlSupportExtension 
         userExtensions,
         innerUserExtensions,
         contextInfo,
+        certificationInfo,
         null);
     this.action = action;
     this.childQuantityList = childQuantityList;
