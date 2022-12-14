@@ -111,6 +111,8 @@ public class EPCISEvent implements Serializable {
   @XmlTransient
   private List<Object> contextInfo;
 
+  private String certificationInfo;
+
   @JsonIgnore @XmlTransient private String expandedJSONLDString;
 
   public EPCISEvent(
@@ -134,6 +136,7 @@ public class EPCISEvent implements Serializable {
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
+      String certificationInfo,
       String expandedJSONLDString) {
     this.type = type;
     this.eventID = eventID;
@@ -155,6 +158,7 @@ public class EPCISEvent implements Serializable {
     this.userExtensions = userExtensions;
     this.innerUserExtensions = innerUserExtensions;
     this.contextInfo = contextInfo;
+    this.certificationInfo = certificationInfo;
     this.expandedJSONLDString = expandedJSONLDString;
   }
 
