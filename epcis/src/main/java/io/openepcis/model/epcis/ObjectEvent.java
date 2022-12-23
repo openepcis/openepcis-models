@@ -176,6 +176,9 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
     this.epcList = epcList;
     this.ilmd = ilmd;
     this.bizTransactionList = bizTransactionList;
+    if (ilmd !=null){
+      this.ilmdXml = ilmd.getUserExtensions();
+    }
   }
 
   // Used for adding the Extension and Inner Extension tag during JAXB Marshalling

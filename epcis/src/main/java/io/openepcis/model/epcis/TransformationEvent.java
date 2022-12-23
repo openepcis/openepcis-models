@@ -193,6 +193,9 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
     this.outputQuantityList = outputQuantityList;
     this.transformationID = transformationID;
     this.ilmd = ilmd;
+    if (ilmd != null) {
+      this.ilmdXml = ilmd.getUserExtensions();
+    }
   }
 
   @Override
