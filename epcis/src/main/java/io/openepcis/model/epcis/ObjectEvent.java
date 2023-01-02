@@ -176,7 +176,7 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
     this.epcList = epcList;
     this.ilmd = ilmd;
     this.bizTransactionList = bizTransactionList;
-    if (ilmd !=null){
+    if (ilmd != null) {
       this.ilmdXml = ilmd.getUserExtensions();
     }
   }
