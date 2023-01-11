@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.openepcis.epc.translator.ConverterUtil;
+import io.openepcis.epc.translator.util.ConverterUtil;
 import io.openepcis.model.epcis.modifier.*;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
