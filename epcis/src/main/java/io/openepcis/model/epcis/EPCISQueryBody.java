@@ -15,27 +15,24 @@
  */
 package io.openepcis.model.epcis;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.xml.bind.annotation.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.xml.namespace.QName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @NoArgsConstructor
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "EPCISBody")
 @XmlType(
-    name = "EPCISMasterDataType",
-    namespace = "urn:epcglobal:epcis-masterdata:xsd:2",
-    propOrder = {"vocabularyList", "extension", "any"})
-public class EPCISMasterData {
-  private List<VocabularyElements> vocabularyList;
-  protected EPCISMasterDataExtension extension;
+    name = "EPCISQueryBodyType",
+    propOrder = {"queryResults"})
+@XmlAccessorType(XmlAccessType.FIELD)
+public class EPCISQueryBody {
 
-  @XmlAnyElement(lax = true)
-  protected List<Object> any;
+  @XmlElement private EpcisQueryResult queryResults;
 
-  @XmlAnyAttribute private Map<QName, String> otherAttributes = new HashMap<>();
+  public EPCISQueryBody(EpcisQueryResult queryResults) {
+    this.queryResults = queryResults;
+  }
 }

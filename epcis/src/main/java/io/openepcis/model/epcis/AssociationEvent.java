@@ -28,6 +28,7 @@ import lombok.*;
 
 @XmlType(
     name = "AssociationEvent",
+    namespace = "urn:epcglobal:epcis:xsd:2",
     propOrder = {
       "eventTime",
       "eventTimeZoneOffset",

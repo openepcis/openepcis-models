@@ -32,6 +32,7 @@ import lombok.*;
 
 @XmlType(
     name = "AggregationEvent",
+    namespace = "urn:epcglobal:epcis:xsd:2",
     propOrder = {
       "eventTime",
       "recordTime",

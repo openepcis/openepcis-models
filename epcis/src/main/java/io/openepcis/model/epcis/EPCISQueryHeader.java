@@ -15,27 +15,11 @@
  */
 package io.openepcis.model.epcis;
 
-import jakarta.xml.bind.annotation.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.xml.namespace.QName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "EPCISMasterDataType",
-    namespace = "urn:epcglobal:epcis-masterdata:xsd:2",
-    propOrder = {"vocabularyList", "extension", "any"})
-public class EPCISMasterData {
-  private List<VocabularyElements> vocabularyList;
-  protected EPCISMasterDataExtension extension;
-
-  @XmlAnyElement(lax = true)
-  protected List<Object> any;
-
-  @XmlAnyAttribute private Map<QName, String> otherAttributes = new HashMap<>();
+public class EPCISQueryHeader {
+  private EPCISMasterData epcisMasterData;
 }
