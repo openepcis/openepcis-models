@@ -67,13 +67,13 @@ public class EPCISQueryDocument {
 
   @JsonProperty("epcisBody")
   @XmlElement(name = "EPCISBody", required = true)
-  private EPCISBody epcisBody;
+  private EPCISQueryBody epcisBody;
 
   @JsonIgnore
   @XmlElement(name = "EPCISHeader")
   private EPCISHeader epcisHeader;
 
-  public EPCISQueryDocument(EPCISBody epcisBody) {
+  public EPCISQueryDocument(EPCISQueryBody epcisBody) {
     this.epcisBody = epcisBody;
     this.type = CommonConstants.EPCIS_QUERY_DOC;
     this.schemaVersion = CommonConstants.SCHEMA_VERSION;

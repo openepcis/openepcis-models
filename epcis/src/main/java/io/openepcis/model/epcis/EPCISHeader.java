@@ -15,11 +15,33 @@
  */
 package io.openepcis.model.epcis;
 
+import jakarta.xml.bind.annotation.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.xml.namespace.QName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+    name = "EPCISHeaderType",
+    namespace = "urn:epcglobal:epcis:xsd:2",
+    propOrder = {"standardBusinessDocumentHeader", "extension", "any"})
 public class EPCISHeader {
-  private EPCISMasterData epcisMasterData;
+
+  @XmlElement(
+      name = "StandardBusinessDocumentHeader",
+      namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader",
+      required = true)
+  protected StandardBusinessDocumentHeader standardBusinessDocumentHeader;
+
+  protected EPCISHeaderExtension extension;
+
+  @XmlAnyElement(lax = true)
+  protected List<Object> any;
+
+  @XmlAnyAttribute private Map<QName, String> otherAttributes = new HashMap<>();
 }
