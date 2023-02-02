@@ -6,16 +6,22 @@ import org.eclipse.persistence.oxm.NamespacePrefixMapper;
 
 public class EPCISNamespacePrefixMapper extends NamespacePrefixMapper {
 
-  private Map<String, String> namespaceMap = new HashMap<>();
+  public static final Map<String, String> EPCIS_NAMESPACE_MAP =
+      Map.of(
+          "http://www.w3.org/2001/XMLSchema-instance", "xsi",
+          "urn:epcglobal:epcis:xsd:2", "epcis",
+          "urn:epcglobal:epcis-query:xsd:2", "epcisq",
+          "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "sbdh",
+          "http://www.w3.org/2003/05/soap-envelope/", "soap");
 
-  /** Create mappings. */
+  private Map<String, String> namespaceMap;
+
+  public EPCISNamespacePrefixMapper(final Map<String, String> namespaceMap) {
+    this.namespaceMap = namespaceMap;
+  }
+
   public EPCISNamespacePrefixMapper() {
-    namespaceMap.put("http://www.w3.org/2001/XMLSchema-instance", "xsi");
-    namespaceMap.put("urn:epcglobal:epcis:xsd:2", "epcis");
-    namespaceMap.put("urn:epcglobal:epcis-query:xsd:2", "epcisq");
-    namespaceMap.put(
-        "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "sbdh");
-    namespaceMap.put("http://www.w3.org/2003/05/soap-envelope/", "soap");
+    this(new HashMap<>(EPCIS_NAMESPACE_MAP));
   }
 
   /* (non-Javadoc)

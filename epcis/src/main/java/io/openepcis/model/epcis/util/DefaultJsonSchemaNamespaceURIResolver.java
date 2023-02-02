@@ -18,18 +18,26 @@ package io.openepcis.model.epcis.util;
 import io.openepcis.model.epcis.modifier.Constants;
 import java.net.URL;
 import java.util.*;
+import javax.xml.namespace.NamespaceContext;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DefaultJsonSchemaNamespaceURIResolver {
 
+  private static final ThreadLocal<NamespaceContext> NAMESPACE_CONTEXT_THREAD_LOCAL =
+      new ThreadLocal<>();
+
   private static final ThreadLocal<Map<String, String>> NAMESPACE_MAPS =
       new ThreadLocal<Map<String, String>>() {
 
         @Override
         protected Map<String, String> initialValue() {
-          return new HashMap<>();
+          return new HashMap<>() {
+            {
+              putAll(EPCISNamespacePrefixMapper.EPCIS_NAMESPACE_MAP);
+            }
+          };
         }
       };
   private static final ThreadLocal<Map<String, String>> MODIFIED_EVENT_NAMESPACES =
@@ -37,7 +45,11 @@ public class DefaultJsonSchemaNamespaceURIResolver {
 
         @Override
         protected Map<String, String> initialValue() {
-          return new HashMap<>();
+          return new HashMap<>() {
+            {
+              putAll(EPCISNamespacePrefixMapper.EPCIS_NAMESPACE_MAP);
+            }
+          };
         }
       };
 
@@ -61,6 +73,8 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   public synchronized void namespaceReset() {
     NAMESPACE_MAPS.get().clear();
     MODIFIED_EVENT_NAMESPACES.get().clear();
+    NAMESPACE_MAPS.get().putAll(EPCISNamespacePrefixMapper.EPCIS_NAMESPACE_MAP);
+    MODIFIED_EVENT_NAMESPACES.get().putAll(EPCISNamespacePrefixMapper.EPCIS_NAMESPACE_MAP);
   }
 
   public Optional<String> namespaceLocator(String prefix) {
