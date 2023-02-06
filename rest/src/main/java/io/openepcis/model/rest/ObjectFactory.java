@@ -25,4 +25,8 @@ public final class ObjectFactory {
   public static ProblemResponseBody createProblemResponseBody() {
     return new ProblemResponseBody();
   }
+
+  public static ResponseBody createResponseBody() {
+    return new ResponseBody();
+  }
 }
