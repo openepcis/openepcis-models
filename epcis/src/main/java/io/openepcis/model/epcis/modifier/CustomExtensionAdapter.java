@@ -44,7 +44,7 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
       final NodeList children = element.getChildNodes();
 
       DefaultJsonSchemaNamespaceURIResolver.getInstance()
-          .namespacePopulator(element.getNamespaceURI(), element.getPrefix());
+          .namespacePopulater(element.getNamespaceURI(), element.getPrefix());
 
       // If simple type then directly add text to MAP
       if (children.getLength() == 1
@@ -61,7 +61,7 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
             final NodeList innerChildren = innerElement.getChildNodes();
 
             DefaultJsonSchemaNamespaceURIResolver.getInstance()
-                .namespacePopulator(innerElement.getNamespaceURI(), innerElement.getPrefix());
+                .namespacePopulater(innerElement.getNamespaceURI(), innerElement.getPrefix());
 
             if (innerChildren.getLength() == 1
                 && !innerElement.getTextContent().replaceAll(EMPTY_STRING_CHECKER, "").equals("")) {

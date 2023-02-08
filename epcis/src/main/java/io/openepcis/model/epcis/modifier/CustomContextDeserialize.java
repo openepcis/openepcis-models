@@ -40,7 +40,7 @@ public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
           final Map<String, String> namespaceLoc = (Map<String, String>) contextItem;
           namespaceLoc.forEach(
               (key, value) -> {
-                DefaultJsonSchemaNamespaceURIResolver.getInstance().namespacePopulator(value, key);
+                DefaultJsonSchemaNamespaceURIResolver.getInstance().namespacePopulater(value, key);
               });
         }
       }
