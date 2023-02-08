@@ -24,8 +24,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DefaultJsonSchemaNamespaceURIResolver {
 
-  private static final Map<String, String> NAMESPACE_MAPS = new HashMap<>();
-  private static final Map<String, String> MODIFIED_EVENT_NAMESPACES = new HashMap<>();
+  private static final ThreadLocal<Map<String, String>> NAMESPACE_MAPS =
+      new ThreadLocal<Map<String, String>>() {
+
+        @Override
+        protected Map<String, String> initialValue() {
+          return new HashMap<>();
+        }
+      };
+  private static final ThreadLocal<Map<String, String>> MODIFIED_EVENT_NAMESPACES =
+      new ThreadLocal<Map<String, String>>() {
+
+        @Override
+        protected Map<String, String> initialValue() {
+          return new HashMap<>();
+        }
+      };
 
   private static DefaultJsonSchemaNamespaceURIResolver instance =
       new DefaultJsonSchemaNamespaceURIResolver();
@@ -35,24 +49,24 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   }
 
   // Add the Namespaces obtained from JSON-LD if the already defined XSD namespaces exist
-  public synchronized void namespacePopulater(String namespaceURI, String prefix) {
-    if (!NAMESPACE_MAPS.containsKey(prefix)
-        && !NAMESPACE_MAPS.containsValue(prefix)
+  public synchronized void namespacePopulator(String namespaceURI, String prefix) {
+    if (!NAMESPACE_MAPS.get().containsKey(prefix)
+        && !NAMESPACE_MAPS.get().containsValue(prefix)
         && namespaceURI != null
         && prefix != null) {
-      NAMESPACE_MAPS.put(namespaceURI, prefix);
+      NAMESPACE_MAPS.get().put(namespaceURI, prefix);
     }
   }
 
   public synchronized void namespaceReset() {
-    NAMESPACE_MAPS.clear();
-    MODIFIED_EVENT_NAMESPACES.clear();
+    NAMESPACE_MAPS.get().clear();
+    MODIFIED_EVENT_NAMESPACES.get().clear();
   }
 
   public Optional<String> namespaceLocator(String prefix) {
-    if (NAMESPACE_MAPS.containsValue(prefix)) {
+    if (NAMESPACE_MAPS.get().containsValue(prefix)) {
       return Optional.of(
-          NAMESPACE_MAPS.entrySet().stream()
+          NAMESPACE_MAPS.get().entrySet().stream()
               .filter(entry -> Objects.equals(entry.getValue(), prefix))
               .map(Map.Entry::getKey)
               .findFirst()
@@ -62,33 +76,35 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   }
 
   public Map<String, String> getOriginalNamespace() {
-    return NAMESPACE_MAPS;
+    return NAMESPACE_MAPS.get();
   }
 
   public Map<String, String> getModifiedNamespace() {
-    return MODIFIED_EVENT_NAMESPACES;
+    return MODIFIED_EVENT_NAMESPACES.get();
   }
 
   // Method to add the trailing / or : based on URL or URN and remove the Predefined prefixes from
   // MAP
   public void modifyNamespaces() {
-    NAMESPACE_MAPS.forEach(
-        (key, value) -> {
-          String modifiedNamespace = key;
-          try {
-            // If URL then add trailing /
-            URL url = new URL(key);
-            modifiedNamespace = url.toString().endsWith("/") ? url.toString() : url + "/";
-          } catch (Exception e) {
-            // If URN then add trailing :
-            modifiedNamespace =
-                modifiedNamespace.endsWith(":") ? modifiedNamespace : modifiedNamespace + ":";
-          }
+    NAMESPACE_MAPS
+        .get()
+        .forEach(
+            (key, value) -> {
+              String modifiedNamespace = key;
+              try {
+                // If URL then add trailing /
+                URL url = new URL(key);
+                modifiedNamespace = url.toString().endsWith("/") ? url.toString() : url + "/";
+              } catch (Exception e) {
+                // If URN then add trailing :
+                modifiedNamespace =
+                    modifiedNamespace.endsWith(":") ? modifiedNamespace : modifiedNamespace + ":";
+              }
 
-          // If the value is not part of default then add it to the Map
-          if (!Arrays.asList(Constants.PROTECTED_TERMS_OF_CONTEXT).contains(value)) {
-            MODIFIED_EVENT_NAMESPACES.put(modifiedNamespace, value);
-          }
-        });
+              // If the value is not part of default then add it to the Map
+              if (!Arrays.asList(Constants.PROTECTED_TERMS_OF_CONTEXT).contains(value)) {
+                MODIFIED_EVENT_NAMESPACES.get().put(modifiedNamespace, value);
+              }
+            });
   }
 }
