@@ -33,12 +33,12 @@ public enum EPCFormat {
     return this.epcFormat;
   }
 
-  public static EPCFormat fromString(Optional<String> epcFormat) {
+  public static Optional<EPCFormat> fromString(String epcFormat) {
     for (EPCFormat epf : EPCFormat.values()) {
-      if (epf.epcFormat.equalsIgnoreCase(epcFormat.get())) {
-        return epf;
+      if (epf.epcFormat.equalsIgnoreCase(epcFormat)) {
+        return Optional.of(epf);
       }
     }
-    return null;
+    return Optional.empty();
   }
 }

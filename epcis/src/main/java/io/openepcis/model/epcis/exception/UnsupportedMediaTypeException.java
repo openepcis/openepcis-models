@@ -13,31 +13,15 @@
  *     See the License for the specific language governing permissions and
  *     limitations under the License.
  */
-package io.openepcis.model.epcis.format;
+package io.openepcis.model.epcis.exception;
 
+public class UnsupportedMediaTypeException extends EPCISException {
 
-public enum CBVFormat {
-  Always_URN("always_urn"),
-  Always_Web_URI("always_web_uri"),
-  Never_Translates("never_translates"),
-  No_Preference("no_preference");
-
-  private String cbvFormat;
-
-  CBVFormat(String cbvFormat) {
-    this.cbvFormat = cbvFormat;
+  public UnsupportedMediaTypeException(String msg) {
+    super(msg);
   }
 
-  public String getCbvFormat() {
-    return this.cbvFormat;
-  }
-
-  public static CBVFormat fromString(String cbvFormat) {
-    for (CBVFormat cbf : CBVFormat.values()) {
-      if (cbf.cbvFormat.equalsIgnoreCase(String.valueOf(cbvFormat))) {
-        return cbf;
-      }
-    }
-    return No_Preference;
+  public UnsupportedMediaTypeException(String msg, Throwable cause) {
+    super(msg, cause);
   }
 }

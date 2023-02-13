@@ -22,7 +22,7 @@ public class FormatPreference {
   private EPCFormat epcFormat;
   private CBVFormat cbvFormat;
 
-  public FormatPreference(Optional<String> epcFormat, Optional<String> cbvFormat) {
+  public FormatPreference(String epcFormat, String cbvFormat) {
     this.epcFormat = EPCFormat.fromString(epcFormat);
     this.cbvFormat = CBVFormat.fromString(cbvFormat);
   }
