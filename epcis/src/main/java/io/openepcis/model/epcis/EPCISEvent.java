@@ -102,7 +102,7 @@ public class EPCISEvent implements Serializable {
 
   @XmlTransient private String captureID;
 
-  @XmlTransient private Map<String, Object> userExtensions;
+  @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
 
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
 

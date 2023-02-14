@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.epcis.format;
 
+import java.util.Optional;
 
 public enum CBVFormat {
   Always_URN("always_urn"),
@@ -32,12 +33,12 @@ public enum CBVFormat {
     return this.cbvFormat;
   }
 
-  public static CBVFormat fromString(String cbvFormat) {
+  public static Optional<CBVFormat> fromString(String cbvFormat) {
     for (CBVFormat cbf : CBVFormat.values()) {
-      if (cbf.cbvFormat.equalsIgnoreCase(String.valueOf(cbvFormat))) {
-        return cbf;
+      if (cbf.cbvFormat.equalsIgnoreCase(cbvFormat)) {
+        return Optional.of(cbf);
       }
     }
-    return No_Preference;
+    return Optional.of(No_Preference);
   }
 }

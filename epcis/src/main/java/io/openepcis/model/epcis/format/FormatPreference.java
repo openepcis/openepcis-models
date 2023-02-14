@@ -23,15 +23,23 @@ public class FormatPreference {
   private CBVFormat cbvFormat;
 
   public FormatPreference(String epcFormat, String cbvFormat) {
-    this.epcFormat = EPCFormat.fromString(epcFormat);
-    this.cbvFormat = CBVFormat.fromString(cbvFormat);
+    this.epcFormat = EPCFormat.fromString(epcFormat).orElse(EPCFormat.No_Preference);
+    this.cbvFormat = CBVFormat.fromString(cbvFormat).orElse(CBVFormat.No_Preference);
+  }
+
+  public static FormatPreference getInstance(EPCFormat epcFormat, CBVFormat cbvFormat) {
+    return new FormatPreference(epcFormat.getEPCFormat(), cbvFormat.getCbvFormat());
   }
 
   public static FormatPreference getInstance(
       Optional<String> epcFormat, Optional<String> cbvFormat) {
-    return new FormatPreference(
-        epcFormat.isPresent() ? epcFormat : Optional.empty(),
-        cbvFormat.isPresent() ? cbvFormat : Optional.empty());
+    return getInstance(
+        epcFormat.isPresent()
+            ? EPCFormat.fromString(epcFormat.get()).orElse(EPCFormat.No_Preference)
+            : EPCFormat.No_Preference,
+        cbvFormat.isPresent()
+            ? CBVFormat.fromString(cbvFormat.get()).orElse(CBVFormat.No_Preference)
+            : CBVFormat.No_Preference);
   }
 
   public EPCFormat getEpcFormat() {
