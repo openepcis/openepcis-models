@@ -18,6 +18,6 @@ package io.openepcis.model.epcis.exception;
 public class NoEventFoundException extends EPCISException {
 
   public NoEventFoundException(final String message) {
-    super(message);
+    super(message, 404);
   }
 }

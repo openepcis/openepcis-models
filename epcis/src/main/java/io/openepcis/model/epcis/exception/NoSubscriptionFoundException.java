@@ -17,10 +17,10 @@ package io.openepcis.model.epcis.exception;
 
 public class NoSubscriptionFoundException extends EPCISException {
   public NoSubscriptionFoundException(String msg) {
-    super(msg);
+    super(msg, 404);
   }
 
   public NoSubscriptionFoundException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 404, cause);
   }
 }

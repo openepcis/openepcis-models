@@ -17,10 +17,10 @@ package io.openepcis.model.epcis.exception;
 
 public class NoSuchEventTypeException extends EPCISException {
   public NoSuchEventTypeException(String msg) {
-    super(msg);
+    super(msg, 404);
   }
 
   public NoSuchEventTypeException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 404, cause);
   }
 }

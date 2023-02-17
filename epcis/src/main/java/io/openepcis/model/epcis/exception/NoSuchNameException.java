@@ -18,10 +18,10 @@ package io.openepcis.model.epcis.exception;
 public class NoSuchNameException extends EPCISException {
 
   public NoSuchNameException(String msg) {
-    super(msg);
+    super(msg, 404);
   }
 
   public NoSuchNameException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 404, cause);
   }
 }

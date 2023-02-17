@@ -18,10 +18,10 @@ package io.openepcis.model.epcis.exception;
 public class QueryTooLargeException extends EPCISException {
 
   public QueryTooLargeException(String msg) {
-    super(msg);
+    super(msg, 400);
   }
 
   public QueryTooLargeException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 400, cause);
   }
 }

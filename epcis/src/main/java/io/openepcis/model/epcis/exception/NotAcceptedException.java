@@ -13,15 +13,14 @@
  *     See the License for the specific language governing permissions and
  *     limitations under the License.
  */
-package io.openepcis.core.exception;
+package io.openepcis.model.epcis.exception;
 
-public class PersistenceException extends RuntimeException {
-
-  public PersistenceException(String msg) {
+public class NotAcceptedException extends RuntimeException {
+  public NotAcceptedException(String msg) {
     super(msg);
   }
 
-  public PersistenceException(String msg, Throwable cause) {
+  public NotAcceptedException(String msg, Throwable cause) {
     super(msg, cause);
   }
 }

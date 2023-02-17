@@ -18,10 +18,10 @@ package io.openepcis.model.epcis.exception;
 public class SubscribeNotPermittedException extends EPCISException {
 
   public SubscribeNotPermittedException(String msg) {
-    super(msg);
+    super(msg, 400);
   }
 
   public SubscribeNotPermittedException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 400, cause);
   }
 }

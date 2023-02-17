@@ -18,10 +18,10 @@ package io.openepcis.model.epcis.exception;
 public class UnsupportedMediaTypeException extends EPCISException {
 
   public UnsupportedMediaTypeException(String msg) {
-    super(msg);
+    super(msg, 415);
   }
 
   public UnsupportedMediaTypeException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 415, cause);
   }
 }

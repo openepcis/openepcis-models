@@ -18,10 +18,10 @@ package io.openepcis.model.epcis.exception;
 public class QueryValidationException extends EPCISException {
 
   public QueryValidationException(String msg) {
-    super(msg);
+    super(msg, 400);
   }
 
   public QueryValidationException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 400, cause);
   }
 }
