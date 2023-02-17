@@ -15,13 +15,13 @@
  */
 package io.openepcis.model.epcis.exception;
 
-public class QueryExecutionException extends RuntimeException {
+public class QueryExecutionException extends EPCISException {
 
   public QueryExecutionException(String message) {
-    super(message);
+    super(message, 400);
   }
 
   public QueryExecutionException(String message, Throwable t) {
-    super(message, t);
+    super(message, 400, t);
   }
 }

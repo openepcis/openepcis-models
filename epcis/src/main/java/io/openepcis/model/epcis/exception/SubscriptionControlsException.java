@@ -18,10 +18,10 @@ package io.openepcis.model.epcis.exception;
 public class SubscriptionControlsException extends EPCISException {
 
   public SubscriptionControlsException(String msg) {
-    super(msg);
+    super(msg, 400);
   }
 
   public SubscriptionControlsException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 400, cause);
   }
 }

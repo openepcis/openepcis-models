@@ -18,10 +18,10 @@ package io.openepcis.model.epcis.exception;
 public class QueryParameterException extends EPCISException {
 
   public QueryParameterException(String msg) {
-    super(msg);
+    super(msg, 400);
   }
 
   public QueryParameterException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 400, cause);
   }
 }

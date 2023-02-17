@@ -17,11 +17,29 @@ package io.openepcis.model.epcis.exception;
 
 public class EPCISException extends RuntimeException {
 
-  public EPCISException(String msg) {
+  private final int status;
+
+  private EPCISException(String msg) {
     super(msg);
+    this.status = 500;
   }
 
-  public EPCISException(String msg, Throwable cause) {
+  public EPCISException(String msg, int status) {
+    super(msg);
+    this.status = status;
+  }
+
+  private EPCISException(String msg, Throwable cause) {
     super(msg, cause);
+    this.status = 500;
+  }
+
+  public EPCISException(String msg, int status, Throwable cause) {
+    super(msg, cause);
+    this.status = status;
+  }
+
+  public int getStatus() {
+    return this.status;
   }
 }
