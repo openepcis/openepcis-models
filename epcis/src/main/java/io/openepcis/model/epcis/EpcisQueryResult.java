@@ -27,11 +27,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @XmlType(
     name = "EpcisQueryResult",
-    propOrder = {"subscriptionID", "queryName", "queryType", "resultBody"})
+    propOrder = {"subscriptionID", "queryName", "queryType", "resultsBody"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EpcisQueryResult {
   @XmlElement private String subscriptionID;
   @XmlElement private String queryName;
   @XmlElement private String queryType;
-  @XmlElement private ResultBody resultBody;
+  @XmlElement private QueryResultsBody resultsBody;
 }

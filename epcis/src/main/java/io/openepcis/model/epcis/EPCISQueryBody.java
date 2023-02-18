@@ -30,7 +30,8 @@ import lombok.NoArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISQueryBody {
 
-  @XmlElement private EpcisQueryResult queryResults;
+  @XmlElement(name = "QueryResults")
+  private EpcisQueryResult queryResults;
 
   public EPCISQueryBody(EpcisQueryResult queryResults) {
     this.queryResults = queryResults;

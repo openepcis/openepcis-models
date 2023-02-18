@@ -78,9 +78,9 @@ public class EPCISQueryDocument {
     this.type = CommonConstants.EPCIS_QUERY_DOC;
     this.schemaVersion = CommonConstants.SCHEMA_VERSION;
     this.createdAt = OffsetDateTime.now();
-    if (CollectionUtils.isNotEmpty(epcisBody.getQueryResults().getResultBody().getEventList())) {
+    if (CollectionUtils.isNotEmpty(epcisBody.getQueryResults().getResultsBody().getEventList())) {
       this.context =
-          getContextInfoFromEventList(epcisBody.getQueryResults().getResultBody().getEventList());
+          getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
     }
   }
 

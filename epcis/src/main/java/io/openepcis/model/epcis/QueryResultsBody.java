@@ -28,8 +28,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ResultBody {
-  @XmlElementWrapper(name = "eventList")
+public class QueryResultsBody {
+  @XmlElementWrapper(name = "EventList")
   @XmlElements({
     @XmlElement(name = "ObjectEvent", type = ObjectEvent.class),
     @XmlElement(name = "TransformationEvent", type = TransformationEvent.class),
