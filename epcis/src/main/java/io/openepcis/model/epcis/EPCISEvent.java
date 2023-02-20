@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.epc.translator.util.ConverterUtil;
 import io.openepcis.model.epcis.modifier.*;
+import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
@@ -108,6 +109,7 @@ public class EPCISEvent implements Serializable {
 
   @JsonProperty("@context")
   @JsonDeserialize(using = CustomContextDeserialize.class)
+  @JsonSerialize(using = CustomContextSerializer.class)
   @XmlTransient
   private List<Object> contextInfo;
 
@@ -365,6 +367,10 @@ public class EPCISEvent implements Serializable {
               destination.setType(ConverterUtil.toBareStringVocabulary(destination.getType()));
             }
           });
+    }
+
+    if (!DefaultJsonSchemaNamespaceURIResolver.getInstance().getEventNamespaces().isEmpty()) {
+      contextInfo = new ArrayList<>();
     }
   }
 }

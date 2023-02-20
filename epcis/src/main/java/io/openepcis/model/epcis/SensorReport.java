@@ -123,7 +123,7 @@ public class SensorReport implements Serializable {
           (key, value1) ->
               this.userExtensions.put(
                   DefaultJsonSchemaNamespaceURIResolver.getInstance()
-                          .getOriginalNamespace()
+                          .getAllNamespaces()
                           .get(key.getNamespaceURI())
                       + ":"
                       + key.getLocalPart(),

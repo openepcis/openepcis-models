@@ -29,20 +29,28 @@ public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
   @Override
   public List<Object> deserialize(JsonParser jsonParser, DeserializationContext ctxt)
       throws IOException {
+    final DefaultJsonSchemaNamespaceURIResolver resolver =
+        DefaultJsonSchemaNamespaceURIResolver.getInstance();
     final List<Object> namespaceNode =
         new ObjectMapper().treeToValue(jsonParser.readValueAsTree(), ArrayList.class);
 
     // If the @Context has been populated with values then write the namespaces to Defaulter's using
     // the custom deserialize
     if (namespaceNode != null) {
-      for (Object contextItem : namespaceNode) {
+      for (final Object contextItem : namespaceNode) {
         if (contextItem instanceof Map) {
           final Map<String, String> namespaceLoc = (Map<String, String>) contextItem;
           namespaceLoc.forEach(
               (key, value) -> {
-                DefaultJsonSchemaNamespaceURIResolver.getInstance().namespacePopulator(value, key);
+                resolver.populateDocumentNamespaces(value, key);
               });
         }
+      }
+    } else {
+      // If context is not populated then during the XML unmarshalling populate based on the values
+      // present in DefaultJsonSchemaNamespaceURIResolver
+      if (!resolver.getEventNamespaces().isEmpty()) {
+        return new ArrayList<>(resolver.getEventNamespaces().values());
       }
     }
     return null;
