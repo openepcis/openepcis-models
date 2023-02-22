@@ -91,7 +91,7 @@ public class ExtensionsModifier {
       final NodeList children = element.getChildNodes();
 
       DefaultJsonSchemaNamespaceURIResolver.getInstance()
-          .namespacePopulator(element.getNamespaceURI(), element.getPrefix());
+          .populateEventNamespaces(element.getNamespaceURI(), element.getPrefix());
 
       // If simple type then directly add text to MAP
       if (children.getLength() == 1
@@ -108,7 +108,7 @@ public class ExtensionsModifier {
             final NodeList innerChildren = innerElement.getChildNodes();
 
             DefaultJsonSchemaNamespaceURIResolver.getInstance()
-                .namespacePopulator(innerElement.getNamespaceURI(), innerElement.getPrefix());
+                .populateEventNamespaces(innerElement.getNamespaceURI(), innerElement.getPrefix());
 
             if (innerChildren.getLength() == 1
                 && !innerElement.getTextContent().replaceAll(EMPTY_STRING_CHECKER, "").equals("")) {
