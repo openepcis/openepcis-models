@@ -47,6 +47,10 @@ public final class ObjectFactory {
     return new AssociationEvent();
   }
 
+  public static SensorMetadata createSensorMetadata() {
+    return new SensorMetadata();
+  }
+
   public static EPCISQueryDocument createEpcisQueryDocument() {
     return new EPCISQueryDocument();
   }
