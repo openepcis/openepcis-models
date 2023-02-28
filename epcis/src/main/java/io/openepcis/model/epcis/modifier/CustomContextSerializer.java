@@ -10,6 +10,9 @@ import java.util.Map;
 
 public class CustomContextSerializer extends JsonSerializer<List<Object>> {
 
+  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+      DefaultJsonSchemaNamespaceURIResolver.getInstance();
+
   @Override
   public void serialize(
       final List<Object> contextValue,
@@ -17,12 +20,10 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       final SerializerProvider serializers)
       throws IOException {
     try {
-      final DefaultJsonSchemaNamespaceURIResolver resolver =
-          DefaultJsonSchemaNamespaceURIResolver.getInstance();
-      resolver.modifyEventNamespaces();
+      namespaceResolver.modifyEventNamespaces();
       jsonGenerator.writeStartArray();
 
-      final Map<String, String> modifiedNamespaces = resolver.getModifiedNamespaces();
+      final Map<String, String> modifiedNamespaces = namespaceResolver.getModifiedNamespaces();
 
       for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
         jsonGenerator.writeStartObject();
@@ -31,8 +32,8 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       }
 
       jsonGenerator.writeEndArray();
-      resolver.resetEventNamespaces();
-      resolver.resetModifiedNamespaces();
+      namespaceResolver.resetEventNamespaces();
+      namespaceResolver.resetModifiedNamespaces();
     } catch (IOException e) {
       throw new IOException(
           "Exception occurred during the writing of context elements: " + e.getMessage(), e);
