@@ -16,6 +16,7 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.xml.bind.annotation.XmlType;
 import java.io.Serializable;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@XmlType(propOrder = {"unset", "set"})
 public class PersistentDisposition implements Serializable {
 
   private List<String> set;

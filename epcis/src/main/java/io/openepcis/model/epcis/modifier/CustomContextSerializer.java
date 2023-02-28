@@ -22,7 +22,7 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       resolver.modifyEventNamespaces();
       jsonGenerator.writeStartArray();
 
-      final Map<String, String> modifiedNamespaces = resolver.getEventNamespaces();
+      final Map<String, String> modifiedNamespaces = resolver.getModifiedNamespaces();
 
       for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
         jsonGenerator.writeStartObject();
@@ -32,6 +32,7 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
 
       jsonGenerator.writeEndArray();
       resolver.resetEventNamespaces();
+      resolver.resetModifiedNamespaces();
     } catch (IOException e) {
       throw new IOException(
           "Exception occurred during the writing of context elements: " + e.getMessage(), e);

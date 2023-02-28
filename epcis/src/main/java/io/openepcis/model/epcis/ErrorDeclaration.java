@@ -87,7 +87,7 @@ public class ErrorDeclaration implements Serializable {
     // Add all elements from UserExtensions to AnyElements before Marshaling before creating XML
     if (userExtensions != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      anyElements = extensionsModifier.Marshalling(userExtensions);
+      anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }
   }
@@ -96,7 +96,7 @@ public class ErrorDeclaration implements Serializable {
     // Add all elements from AnyElements to UserExtensions after Unmarshalling before creating JSON
     if (anyElements != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      userExtensions = extensionsModifier.Unmarshalling(anyElements);
+      userExtensions = extensionsModifier.createObject(anyElements);
       anyElements = new ArrayList<>();
     }
 

@@ -28,6 +28,9 @@ public class DefaultJsonSchemaNamespaceURIResolver {
       ThreadLocal.withInitial(HashMap::new);
   private static final ThreadLocal<Map<String, String>> EVENT_NAMESPACES =
       ThreadLocal.withInitial(HashMap::new);
+
+  private static final ThreadLocal<Map<String, String>> MODIFIED_NAMESPACES =
+      ThreadLocal.withInitial(HashMap::new);
   private static final DefaultJsonSchemaNamespaceURIResolver INSTANCE =
       new DefaultJsonSchemaNamespaceURIResolver();
 
@@ -59,12 +62,18 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   // Reset the event namespaces after completing each event.
   public synchronized void resetEventNamespaces() {
     EVENT_NAMESPACES.remove();
+    MODIFIED_NAMESPACES.remove();
+  }
+
+  public synchronized void resetModifiedNamespaces() {
+    MODIFIED_NAMESPACES.remove();
   }
 
   // Reset all the document & event namespaces after completing the document.
   public synchronized void resetAllNamespaces() {
     DOCUMENT_NAMESPACES.remove();
     EVENT_NAMESPACES.remove();
+    MODIFIED_NAMESPACES.remove();
   }
 
   // Find the appropriate namespace based on the provided prefix.
@@ -83,6 +92,10 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   // Method that returns the saved Event namespaces.
   public Map<String, String> getEventNamespaces() {
     return EVENT_NAMESPACES.get();
+  }
+
+  public Map<String, String> getModifiedNamespaces() {
+    return MODIFIED_NAMESPACES.get();
   }
 
   // Method that returns all the namespaces Document + Event combined.
@@ -124,7 +137,7 @@ public class DefaultJsonSchemaNamespaceURIResolver {
 
               // If the value is not part of default then add it to the Map
               if (!Arrays.asList(Constants.PROTECTED_TERMS_OF_CONTEXT).contains(value)) {
-                namespaces.get().put(modifiedNamespace, value);
+                MODIFIED_NAMESPACES.get().put(modifiedNamespace, value);
               }
             });
   }

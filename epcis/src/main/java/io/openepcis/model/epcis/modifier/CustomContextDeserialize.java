@@ -16,6 +16,7 @@
 package io.openepcis.model.epcis.modifier;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,26 +27,27 @@ import java.util.List;
 import java.util.Map;
 
 public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
+
+  private final DefaultJsonSchemaNamespaceURIResolver resolver =
+      DefaultJsonSchemaNamespaceURIResolver.getInstance();
+  private final ObjectMapper objectMapper = new ObjectMapper();
+
   @Override
   public List<Object> deserialize(JsonParser jsonParser, DeserializationContext ctxt)
       throws IOException {
-    final DefaultJsonSchemaNamespaceURIResolver resolver =
-        DefaultJsonSchemaNamespaceURIResolver.getInstance();
     final List<Object> namespaceNode =
-        new ObjectMapper().treeToValue(jsonParser.readValueAsTree(), ArrayList.class);
+        objectMapper.readValue(jsonParser, new TypeReference<ArrayList<Object>>() {});
 
     // If the @Context has been populated with values then write the namespaces to Defaulter's using
     // the custom deserialize
     if (namespaceNode != null) {
-      for (final Object contextItem : namespaceNode) {
-        if (contextItem instanceof Map) {
-          final Map<String, String> namespaceLoc = (Map<String, String>) contextItem;
-          namespaceLoc.forEach(
-              (key, value) -> {
-                resolver.populateEventNamespaces(value, key);
-              });
-        }
-      }
+      namespaceNode.forEach(
+          item -> {
+            if (item instanceof Map) {
+              final Map<String, String> namespaceLoc = (Map<String, String>) item;
+              namespaceLoc.forEach((key, value) -> resolver.populateEventNamespaces(value, key));
+            }
+          });
     } else {
       // If context is not populated then during the XML unmarshalling populate based on the values
       // present in DefaultJsonSchemaNamespaceURIResolver
@@ -53,6 +55,7 @@ public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
         return new ArrayList<>(resolver.getEventNamespaces().values());
       }
     }
+
     return null;
   }
 }

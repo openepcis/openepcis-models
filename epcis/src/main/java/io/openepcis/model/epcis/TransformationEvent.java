@@ -52,9 +52,9 @@ import lombok.*;
       "bizTransactionList",
       "sourceList",
       "destinationList",
-      "ilmdXml",
       "sensorElementList",
       "persistentDisposition",
+      "ilmdXml",
       "extension",
       "anyElements"
     },

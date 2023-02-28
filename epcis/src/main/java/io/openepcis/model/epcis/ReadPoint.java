@@ -78,8 +78,9 @@ public class ReadPoint implements Serializable {
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
     // Add all elements from UserExtensions to AnyElements before Marshaling/before creating XML
     if (userExtensions != null) {
-      final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      anyElements = extensionsModifier.Marshalling(userExtensions);
+      final io.openepcis.model.epcis.modifier.ExtensionsModifier extensionsModifier =
+          new io.openepcis.model.epcis.modifier.ExtensionsModifier();
+      anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }
   }
@@ -88,7 +89,7 @@ public class ReadPoint implements Serializable {
     // Add all elements from AnyElements to UserExtensions after Unmarshalling before creating JSON
     if (anyElements != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      userExtensions = extensionsModifier.Unmarshalling(anyElements);
+      userExtensions = extensionsModifier.createObject(anyElements);
       anyElements = new ArrayList();
     }
 
