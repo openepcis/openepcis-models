@@ -35,11 +35,8 @@ public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
   @Override
   public List<Object> deserialize(JsonParser jsonParser, DeserializationContext ctxt)
       throws IOException {
-    List<Object> namespaceNode;
-
-    try (jsonParser) {
-      namespaceNode = objectMapper.readValue(jsonParser, new TypeReference<ArrayList<Object>>() {});
-    }
+    final List<Object> namespaceNode =
+        objectMapper.readValue(jsonParser, new TypeReference<ArrayList<Object>>() {});
 
     // If the @Context has been populated with values then write the namespaces to Defaulter's using
     // the custom deserialize
