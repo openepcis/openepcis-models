@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
 
-  private final DefaultJsonSchemaNamespaceURIResolver resolver =
+  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
       DefaultJsonSchemaNamespaceURIResolver.getInstance();
   private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -45,14 +45,15 @@ public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
           item -> {
             if (item instanceof Map) {
               final Map<String, String> namespaceLoc = (Map<String, String>) item;
-              namespaceLoc.forEach((key, value) -> resolver.populateEventNamespaces(value, key));
+              namespaceLoc.forEach(
+                  (key, value) -> namespaceResolver.populateEventNamespaces(value, key));
             }
           });
     } else {
       // If context is not populated then during the XML unmarshalling populate based on the values
       // present in DefaultJsonSchemaNamespaceURIResolver
-      if (!resolver.getEventNamespaces().isEmpty()) {
-        return new ArrayList<>(resolver.getEventNamespaces().values());
+      if (!namespaceResolver.getEventNamespaces().isEmpty()) {
+        return new ArrayList<>(namespaceResolver.getEventNamespaces().values());
       }
     }
 

@@ -9,6 +9,8 @@ import org.w3c.dom.NodeList;
 public class CommonExtensionModifier {
 
   private static final String EMPTY_STRING_CHECKER = "[\\n\\t ]";
+  private static final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+      DefaultJsonSchemaNamespaceURIResolver.getInstance();
 
   public static Map<String, Object> extensionPopulate(
       Map<String, Object> extensionsPop, String nodeName, Object nodeContent) {
@@ -35,14 +37,14 @@ public class CommonExtensionModifier {
     if (value == null) {
       return Collections.emptyMap();
     }
+
     Map<String, Object> extensions = new HashMap<>();
 
     for (Object obj : value) {
       final Element element = (Element) obj;
       final NodeList children = element.getChildNodes();
 
-      DefaultJsonSchemaNamespaceURIResolver.getInstance()
-          .populateEventNamespaces(element.getNamespaceURI(), element.getPrefix());
+      namespaceResolver.populateEventNamespaces(element.getNamespaceURI(), element.getPrefix());
 
       // If simple type then directly add text to MAP
       if (children.getLength() == 1
@@ -60,8 +62,8 @@ public class CommonExtensionModifier {
             final Element innerElement = (Element) n;
             final NodeList innerChildren = innerElement.getChildNodes();
 
-            DefaultJsonSchemaNamespaceURIResolver.getInstance()
-                .populateEventNamespaces(innerElement.getNamespaceURI(), innerElement.getPrefix());
+            namespaceResolver.populateEventNamespaces(
+                innerElement.getNamespaceURI(), innerElement.getPrefix());
 
             if (innerChildren.getLength() == 1
                 && !innerElement.getTextContent().replaceAll(EMPTY_STRING_CHECKER, "").equals("")) {
