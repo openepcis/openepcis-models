@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,9 +48,23 @@ public class EPCISEventResponseEvent {
   @XmlElement
   private EPCISEvent epcisEvent;
 
+  @JsonIgnore
+  @XmlTransient
+  private Map<String, String> documentNamespaces = new HashMap<>();
+
   public EPCISEventResponseEvent(final EPCISEvent epcisEvent) {
     this.epcisEvent = epcisEvent;
     this.contextInfo = getContextInfoFromEvent(epcisEvent);
+
+    // Populating the namespaces directly from context during xml query
+    if(contextInfo != null && !contextInfo.isEmpty()){
+      for (Object item : contextInfo) {
+        if (item instanceof Map<?, ?>) {
+          final Map<String, String> namespaces = (Map<String, String>) item;
+          namespaces.forEach((key, value) -> documentNamespaces.put(value, key));
+        }
+      }
+    }
   }
 
   private List<Object> getContextInfoFromEvent(EPCISEvent epcisEvent) {

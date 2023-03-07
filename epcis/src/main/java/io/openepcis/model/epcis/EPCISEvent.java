@@ -284,19 +284,6 @@ public class EPCISEvent implements Serializable {
             }
           });
     }
-
-    // Populating the namespaces directly from context during xml query
-    if (contextInfo != null && !contextInfo.isEmpty()) {
-      final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-          DefaultJsonSchemaNamespaceURIResolver.getInstance();
-
-      for (Object item : contextInfo) {
-        if (item instanceof Map<?, ?>) {
-          final Map<String, String> namespaces = (Map<String, String>) item;
-          namespaces.forEach((key, value) -> namespaceResolver.populateEventNamespaces(value, key));
-        }
-      }
-    }
   }
 
   public void afterUnmarshal(Unmarshaller m, Object parent) throws ParserConfigurationException {
