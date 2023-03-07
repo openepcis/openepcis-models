@@ -48,16 +48,14 @@ public class EPCISEventResponseEvent {
   @XmlElement
   private EPCISEvent epcisEvent;
 
-  @JsonIgnore
-  @XmlTransient
-  private Map<String, String> documentNamespaces = new HashMap<>();
+  @JsonIgnore @XmlTransient private Map<String, String> documentNamespaces = new HashMap<>();
 
   public EPCISEventResponseEvent(final EPCISEvent epcisEvent) {
     this.epcisEvent = epcisEvent;
     this.contextInfo = getContextInfoFromEvent(epcisEvent);
 
     // Populating the namespaces directly from context during xml query
-    if(contextInfo != null && !contextInfo.isEmpty()){
+    if (contextInfo != null && !contextInfo.isEmpty()) {
       for (Object item : contextInfo) {
         if (item instanceof Map<?, ?>) {
           final Map<String, String> namespaces = (Map<String, String>) item;
