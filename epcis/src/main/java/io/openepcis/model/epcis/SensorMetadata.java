@@ -92,7 +92,7 @@ public class SensorMetadata implements Serializable {
       anyAttributes.forEach(
           (key, value) ->
               userExtensions.put(
-                  DefaultJsonSchemaNamespaceURIResolver.getInstance()
+                  DefaultJsonSchemaNamespaceURIResolver.getContext()
                           .getAllNamespaces()
                           .get(key.getNamespaceURI())
                       + ":"

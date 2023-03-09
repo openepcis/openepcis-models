@@ -26,8 +26,8 @@ import lombok.Setter;
 
 public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, Object>> {
 
-  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-      DefaultJsonSchemaNamespaceURIResolver.getInstance();
+  private static DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+      DefaultJsonSchemaNamespaceURIResolver.getContext();
 
   @Override
   public MapWrapper marshal(final Map<String, Object> extensions) {

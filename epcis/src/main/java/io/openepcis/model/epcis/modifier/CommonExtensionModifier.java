@@ -9,8 +9,8 @@ import org.w3c.dom.NodeList;
 public class CommonExtensionModifier {
 
   private static final String EMPTY_STRING_CHECKER = "[\\n\\t ]";
-  private static final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-      DefaultJsonSchemaNamespaceURIResolver.getInstance();
+  private static DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+      DefaultJsonSchemaNamespaceURIResolver.getContext();
 
   public static Map<String, Object> extensionPopulate(
       Map<String, Object> extensionsPop, String nodeName, Object nodeContent) {
@@ -44,7 +44,10 @@ public class CommonExtensionModifier {
       final Element element = (Element) obj;
       final NodeList children = element.getChildNodes();
 
-      namespaceResolver.populateEventNamespaces(element.getNamespaceURI(), element.getPrefix());
+      // If namespaces not already included then add them
+      if (!namespaceResolver.getAllNamespaces().containsKey(element.getNamespaceURI())) {
+        namespaceResolver.populateEventNamespaces(element.getNamespaceURI(), element.getPrefix());
+      }
 
       // If simple type then directly add text to MAP
       if (children.getLength() == 1
@@ -62,8 +65,10 @@ public class CommonExtensionModifier {
             final Element innerElement = (Element) n;
             final NodeList innerChildren = innerElement.getChildNodes();
 
-            namespaceResolver.populateEventNamespaces(
-                innerElement.getNamespaceURI(), innerElement.getPrefix());
+            if (!namespaceResolver.getAllNamespaces().containsKey(innerElement.getNamespaceURI())) {
+              namespaceResolver.populateEventNamespaces(
+                  innerElement.getNamespaceURI(), innerElement.getPrefix());
+            }
 
             if (innerChildren.getLength() == 1
                 && !innerElement.getTextContent().replaceAll(EMPTY_STRING_CHECKER, "").equals("")) {

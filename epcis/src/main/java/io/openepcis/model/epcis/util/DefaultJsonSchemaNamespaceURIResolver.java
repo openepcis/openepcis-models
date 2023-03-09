@@ -15,65 +15,58 @@
  */
 package io.openepcis.model.epcis.util;
 
-import io.openepcis.model.epcis.modifier.Constants;
-import java.net.URL;
-import java.util.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DefaultJsonSchemaNamespaceURIResolver {
 
-  private static final ThreadLocal<Map<String, String>> DOCUMENT_NAMESPACES =
-      ThreadLocal.withInitial(HashMap::new);
-  private static final ThreadLocal<Map<String, String>> EVENT_NAMESPACES =
-      ThreadLocal.withInitial(HashMap::new);
+  private static DefaultJsonSchemaNamespaceURIResolver context;
+  private final Map<String, String> DOCUMENT_NAMESPACES;
+  private final Map<String, String> EVENT_NAMESPACES;
 
-  private static final ThreadLocal<Map<String, String>> MODIFIED_NAMESPACES =
-      ThreadLocal.withInitial(HashMap::new);
-  private static final DefaultJsonSchemaNamespaceURIResolver INSTANCE =
-      new DefaultJsonSchemaNamespaceURIResolver();
+  private DefaultJsonSchemaNamespaceURIResolver() {
+    this.DOCUMENT_NAMESPACES = new HashMap<>();
+    this.EVENT_NAMESPACES = new HashMap<>();
+  }
 
-  public static DefaultJsonSchemaNamespaceURIResolver getInstance() {
-    return INSTANCE;
+  public static DefaultJsonSchemaNamespaceURIResolver getContext() {
+    if (context == null) {
+      context = new DefaultJsonSchemaNamespaceURIResolver();
+    }
+    return context;
   }
 
   // Add all the Namespaces that are defined at the EPCIS document level.
   public synchronized void populateDocumentNamespaces(
       final String namespaceURI, final String prefix) {
-    if (!DOCUMENT_NAMESPACES.get().containsKey(prefix)
-        && !DOCUMENT_NAMESPACES.get().containsValue(prefix)
+    if (!DOCUMENT_NAMESPACES.containsKey(prefix)
+        && !DOCUMENT_NAMESPACES.containsValue(prefix)
         && namespaceURI != null
         && prefix != null) {
-      DOCUMENT_NAMESPACES.get().put(namespaceURI, prefix);
+      DOCUMENT_NAMESPACES.put(namespaceURI, prefix);
     }
   }
 
   // Add all the namespaces that are defined at the EPCIS event level.
   public synchronized void populateEventNamespaces(final String namespaceURI, final String prefix) {
-    if (!EVENT_NAMESPACES.get().containsKey(prefix)
-        && !EVENT_NAMESPACES.get().containsValue(prefix)
+    if (!EVENT_NAMESPACES.containsKey(prefix)
+        && !EVENT_NAMESPACES.containsValue(prefix)
         && namespaceURI != null
         && prefix != null) {
-      EVENT_NAMESPACES.get().put(namespaceURI, prefix);
+      EVENT_NAMESPACES.put(namespaceURI, prefix);
     }
   }
 
   // Reset the event namespaces after completing each event.
   public synchronized void resetEventNamespaces() {
-    EVENT_NAMESPACES.remove();
-    MODIFIED_NAMESPACES.remove();
-  }
-
-  public synchronized void resetModifiedNamespaces() {
-    MODIFIED_NAMESPACES.remove();
+    EVENT_NAMESPACES.clear();
   }
 
   // Reset all the document & event namespaces after completing the document.
   public synchronized void resetAllNamespaces() {
-    DOCUMENT_NAMESPACES.remove();
-    EVENT_NAMESPACES.remove();
-    MODIFIED_NAMESPACES.remove();
+    DOCUMENT_NAMESPACES.clear();
+    EVENT_NAMESPACES.clear();
   }
 
   // Find the appropriate namespace based on the provided prefix.
@@ -86,59 +79,19 @@ public class DefaultJsonSchemaNamespaceURIResolver {
 
   // Method that returns the saved Document namespaces.
   public Map<String, String> getDocumentNamespaces() {
-    return DOCUMENT_NAMESPACES.get();
+    return DOCUMENT_NAMESPACES;
   }
 
   // Method that returns the saved Event namespaces.
   public Map<String, String> getEventNamespaces() {
-    return EVENT_NAMESPACES.get();
-  }
-
-  public Map<String, String> getModifiedNamespaces() {
-    return MODIFIED_NAMESPACES.get();
+    return EVENT_NAMESPACES;
   }
 
   // Method that returns all the namespaces Document + Event combined.
   public Map<String, String> getAllNamespaces() {
     final Map<String, String> allNamespaces = new HashMap<>();
-    allNamespaces.putAll(DOCUMENT_NAMESPACES.get());
-    allNamespaces.putAll(EVENT_NAMESPACES.get());
+    allNamespaces.putAll(DOCUMENT_NAMESPACES);
+    allNamespaces.putAll(EVENT_NAMESPACES);
     return allNamespaces;
-  }
-
-  // Method to add the trailing / or : based on URL or URN and remove the Predefined prefixes for
-  // Document.
-  public void modifyDocumentNamespaces() {
-    modifyNamespaces(DOCUMENT_NAMESPACES);
-  }
-
-  // Method to add the trailing / or : based on URL or URN and remove the Predefined prefixes for
-  // Event.
-  public void modifyEventNamespaces() {
-    modifyNamespaces(EVENT_NAMESPACES);
-  }
-
-  // Common method to modify the Document & Event namespaces.
-  private void modifyNamespaces(final ThreadLocal<Map<String, String>> namespaces) {
-    namespaces
-        .get()
-        .forEach(
-            (key, value) -> {
-              String modifiedNamespace = key;
-              try {
-                // If URL then add trailing /
-                URL url = new URL(key);
-                modifiedNamespace = url.toString().endsWith("/") ? url.toString() : url + "/";
-              } catch (Exception e) {
-                // If URN then add trailing :
-                modifiedNamespace =
-                    modifiedNamespace.endsWith(":") ? modifiedNamespace : modifiedNamespace + ":";
-              }
-
-              // If the value is not part of default then add it to the Map
-              if (!Arrays.asList(Constants.PROTECTED_TERMS_OF_CONTEXT).contains(value)) {
-                MODIFIED_NAMESPACES.get().put(modifiedNamespace, value);
-              }
-            });
   }
 }

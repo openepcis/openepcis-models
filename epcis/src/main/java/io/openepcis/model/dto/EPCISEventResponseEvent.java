@@ -15,13 +15,13 @@
  */
 package io.openepcis.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.openepcis.model.epcis.EPCISEvent;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.exception.QueryExecutionException;
+import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,18 +48,21 @@ public class EPCISEventResponseEvent {
   @XmlElement
   private EPCISEvent epcisEvent;
 
-  @JsonIgnore @XmlTransient private Map<String, String> documentNamespaces = new HashMap<>();
-
   public EPCISEventResponseEvent(final EPCISEvent epcisEvent) {
     this.epcisEvent = epcisEvent;
     this.contextInfo = getContextInfoFromEvent(epcisEvent);
 
     // Populating the namespaces directly from context during xml query
-    if (contextInfo != null && !contextInfo.isEmpty()) {
+    if (!contextInfo.isEmpty()) {
+      final DefaultJsonSchemaNamespaceURIResolver namespaceURIResolver =
+          DefaultJsonSchemaNamespaceURIResolver.getContext();
+      namespaceURIResolver.resetEventNamespaces();
+
       for (Object item : contextInfo) {
         if (item instanceof Map<?, ?>) {
           final Map<String, String> namespaces = (Map<String, String>) item;
-          namespaces.forEach((key, value) -> documentNamespaces.put(value, key));
+          namespaces.forEach(
+              (key, value) -> namespaceURIResolver.populateEventNamespaces(value, key));
         }
       }
     }

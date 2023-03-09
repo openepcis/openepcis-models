@@ -369,7 +369,7 @@ public class EPCISEvent implements Serializable {
           });
     }
 
-    if (!DefaultJsonSchemaNamespaceURIResolver.getInstance().getEventNamespaces().isEmpty()) {
+    if (!DefaultJsonSchemaNamespaceURIResolver.getContext().getEventNamespaces().isEmpty()) {
       contextInfo = new ArrayList<>();
     }
   }

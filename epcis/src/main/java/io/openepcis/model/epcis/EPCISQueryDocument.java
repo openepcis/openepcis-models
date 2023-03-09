@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.exception.QueryExecutionException;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
+import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.OffsetDateTime;
@@ -73,8 +74,6 @@ public class EPCISQueryDocument {
   @XmlElement(name = "EPCISHeader")
   private EPCISHeader epcisHeader;
 
-  @JsonIgnore @XmlTransient private Map<String, String> documentNamespaces = new HashMap<>();
-
   public EPCISQueryDocument(EPCISQueryBody epcisBody) {
     this.epcisBody = epcisBody;
     this.type = CommonConstants.EPCIS_QUERY_DOC;
@@ -87,10 +86,15 @@ public class EPCISQueryDocument {
 
     // Populating the namespaces directly from context during xml query
     if (context != null && !context.isEmpty()) {
+      final DefaultJsonSchemaNamespaceURIResolver namespaceURIResolver =
+          DefaultJsonSchemaNamespaceURIResolver.getContext();
+      namespaceURIResolver.resetEventNamespaces();
+
       for (Object item : context) {
         if (item instanceof Map<?, ?>) {
           final Map<String, String> namespaces = (Map<String, String>) item;
-          namespaces.forEach((key, value) -> documentNamespaces.put(value, key));
+          namespaces.forEach(
+              (key, value) -> namespaceURIResolver.populateEventNamespaces(value, key));
         }
       }
     }
