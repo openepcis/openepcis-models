@@ -38,6 +38,7 @@ public class QueryParameterConstants {
   public static final String ORDER_DIRECTION = "orderDirection";
   public static final String PARAMETERS = "Parameters";
   public static final String CONTEXT = "@context";
+  public static final String STREAM = "stream";
 
   private QueryParameterConstants() {
     // Bunch of constants so there should be a no need to create object for this class

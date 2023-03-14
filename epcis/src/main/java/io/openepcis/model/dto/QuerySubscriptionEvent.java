@@ -36,7 +36,8 @@ public class QuerySubscriptionEvent {
   private URI callbackUrl;
   private String secret;
   private OffsetDateTime initialRecordTime;
-  private boolean reportIfEmpty;
+  private Boolean reportIfEmpty;
+  private Boolean stream;
   private Schedule schedule;
   private OffsetDateTime createdAt;
 }
