@@ -179,6 +179,8 @@ public class ExceptionMessages {
   public static final String
       NON_ZERO_CONCENTRATION_VALUE_IS_INCOMPATIBLE_WITH_BOOLEANVALUE_FALSE_IN_SENSOR_REPORT =
           "A non-zero concentration value is incompatible with booleanValue=false in sensor report";
+  public static final String SUBSCRIPTION_STREAM_AND_SCHEDULE_ARE_MUTUALLY_EXCLUSIVE =
+      "Query subscription stream and schedule are mutually exclusive";
 
   private ExceptionMessages() {
     // Bunch of constants so there should be no need to create object of this class

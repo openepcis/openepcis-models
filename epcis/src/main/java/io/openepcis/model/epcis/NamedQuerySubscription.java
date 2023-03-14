@@ -37,7 +37,8 @@ public class NamedQuerySubscription {
   private String secret;
   private OffsetDateTime minRecordTime;
   private OffsetDateTime initialRecordTime;
-  private boolean reportIfEmpty;
+  private Boolean reportIfEmpty;
+  private Boolean stream;
   private Schedule schedule;
   private boolean deleted = false;
   private OffsetDateTime createdAt;
