@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuerySubscriptionEvent {
+public class QuerySubscription {
   private UUID subscriptionID;
   private String queryName;
   private URI dest;

@@ -35,7 +35,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(InvalidEPCISEventInfo.class)
-public class CaptureDataEvent {
+public class CaptureData {
 
   @XmlAttribute(name = "captureID")
   protected String captureID;
