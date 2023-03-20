@@ -16,6 +16,7 @@
 package io.openepcis.model.epcis;
 
 import java.net.URI;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DeliveryInfo {
   private String subscriptionId;
+  private Optional<String> signatureToken;
   private URI uri;
   private String result;
 }

@@ -33,8 +33,8 @@ import lombok.NoArgsConstructor;
 public class QuerySubscriptionEvent {
   private UUID subscriptionID;
   private String queryName;
-  private URI callbackUrl;
-  private String secret;
+  private URI dest;
+  private String signatureToken;
   private OffsetDateTime initialRecordTime;
   private Boolean reportIfEmpty;
   private Boolean stream;

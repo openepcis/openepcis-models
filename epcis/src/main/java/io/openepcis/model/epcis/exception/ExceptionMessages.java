@@ -181,6 +181,8 @@ public class ExceptionMessages {
           "A non-zero concentration value is incompatible with booleanValue=false in sensor report";
   public static final String SUBSCRIPTION_STREAM_AND_SCHEDULE_ARE_MUTUALLY_EXCLUSIVE =
       "Query subscription stream and schedule are mutually exclusive";
+  public static final String SIGNATURE_TOKEN_MUST_BE_256BITS_LONG =
+      "The signatureToken provided must be at least 256 bits long";
 
   private ExceptionMessages() {
     // Bunch of constants so there should be no need to create object of this class
