@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CaptureJobStatusMessage extends CaptureJobEvent {
+public class CaptureJobStatusMessage extends CaptureJob {
 
   private int validEventCount = 0;
   private int invalidEventCount = 0;

@@ -18,14 +18,16 @@ package io.openepcis.model.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.openepcis.core.model.PaginationSupport;
-import io.openepcis.model.epcis.EpcisQueryResult;
+import io.openepcis.model.epcis.NamedQueryMetaData;
+import java.util.List;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Slf4j
-public class QueryResultEvent extends PaginationSupport {
-  @JsonProperty("queryResults")
-  private EpcisQueryResult queryResults;
+public class NamedQueryMetaDataResult extends PaginationSupport {
+
+  @JsonProperty("namedQueryMetaData")
+  private List<NamedQueryMetaData> namedQueryMetaDataList;
 }
