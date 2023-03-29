@@ -73,4 +73,5 @@ public class CommonConstants {
   public static final String CAPTURED_BY = "capturedBy";
   public static final String ROLES_ALLOWED = "rolesAllowed";
   public static final String SUBSCRIPTION_INTERVAL_PATH = "app.subscription.streaming-interval";
+  public static final String DOCUMENT_TYPE = "DocumentType";
 }
