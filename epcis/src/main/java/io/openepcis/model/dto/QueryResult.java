@@ -16,35 +16,16 @@
 package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.xml.bind.annotation.*;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.openepcis.core.model.PaginationSupport;
+import io.openepcis.model.epcis.EpcisQueryResult;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-@AllArgsConstructor
-@XmlRootElement
-@XmlType(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlSeeAlso(InvalidEPCISEventInfo.class)
-public class CaptureJobEvent extends CaptureDataEvent {
-
-  public CaptureJobEvent(
-      final String captureID,
-      final boolean running,
-      final boolean success,
-      final OffsetDateTime createdAt,
-      final String captureErrorBehaviour,
-      final OffsetDateTime finishedAt) {
-    super(
-        captureID,
-        createdAt,
-        finishedAt,
-        running,
-        success,
-        captureErrorBehaviour,
-        new ArrayList<>());
-  }
+@Slf4j
+public class QueryResult extends PaginationSupport {
+  @JsonProperty("queryResults")
+  private EpcisQueryResult queryResults;
 }

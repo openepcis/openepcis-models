@@ -63,13 +63,7 @@ public class CommonConstants {
   public static final String GS1_CBV_VERSION = "GS1-CBV-Version";
   public static final String GS1_Vendor_VERSION = "GS1-Vendor-Version";
   public static final String GS1_EPC_FORMAT = "GS1-EPC-Format";
-
+  public static final String GS1_SIGNATURE = "GS1-Signature";
   public static final String ISO8601_TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-  public static final String EVENT_ACCESS = "event-access";
-  public static final String QUERY_ROLE = "query";
-  public static final String ID = "ID";
-  public static final String USERINFO = "userinfo";
-  public static final String SUB = "sub";
-  public static final String CAPTURED_BY = "capturedBy";
-  public static final String ROLES_ALLOWED = "rolesAllowed";
+  public static final String DOCUMENT_TYPE = "DocumentType";
 }

@@ -31,7 +31,12 @@ public class DataTypeUtil {
 
   public static String getValueKeyFromType(Object value) {
     if (value instanceof List) {
-      value = ((List) value).get(0);
+      final List l = ((List) value);
+      if (l != null && !l.isEmpty()) {
+        value = l.get(0);
+      } else {
+        return "[]";
+      }
     }
 
     if (value instanceof Long || value instanceof Integer) return CommonConstants.DOUBLE;

@@ -30,13 +30,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuerySubscriptionEvent {
+public class QuerySubscription {
   private UUID subscriptionID;
   private String queryName;
-  private URI callbackUrl;
-  private String secret;
+  private URI dest;
+  private String signatureToken;
   private OffsetDateTime initialRecordTime;
-  private boolean reportIfEmpty;
+  private Boolean reportIfEmpty;
+  private Boolean stream;
   private Schedule schedule;
   private OffsetDateTime createdAt;
 }

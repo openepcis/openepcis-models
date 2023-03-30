@@ -34,11 +34,11 @@ import lombok.extern.slf4j.Slf4j;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Slf4j
-@XmlType(factoryClass = ObjectFactory.class, factoryMethod = "createEpcisEventResponseEvent")
+@XmlType(factoryClass = ObjectFactory.class, factoryMethod = "createEpcisEventResponse")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
-public class EPCISEventResponseEvent {
+public class EPCISEventResponse {
 
   @JsonProperty("@context")
   @XmlTransient
@@ -48,7 +48,7 @@ public class EPCISEventResponseEvent {
   @XmlElement
   private EPCISEvent epcisEvent;
 
-  public EPCISEventResponseEvent(final EPCISEvent epcisEvent) {
+  public EPCISEventResponse(final EPCISEvent epcisEvent) {
     this.epcisEvent = epcisEvent;
     this.contextInfo = getContextInfoFromEvent(epcisEvent);
 
