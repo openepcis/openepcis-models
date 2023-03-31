@@ -17,8 +17,8 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
@@ -121,13 +121,7 @@ public class SensorReport implements Serializable {
       userExtensions = new HashMap<>();
       anyAttributes.forEach(
           (key, value1) ->
-              this.userExtensions.put(
-                  DefaultJsonSchemaNamespaceURIResolver.getContext()
-                          .getAllNamespaces()
-                          .get(key.getNamespaceURI())
-                      + ":"
-                      + key.getLocalPart(),
-                  value1));
+              this.userExtensions.put(CommonExtensionModifier.getNamespacePrefix(key), value1));
       anyAttributes = new HashMap<>();
     }
 

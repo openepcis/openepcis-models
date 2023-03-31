@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.openepcis.model.epcis.EPCISEvent;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.exception.QueryExecutionException;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,19 +53,7 @@ public class EPCISEventResponse {
     this.contextInfo = getContextInfoFromEvent(epcisEvent);
 
     // Populating the namespaces directly from context during xml query
-    if (!contextInfo.isEmpty()) {
-      final DefaultJsonSchemaNamespaceURIResolver namespaceURIResolver =
-          DefaultJsonSchemaNamespaceURIResolver.getContext();
-      namespaceURIResolver.resetEventNamespaces();
-
-      for (Object item : contextInfo) {
-        if (item instanceof Map<?, ?>) {
-          final Map<String, String> namespaces = (Map<String, String>) item;
-          namespaces.forEach(
-              (key, value) -> namespaceURIResolver.populateEventNamespaces(value, key));
-        }
-      }
-    }
+    CommonExtensionModifier.populateNamespaces(contextInfo);
   }
 
   private List<Object> getContextInfoFromEvent(EPCISEvent epcisEvent) {

@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
 
-  private static DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
       DefaultJsonSchemaNamespaceURIResolver.getContext();
   private final ObjectMapper objectMapper = new ObjectMapper();
 

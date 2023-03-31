@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class CustomContextSerializer extends JsonSerializer<List<Object>> {
 
-  private static DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
       DefaultJsonSchemaNamespaceURIResolver.getContext();
 
   @Override

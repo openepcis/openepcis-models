@@ -18,6 +18,7 @@ package io.openepcis.model.epcis.util;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DefaultJsonSchemaNamespaceURIResolver {
 
@@ -26,11 +27,11 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   private final Map<String, String> EVENT_NAMESPACES;
 
   private DefaultJsonSchemaNamespaceURIResolver() {
-    this.DOCUMENT_NAMESPACES = new HashMap<>();
-    this.EVENT_NAMESPACES = new HashMap<>();
+    this.DOCUMENT_NAMESPACES = new ConcurrentHashMap<>();
+    this.EVENT_NAMESPACES = new ConcurrentHashMap<>();
   }
 
-  public static DefaultJsonSchemaNamespaceURIResolver getContext() {
+  public static synchronized DefaultJsonSchemaNamespaceURIResolver getContext() {
     if (context == null) {
       context = new DefaultJsonSchemaNamespaceURIResolver();
     }
@@ -40,20 +41,20 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   // Add all the Namespaces that are defined at the EPCIS document level.
   public synchronized void populateDocumentNamespaces(
       final String namespaceURI, final String prefix) {
-    if (!DOCUMENT_NAMESPACES.containsKey(prefix)
-        && !DOCUMENT_NAMESPACES.containsValue(prefix)
-        && namespaceURI != null
-        && prefix != null) {
+    if (namespaceURI != null
+        && prefix != null
+        && !DOCUMENT_NAMESPACES.containsKey(prefix)
+        && !DOCUMENT_NAMESPACES.containsValue(prefix)) {
       DOCUMENT_NAMESPACES.put(namespaceURI, prefix);
     }
   }
 
   // Add all the namespaces that are defined at the EPCIS event level.
   public synchronized void populateEventNamespaces(final String namespaceURI, final String prefix) {
-    if (!EVENT_NAMESPACES.containsKey(prefix)
-        && !EVENT_NAMESPACES.containsValue(prefix)
-        && namespaceURI != null
-        && prefix != null) {
+    if (namespaceURI != null
+        && prefix != null
+        && !EVENT_NAMESPACES.containsKey(prefix)
+        && !EVENT_NAMESPACES.containsValue(prefix)) {
       EVENT_NAMESPACES.put(namespaceURI, prefix);
     }
   }
@@ -70,7 +71,7 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   }
 
   // Find the appropriate namespace based on the provided prefix.
-  public Optional<String> findNamespaceByPrefix(final String prefix) {
+  public synchronized Optional<String> findNamespaceByPrefix(final String prefix) {
     return getAllNamespaces().entrySet().stream()
         .filter(entry -> entry.getValue().equals(prefix))
         .map(Map.Entry::getKey)
@@ -78,17 +79,17 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   }
 
   // Method that returns the saved Document namespaces.
-  public Map<String, String> getDocumentNamespaces() {
-    return DOCUMENT_NAMESPACES;
+  public synchronized Map<String, String> getDocumentNamespaces() {
+    return new HashMap<>(DOCUMENT_NAMESPACES);
   }
 
   // Method that returns the saved Event namespaces.
-  public Map<String, String> getEventNamespaces() {
-    return EVENT_NAMESPACES;
+  public synchronized Map<String, String> getEventNamespaces() {
+    return new HashMap<>(EVENT_NAMESPACES);
   }
 
   // Method that returns all the namespaces Document + Event combined.
-  public Map<String, String> getAllNamespaces() {
+  public synchronized Map<String, String> getAllNamespaces() {
     final Map<String, String> allNamespaces = new HashMap<>();
     allNamespaces.putAll(DOCUMENT_NAMESPACES);
     allNamespaces.putAll(EVENT_NAMESPACES);

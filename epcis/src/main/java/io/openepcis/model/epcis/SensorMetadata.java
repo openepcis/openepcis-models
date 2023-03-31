@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -91,13 +91,7 @@ public class SensorMetadata implements Serializable {
       userExtensions = new HashMap<>();
       anyAttributes.forEach(
           (key, value) ->
-              userExtensions.put(
-                  DefaultJsonSchemaNamespaceURIResolver.getContext()
-                          .getAllNamespaces()
-                          .get(key.getNamespaceURI())
-                      + ":"
-                      + key.getLocalPart(),
-                  value));
+              userExtensions.put(CommonExtensionModifier.getNamespacePrefix(key), value));
       anyAttributes = new HashMap<>();
     }
   }
