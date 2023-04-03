@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CustomContextDeserialize extends JsonDeserializer<List<Object>> {
+public class CustomContextDeserializer extends JsonDeserializer<List<Object>> {
 
   private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
       DefaultJsonSchemaNamespaceURIResolver.getContext();

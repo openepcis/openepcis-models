@@ -108,7 +108,7 @@ public class EPCISEvent implements Serializable {
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
 
   @JsonProperty("@context")
-  @JsonDeserialize(using = CustomContextDeserialize.class)
+  @JsonDeserialize(using = CustomContextDeserializer.class)
   @JsonSerialize(using = CustomContextSerializer.class)
   @XmlTransient
   private List<Object> contextInfo;
