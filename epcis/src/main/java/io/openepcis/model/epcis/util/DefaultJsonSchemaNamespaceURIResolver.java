@@ -22,18 +22,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class DefaultJsonSchemaNamespaceURIResolver {
 
-  private static final ThreadLocal<DefaultJsonSchemaNamespaceURIResolver> context =
-      ThreadLocal.withInitial(DefaultJsonSchemaNamespaceURIResolver::new);
-  private final Map<String, String> documentNamespaces;
-  private final Map<String, String> eventNamespaces;
-
-  private DefaultJsonSchemaNamespaceURIResolver() {
-    this.documentNamespaces = new ConcurrentHashMap<>();
-    this.eventNamespaces = new ConcurrentHashMap<>();
-  }
+  private static final DefaultJsonSchemaNamespaceURIResolver context =
+      new DefaultJsonSchemaNamespaceURIResolver();
+  private final ThreadLocal<Map<String, String>> documentNamespaces =
+      ThreadLocal.withInitial(ConcurrentHashMap::new);
+  private final ThreadLocal<Map<String, String>> eventNamespaces =
+      ThreadLocal.withInitial(ConcurrentHashMap::new);
 
   public static synchronized DefaultJsonSchemaNamespaceURIResolver getContext() {
-    return context.get();
+    return context;
   }
 
   // Add all the Namespaces that are defined at the EPCIS document level.
@@ -41,9 +38,9 @@ public class DefaultJsonSchemaNamespaceURIResolver {
       final String namespaceURI, final String prefix) {
     if (namespaceURI != null
         && prefix != null
-        && !documentNamespaces.containsKey(prefix)
-        && !documentNamespaces.containsValue(prefix)) {
-      documentNamespaces.put(namespaceURI, prefix);
+        && !documentNamespaces.get().containsKey(prefix)
+        && !documentNamespaces.get().containsValue(prefix)) {
+      documentNamespaces.get().put(namespaceURI, prefix);
     }
   }
 
@@ -51,21 +48,21 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   public synchronized void populateEventNamespaces(final String namespaceURI, final String prefix) {
     if (namespaceURI != null
         && prefix != null
-        && !eventNamespaces.containsKey(prefix)
-        && !eventNamespaces.containsValue(prefix)) {
-      eventNamespaces.put(namespaceURI, prefix);
+        && !eventNamespaces.get().containsKey(prefix)
+        && !eventNamespaces.get().containsValue(prefix)) {
+      eventNamespaces.get().put(namespaceURI, prefix);
     }
   }
 
   // Reset the event namespaces after completing each event.
   public synchronized void resetEventNamespaces() {
-    eventNamespaces.clear();
+    eventNamespaces.get().clear();
   }
 
   // Reset all the document & event namespaces after completing the document.
   public synchronized void resetAllNamespaces() {
-    documentNamespaces.clear();
-    eventNamespaces.clear();
+    documentNamespaces.get().clear();
+    eventNamespaces.get().clear();
   }
 
   // Find the appropriate namespace based on the provided prefix.
@@ -78,19 +75,19 @@ public class DefaultJsonSchemaNamespaceURIResolver {
 
   // Method that returns the saved Document namespaces.
   public synchronized Map<String, String> getDocumentNamespaces() {
-    return new HashMap<>(documentNamespaces);
+    return new HashMap<>(documentNamespaces.get());
   }
 
   // Method that returns the saved Event namespaces.
   public synchronized Map<String, String> getEventNamespaces() {
-    return new HashMap<>(eventNamespaces);
+    return new HashMap<>(eventNamespaces.get());
   }
 
   // Method that returns all the namespaces Document + Event combined.
   public synchronized Map<String, String> getAllNamespaces() {
     final Map<String, String> allNamespaces = new HashMap<>();
-    allNamespaces.putAll(documentNamespaces);
-    allNamespaces.putAll(eventNamespaces);
+    allNamespaces.putAll(documentNamespaces.get());
+    allNamespaces.putAll(eventNamespaces.get());
     return allNamespaces;
   }
 }
