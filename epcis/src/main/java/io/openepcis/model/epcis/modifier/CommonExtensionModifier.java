@@ -2,15 +2,17 @@ package io.openepcis.model.epcis.modifier;
 
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import java.util.*;
+import javax.xml.namespace.QName;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CommonExtensionModifier {
 
   private static final String EMPTY_STRING_CHECKER = "[\\n\\t ]";
-  private static final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-      DefaultJsonSchemaNamespaceURIResolver.getInstance();
 
   public static Map<String, Object> extensionPopulate(
       Map<String, Object> extensionsPop, String nodeName, Object nodeContent) {
@@ -39,12 +41,17 @@ public class CommonExtensionModifier {
     }
 
     Map<String, Object> extensions = new HashMap<>();
+    final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+        DefaultJsonSchemaNamespaceURIResolver.getContext();
 
     for (Object obj : value) {
       final Element element = (Element) obj;
       final NodeList children = element.getChildNodes();
 
-      namespaceResolver.populateEventNamespaces(element.getNamespaceURI(), element.getPrefix());
+      // If namespaces not already included then add them
+      if (!namespaceResolver.getAllNamespaces().containsKey(element.getNamespaceURI())) {
+        namespaceResolver.populateEventNamespaces(element.getNamespaceURI(), element.getPrefix());
+      }
 
       // If simple type then directly add text to MAP
       if (children.getLength() == 1
@@ -62,8 +69,10 @@ public class CommonExtensionModifier {
             final Element innerElement = (Element) n;
             final NodeList innerChildren = innerElement.getChildNodes();
 
-            namespaceResolver.populateEventNamespaces(
-                innerElement.getNamespaceURI(), innerElement.getPrefix());
+            if (!namespaceResolver.getAllNamespaces().containsKey(innerElement.getNamespaceURI())) {
+              namespaceResolver.populateEventNamespaces(
+                  innerElement.getNamespaceURI(), innerElement.getPrefix());
+            }
 
             if (innerChildren.getLength() == 1
                 && !innerElement.getTextContent().replaceAll(EMPTY_STRING_CHECKER, "").equals("")) {
@@ -73,7 +82,7 @@ public class CommonExtensionModifier {
             } else if (innerChildren.getLength() > 1) {
               Map<String, Object> complexExtensions =
                   unmarshaller(
-                      new ArrayList<Object>() {
+                      new ArrayList<>() {
                         {
                           add(n);
                         }
@@ -92,5 +101,31 @@ public class CommonExtensionModifier {
       }
     }
     return extensions;
+  }
+
+  // Method to populate the namespaces from the List<Object> context values.
+  public static void populateNamespaces(final List<Object> context) {
+    // Populating the namespaces directly from context during xml query
+    if (context != null && !context.isEmpty()) {
+      final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
+          DefaultJsonSchemaNamespaceURIResolver.getContext();
+      namespaceResolver.resetEventNamespaces();
+
+      for (Object item : context) {
+        if (item instanceof Map<?, ?>) {
+          final Map<String, String> namespaces = (Map<String, String>) item;
+          namespaces.forEach((key, value) -> namespaceResolver.populateEventNamespaces(value, key));
+        }
+      }
+    }
+  }
+
+  // Method to find the required namespace prefix based on provided namespace URI
+  public static String getNamespacePrefix(final QName namespace) {
+    return DefaultJsonSchemaNamespaceURIResolver.getContext()
+            .getAllNamespaces()
+            .get(namespace.getNamespaceURI())
+        + ":"
+        + namespace.getLocalPart();
   }
 }

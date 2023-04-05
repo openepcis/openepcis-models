@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.exception.QueryExecutionException;
+import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -82,6 +83,9 @@ public class EPCISQueryDocument {
       this.context =
           getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
     }
+
+    // Populating the namespaces directly from context during xml query
+    CommonExtensionModifier.populateNamespaces(context);
   }
 
   private List<Object> getContextInfoFromEventList(List<? extends EPCISEvent> epcisEvents) {

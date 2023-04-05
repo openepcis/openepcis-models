@@ -11,8 +11,7 @@ public class EPCISNamespacePrefixMapper extends NamespacePrefixMapper {
           "http://www.w3.org/2001/XMLSchema-instance", "xsi",
           "urn:epcglobal:epcis:xsd:2", "epcis",
           "urn:epcglobal:epcis-query:xsd:2", "epcisq",
-          "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "sbdh",
-          "http://www.w3.org/2003/05/soap-envelope/", "soap");
+          "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "sbdh");
 
   private Map<String, String> namespaceMap;
 
