@@ -61,10 +61,10 @@ public class EPCISQueryDocument {
   @XmlAttribute
   private String schemaVersion;
 
-  @JsonProperty("createdAt")
-  @XmlAttribute(name = "createdAt")
+  @JsonProperty("creationDate")
+  @XmlAttribute(name = "creationDate")
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
-  private OffsetDateTime createdAt;
+  private OffsetDateTime creationDate;
 
   @JsonProperty("epcisBody")
   @XmlElement(name = "EPCISBody", required = true)
@@ -78,7 +78,7 @@ public class EPCISQueryDocument {
     this.epcisBody = epcisBody;
     this.type = CommonConstants.EPCIS_QUERY_DOC;
     this.schemaVersion = CommonConstants.SCHEMA_VERSION;
-    this.createdAt = OffsetDateTime.now();
+    this.creationDate = OffsetDateTime.now();
     if (CollectionUtils.isNotEmpty(epcisBody.getQueryResults().getResultsBody().getEventList())) {
       this.context =
           getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
