@@ -23,7 +23,7 @@
     <parent>
         <groupId>io.openepcis</groupId>
         <artifactId>openepcis-model-build</artifactId>
-        <version>0.9.2-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>openepcis-model-epcis</artifactId>
@@ -55,7 +55,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <openepcis.github.version>0.9.2-SNAPSHOT</openepcis.github.version>
+        <openepcis.github.version>1.0.0-SNAPSHOT</openepcis.github.version>
     </properties>
 
     <dependencies>
