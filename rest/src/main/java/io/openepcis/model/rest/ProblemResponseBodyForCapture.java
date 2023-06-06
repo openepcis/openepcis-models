@@ -16,9 +16,9 @@
 package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
 
 public class ProblemResponseBodyForCapture {
   @JsonProperty("type")

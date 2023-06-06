@@ -16,11 +16,11 @@
 package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 
 /** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */

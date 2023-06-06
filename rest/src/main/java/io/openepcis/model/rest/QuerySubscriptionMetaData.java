@@ -16,10 +16,10 @@
 package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.UUID;
-import javax.validation.Valid;
 
 /** QuerySubscriptionMetaData */
 public class QuerySubscriptionMetaData {
