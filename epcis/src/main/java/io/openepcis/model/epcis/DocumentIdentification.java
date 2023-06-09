@@ -5,7 +5,9 @@ import static com.fasterxml.jackson.annotation.JsonFormat.Feature.WRITE_DATE_TIM
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
+import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.OffsetDateTime;
@@ -66,6 +68,7 @@ public class DocumentIdentification {
       required = true)
   @XmlSchemaType(name = "dateTime")
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
-  @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE, WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
+  @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE,  WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
   protected OffsetDateTime creationDateAndTime;
 }
