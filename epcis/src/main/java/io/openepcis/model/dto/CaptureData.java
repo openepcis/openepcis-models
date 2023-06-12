@@ -17,7 +17,9 @@ package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
+import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.beans.Transient;
@@ -42,10 +44,12 @@ public class CaptureData {
 
   @XmlElement(name = "createdAt", required = true)
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   protected OffsetDateTime createdAt;
 
   @XmlElement(name = "finishedAt", required = true)
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   protected OffsetDateTime finishedAt;
 
   @XmlAttribute(name = "running")
