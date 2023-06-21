@@ -40,7 +40,7 @@ public class NamedQuerySubscription {
   private Boolean reportIfEmpty;
   private Boolean stream;
   private Schedule schedule;
-  private boolean deleted = false;
+  private Boolean deleted = false;
   private OffsetDateTime createdAt;
   private String epcFormat;
   private String cbvFormat;
