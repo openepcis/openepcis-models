@@ -71,10 +71,12 @@ public class EPCISEvent implements Serializable {
   @JsonProperty(required = true)
   @XmlElement(name = "eventTime", required = true)
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE, WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
   private OffsetDateTime eventTime;
 
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE, WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
   private OffsetDateTime recordTime;
 

@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
+import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -46,6 +47,7 @@ public class SensorMetadata implements Serializable {
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime time;
 
   @XmlAttribute private URI deviceID;
@@ -56,10 +58,12 @@ public class SensorMetadata implements Serializable {
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime startTime;
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime endTime;
 
   @XmlAttribute private URI dataProcessingMethod;

@@ -19,10 +19,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.exception.QueryExecutionException;
 import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
+import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.OffsetDateTime;
@@ -64,6 +66,7 @@ public class EPCISQueryDocument {
   @JsonProperty("creationDate")
   @XmlAttribute(name = "creationDate")
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime creationDate;
 
   @JsonProperty("epcisBody")
