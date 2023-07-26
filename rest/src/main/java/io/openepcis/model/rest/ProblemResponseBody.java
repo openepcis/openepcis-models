@@ -24,7 +24,7 @@ import java.util.Objects;
 import lombok.NoArgsConstructor;
 
 /** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */
-@XmlRootElement
+@XmlRootElement(name ="ProblemResponseBody")
 @NoArgsConstructor
 @XmlType(
     name = "ProblemResponseBody",

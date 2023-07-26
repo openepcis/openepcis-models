@@ -61,6 +61,16 @@
         <module>epcis</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.openepcis</groupId>
+                <artifactId>openepcis-epcis-constants</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <repositories>
         <!-- sonatype snapshots -->
         <repository>
