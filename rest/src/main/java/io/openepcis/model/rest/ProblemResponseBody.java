@@ -17,11 +17,13 @@ package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.WebApplicationException;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
 import lombok.NoArgsConstructor;
+import org.jboss.resteasy.reactive.RestResponse;
 
 /** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */
 @XmlRootElement(name ="ProblemResponseBody")
@@ -188,4 +190,23 @@ public class ProblemResponseBody {
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+  public static final ProblemResponseBody fromException(WebApplicationException exception) {
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(exception.getClass().getSimpleName());
+    responseBody.setTitle(exception.getResponse().getStatusInfo().getReasonPhrase());
+    responseBody.setStatus(exception.getResponse().getStatus());
+    responseBody.setDetail(exception.getMessage());
+    return responseBody;
+  }
+
+  public static final ProblemResponseBody fromException(Throwable exception) {
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(exception.getClass().getSimpleName());
+    responseBody.setTitle("Internal server error");
+    responseBody.setStatus(RestResponse.StatusCode.INTERNAL_SERVER_ERROR);
+    responseBody.setDetail(exception.getMessage());
+    return responseBody;
+  }
+
 }
