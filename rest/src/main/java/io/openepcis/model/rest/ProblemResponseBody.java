@@ -16,6 +16,7 @@
 package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.openepcis.model.rest.exception.RESTExceptionMessages;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -201,11 +202,19 @@ public class ProblemResponseBody {
   }
 
   public static final ProblemResponseBody fromException(Throwable exception) {
+    return fromException(exception, RestResponse.Status.INTERNAL_SERVER_ERROR);
+  }
+
+  public static final ProblemResponseBody fromException(Throwable exception, RestResponse.Status status) {
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
-    responseBody.setTitle("Internal server error");
-    responseBody.setStatus(RestResponse.StatusCode.INTERNAL_SERVER_ERROR);
-    responseBody.setDetail(exception.getMessage());
+    responseBody.setTitle(status.getReasonPhrase());
+    responseBody.setStatus(status.getStatusCode());
+    if (RestResponse.Status.INTERNAL_SERVER_ERROR.equals(status)) {
+      responseBody.setDetail(RESTExceptionMessages.SERVER_SIDE_ERROR_OCCURRED+exception.getMessage());
+    } else {
+      responseBody.setDetail(exception.getMessage());
+    }
     return responseBody;
   }
 

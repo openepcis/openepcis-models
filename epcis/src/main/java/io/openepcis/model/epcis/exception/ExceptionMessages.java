@@ -15,7 +15,9 @@
  */
 package io.openepcis.model.epcis.exception;
 
-public class ExceptionMessages {
+import io.openepcis.model.rest.exception.RESTExceptionMessages;
+
+public class ExceptionMessages extends RESTExceptionMessages {
 
   public static final String EPCIS_DOCUMENT_IS_EMPTY = "EPCIS document is empty";
   public static final String ERROR_WHILE_READING_CAPTURE_DOCUMENT =
@@ -48,8 +50,6 @@ public class ExceptionMessages {
   public static final String INVALID_QUERY_TYPE = "Invalid query type.";
   public static final String VALUE_REQUIRED = "Value required | %s";
   public static final String DUPLICATE_VALUE = "Duplicate value | %s=%s";
-  public static final String EPCIS_EXCEPTIONS = "epcisExceptions:";
-  public static final String VALIDATION_FAILED = "Validation failed";
   public static final String CAPTURE_VALIDATION_FAILED = "Capture Validation failed";
   public static final String QUERY_PARAMS_NOT_AS_EXPECTED = "Query params not as expected";
   public static final String MAX_EVENT_COUNT_AND_EVENT_COUNT_LIMIT_ARE_MUTUALLY_EXCLUSIVE =
@@ -73,7 +73,6 @@ public class ExceptionMessages {
       "UnitConverter JS file not present in the provided path";
   public static final String ERROR_PROCESSING_JAVASCRIPT_ENGINE =
       "Error in processing script engine for " + "UnitCovertor";
-  public static final String ACCESS_DENIED = "Access denied.";
   public static final String
       SENSORELEMENT_PARENT_ELEMENT_SHALL_CONTAIN_ONE_OR_MORE_SENSORREPORT_ELEMENTS =
           "A " + "SENSORELEMENT PARENT ELEMENT SHALL CONTAIN ONE OR MORE SENSORREPORT ELEMENTS";
@@ -117,7 +116,6 @@ public class ExceptionMessages {
           + "hash generator, check for duplicate events remains skipped for capture ID: ";
   public static final String NAMESPACE_MISSING_FOR_USER_EXTENSIONS =
       "Namespace missing for user extension fields";
-  public static final String SERVER_SIDE_ERROR_OCCURRED = "A server-side error occurred: ";
   public static final String ERROR_WHILE_DELETING_SUBSCRIPTION =
       "error while deleting query subscription";
   public static final String ERROR_WHILE_INVALIDATING_NEXTPAGETOKEN =
@@ -131,11 +129,8 @@ public class ExceptionMessages {
   public static final String ERROR_WHILE_FETCHING_NEXT_PAGE_RESOURCE =
       "error while fetching next page resource";
   public static final String SUBSCRIPTION_DENIED = "Subscription Denied";
-  public static final String INVALID_URI = "Invalid URI";
   public static final String INVALID_SUBSCRIPTION_CONTROL = "Invalid Subscription Control";
-  public static final String RESOURCE_DOES_NOT_EXIST = "Resource does not exist.";
   public static final String INVALID_EVENT_TYPE = "Invalid event type.";
-  public static final String ERROR_IN_DATA_FORMAT = "Error in data format.";
   public static final String ERROR_WHILE_FETCHING_KEY_VALUE_FROM_ETCD =
       "error while fetching key-value from etcd";
   public static final String ERROR_WHILE_SAVING_KEY_VALUE_FROM_ETCD =
