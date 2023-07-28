@@ -55,7 +55,7 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
       throws IOException {
     if (this.context.equals("userExtensions")) {
       recursiveSerializer(value, gen);
-    } else if (this.context.equals("ilmd")) {
+    } else if (this.context.equals("ilmd") || this.context.equals("extension")) {
       gen.writeStartObject();
       recursiveSerializer(value, gen);
       gen.writeEndObject();

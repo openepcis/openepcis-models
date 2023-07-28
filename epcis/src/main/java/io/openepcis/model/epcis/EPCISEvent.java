@@ -178,7 +178,9 @@ public class EPCISEvent implements Serializable {
   private Map<String, Serializable> baseExtension;
 
   @XmlJavaTypeAdapter(CustomExtensionAdapter.class)
-  @JsonIgnore
+  @JsonSerialize(using = CustomExtensionsSerializer.class)
+  @UserExtensions(extension = "extension")
+  @JsonProperty("extension")
   private Map<String, Serializable> extension;
 
   @XmlAnyElement(lax = true)
@@ -298,10 +300,10 @@ public class EPCISEvent implements Serializable {
 
     // If there are elements in Extension after Unmarshalling then add it to UserExtensions before
     // creating JSON
-    if (extension != null) {
+    /*if (extension != null) {
       userExtensions.putAll(extension);
       extension = new HashMap<>();
-    }
+    }*/
 
     // If there are elements in BaseExtension after Unmarshalling then add it to UserExtensions
     // before creating JSON
