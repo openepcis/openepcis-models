@@ -137,6 +137,7 @@ public class EPCISEvent implements Serializable {
       List<SensorElementList> sensorElementList,
       Integer sequenceInEPCISDoc,
       String captureId,
+      Map<String, Object> extension,
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
@@ -159,6 +160,7 @@ public class EPCISEvent implements Serializable {
     this.sensorElementList = sensorElementList;
     this.sequenceInEPCISDoc = sequenceInEPCISDoc;
     this.captureID = captureId;
+    this.extension = extension;
     this.userExtensions = userExtensions;
     this.innerUserExtensions = innerUserExtensions;
     this.contextInfo = contextInfo;
@@ -178,8 +180,10 @@ public class EPCISEvent implements Serializable {
   private Map<String, Serializable> baseExtension;
 
   @XmlJavaTypeAdapter(CustomExtensionAdapter.class)
-  @JsonIgnore
-  private Map<String, Serializable> extension;
+  @JsonSerialize(using = CustomExtensionsSerializer.class)
+  @UserExtensions(extension = "extension")
+  @JsonProperty("extension")
+  private Map<String, Object> extension;
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
@@ -298,10 +302,10 @@ public class EPCISEvent implements Serializable {
 
     // If there are elements in Extension after Unmarshalling then add it to UserExtensions before
     // creating JSON
-    if (extension != null) {
+    /*if (extension != null) {
       userExtensions.putAll(extension);
       extension = new HashMap<>();
-    }
+    }*/
 
     // If there are elements in BaseExtension after Unmarshalling then add it to UserExtensions
     // before creating JSON
