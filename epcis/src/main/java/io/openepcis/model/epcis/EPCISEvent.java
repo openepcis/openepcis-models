@@ -137,6 +137,7 @@ public class EPCISEvent implements Serializable {
       List<SensorElementList> sensorElementList,
       Integer sequenceInEPCISDoc,
       String captureId,
+      Map<String, Object> extension,
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
@@ -159,6 +160,7 @@ public class EPCISEvent implements Serializable {
     this.sensorElementList = sensorElementList;
     this.sequenceInEPCISDoc = sequenceInEPCISDoc;
     this.captureID = captureId;
+    this.extension = extension;
     this.userExtensions = userExtensions;
     this.innerUserExtensions = innerUserExtensions;
     this.contextInfo = contextInfo;
@@ -181,7 +183,7 @@ public class EPCISEvent implements Serializable {
   @JsonSerialize(using = CustomExtensionsSerializer.class)
   @UserExtensions(extension = "extension")
   @JsonProperty("extension")
-  private Map<String, Serializable> extension;
+  private Map<String, Object> extension;
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
