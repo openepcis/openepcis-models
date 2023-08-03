@@ -192,7 +192,7 @@ public class ProblemResponseBody {
     return o.toString().replace("\n", "\n    ");
   }
 
-  public static final ProblemResponseBody fromException(WebApplicationException exception) {
+  public static final <T extends WebApplicationException> ProblemResponseBody fromException(final T exception) {
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.setTitle(exception.getResponse().getStatusInfo().getReasonPhrase());
