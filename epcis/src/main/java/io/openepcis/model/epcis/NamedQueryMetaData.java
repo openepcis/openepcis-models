@@ -17,13 +17,14 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.OffsetDateTime;
-import java.util.Map;
-import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 
 /** NamedQueryMetaData */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -34,9 +35,6 @@ import lombok.NoArgsConstructor;
 public class NamedQueryMetaData {
   @JsonProperty("name")
   private String name = null;
-
-  @JsonProperty("deleted")
-  private Boolean deleted;
 
   @JsonProperty("createdAt")
   private OffsetDateTime createdAt = null;

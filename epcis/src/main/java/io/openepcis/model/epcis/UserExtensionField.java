@@ -55,10 +55,11 @@ public class UserExtensionField {
     UserExtensionField c = (UserExtensionField) o;
 
     // Compare the data members and return accordingly
-    if (c.getName().equals(this.getName()) && c.getType().equals(this.getType())) return true;
-    else if (c.getName().equals(this.getName()) && !c.getType().equals(this.getType()))
-      throw new CaptureValidationException(c.getName() + "expected data type: " + this.getType());
-
+    if (c.getName() != null && c.getType() != null) {
+      if (c.getName().equals(this.getName()) && c.getType().equals(this.getType())) return true;
+      else if (c.getName().equals(this.getName()) && !c.getType().equals(this.getType()))
+        throw new CaptureValidationException(c.getName() + "expected data type: " + this.getType());
+    }
     return false;
   }
 }
