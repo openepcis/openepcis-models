@@ -31,16 +31,16 @@ public class ExceptionMessages extends RESTExceptionMessages {
       "Context Information is missing " + "for namespace alias(es) : ";
   public static final String ERROR_WHILE_PERSISTING_EVENT = "Error while persisting event";
   public static final String ERROR_WHILE_PERSISTING_USER_EXTENSION_FIELDS =
-      "Error while persisting user extension " + "fields.";
+      "Error while persisting user openepcis " + "fields.";
   public static final String EMPTY_EVENT_CANNOT_BE_SAVED = "Empty event cannot be saved";
   public static final String EMPTY_CAPTURE_BODY_CANNOT_BE_SAVED =
       "Empty capture Body cannot be saved";
   public static final String ERROR_WHILE_PERSISTING_EPCIS_DOCUMENT =
       "Error while persisting EPCIS Document";
   public static final String ERROR_WHILE_VALIDATING_JSONLD_USER_EXTENSION_FIELDS =
-      "Error while validating JSONLD " + "User extension fields";
+      "Error while validating JSONLD " + "User openepcis fields";
   public static final String INTERRUPTED_WHILE_VALIDATING_JSONLD_USER_EXTENSION_FIELDS =
-      "Thread interrupted while validating JSONLD " + "User extension fields";
+      "Thread interrupted while validating JSONLD " + "User openepcis fields";
   public static final String INVALID_VALUE = "Invalid value | %s=%s";
   public static final String INVALID_VALUE_TYPE = "Invalid value type | %s";
   public static final String VALID_ACTION_VALUES =
@@ -115,7 +115,7 @@ public class ExceptionMessages extends RESTExceptionMessages {
       "Due to unexpected response from event "
           + "hash generator, check for duplicate events remains skipped for capture ID: ";
   public static final String NAMESPACE_MISSING_FOR_USER_EXTENSIONS =
-      "Namespace missing for user extension fields";
+      "Namespace missing for user openepcis fields";
   public static final String ERROR_WHILE_DELETING_SUBSCRIPTION =
       "error while deleting query subscription";
   public static final String ERROR_WHILE_INVALIDATING_NEXTPAGETOKEN =
@@ -164,7 +164,7 @@ public class ExceptionMessages extends RESTExceptionMessages {
       "The server cannot return the response as " + "requested.";
   public static final String USER_EXTENSION_CORRESPONDING_TO_NAMESPACE_DOES_NOT_COMPLY_WITH_SCHEMA =
       "User "
-          + "extension corresponding to namespace %s does not comply with schema as follows: %s";
+          + "openepcis corresponding to namespace %s does not comply with schema as follows: %s";
   public static final String PREFIX_NAME_ALREADY_MAPPED_TO_NAMESPACE =
       "Prefix name is already mapped to a namespace";
   public static final String NAMESPACE_ALREADY_MAPPED_JSON_SCHEMA =

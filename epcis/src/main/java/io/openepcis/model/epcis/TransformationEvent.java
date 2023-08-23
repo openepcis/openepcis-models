@@ -18,6 +18,8 @@ package io.openepcis.model.epcis;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.epc.translator.util.ConverterUtil;
+import io.openepcis.model.epcis.extension.OpenEPCISExtension;
+import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import io.openepcis.model.epcis.modifier.CustomExtensionAdapter;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -99,7 +101,7 @@ import lombok.*;
   "persistentDisposition",
   "userExtensions"
 })
-public class TransformationEvent extends EPCISEvent implements XmlSupportExtension {
+public class TransformationEvent extends EPCISEvent implements OpenEPCISSupport {
 
   @XmlElementWrapper(name = "inputEPCList")
   @XmlElement(name = "epc")
@@ -165,11 +167,11 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
       List<QuantityList> inputQuantityList,
       List<QuantityList> outputQuantityList,
       String transformationID,
-      Ilmd ilmd) {
+      Ilmd ilmd,
+      OpenEPCISExtension openEPCISExtension) {
     super(
         type,
         eventID,
-        hash,
         eventTimeZoneOffset,
         eventTime,
         recordTime,
@@ -182,14 +184,13 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
         sourceList,
         destinationList,
         sensorElementList,
-        sequenceInEPCISDoc,
-        captureId,
         extension,
         userExtensions,
         innerUserExtensions,
         contextInfo,
         certificationInfo,
-        null);
+        null,
+            openEPCISExtension);
     this.inputEPCList = inputEPCList;
     this.outputEPCList = outputEPCList;
     this.inputQuantityList = inputQuantityList;

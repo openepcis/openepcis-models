@@ -18,6 +18,8 @@ package io.openepcis.model.epcis;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.epc.translator.util.ConverterUtil;
+import io.openepcis.model.epcis.extension.OpenEPCISExtension;
+import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import io.openepcis.model.epcis.modifier.CustomExtensionAdapter;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -90,7 +92,7 @@ import lombok.*;
   "ilmd",
   "userExtensions"
 })
-public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
+public class ObjectEvent extends EPCISEvent implements OpenEPCISSupport {
 
   @JsonProperty(required = true)
   @XmlElement(name = "action", required = true)
@@ -125,7 +127,6 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
   public ObjectEvent(
       String type,
       String eventID,
-      String hash,
       String eventTimeZoneOffset,
       OffsetDateTime eventTime,
       OffsetDateTime recordTime,
@@ -144,16 +145,14 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
-      int sequenceInEPCISDoc,
-      String captureId,
       List<QuantityList> quantityList,
       List<String> epcList,
       List<BizTransactionList> bizTransactionList,
-      Ilmd ilmd) {
+      Ilmd ilmd,
+      OpenEPCISExtension openEPCISExtension) {
     super(
         type,
         eventID,
-        hash,
         eventTimeZoneOffset,
         eventTime,
         recordTime,
@@ -166,14 +165,13 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
         sourceList,
         destinationList,
         sensorElementList,
-        sequenceInEPCISDoc,
-        captureId,
         extension,
         userExtensions,
         innerUserExtensions,
         contextInfo,
         certificationInfo,
-        null);
+        null,
+            openEPCISExtension);
     this.action = action;
     this.quantityList = quantityList;
     this.epcList = epcList;

@@ -1,0 +1,9 @@
+package io.openepcis.model.epcis.extension;
+
+import io.openepcis.model.epcis.XmlSupportExtension;
+
+public interface OpenEPCISSupport extends XmlSupportExtension {
+
+    OpenEPCISExtension getOpenEPCISExtension();
+
+}

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.epc.translator.util.ConverterUtil;
+import io.openepcis.model.epcis.extension.OpenEPCISExtension;
 import io.openepcis.model.epcis.modifier.*;
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.Marshaller;
@@ -62,8 +63,6 @@ public class EPCISEvent implements Serializable {
 
   private String eventID;
 
-  @XmlTransient private String hash;
-
   @JsonProperty(required = true)
   @XmlElement(name = "eventTimeZoneOffset", required = true)
   private String eventTimeZoneOffset;
@@ -101,10 +100,6 @@ public class EPCISEvent implements Serializable {
   @XmlElement(name = "sensorElement")
   private List<SensorElementList> sensorElementList;
 
-  @XmlTransient @JsonIgnore private Integer sequenceInEPCISDoc;
-
-  @XmlTransient private String captureID;
-
   @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
 
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
@@ -119,10 +114,12 @@ public class EPCISEvent implements Serializable {
 
   @JsonIgnore @XmlTransient private String expandedJSONLDString;
 
+  @JsonIgnore @XmlTransient
+  private OpenEPCISExtension openEPCISExtension = new OpenEPCISExtension();
+
   public EPCISEvent(
       String type,
       String eventID,
-      String hash,
       String eventTimeZoneOffset,
       OffsetDateTime eventTime,
       OffsetDateTime recordTime,
@@ -135,17 +132,15 @@ public class EPCISEvent implements Serializable {
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
-      Integer sequenceInEPCISDoc,
-      String captureId,
       Map<String, Object> extension,
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
       String certificationInfo,
-      String expandedJSONLDString) {
+      String expandedJSONLDString,
+      OpenEPCISExtension openEPCISExtension) {
     this.type = type;
     this.eventID = eventID;
-    this.hash = hash;
     this.eventTimeZoneOffset = eventTimeZoneOffset;
     this.eventTime = eventTime;
     this.recordTime = recordTime;
@@ -158,14 +153,13 @@ public class EPCISEvent implements Serializable {
     this.sourceList = sourceList;
     this.destinationList = destinationList;
     this.sensorElementList = sensorElementList;
-    this.sequenceInEPCISDoc = sequenceInEPCISDoc;
-    this.captureID = captureId;
     this.extension = extension;
     this.userExtensions = userExtensions;
     this.innerUserExtensions = innerUserExtensions;
     this.contextInfo = contextInfo;
     this.certificationInfo = certificationInfo;
     this.expandedJSONLDString = expandedJSONLDString;
+    this.openEPCISExtension = openEPCISExtension;
   }
 
   @JsonAnyGetter
@@ -302,9 +296,9 @@ public class EPCISEvent implements Serializable {
 
     // If there are elements in Extension after Unmarshalling then add it to UserExtensions before
     // creating JSON
-    /*if (extension != null) {
-      userExtensions.putAll(extension);
-      extension = new HashMap<>();
+    /*if (openepcis != null) {
+      userExtensions.putAll(openepcis);
+      openepcis = new HashMap<>();
     }*/
 
     // If there are elements in BaseExtension after Unmarshalling then add it to UserExtensions
