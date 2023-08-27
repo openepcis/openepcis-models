@@ -18,7 +18,6 @@ package io.openepcis.model.epcis;
 import com.fasterxml.jackson.annotation.*;
 import io.openepcis.epc.translator.util.ConverterUtil;
 import io.openepcis.model.epcis.extension.OpenEPCISExtension;
-import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -93,7 +92,7 @@ import lombok.*;
   "persistentDisposition",
   "userExtensions"
 })
-public class AggregationEvent extends EPCISEvent implements OpenEPCISSupport {
+public class AggregationEvent extends EPCISEvent implements XmlSupportExtension {
 
   @JsonProperty(required = true)
   @XmlElement(name = "action", required = true)

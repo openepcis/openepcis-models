@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.epc.translator.util.ConverterUtil;
 import io.openepcis.model.epcis.extension.OpenEPCISExtension;
-import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import io.openepcis.model.epcis.modifier.CustomExtensionAdapter;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -92,7 +91,7 @@ import lombok.*;
   "ilmd",
   "userExtensions"
 })
-public class ObjectEvent extends EPCISEvent implements OpenEPCISSupport {
+public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
 
   @JsonProperty(required = true)
   @XmlElement(name = "action", required = true)

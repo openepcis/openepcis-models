@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.epc.translator.util.ConverterUtil;
 import io.openepcis.model.epcis.extension.OpenEPCISExtension;
+import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import io.openepcis.model.epcis.modifier.*;
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.Marshaller;
@@ -57,7 +58,7 @@ import lombok.NoArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlTransient
 @Builder
-public class EPCISEvent implements Serializable {
+public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
   @XmlTransient private String type;
 
