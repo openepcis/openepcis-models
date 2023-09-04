@@ -20,7 +20,7 @@ import java.util.Optional;
 public enum EPCFormat {
   Always_GS1_Digital_Link("always_gs1_digital_link"),
   Always_EPC_URN("always_epc_urn"),
-  Never_Translate("never_translates"),
+  Never_Translates("never_translates"),
   No_Preference("no_preference");
 
   private String epcFormat;
