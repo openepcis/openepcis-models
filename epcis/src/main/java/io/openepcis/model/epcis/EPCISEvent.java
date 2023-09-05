@@ -60,7 +60,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
-  @XmlTransient private String type;
+  @XmlTransient @JsonIgnore private String type;
 
   private String eventID;
 

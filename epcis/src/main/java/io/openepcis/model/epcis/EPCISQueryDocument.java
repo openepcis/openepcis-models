@@ -28,10 +28,7 @@ import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -99,14 +96,25 @@ public class EPCISQueryDocument {
     final Map<String, Object> contextInfoMap =
         epcisEvents.stream()
             .map(this::convertContextInfoToMap)
+            .filter(map -> !map.isEmpty())
             .flatMap(map -> map.entrySet().stream())
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a));
-    contextInfoList.add(contextInfoMap);
+
+    //Avoid adding the empty map into the context
+    if(!contextInfoMap.isEmpty()){
+      contextInfoList.add(contextInfoMap);
+    }
+
     epcisEvents.forEach(epcisEvent -> epcisEvent.setContextInfo(null));
     return contextInfoList;
   }
 
   private HashMap<String, Object> convertContextInfoToMap(EPCISEvent epcisEvent) {
+    //If context is null or empty then return the empty HashMap to avoid  exception.
+    if(context == null || context.isEmpty()){
+      return new HashMap<>();
+    }
+
     return epcisEvent.getContextInfo().stream()
         .map(m -> new ObjectMapper().convertValue(m, HashMap.class))
         .toList()
