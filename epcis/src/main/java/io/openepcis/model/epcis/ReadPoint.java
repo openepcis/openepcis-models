@@ -96,7 +96,7 @@ public class ReadPoint implements Serializable {
     // If there are elements in Extension after Unmarshalling then add it to UserExtensions before
     // creating JSON
     if (extension != null) {
-      extension.forEach((key, value) -> userExtensions.put(key, value));
+      userExtensions.putAll(extension);
       extension = new HashMap<>();
     }
   }
