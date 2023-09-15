@@ -111,7 +111,7 @@ public class EPCISQueryDocument {
 
   private HashMap<String, Object> convertContextInfoToMap(EPCISEvent epcisEvent) {
     //If context is null or empty then return the empty HashMap to avoid  exception.
-    if(context == null || context.isEmpty()){
+    if(epcisEvent.getContextInfo() == null || epcisEvent.getContextInfo().isEmpty()){
       return new HashMap<>();
     }
 
