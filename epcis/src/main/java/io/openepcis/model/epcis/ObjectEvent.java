@@ -148,6 +148,7 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
       List<String> epcList,
       List<BizTransactionList> bizTransactionList,
       Ilmd ilmd,
+      Map<String, Object> ilmdXml,
       OpenEPCISExtension openEPCISExtension) {
     super(
         type,
@@ -176,6 +177,7 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
     this.epcList = epcList;
     this.ilmd = ilmd;
     this.bizTransactionList = bizTransactionList;
+    this.ilmdXml = ilmdXml;
     if (ilmd != null) {
       this.ilmdXml = ilmd.getUserExtensions();
     }
