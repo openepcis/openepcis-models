@@ -33,10 +33,7 @@ import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.xml.parsers.ParserConfigurationException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -377,6 +374,9 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
   //Method to check if provided context contains the empty HashMap if so skip them
   private boolean isEmptyContext(final List<Object> context){
-    return context.stream().filter(obj -> obj instanceof HashMap<?, ?>).map(obj -> (HashMap<?, ?>) obj).anyMatch(HashMap::isEmpty);
+    if (Objects.nonNull(context)){
+      return context.stream().filter(obj -> obj instanceof HashMap<?, ?>).map(obj -> (HashMap<?, ?>) obj).anyMatch(HashMap::isEmpty);
+    }
+    return true;
   }
 }
