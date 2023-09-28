@@ -53,7 +53,6 @@ import lombok.*;
       "sourceList",
       "destinationList",
       "sensorElementList",
-      "persistentDisposition",
       "extension",
       "anyElements"
     },
@@ -88,7 +87,6 @@ import lombok.*;
   "sourceList",
   "destinationList",
   "sensorElementList",
-  "persistentDisposition",
   "userExtensions"
 })
 public class TransactionEvent extends EPCISEvent implements XmlSupportExtension {
@@ -121,7 +119,6 @@ public class TransactionEvent extends EPCISEvent implements XmlSupportExtension 
       Action action,
       String bizStep,
       String disposition,
-      PersistentDisposition persistentDisposition,
       ReadPoint readPoint,
       BizLocation bizLocation,
       ErrorDeclaration errorDeclaration,
@@ -146,7 +143,6 @@ public class TransactionEvent extends EPCISEvent implements XmlSupportExtension 
         recordTime,
         bizStep,
         disposition,
-        persistentDisposition,
         readPoint,
         bizLocation,
         errorDeclaration,
