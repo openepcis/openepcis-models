@@ -79,7 +79,6 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
   private String bizStep;
   private String disposition;
-  private PersistentDisposition persistentDisposition;
 
   private ReadPoint readPoint;
 
@@ -123,7 +122,6 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
       OffsetDateTime recordTime,
       String bizStep,
       String disposition,
-      PersistentDisposition persistentDisposition,
       ReadPoint readPoint,
       BizLocation bizLocation,
       ErrorDeclaration errorDeclaration,
@@ -144,7 +142,6 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
     this.recordTime = recordTime;
     this.bizStep = bizStep;
     this.disposition = disposition;
-    this.persistentDisposition = persistentDisposition;
     this.readPoint = readPoint;
     this.bizLocation = bizLocation;
     this.errorDeclaration = errorDeclaration;
@@ -224,38 +221,6 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
               : ConverterUtil.toCbvVocabulary(disposition, "disposition", "URN");
     }
 
-    // Check if Persistent Disposition has value if so convert to CBV formatted value.
-    if (persistentDisposition != null) {
-      // If Set elements are present then add it to List
-      if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
-        final List<String> setList = new ArrayList<>();
-        persistentDisposition
-            .getSet()
-            .forEach(
-                set ->
-                    setList.add(
-                        set.contains("http") || set.contains(":")
-                            ? set
-                            : ConverterUtil.toCbvVocabulary(set, "persistentDisposition", "URN")));
-        persistentDisposition.setSet(setList);
-      }
-
-      // If Unset elements are present then add it to List
-      if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
-        final List<String> unsetList = new ArrayList<>();
-        persistentDisposition
-            .getUnset()
-            .forEach(
-                unset ->
-                    unsetList.add(
-                        unset.contains("http") || unset.contains(":")
-                            ? unset
-                            : ConverterUtil.toCbvVocabulary(
-                                unset, "persistentDisposition", "URN")));
-        persistentDisposition.setUnset(unsetList);
-      }
-    }
-
     // Check if Source has value if so convert it to CBV formatted value
     if (sourceList != null && !sourceList.isEmpty()) {
       sourceList.forEach(
@@ -324,27 +289,6 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
     // Check if Disposition has value if so convert to BareString
     if (disposition != null && !disposition.equals("")) {
       disposition = ConverterUtil.toBareStringVocabulary(disposition);
-    }
-
-    // Check if Persistent Disposition has value if so convert to BareString
-    if (persistentDisposition != null) {
-      // If Set elements are present then add it to List
-      if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
-        final List<String> setList = new ArrayList<>();
-        persistentDisposition
-            .getSet()
-            .forEach(set -> setList.add(ConverterUtil.toBareStringVocabulary(set)));
-        persistentDisposition.setSet(setList);
-      }
-
-      // If Unset elements are present then add it to List
-      if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
-        final List<String> unsetList = new ArrayList<>();
-        persistentDisposition
-            .getUnset()
-            .forEach(unset -> unsetList.add(ConverterUtil.toBareStringVocabulary(unset)));
-        persistentDisposition.setUnset(unsetList);
-      }
     }
 
     // Check if Source has value if so convert it to BareString value
