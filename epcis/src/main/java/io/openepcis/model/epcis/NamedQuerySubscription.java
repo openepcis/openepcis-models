@@ -15,9 +15,11 @@
  */
 package io.openepcis.model.epcis;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.net.URI;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,4 +46,6 @@ public class NamedQuerySubscription {
   private OffsetDateTime createdAt;
   private String epcFormat;
   private String cbvFormat;
+  private String subscribedBy;
+  private List<String> rolesAllowed;
 }
