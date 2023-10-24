@@ -24,4 +24,12 @@ public class CaptureValidationException extends RuntimeException {
   public CaptureValidationException(String msg, Throwable cause) {
     super(msg, cause);
   }
+
+  public static final CaptureValidationException of(String msg, Throwable cause) {
+    if (CaptureValidationException.class.isAssignableFrom(cause.getClass())) {
+      return (CaptureValidationException) cause;
+    }
+    return new CaptureValidationException(msg, cause);
+  }
+
 }
