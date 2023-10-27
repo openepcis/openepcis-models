@@ -35,10 +35,8 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.*;
 import javax.xml.parsers.ParserConfigurationException;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = true, property = "type")
 @JsonSubTypes({
@@ -49,7 +47,8 @@ import lombok.NoArgsConstructor;
   @JsonSubTypes.Type(value = TransactionEvent.class, name = "TransactionEvent")
 })
 @JsonInclude(Include.NON_NULL)
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -57,7 +56,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
-  @XmlTransient private String type;
+  @JsonIgnore @XmlTransient private String type;
 
   private String eventID;
 
