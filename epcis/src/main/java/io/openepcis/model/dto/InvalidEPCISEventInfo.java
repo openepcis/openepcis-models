@@ -55,11 +55,16 @@ public class InvalidEPCISEventInfo {
 
   public InvalidEPCISEventInfo(
       String type, String title, Integer status, String detail, List<Integer> sequenceInEPCISDoc) {
+    this(type, title, status, detail);
+    this.setSequenceInEPCISDoc(sequenceInEPCISDoc);
+  }
+
+  public InvalidEPCISEventInfo(
+          String type, String title, Integer status, String detail) {
     this.setType(type);
     this.setTitle(title);
     this.setStatus(status);
     this.setDetail(detail);
-    this.setSequenceInEPCISDoc(sequenceInEPCISDoc);
   }
 
   public InvalidEPCISEventInfo type(String type) {
