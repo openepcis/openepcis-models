@@ -18,6 +18,7 @@ package io.openepcis.model.epcis.modifier;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import java.io.IOException;
 import java.util.List;
@@ -35,18 +36,36 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       final SerializerProvider serializers)
       throws IOException {
     try {
-      jsonGenerator.writeStartArray();
+      // NOTE: This fix is made temporarily until namespaceResolver is improved
+      if (contextValue.contains("bareevent")){
+          jsonGenerator.writeStartArray();
+          jsonGenerator.writeString(CommonConstants.EPCIS_DEFAULT_NAMESPACE);
+          contextValue.stream().filter(Map.class::isInstance).forEach(map->{
+            for (final Map.Entry<String, String> entry : ((Map<String,String>) map).entrySet()) {
+              try {
+                jsonGenerator.writeStartObject();
+                jsonGenerator.writeStringField(entry.getKey(), entry.getValue());
+                jsonGenerator.writeEndObject();
+              } catch (IOException e) {
+                throw new RuntimeException("Exception occurred during the writing of context elements: " + e.getMessage(), e);
+              }
+            }
+          });
+          jsonGenerator.writeEndArray();
+      } else {
+        jsonGenerator.writeStartArray();
 
-      final Map<String, String> modifiedNamespaces = namespaceResolver.getEventNamespaces();
+        final Map<String, String> modifiedNamespaces = namespaceResolver.getEventNamespaces();
 
-      for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
-        jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField(entry.getValue(), entry.getKey());
-        jsonGenerator.writeEndObject();
+        for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
+          jsonGenerator.writeStartObject();
+          jsonGenerator.writeStringField(entry.getValue(), entry.getKey());
+          jsonGenerator.writeEndObject();
+        }
+
+        jsonGenerator.writeEndArray();
+        namespaceResolver.resetEventNamespaces();
       }
-
-      jsonGenerator.writeEndArray();
-      namespaceResolver.resetEventNamespaces();
     } catch (IOException e) {
       throw new IOException(
           "Exception occurred during the writing of context elements: " + e.getMessage(), e);
