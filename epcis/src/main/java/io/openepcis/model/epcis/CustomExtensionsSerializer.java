@@ -85,6 +85,8 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
             gen.writeEndObject();
           } else if (dupItems instanceof String) {
             gen.writeString((String) dupItems);
+          } else if (dupItems instanceof Number){
+            gen.writeNumber((Double) dupItems);
           }
         }
         gen.writeEndArray();
