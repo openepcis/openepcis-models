@@ -168,4 +168,16 @@ public class EPCISExceptionMapper {
     return RestResponse.status(RestResponse.Status.PAYLOAD_TOO_LARGE, responseBody);
   }
 
+  @ServerExceptionMapper
+  public final RestResponse<ProblemResponseBody> mapException(
+          final UnsupportedQueryParameterException exception) {
+    log.info(exception.getMessage());
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
+    responseBody.title(exception.getMessage());
+    responseBody.setStatus(501);
+    responseBody.setDetail(exception.getMessage());
+    return RestResponse.status(RestResponse.Status.NOT_IMPLEMENTED, responseBody);
+  }
+
 }
