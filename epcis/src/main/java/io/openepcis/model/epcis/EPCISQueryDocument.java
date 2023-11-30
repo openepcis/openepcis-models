@@ -79,16 +79,16 @@ public class EPCISQueryDocument {
     this.type = CommonConstants.EPCIS_QUERY_DOC;
     this.schemaVersion = CommonConstants.SCHEMA_VERSION;
     this.creationDate = OffsetDateTime.now();
-    if (CollectionUtils.isNotEmpty(epcisBody.getQueryResults().getResultsBody().getEventList())) {
-      this.context =
-          getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
-    }
+    this.context = getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
 
     // Populating the namespaces directly from context during xml query
     CommonExtensionModifier.populateNamespaces(context);
   }
 
   private List<Object> getContextInfoFromEventList(List<? extends EPCISEvent> epcisEvents) {
+    if (CollectionUtils.isEmpty(epcisEvents)) {
+      return Collections.emptyList();
+    }
     final List<Object> contextInfoList = new ArrayList<>();
 
     contextInfoList.add(CommonConstants.EPCIS_DEFAULT_NAMESPACE);
