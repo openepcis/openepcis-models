@@ -86,12 +86,12 @@ public class EPCISQueryDocument {
   }
 
   private List<Object> getContextInfoFromEventList(List<? extends EPCISEvent> epcisEvents) {
-    if (CollectionUtils.isEmpty(epcisEvents)) {
-      return Collections.emptyList();
-    }
     final List<Object> contextInfoList = new ArrayList<>();
 
     contextInfoList.add(CommonConstants.EPCIS_DEFAULT_NAMESPACE);
+    if (CollectionUtils.isEmpty(epcisEvents)) {
+      return contextInfoList;
+    }
 
     final Map<String, Object> contextInfoMap =
         epcisEvents.stream()
