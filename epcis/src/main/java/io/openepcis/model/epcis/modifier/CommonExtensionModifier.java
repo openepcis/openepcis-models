@@ -36,8 +36,9 @@ public class CommonExtensionModifier {
         return elementReader(value);
     }
 
-    private static LinkedHashMap<String, Object> elementReader(List<Object> value) {
-        LinkedHashMap<String, Object> multiExtensions = new LinkedHashMap<>();
+    // This method reads elements from a list and populates a LinkedHashMap with the elements.
+    private static LinkedHashMap<String, Object> elementReader(final List<Object> value) {
+        final LinkedHashMap<String, Object> multiExtensions = new LinkedHashMap<>();
 
         final DefaultJsonSchemaNamespaceURIResolver namespaceResolver = DefaultJsonSchemaNamespaceURIResolver.getContext();
 
@@ -64,7 +65,7 @@ public class CommonExtensionModifier {
                             extensionPopulate(multiExtensions, valueElement.getNodeName(), valueElement.getTextContent().trim());
                         } else if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
                             //If complex node then recursively add them
-                            HashMap<String, Object> childNodes = elementReader(List.of(parentNode));
+                            final HashMap<String, Object> childNodes = elementReader(List.of(parentNode));
                             extensionPopulate(multiExtensions, valueElement.getNodeName(), childNodes);
                         }
                     }
@@ -76,6 +77,7 @@ public class CommonExtensionModifier {
         return multiExtensions;
     }
 
+    //Based on obtained name and value populate the LinkedHashMap to either simple key, value or complex key with value list
     public static LinkedHashMap<String, Object> extensionPopulate(final LinkedHashMap<String, Object> multiExtensions, final String nodeName, final Object nodeContent) {
         // Check if MAP already has an entry with respective key
         if (multiExtensions.containsKey(nodeName)) {
@@ -91,11 +93,11 @@ public class CommonExtensionModifier {
 
                 newMapValues.forEach((key, value) -> {
                     if (existingMapValues.containsKey(key)) {
-                        Object existingKeyValue = existingMapValues.get(key);
+                        final Object existingKeyValue = existingMapValues.get(key);
                         if (existingKeyValue instanceof List) {
                             ((List<Object>) existingKeyValue).add(value);
                         } else {
-                            List<Object> values = new ArrayList<>();
+                            final List<Object> values = new ArrayList<>();
                             values.add(existingKeyValue);
                             values.add(value);
                             existingMapValues.put(key, values);
@@ -108,7 +110,7 @@ public class CommonExtensionModifier {
                 multiExtensions.put(nodeName, existingMapValues);
 
             } else {
-                List<Object> values = new ArrayList<>();
+                final List<Object> values = new ArrayList<>();
                 values.add(existingValue);
                 values.add(nodeContent);
                 multiExtensions.put(nodeName, values);
@@ -124,11 +126,10 @@ public class CommonExtensionModifier {
     public static void populateNamespaces(final List<Object> context) {
         // Populating the namespaces directly from context during xml query
         if (context != null && !context.isEmpty()) {
-            final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-                    DefaultJsonSchemaNamespaceURIResolver.getContext();
+            final DefaultJsonSchemaNamespaceURIResolver namespaceResolver = DefaultJsonSchemaNamespaceURIResolver.getContext();
             namespaceResolver.resetEventNamespaces();
 
-            for (Object item : context) {
+            for (final Object item : context) {
                 if (item instanceof Map<?, ?>) {
                     final Map<String, String> namespaces = (Map<String, String>) item;
                     namespaces.forEach((key, value) -> namespaceResolver.populateEventNamespaces(value, key));
