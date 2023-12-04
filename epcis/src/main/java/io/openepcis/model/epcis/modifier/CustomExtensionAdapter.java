@@ -56,25 +56,15 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
       }
 
       if (value instanceof Map mapValue) {
-        elements.add(
-            new JAXBElement<>(
-                createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
+        elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
       } else if (value instanceof String stringValue) {
-        elements.add(
-            new JAXBElement<>(
-                createQName(localPart, namespaceURI, prefix), String.class, stringValue));
+        elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), String.class, stringValue));
       } else if (value instanceof List listValue) {
         for (Object item : listValue) {
           if (item instanceof Map mapValue) {
-            elements.add(
-                new JAXBElement<>(
-                    createQName(localPart, namespaceURI, prefix),
-                    MapWrapper.class,
-                    marshal(mapValue)));
+            elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
           } else {
-            elements.add(
-                new JAXBElement<>(
-                    createQName(localPart, namespaceURI, prefix), String.class, item.toString()));
+            elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), String.class, item.toString()));
           }
         }
       }
