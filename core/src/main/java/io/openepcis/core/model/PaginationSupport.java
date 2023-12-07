@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlTransient
-public abstract class PaginationSupport {
+public class PaginationSupport {
   @JsonProperty("nextPageToken")
   @XmlTransient
   protected String nextPageToken;

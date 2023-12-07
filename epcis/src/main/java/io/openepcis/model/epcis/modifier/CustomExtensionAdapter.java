@@ -17,6 +17,8 @@ package io.openepcis.model.epcis.modifier;
 
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAnyElement;
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.*;
@@ -78,7 +80,7 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
     if (value == null) {
       return Collections.emptyMap();
     }
-    return CommonExtensionModifier.unmarshaller(value.getElements());
+    return CommonExtensionModifier.unmarshaller(value.elements);
   }
 
   // Creates the QName based on the provided values
@@ -104,6 +106,7 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
   }
 }
 
+@XmlAccessorType(XmlAccessType.FIELD)
 class MapWrapper {
-  @Getter @Setter @XmlAnyElement List<Object> elements = new ArrayList<>();
+  @XmlAnyElement List<Object> elements = new ArrayList<>();
 }
