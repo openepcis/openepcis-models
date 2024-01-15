@@ -143,7 +143,7 @@ public class SensorReport implements Serializable {
 
   public void beforeMarshal(Marshaller m) {
     // if type does not contain gs1: then add it during JSON->XML conversion
-    if (type != null && !type.toString().contains("gs1:")) {
+    if (type != null && !type.toString().contains("gs1")) {
       type = URI.create("gs1:" + type);
     }
 
