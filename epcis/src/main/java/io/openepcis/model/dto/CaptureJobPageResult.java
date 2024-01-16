@@ -26,10 +26,10 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @NoArgsConstructor
-@XmlRootElement
+@XmlRootElement(name="EPCISCaptureJobList")
 @XmlType(
     propOrder = {"captureJobs"},
-    name = "CaptureJobPage",
+    name = "EPCISCaptureJobList",
     factoryClass = ObjectFactory.class,
     factoryMethod = "createCaptureJobPageResult")
 @XmlAccessorType(XmlAccessType.FIELD)

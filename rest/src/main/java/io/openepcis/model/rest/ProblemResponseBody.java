@@ -27,10 +27,10 @@ import lombok.NoArgsConstructor;
 import org.jboss.resteasy.reactive.RestResponse;
 
 /** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */
-@XmlRootElement(name ="ProblemResponseBody")
+@XmlRootElement(name ="EPCISException")
 @NoArgsConstructor
 @XmlType(
-    name = "ProblemResponseBody",
+    name = "EPCISException",
     factoryClass = ObjectFactory.class,
     factoryMethod = "createProblemResponseBody")
 public class ProblemResponseBody {
