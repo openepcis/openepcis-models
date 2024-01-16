@@ -26,17 +26,18 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @NoArgsConstructor
-@XmlRootElement(name="EPCISCaptureJobList")
+@XmlRootElement(name="EPCISCaptureJobList", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlType(
     propOrder = {"captureJobs"},
     name = "EPCISCaptureJobList",
+    namespace = "urn:epcglobal:epcis:xsd:2",
     factoryClass = ObjectFactory.class,
     factoryMethod = "createCaptureJobPageResult")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(CaptureJob.class)
 public class CaptureJobPageResult extends PaginationSupport {
 
-  @XmlAnyElement private List<CaptureJob> captureJobs;
+  @XmlElement(namespace = "", name = "EPCISCaptureJob") private List<CaptureJob> captureJobs;
 
   public CaptureJobPageResult(
       final String rel,

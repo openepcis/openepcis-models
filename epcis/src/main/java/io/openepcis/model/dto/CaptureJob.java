@@ -25,7 +25,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @AllArgsConstructor
-@XmlRootElement(name = "EPCISCaptureJob")
+@XmlRootElement(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlType(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(InvalidEPCISEventInfo.class)
