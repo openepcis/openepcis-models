@@ -34,12 +34,15 @@ import java.util.Objects;
 @Builder
 public class NamedQueryMetaData {
   @JsonProperty("name")
+  @Builder.Default
   private String name = null;
 
   @JsonProperty("createdAt")
+  @Builder.Default
   private OffsetDateTime createdAt = null;
 
   @JsonProperty("query")
+  @Builder.Default
   private Map<String, Object> epcisQuery = null;
 
   public NamedQueryMetaData name(String name) {

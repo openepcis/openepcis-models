@@ -24,10 +24,12 @@ import java.time.OffsetDateTime;
 import java.time.temporal.ChronoUnit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)

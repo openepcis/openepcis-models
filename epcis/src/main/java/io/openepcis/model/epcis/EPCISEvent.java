@@ -96,7 +96,7 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
   @XmlElement(name = "sensorElement")
   private List<SensorElementList> sensorElementList;
 
-  @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
 
@@ -110,7 +110,7 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
   @JsonIgnore @XmlTransient private String expandedJSONLDString;
 
-  @JsonIgnore @XmlTransient
+  @JsonIgnore @XmlTransient @Builder.Default
   private OpenEPCISExtension openEPCISExtension = new OpenEPCISExtension();
 
   public EPCISEvent(

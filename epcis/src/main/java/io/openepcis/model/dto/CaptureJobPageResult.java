@@ -21,10 +21,12 @@ import jakarta.xml.bind.annotation.*;
 import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @XmlRootElement(name="EPCISCaptureJobList", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlType(

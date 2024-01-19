@@ -21,9 +21,11 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @XmlRootElement(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlType(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")

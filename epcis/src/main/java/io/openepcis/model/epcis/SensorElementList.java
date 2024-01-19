@@ -58,10 +58,11 @@ public class SensorElementList implements Serializable {
   @JsonIgnore
   private Map<String, Object> extension;
 
-  @JsonIgnore @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @JsonIgnore @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
+  @Builder.Default
   private List<Object> anyElements = new ArrayList<>();
 
   @JsonAnySetter

@@ -20,10 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.openepcis.core.model.PaginationSupport;
 import io.openepcis.model.epcis.EpcisQueryResult;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Slf4j
 public class QueryResult extends PaginationSupport {
   @JsonProperty("queryResults")

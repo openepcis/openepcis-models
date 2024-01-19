@@ -98,9 +98,9 @@ public class SensorReport implements Serializable {
 
   @JsonIgnore private Map<String, Object> innerUserExtensions;
 
-  @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
-  @XmlAnyAttribute @JsonIgnore private Map<QName, Object> anyAttributes = new HashMap<>();
+  @XmlAnyAttribute @JsonIgnore @Builder.Default private Map<QName, Object> anyAttributes = new HashMap<>();
 
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {

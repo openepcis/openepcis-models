@@ -56,10 +56,11 @@ public class BizLocation implements Serializable {
   @JsonIgnore
   private Map<String, Object> extension;
 
-  @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
+  @Builder.Default
   private List<Object> anyElements = new ArrayList<>();
 
   @JsonAnySetter
