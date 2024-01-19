@@ -86,7 +86,7 @@
             <dependency>
                 <groupId>io.openepcis</groupId>
                 <artifactId>openepcis-epc-digitallink-translator</artifactId>
-                <version>${openepcis.github.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>
