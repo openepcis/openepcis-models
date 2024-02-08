@@ -47,8 +47,7 @@ import lombok.*;
   @JsonSubTypes.Type(value = TransactionEvent.class, name = "TransactionEvent")
 })
 @JsonInclude(Include.NON_NULL)
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -56,7 +55,8 @@ import lombok.*;
 @Builder
 public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
-  @JsonIgnore @XmlTransient private String type;
+  @XmlTransient
+  private String type;
 
   private String eventID;
 
