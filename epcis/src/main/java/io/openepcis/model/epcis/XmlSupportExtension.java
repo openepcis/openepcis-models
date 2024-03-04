@@ -23,7 +23,6 @@ import jakarta.xml.bind.annotation.XmlSeeAlso;
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    visible = true,
     property = "type")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ObjectEvent.class, name = "ObjectEvent"),

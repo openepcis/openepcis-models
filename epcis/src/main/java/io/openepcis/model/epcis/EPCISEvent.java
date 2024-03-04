@@ -56,6 +56,7 @@ import lombok.*;
 public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
   @XmlTransient
+  @JsonIgnore
   private String type;
 
   private String eventID;
