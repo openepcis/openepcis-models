@@ -72,8 +72,8 @@ public class CommonExtensionModifier {
                         final Node parentNode = valueList.item(parent);
 
                         //If text node then directly add with value
-                        if (parentNode.getNodeType() == Node.TEXT_NODE) {
-                            extensionPopulate(multiExtensions, valueElement.getNodeName(), valueElement.getTextContent().trim());
+                        if (parentNode.getNodeType() == Node.TEXT_NODE && !StringUtils.isBlank(parentNode.getTextContent())) {
+                            extensionPopulate(multiExtensions, valueElement.getNodeName(), parentNode.getTextContent().trim());
                         } else if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
                             //If complex node then recursively add them
                             final HashMap<String, Object> childNodes = elementReader(List.of(parentNode));
