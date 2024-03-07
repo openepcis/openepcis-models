@@ -27,13 +27,17 @@ import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
 import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.OffsetDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
+
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -101,8 +105,9 @@ public class EPCISQueryDocument {
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a));
 
     //Avoid adding the empty map into the context
-    if(!contextInfoMap.isEmpty()){
-      contextInfoList.add(contextInfoMap);
+    if(!contextInfoMap.isEmpty()) {
+      contextInfoMap.entrySet().stream()
+              .forEach(entry -> contextInfoList.add(Map.of(entry.getKey(), entry.getValue())));
     }
 
     epcisEvents.forEach(epcisEvent -> epcisEvent.setContextInfo(null));

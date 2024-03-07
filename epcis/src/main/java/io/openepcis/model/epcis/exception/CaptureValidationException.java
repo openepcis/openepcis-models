@@ -17,6 +17,19 @@ package io.openepcis.model.epcis.exception;
 
 public class CaptureValidationException extends RuntimeException {
 
+  public CaptureValidationException() {
+    super();
+  }
+
+  public CaptureValidationException(
+          String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
+  }
+
+  public CaptureValidationException(Throwable cause) {
+    super(cause);
+  }
+
   public CaptureValidationException(String msg) {
     super(msg);
   }
