@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -17,13 +17,14 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.OffsetDateTime;
-import java.util.Map;
-import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 
 /** NamedQueryMetaData */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -33,15 +34,15 @@ import lombok.NoArgsConstructor;
 @Builder
 public class NamedQueryMetaData {
   @JsonProperty("name")
+  @Builder.Default
   private String name = null;
 
-  @JsonProperty("deleted")
-  private Boolean deleted;
-
   @JsonProperty("createdAt")
+  @Builder.Default
   private OffsetDateTime createdAt = null;
 
   @JsonProperty("query")
+  @Builder.Default
   private Map<String, Object> epcisQuery = null;
 
   public NamedQueryMetaData name(String name) {

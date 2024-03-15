@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -22,16 +22,16 @@ public final class ObjectFactory {
 
   private ObjectFactory() {}
 
-  public static EPCISEventResponseEvent createEpcisEventResponseEvent() {
-    return new EPCISEventResponseEvent();
+  public static EPCISEventResponse createEpcisEventResponse() {
+    return new EPCISEventResponse();
   }
 
-  public static CaptureJobEvent createCaptureJobEvent() {
-    return new CaptureJobEvent();
+  public static CaptureJob createCaptureJob() {
+    return new CaptureJob();
   }
 
-  public static CaptureJobPageEvent createCaptureJobPageEvent() {
-    return new CaptureJobPageEvent();
+  public static CaptureJobPageResult createCaptureJobPageResult() {
+    return new CaptureJobPageResult();
   }
 
   public static InvalidEPCISEventInfo createInvalidEPCISEventInfo() {

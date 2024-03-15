@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -17,23 +17,31 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.xml.bind.annotation.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.xml.namespace.QName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Data
 @NoArgsConstructor
 @XmlRootElement(name = "EPCISBody")
-@XmlType(propOrder = {"queryResults"})
+@XmlType(
+    name = "EPCISBodyType",
+    namespace = "urn:epcglobal:epcis:xsd:2",
+    propOrder = {"eventList", "extension", "any"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISBody {
 
-  @XmlTransient private List<? extends EPCISEvent> eventList;
-  @XmlTransient private EPCISEvent event;
-  @XmlElement private EpcisQueryResult queryResults;
+  @XmlElement(name = "EventList")
+  private List<? extends EPCISEvent> eventList;
 
-  public EPCISBody(EpcisQueryResult queryResults) {
-    this.queryResults = queryResults;
-  }
+  protected EPCISBodyExtension extension;
+
+  @XmlAnyElement(lax = true)
+  protected List<Object> any;
+
+  @XmlAnyAttribute private Map<QName, String> otherAttributes = new HashMap<>();
 }

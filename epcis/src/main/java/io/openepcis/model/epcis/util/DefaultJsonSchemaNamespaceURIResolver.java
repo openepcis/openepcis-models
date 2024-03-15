@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -15,96 +15,79 @@
  */
 package io.openepcis.model.epcis.util;
 
-import io.openepcis.model.epcis.modifier.Constants;
-import java.net.URL;
-import java.util.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DefaultJsonSchemaNamespaceURIResolver {
 
-  private static final ThreadLocal<Map<String, String>> NAMESPACE_MAPS =
-      new ThreadLocal<Map<String, String>>() {
-
-        @Override
-        protected Map<String, String> initialValue() {
-          return new HashMap<>();
-        }
-      };
-  private static final ThreadLocal<Map<String, String>> MODIFIED_EVENT_NAMESPACES =
-      new ThreadLocal<Map<String, String>>() {
-
-        @Override
-        protected Map<String, String> initialValue() {
-          return new HashMap<>();
-        }
-      };
-
-  private static DefaultJsonSchemaNamespaceURIResolver instance =
+  private static final DefaultJsonSchemaNamespaceURIResolver context =
       new DefaultJsonSchemaNamespaceURIResolver();
+  private final ThreadLocal<Map<String, String>> documentNamespaces =
+      ThreadLocal.withInitial(ConcurrentHashMap::new);
+  private final ThreadLocal<Map<String, String>> eventNamespaces =
+      ThreadLocal.withInitial(ConcurrentHashMap::new);
 
-  public static DefaultJsonSchemaNamespaceURIResolver getInstance() {
-    return instance;
+  public static synchronized DefaultJsonSchemaNamespaceURIResolver getContext() {
+    return context;
   }
 
-  // Add the Namespaces obtained from JSON-LD if the already defined XSD namespaces exist
-  public synchronized void namespacePopulator(String namespaceURI, String prefix) {
-    if (!NAMESPACE_MAPS.get().containsKey(prefix)
-        && !NAMESPACE_MAPS.get().containsValue(prefix)
-        && namespaceURI != null
-        && prefix != null) {
-      NAMESPACE_MAPS.get().put(namespaceURI, prefix);
+  // Add all the Namespaces that are defined at the EPCIS document level.
+  public synchronized void populateDocumentNamespaces(
+      final String namespaceURI, final String prefix) {
+    if (namespaceURI != null
+        && prefix != null
+        && !documentNamespaces.get().containsKey(prefix)
+        && !documentNamespaces.get().containsValue(prefix)) {
+      documentNamespaces.get().put(namespaceURI, prefix);
     }
   }
 
-  public synchronized void namespaceReset() {
-    NAMESPACE_MAPS.get().clear();
-    MODIFIED_EVENT_NAMESPACES.get().clear();
-  }
-
-  public Optional<String> namespaceLocator(String prefix) {
-    if (NAMESPACE_MAPS.get().containsValue(prefix)) {
-      return Optional.of(
-          NAMESPACE_MAPS.get().entrySet().stream()
-              .filter(entry -> Objects.equals(entry.getValue(), prefix))
-              .map(Map.Entry::getKey)
-              .findFirst()
-              .get());
+  // Add all the namespaces that are defined at the EPCIS event level.
+  public synchronized void populateEventNamespaces(final String namespaceURI, final String prefix) {
+    if (namespaceURI != null
+        && prefix != null
+        && !eventNamespaces.get().containsKey(prefix)
+        && !eventNamespaces.get().containsValue(prefix)) {
+      eventNamespaces.get().put(namespaceURI, prefix);
     }
-    return Optional.empty();
   }
 
-  public Map<String, String> getOriginalNamespace() {
-    return NAMESPACE_MAPS.get();
+  // Reset the event namespaces after completing each event.
+  public synchronized void resetEventNamespaces() {
+    eventNamespaces.get().clear();
   }
 
-  public Map<String, String> getModifiedNamespace() {
-    return MODIFIED_EVENT_NAMESPACES.get();
+  // Reset all the document & event namespaces after completing the document.
+  public synchronized void resetAllNamespaces() {
+    documentNamespaces.get().clear();
+    eventNamespaces.get().clear();
   }
 
-  // Method to add the trailing / or : based on URL or URN and remove the Predefined prefixes from
-  // MAP
-  public void modifyNamespaces() {
-    NAMESPACE_MAPS
-        .get()
-        .forEach(
-            (key, value) -> {
-              String modifiedNamespace = key;
-              try {
-                // If URL then add trailing /
-                URL url = new URL(key);
-                modifiedNamespace = url.toString().endsWith("/") ? url.toString() : url + "/";
-              } catch (Exception e) {
-                // If URN then add trailing :
-                modifiedNamespace =
-                    modifiedNamespace.endsWith(":") ? modifiedNamespace : modifiedNamespace + ":";
-              }
+  // Find the appropriate namespace based on the provided prefix.
+  public synchronized Optional<String> findNamespaceByPrefix(final String prefix) {
+    return getAllNamespaces().entrySet().stream()
+        .filter(entry -> entry.getValue().equals(prefix))
+        .map(Map.Entry::getKey)
+        .findFirst();
+  }
 
-              // If the value is not part of default then add it to the Map
-              if (!Arrays.asList(Constants.PROTECTED_TERMS_OF_CONTEXT).contains(value)) {
-                MODIFIED_EVENT_NAMESPACES.get().put(modifiedNamespace, value);
-              }
-            });
+  // Method that returns the saved Document namespaces.
+  public synchronized Map<String, String> getDocumentNamespaces() {
+    return new HashMap<>(documentNamespaces.get());
+  }
+
+  // Method that returns the saved Event namespaces.
+  public synchronized Map<String, String> getEventNamespaces() {
+    return new HashMap<>(eventNamespaces.get());
+  }
+
+  // Method that returns all the namespaces Document + Event combined.
+  public synchronized Map<String, String> getAllNamespaces() {
+    final Map<String, String> allNamespaces = new HashMap<>();
+    allNamespaces.putAll(documentNamespaces.get());
+    allNamespaces.putAll(eventNamespaces.get());
+    return allNamespaces;
   }
 }

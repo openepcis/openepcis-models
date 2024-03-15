@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -58,10 +58,11 @@ public class SensorElementList implements Serializable {
   @JsonIgnore
   private Map<String, Object> extension;
 
-  @JsonIgnore @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @JsonIgnore @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
+  @Builder.Default
   private List<Object> anyElements = new ArrayList<>();
 
   @JsonAnySetter
@@ -80,7 +81,7 @@ public class SensorElementList implements Serializable {
     // Add all elements from UserExtensions to AnyElements before Marshaling & creating XML
     if (userExtensions != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      anyElements = extensionsModifier.Marshalling(userExtensions);
+      anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }
   }
@@ -89,7 +90,7 @@ public class SensorElementList implements Serializable {
     // Add all elements from AnyElements to UserExtensions after Unmarshalling before creating JSON
     if (anyElements != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      userExtensions = extensionsModifier.Unmarshalling(anyElements);
+      userExtensions = extensionsModifier.createObject(anyElements);
       anyElements = new ArrayList();
     }
 

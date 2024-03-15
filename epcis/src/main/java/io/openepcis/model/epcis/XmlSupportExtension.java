@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import jakarta.xml.bind.annotation.XmlSeeAlso;
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    visible = true,
     property = "type")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ObjectEvent.class, name = "ObjectEvent"),

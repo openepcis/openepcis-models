@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -16,18 +16,21 @@
 package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.openepcis.model.rest.exception.RESTExceptionMessages;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.WebApplicationException;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
+import org.jboss.resteasy.reactive.RestResponse;
 
 /** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */
-@XmlRootElement
+@XmlRootElement(name ="EPCISException", namespace = "urn:epcglobal:epcis:xsd:2")
 @NoArgsConstructor
 @XmlType(
-    name = "ProblemResponseBody",
+    name = "EPCISException", namespace = "urn:epcglobal:epcis:xsd:2",
     factoryClass = ObjectFactory.class,
     factoryMethod = "createProblemResponseBody")
 public class ProblemResponseBody {
@@ -188,4 +191,31 @@ public class ProblemResponseBody {
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+  public static final <T extends WebApplicationException> ProblemResponseBody fromException(final T exception) {
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(exception.getClass().getSimpleName());
+    responseBody.setTitle(exception.getResponse().getStatusInfo().getReasonPhrase());
+    responseBody.setStatus(exception.getResponse().getStatus());
+    responseBody.setDetail(exception.getMessage());
+    return responseBody;
+  }
+
+  public static final ProblemResponseBody fromException(Throwable exception) {
+    return fromException(exception, RestResponse.Status.INTERNAL_SERVER_ERROR);
+  }
+
+  public static final ProblemResponseBody fromException(Throwable exception, RestResponse.Status status) {
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(exception.getClass().getSimpleName());
+    responseBody.setTitle(status.getReasonPhrase());
+    responseBody.setStatus(status.getStatusCode());
+    if (RestResponse.Status.INTERNAL_SERVER_ERROR.equals(status)) {
+      responseBody.setDetail(RESTExceptionMessages.SERVER_SIDE_ERROR_OCCURRED+exception.getMessage());
+    } else {
+      responseBody.setDetail(exception.getMessage());
+    }
+    return responseBody;
+  }
+
 }

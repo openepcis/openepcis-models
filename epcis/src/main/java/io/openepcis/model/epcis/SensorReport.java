@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -17,8 +17,9 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
@@ -54,6 +55,7 @@ public class SensorReport implements Serializable {
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime time;
 
   @XmlAttribute private Double value;
@@ -96,9 +98,9 @@ public class SensorReport implements Serializable {
 
   @JsonIgnore private Map<String, Object> innerUserExtensions;
 
-  @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
-  @XmlAnyAttribute @JsonIgnore private Map<QName, Object> anyAttributes = new HashMap<>();
+  @XmlAnyAttribute @JsonIgnore @Builder.Default private Map<QName, Object> anyAttributes = new HashMap<>();
 
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {
@@ -121,13 +123,7 @@ public class SensorReport implements Serializable {
       userExtensions = new HashMap<>();
       anyAttributes.forEach(
           (key, value1) ->
-              this.userExtensions.put(
-                  DefaultJsonSchemaNamespaceURIResolver.getInstance()
-                          .getOriginalNamespace()
-                          .get(key.getNamespaceURI())
-                      + ":"
-                      + key.getLocalPart(),
-                  value1));
+              this.userExtensions.put(CommonExtensionModifier.getNamespacePrefix(key), value1));
       anyAttributes = new HashMap<>();
     }
 
@@ -147,7 +143,7 @@ public class SensorReport implements Serializable {
 
   public void beforeMarshal(Marshaller m) {
     // if type does not contain gs1: then add it during JSON->XML conversion
-    if (type != null && !type.toString().contains("gs1:")) {
+    if (type != null && !type.toString().contains("gs1")) {
       type = URI.create("gs1:" + type);
     }
 

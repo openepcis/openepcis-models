@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -20,8 +20,9 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -46,6 +47,7 @@ public class SensorMetadata implements Serializable {
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime time;
 
   @XmlAttribute private URI deviceID;
@@ -56,10 +58,12 @@ public class SensorMetadata implements Serializable {
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime startTime;
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   private OffsetDateTime endTime;
 
   @XmlAttribute private URI dataProcessingMethod;
@@ -68,9 +72,9 @@ public class SensorMetadata implements Serializable {
 
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
 
-  @JsonIgnore @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @JsonIgnore @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
-  @XmlAnyAttribute @JsonIgnore private Map<QName, Object> anyAttributes = new HashMap<>();
+  @XmlAnyAttribute @JsonIgnore @Builder.Default private Map<QName, Object> anyAttributes = new HashMap<>();
 
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {
@@ -91,13 +95,7 @@ public class SensorMetadata implements Serializable {
       userExtensions = new HashMap<>();
       anyAttributes.forEach(
           (key, value) ->
-              userExtensions.put(
-                  DefaultJsonSchemaNamespaceURIResolver.getInstance()
-                          .getOriginalNamespace()
-                          .get(key.getNamespaceURI())
-                      + ":"
-                      + key.getLocalPart(),
-                  value));
+              userExtensions.put(CommonExtensionModifier.getNamespacePrefix(key), value));
       anyAttributes = new HashMap<>();
     }
   }

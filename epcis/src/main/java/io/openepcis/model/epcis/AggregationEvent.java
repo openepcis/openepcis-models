@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -16,7 +16,8 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.*;
-import io.openepcis.epc.translator.ConverterUtil;
+import io.openepcis.epc.translator.util.ConverterUtil;
+import io.openepcis.model.epcis.extension.OpenEPCISExtension;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -32,6 +33,7 @@ import lombok.*;
 
 @XmlType(
     name = "AggregationEvent",
+    namespace = "urn:epcglobal:epcis:xsd:2",
     propOrder = {
       "eventTime",
       "recordTime",
@@ -52,7 +54,6 @@ import lombok.*;
       "sourceList",
       "destinationList",
       "sensorElementList",
-      "persistentDisposition",
       "extension",
       "anyElements"
     },
@@ -87,7 +88,6 @@ import lombok.*;
   "sourceList",
   "destinationList",
   "sensorElementList",
-  "persistentDisposition",
   "userExtensions"
 })
 public class AggregationEvent extends EPCISEvent implements XmlSupportExtension {
@@ -114,17 +114,16 @@ public class AggregationEvent extends EPCISEvent implements XmlSupportExtension 
   public AggregationEvent(
       String type,
       String eventID,
-      String hash,
       String eventTimeZoneOffset,
       OffsetDateTime eventTime,
       OffsetDateTime recordTime,
       Action action,
       String bizStep,
       String disposition,
-      PersistentDisposition persistentDisposition,
       ReadPoint readPoint,
       BizLocation bizLocation,
       ErrorDeclaration errorDeclaration,
+      Map<String, Object> extension,
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
@@ -132,35 +131,32 @@ public class AggregationEvent extends EPCISEvent implements XmlSupportExtension 
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
-      Integer sequenceInEPCISDoc,
-      String captureId,
       List<QuantityList> childQuantityList,
       String parentID,
       List<String> childEPCs,
-      List<BizTransactionList> bizTransactionList) {
+      List<BizTransactionList> bizTransactionList,
+      OpenEPCISExtension openEPCISExtension) {
     super(
         type,
         eventID,
-        hash,
         eventTimeZoneOffset,
         eventTime,
         recordTime,
         bizStep,
         disposition,
-        persistentDisposition,
         readPoint,
         bizLocation,
         errorDeclaration,
         sourceList,
         destinationList,
         sensorElementList,
-        sequenceInEPCISDoc,
-        captureId,
+        extension,
         userExtensions,
         innerUserExtensions,
         contextInfo,
         certificationInfo,
-        null);
+        null,
+            openEPCISExtension);
     this.action = action;
     this.childQuantityList = childQuantityList;
     this.parentID = parentID;

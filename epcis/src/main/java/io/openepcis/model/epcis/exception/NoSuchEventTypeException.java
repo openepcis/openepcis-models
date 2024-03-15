@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -17,10 +17,10 @@ package io.openepcis.model.epcis.exception;
 
 public class NoSuchEventTypeException extends EPCISException {
   public NoSuchEventTypeException(String msg) {
-    super(msg);
+    super(msg, 404);
   }
 
   public NoSuchEventTypeException(String msg, Throwable cause) {
-    super(msg, cause);
+    super(msg, 404, cause);
   }
 }

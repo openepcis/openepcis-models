@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -57,10 +57,11 @@ public class ReadPoint implements Serializable {
   @JsonIgnore
   private Map<String, Object> extension;
 
-  @JsonIgnore @XmlTransient private Map<String, Object> userExtensions = new HashMap<>();
+  @JsonIgnore @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
+  @Builder.Default
   private List<Object> anyElements = new ArrayList<>();
 
   @JsonAnySetter
@@ -78,8 +79,9 @@ public class ReadPoint implements Serializable {
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
     // Add all elements from UserExtensions to AnyElements before Marshaling/before creating XML
     if (userExtensions != null) {
-      final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      anyElements = extensionsModifier.Marshalling(userExtensions);
+      final io.openepcis.model.epcis.modifier.ExtensionsModifier extensionsModifier =
+          new io.openepcis.model.epcis.modifier.ExtensionsModifier();
+      anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }
   }
@@ -88,14 +90,14 @@ public class ReadPoint implements Serializable {
     // Add all elements from AnyElements to UserExtensions after Unmarshalling before creating JSON
     if (anyElements != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      userExtensions = extensionsModifier.Unmarshalling(anyElements);
+      userExtensions = extensionsModifier.createObject(anyElements);
       anyElements = new ArrayList();
     }
 
     // If there are elements in Extension after Unmarshalling then add it to UserExtensions before
     // creating JSON
     if (extension != null) {
-      extension.forEach((key, value) -> userExtensions.put(key, value));
+      userExtensions.putAll(extension);
       extension = new HashMap<>();
     }
   }

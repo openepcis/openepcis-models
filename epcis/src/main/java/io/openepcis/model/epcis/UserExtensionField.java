@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -55,10 +55,11 @@ public class UserExtensionField {
     UserExtensionField c = (UserExtensionField) o;
 
     // Compare the data members and return accordingly
-    if (c.getName().equals(this.getName()) && c.getType().equals(this.getType())) return true;
-    else if (c.getName().equals(this.getName()) && !c.getType().equals(this.getType()))
-      throw new CaptureValidationException(c.getName() + "expected data type: " + this.getType());
-
+    if (c.getName() != null && c.getType() != null) {
+      if (c.getName().equals(this.getName()) && c.getType().equals(this.getType())) return true;
+      else if (c.getName().equals(this.getName()) && !c.getType().equals(this.getType()))
+        throw new CaptureValidationException(c.getName() + "expected data type: " + this.getType());
+    }
     return false;
   }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2022 benelog GmbH & Co. KG
+    Copyright 2022-2023 benelog GmbH & Co. KG
 
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
@@ -22,9 +22,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.openepcis</groupId>
-        <artifactId>openepcis-bom</artifactId>
-        <version>0.9.1-SNAPSHOT</version>
-        <relativePath></relativePath>
+        <artifactId>openepcis-model-build</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>openepcis-model-epcis</artifactId>
@@ -56,26 +55,22 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <openepcis.github.version>0.9.1-SNAPSHOT</openepcis.github.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.openepcis</groupId>
             <artifactId>openepcis-model-rest</artifactId>
-            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.openepcis</groupId>
             <artifactId>openepcis-model-core</artifactId>
-            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.openepcis</groupId>
             <artifactId>openepcis-epc-digitallink-translator</artifactId>
-            <version>${openepcis.github.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -89,6 +84,7 @@
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
@@ -97,26 +93,34 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+            <scope>provided</scope>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>io.quarkus.resteasy.reactive</groupId>
+            <artifactId>resteasy-reactive</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus.resteasy.reactive</groupId>
+            <artifactId>resteasy-reactive-common</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-    <repositories>
-        <repository>
-            <id>sonatype-staging</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-    </repositories>
+    </dependencies>
 
 </project>

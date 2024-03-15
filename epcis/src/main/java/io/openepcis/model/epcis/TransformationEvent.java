@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -17,13 +17,15 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.openepcis.epc.translator.ConverterUtil;
+import io.openepcis.epc.translator.util.ConverterUtil;
+import io.openepcis.model.epcis.extension.OpenEPCISExtension;
 import io.openepcis.model.epcis.modifier.CustomExtensionAdapter;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
@@ -31,6 +33,7 @@ import lombok.*;
 
 @XmlType(
     name = "TransformationEvent",
+    namespace = "urn:epcglobal:epcis:xsd:2",
     propOrder = {
       "eventTime",
       "recordTime",
@@ -51,9 +54,9 @@ import lombok.*;
       "bizTransactionList",
       "sourceList",
       "destinationList",
-      "ilmdXml",
       "sensorElementList",
       "persistentDisposition",
+      "ilmdXml",
       "extension",
       "anyElements"
     },
@@ -99,6 +102,8 @@ import lombok.*;
   "userExtensions"
 })
 public class TransformationEvent extends EPCISEvent implements XmlSupportExtension {
+
+  private PersistentDisposition persistentDisposition;
 
   @XmlElementWrapper(name = "inputEPCList")
   @XmlElement(name = "epc")
@@ -149,6 +154,7 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
       ReadPoint readPoint,
       BizLocation bizLocation,
       ErrorDeclaration errorDeclaration,
+      Map<String, Object> extension,
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
@@ -163,36 +169,41 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
       List<QuantityList> inputQuantityList,
       List<QuantityList> outputQuantityList,
       String transformationID,
-      Ilmd ilmd) {
+      Map<String, Object> ilmdXml,
+      Ilmd ilmd,
+      OpenEPCISExtension openEPCISExtension) {
     super(
         type,
         eventID,
-        hash,
         eventTimeZoneOffset,
         eventTime,
         recordTime,
         bizStep,
         disposition,
-        persistentDisposition,
         readPoint,
         bizLocation,
         errorDeclaration,
         sourceList,
         destinationList,
         sensorElementList,
-        sequenceInEPCISDoc,
-        captureId,
+        extension,
         userExtensions,
         innerUserExtensions,
         contextInfo,
         certificationInfo,
-        null);
+        null,
+            openEPCISExtension);
+    this.persistentDisposition = persistentDisposition;
     this.inputEPCList = inputEPCList;
     this.outputEPCList = outputEPCList;
     this.inputQuantityList = inputQuantityList;
     this.outputQuantityList = outputQuantityList;
     this.transformationID = transformationID;
     this.ilmd = ilmd;
+    this.ilmdXml = ilmdXml;
+    if (ilmd != null) {
+      this.ilmdXml = ilmd.getUserExtensions();
+    }
   }
 
   @Override
@@ -217,6 +228,37 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
           });
     }
 
+    // Check if Persistent Disposition has value if so convert to CBV formatted value.
+    if (persistentDisposition != null) {
+      // If Set elements are present then add it to List
+      if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
+        final List<String> setList = new ArrayList<>();
+        persistentDisposition
+                .getSet()
+                .forEach(
+                        set ->
+                                setList.add(
+                                        set.contains("http") || set.contains(":")
+                                                ? set
+                                                : ConverterUtil.toCbvVocabulary(set, "persistentDisposition", "URN")));
+        persistentDisposition.setSet(setList);
+      }
+
+      // If Unset elements are present then add it to List
+      if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
+        final List<String> unsetList = new ArrayList<>();
+        persistentDisposition
+                .getUnset()
+                .forEach(
+                        unset ->
+                                unsetList.add(
+                                        unset.contains("http") || unset.contains(":")
+                                                ? unset
+                                                : ConverterUtil.toCbvVocabulary(
+                                                unset, "persistentDisposition", "URN")));
+        persistentDisposition.setUnset(unsetList);
+      }
+    }
     // Call the parent class afterUnmarshal method to modify the values
     super.beforeMarshal(m);
   }
@@ -234,6 +276,26 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
           });
     }
 
+    // Check if Persistent Disposition has value if so convert to BareString
+    if (persistentDisposition != null) {
+      // If Set elements are present then add it to List
+      if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
+        final List<String> setList = new ArrayList<>();
+        persistentDisposition
+                .getSet()
+                .forEach(set -> setList.add(ConverterUtil.toBareStringVocabulary(set)));
+        persistentDisposition.setSet(setList);
+      }
+
+      // If Unset elements are present then add it to List
+      if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
+        final List<String> unsetList = new ArrayList<>();
+        persistentDisposition
+                .getUnset()
+                .forEach(unset -> unsetList.add(ConverterUtil.toBareStringVocabulary(unset)));
+        persistentDisposition.setUnset(unsetList);
+      }
+    }
     // Call the parent class afterUnmarshal method to modify the values
     super.afterUnmarshal(m, parent);
   }

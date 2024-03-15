@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ public enum CBVFormat {
     return this.cbvFormat;
   }
 
-  public static CBVFormat fromString(Optional<String> cbvFormat) {
+  public static Optional<CBVFormat> fromString(String cbvFormat) {
     for (CBVFormat cbf : CBVFormat.values()) {
-      if (cbf.cbvFormat.equalsIgnoreCase(String.valueOf(cbvFormat))) {
-        return cbf;
+      if (cbf.cbvFormat.equalsIgnoreCase(cbvFormat)) {
+        return Optional.of(cbf);
       }
     }
-    return No_Preference;
+    return Optional.of(No_Preference);
   }
 }

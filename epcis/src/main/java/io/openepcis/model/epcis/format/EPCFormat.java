@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.util.Optional;
 public enum EPCFormat {
   Always_GS1_Digital_Link("always_gs1_digital_link"),
   Always_EPC_URN("always_epc_urn"),
-  Never_Translate("never_translates"),
+  Never_Translates("never_translates"),
   No_Preference("no_preference");
 
   private String epcFormat;
@@ -33,12 +33,12 @@ public enum EPCFormat {
     return this.epcFormat;
   }
 
-  public static EPCFormat fromString(Optional<String> epcFormat) {
+  public static Optional<EPCFormat> fromString(String epcFormat) {
     for (EPCFormat epf : EPCFormat.values()) {
-      if (epf.epcFormat.equalsIgnoreCase(epcFormat.get())) {
-        return epf;
+      if (epf.epcFormat.equalsIgnoreCase(epcFormat)) {
+        return Optional.of(epf);
       }
     }
-    return null;
+    return Optional.empty();
   }
 }

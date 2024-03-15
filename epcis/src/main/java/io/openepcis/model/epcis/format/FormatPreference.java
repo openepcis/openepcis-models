@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -22,16 +22,24 @@ public class FormatPreference {
   private EPCFormat epcFormat;
   private CBVFormat cbvFormat;
 
-  public FormatPreference(Optional<String> epcFormat, Optional<String> cbvFormat) {
-    this.epcFormat = EPCFormat.fromString(epcFormat);
-    this.cbvFormat = CBVFormat.fromString(cbvFormat);
+  public FormatPreference(String epcFormat, String cbvFormat) {
+    this.epcFormat = EPCFormat.fromString(epcFormat).orElse(EPCFormat.No_Preference);
+    this.cbvFormat = CBVFormat.fromString(cbvFormat).orElse(CBVFormat.No_Preference);
+  }
+
+  public static FormatPreference getInstance(EPCFormat epcFormat, CBVFormat cbvFormat) {
+    return new FormatPreference(epcFormat.getEPCFormat(), cbvFormat.getCbvFormat());
   }
 
   public static FormatPreference getInstance(
       Optional<String> epcFormat, Optional<String> cbvFormat) {
-    return new FormatPreference(
-        epcFormat.isPresent() ? epcFormat : Optional.empty(),
-        cbvFormat.isPresent() ? cbvFormat : Optional.empty());
+    return getInstance(
+        epcFormat.isPresent()
+            ? EPCFormat.fromString(epcFormat.get()).orElse(EPCFormat.No_Preference)
+            : EPCFormat.No_Preference,
+        cbvFormat.isPresent()
+            ? CBVFormat.fromString(cbvFormat.get()).orElse(CBVFormat.No_Preference)
+            : CBVFormat.No_Preference);
   }
 
   public EPCFormat getEpcFormat() {

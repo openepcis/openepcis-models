@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
       throws IOException {
     if (this.context.equals("userExtensions")) {
       recursiveSerializer(value, gen);
-    } else if (this.context.equals("ilmd")) {
+    } else if (this.context.equals("ilmd") || this.context.equals("extension")) {
       gen.writeStartObject();
       recursiveSerializer(value, gen);
       gen.writeEndObject();
@@ -85,6 +85,8 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
             gen.writeEndObject();
           } else if (dupItems instanceof String) {
             gen.writeString((String) dupItems);
+          } else if (dupItems instanceof Number){
+            gen.writeNumber( ((Number) dupItems).doubleValue());
           }
         }
         gen.writeEndArray();

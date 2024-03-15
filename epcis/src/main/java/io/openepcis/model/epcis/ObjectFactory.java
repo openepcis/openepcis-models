@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -45,6 +45,10 @@ public final class ObjectFactory {
   // Returns AssociationEvent
   public static AssociationEvent createAssociationEvent() {
     return new AssociationEvent();
+  }
+
+  public static SensorMetadata createSensorMetadata() {
+    return new SensorMetadata();
   }
 
   public static EPCISQueryDocument createEpcisQueryDocument() {

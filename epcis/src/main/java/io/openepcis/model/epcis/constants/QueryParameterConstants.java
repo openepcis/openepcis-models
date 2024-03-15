@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ public class QueryParameterConstants {
   public static final String ORDER_DIRECTION = "orderDirection";
   public static final String PARAMETERS = "Parameters";
   public static final String CONTEXT = "@context";
+  public static final String STREAM = "stream";
 
   private QueryParameterConstants() {
     // Bunch of constants so there should be a no need to create object for this class

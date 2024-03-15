@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -55,11 +55,16 @@ public class InvalidEPCISEventInfo {
 
   public InvalidEPCISEventInfo(
       String type, String title, Integer status, String detail, List<Integer> sequenceInEPCISDoc) {
+    this(type, title, status, detail);
+    this.setSequenceInEPCISDoc(sequenceInEPCISDoc);
+  }
+
+  public InvalidEPCISEventInfo(
+          String type, String title, Integer status, String detail) {
     this.setType(type);
     this.setTitle(title);
     this.setStatus(status);
     this.setDetail(detail);
-    this.setSequenceInEPCISDoc(sequenceInEPCISDoc);
   }
 
   public InvalidEPCISEventInfo type(String type) {

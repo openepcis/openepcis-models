@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -24,5 +24,9 @@ public final class ObjectFactory {
 
   public static ProblemResponseBody createProblemResponseBody() {
     return new ProblemResponseBody();
+  }
+
+  public static ResponseBody createResponseBody() {
+    return new ResponseBody();
   }
 }

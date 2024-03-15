@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -22,23 +22,21 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.openepcis.epc.translator.ConverterUtil;
+import io.openepcis.epc.translator.util.ConverterUtil;
+import io.openepcis.model.epcis.extension.OpenEPCISExtension;
+import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import io.openepcis.model.epcis.modifier.*;
+import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.xml.parsers.ParserConfigurationException;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = true, property = "type")
 @JsonSubTypes({
@@ -55,13 +53,13 @@ import lombok.NoArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlTransient
 @Builder
-public class EPCISEvent implements Serializable {
+public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
-  @XmlTransient private String type;
+  @XmlTransient
+  @JsonIgnore
+  private String type;
 
   private String eventID;
-
-  @XmlTransient private String hash;
 
   @JsonProperty(required = true)
   @XmlElement(name = "eventTimeZoneOffset", required = true)
@@ -70,16 +68,17 @@ public class EPCISEvent implements Serializable {
   @JsonProperty(required = true)
   @XmlElement(name = "eventTime", required = true)
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE, WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
   private OffsetDateTime eventTime;
 
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+  @JsonSerialize(using = OffsetDateTimeSerializer.class)
   @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE, WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
   private OffsetDateTime recordTime;
 
   private String bizStep;
   private String disposition;
-  private PersistentDisposition persistentDisposition;
 
   private ReadPoint readPoint;
 
@@ -98,16 +97,13 @@ public class EPCISEvent implements Serializable {
   @XmlElement(name = "sensorElement")
   private List<SensorElementList> sensorElementList;
 
-  @XmlTransient @JsonIgnore private Integer sequenceInEPCISDoc;
-
-  @XmlTransient private String captureID;
-
-  @XmlTransient private Map<String, Object> userExtensions;
+  @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
 
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
 
   @JsonProperty("@context")
-  @JsonDeserialize(using = CustomContextDeserialize.class)
+  @JsonDeserialize(using = CustomContextDeserializer.class)
+  @JsonSerialize(using = CustomContextSerializer.class)
   @XmlTransient
   private List<Object> contextInfo;
 
@@ -115,51 +111,50 @@ public class EPCISEvent implements Serializable {
 
   @JsonIgnore @XmlTransient private String expandedJSONLDString;
 
+  @JsonIgnore @XmlTransient @Builder.Default
+  private OpenEPCISExtension openEPCISExtension = new OpenEPCISExtension();
+
   public EPCISEvent(
       String type,
       String eventID,
-      String hash,
       String eventTimeZoneOffset,
       OffsetDateTime eventTime,
       OffsetDateTime recordTime,
       String bizStep,
       String disposition,
-      PersistentDisposition persistentDisposition,
       ReadPoint readPoint,
       BizLocation bizLocation,
       ErrorDeclaration errorDeclaration,
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
-      Integer sequenceInEPCISDoc,
-      String captureId,
+      Map<String, Object> extension,
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
       String certificationInfo,
-      String expandedJSONLDString) {
+      String expandedJSONLDString,
+      OpenEPCISExtension openEPCISExtension) {
     this.type = type;
     this.eventID = eventID;
-    this.hash = hash;
     this.eventTimeZoneOffset = eventTimeZoneOffset;
     this.eventTime = eventTime;
     this.recordTime = recordTime;
     this.bizStep = bizStep;
     this.disposition = disposition;
-    this.persistentDisposition = persistentDisposition;
     this.readPoint = readPoint;
     this.bizLocation = bizLocation;
     this.errorDeclaration = errorDeclaration;
     this.sourceList = sourceList;
     this.destinationList = destinationList;
     this.sensorElementList = sensorElementList;
-    this.sequenceInEPCISDoc = sequenceInEPCISDoc;
-    this.captureID = captureId;
+    this.extension = extension;
     this.userExtensions = userExtensions;
     this.innerUserExtensions = innerUserExtensions;
-    this.contextInfo = contextInfo;
+    this.contextInfo = isEmptyContext(contextInfo) ? null : contextInfo;
     this.certificationInfo = certificationInfo;
     this.expandedJSONLDString = expandedJSONLDString;
+    this.openEPCISExtension = openEPCISExtension;
   }
 
   @JsonAnyGetter
@@ -174,8 +169,10 @@ public class EPCISEvent implements Serializable {
   private Map<String, Serializable> baseExtension;
 
   @XmlJavaTypeAdapter(CustomExtensionAdapter.class)
-  @JsonIgnore
-  private Map<String, Serializable> extension;
+  @JsonSerialize(using = CustomExtensionsSerializer.class)
+  @UserExtensions(extension = "extension")
+  @JsonProperty("extension")
+  private Map<String, Object> extension;
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
@@ -193,7 +190,7 @@ public class EPCISEvent implements Serializable {
     // Add all elements from UserExtensions to AnyElements before Marshaling & creating XML
     if (userExtensions != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      anyElements = extensionsModifier.Marshalling(userExtensions);
+      anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }
 
@@ -222,38 +219,6 @@ public class EPCISEvent implements Serializable {
           disposition.contains("http") || disposition.contains(":")
               ? disposition
               : ConverterUtil.toCbvVocabulary(disposition, "disposition", "URN");
-    }
-
-    // Check if Persistent Disposition has value if so convert to CBV formatted value.
-    if (persistentDisposition != null) {
-      // If Set elements are present then add it to List
-      if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
-        final List<String> setList = new ArrayList<>();
-        persistentDisposition
-            .getSet()
-            .forEach(
-                set ->
-                    setList.add(
-                        set.contains("http") || set.contains(":")
-                            ? set
-                            : ConverterUtil.toCbvVocabulary(set, "persistentDisposition", "URN")));
-        persistentDisposition.setSet(setList);
-      }
-
-      // If Unset elements are present then add it to List
-      if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
-        final List<String> unsetList = new ArrayList<>();
-        persistentDisposition
-            .getUnset()
-            .forEach(
-                unset ->
-                    unsetList.add(
-                        unset.contains("http") || unset.contains(":")
-                            ? unset
-                            : ConverterUtil.toCbvVocabulary(
-                                unset, "persistentDisposition", "URN")));
-        persistentDisposition.setUnset(unsetList);
-      }
     }
 
     // Check if Source has value if so convert it to CBV formatted value
@@ -288,16 +253,16 @@ public class EPCISEvent implements Serializable {
     // Add all elements from AnyElements to UserExtensions after Unmarshalling before creating JSON
     if (anyElements != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      userExtensions = extensionsModifier.Unmarshalling(anyElements);
+      userExtensions = extensionsModifier.createObject(anyElements);
       anyElements = new ArrayList<>();
     }
 
     // If there are elements in Extension after Unmarshalling then add it to UserExtensions before
     // creating JSON
-    if (extension != null) {
-      userExtensions.putAll(extension);
-      extension = new HashMap<>();
-    }
+    /*if (openepcis != null) {
+      userExtensions.putAll(openepcis);
+      openepcis = new HashMap<>();
+    }*/
 
     // If there are elements in BaseExtension after Unmarshalling then add it to UserExtensions
     // before creating JSON
@@ -326,27 +291,6 @@ public class EPCISEvent implements Serializable {
       disposition = ConverterUtil.toBareStringVocabulary(disposition);
     }
 
-    // Check if Persistent Disposition has value if so convert to BareString
-    if (persistentDisposition != null) {
-      // If Set elements are present then add it to List
-      if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
-        final List<String> setList = new ArrayList<>();
-        persistentDisposition
-            .getSet()
-            .forEach(set -> setList.add(ConverterUtil.toBareStringVocabulary(set)));
-        persistentDisposition.setSet(setList);
-      }
-
-      // If Unset elements are present then add it to List
-      if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
-        final List<String> unsetList = new ArrayList<>();
-        persistentDisposition
-            .getUnset()
-            .forEach(unset -> unsetList.add(ConverterUtil.toBareStringVocabulary(unset)));
-        persistentDisposition.setUnset(unsetList);
-      }
-    }
-
     // Check if Source has value if so convert it to BareString value
     if (sourceList != null && !sourceList.isEmpty()) {
       sourceList.forEach(
@@ -366,5 +310,17 @@ public class EPCISEvent implements Serializable {
             }
           });
     }
+
+    if (!DefaultJsonSchemaNamespaceURIResolver.getContext().getEventNamespaces().isEmpty()) {
+      contextInfo = new ArrayList<>();
+    }
+  }
+
+  //Method to check if provided context contains the empty HashMap if so skip them
+  private boolean isEmptyContext(final List<Object> context){
+    if (Objects.nonNull(context)){
+      return context.stream().filter(obj -> obj instanceof HashMap<?, ?>).map(obj -> (HashMap<?, ?>) obj).anyMatch(HashMap::isEmpty);
+    }
+    return true;
   }
 }

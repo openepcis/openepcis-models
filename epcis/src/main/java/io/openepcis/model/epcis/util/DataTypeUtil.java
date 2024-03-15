@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -31,7 +31,12 @@ public class DataTypeUtil {
 
   public static String getValueKeyFromType(Object value) {
     if (value instanceof List) {
-      value = ((List) value).get(0);
+      final List l = ((List) value);
+      if (l != null && !l.isEmpty()) {
+        value = l.get(0);
+      } else {
+        return "[]";
+      }
     }
 
     if (value instanceof Long || value instanceof Integer) return CommonConstants.DOUBLE;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -17,15 +17,17 @@ package io.openepcis.model.rest;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.openepcis.constants.EPCIS;
+
 import java.util.stream.Stream;
 
 /** The five types of EPCIS events. */
 public enum EPCISEventTypes {
-  OBJECTEVENT("ObjectEvent"),
-  AGGREGATIONEVENT("AggregationEvent"),
-  ASSOCIATIONEVENT("AssociationEvent"),
-  TRANSFORMATIONEVENT("TransformationEvent"),
-  TRANSACTIONEVENT("TransactionEvent"),
+  OBJECT_EVENT(EPCIS.OBJECT_EVENT),
+  AGGREGATION_EVENT(EPCIS.AGGREGATION_EVENT),
+  ASSOCIATION_EVENT(EPCIS.ASSOCIATION_EVENT),
+  TRANSFORMATION_EVENT(EPCIS.TRANSFORMATION_EVENT),
+  TRANSACTION_EVENT(EPCIS.TRANSACTION_EVENT),
   ALL("all");
 
   private final String value;

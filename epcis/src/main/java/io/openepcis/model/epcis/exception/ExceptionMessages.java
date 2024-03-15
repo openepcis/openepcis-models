@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
  */
 package io.openepcis.model.epcis.exception;
 
-public class ExceptionMessages {
+import io.openepcis.model.rest.exception.RESTExceptionMessages;
+
+public class ExceptionMessages extends RESTExceptionMessages {
 
   public static final String EPCIS_DOCUMENT_IS_EMPTY = "EPCIS document is empty";
   public static final String ERROR_WHILE_READING_CAPTURE_DOCUMENT =
@@ -29,16 +31,16 @@ public class ExceptionMessages {
       "Context Information is missing " + "for namespace alias(es) : ";
   public static final String ERROR_WHILE_PERSISTING_EVENT = "Error while persisting event";
   public static final String ERROR_WHILE_PERSISTING_USER_EXTENSION_FIELDS =
-      "Error while persisting user extension " + "fields.";
+      "Error while persisting user openepcis " + "fields.";
   public static final String EMPTY_EVENT_CANNOT_BE_SAVED = "Empty event cannot be saved";
   public static final String EMPTY_CAPTURE_BODY_CANNOT_BE_SAVED =
       "Empty capture Body cannot be saved";
   public static final String ERROR_WHILE_PERSISTING_EPCIS_DOCUMENT =
       "Error while persisting EPCIS Document";
   public static final String ERROR_WHILE_VALIDATING_JSONLD_USER_EXTENSION_FIELDS =
-      "Error while validating JSONLD " + "User extension fields";
+      "Error while validating JSONLD " + "User openepcis fields";
   public static final String INTERRUPTED_WHILE_VALIDATING_JSONLD_USER_EXTENSION_FIELDS =
-      "Thread interrupted while validating JSONLD " + "User extension fields";
+      "Thread interrupted while validating JSONLD " + "User openepcis fields";
   public static final String INVALID_VALUE = "Invalid value | %s=%s";
   public static final String INVALID_VALUE_TYPE = "Invalid value type | %s";
   public static final String VALID_ACTION_VALUES =
@@ -48,8 +50,6 @@ public class ExceptionMessages {
   public static final String INVALID_QUERY_TYPE = "Invalid query type.";
   public static final String VALUE_REQUIRED = "Value required | %s";
   public static final String DUPLICATE_VALUE = "Duplicate value | %s=%s";
-  public static final String EPCIS_EXCEPTIONS = "epcisExceptions:";
-  public static final String VALIDATION_FAILED = "Validation failed";
   public static final String CAPTURE_VALIDATION_FAILED = "Capture Validation failed";
   public static final String QUERY_PARAMS_NOT_AS_EXPECTED = "Query params not as expected";
   public static final String MAX_EVENT_COUNT_AND_EVENT_COUNT_LIMIT_ARE_MUTUALLY_EXCLUSIVE =
@@ -73,7 +73,6 @@ public class ExceptionMessages {
       "UnitConverter JS file not present in the provided path";
   public static final String ERROR_PROCESSING_JAVASCRIPT_ENGINE =
       "Error in processing script engine for " + "UnitCovertor";
-  public static final String ACCESS_DENIED = "Access denied.";
   public static final String
       SENSORELEMENT_PARENT_ELEMENT_SHALL_CONTAIN_ONE_OR_MORE_SENSORREPORT_ELEMENTS =
           "A " + "SENSORELEMENT PARENT ELEMENT SHALL CONTAIN ONE OR MORE SENSORREPORT ELEMENTS";
@@ -116,8 +115,7 @@ public class ExceptionMessages {
       "Due to unexpected response from event "
           + "hash generator, check for duplicate events remains skipped for capture ID: ";
   public static final String NAMESPACE_MISSING_FOR_USER_EXTENSIONS =
-      "Namespace missing for user extension fields";
-  public static final String SERVER_SIDE_ERROR_OCCURRED = "A server-side error occurred: ";
+      "Namespace missing for user openepcis fields";
   public static final String ERROR_WHILE_DELETING_SUBSCRIPTION =
       "error while deleting query subscription";
   public static final String ERROR_WHILE_INVALIDATING_NEXTPAGETOKEN =
@@ -131,11 +129,8 @@ public class ExceptionMessages {
   public static final String ERROR_WHILE_FETCHING_NEXT_PAGE_RESOURCE =
       "error while fetching next page resource";
   public static final String SUBSCRIPTION_DENIED = "Subscription Denied";
-  public static final String INVALID_URI = "Invalid URI";
   public static final String INVALID_SUBSCRIPTION_CONTROL = "Invalid Subscription Control";
-  public static final String RESOURCE_DOES_NOT_EXIST = "Resource does not exist.";
   public static final String INVALID_EVENT_TYPE = "Invalid event type.";
-  public static final String ERROR_IN_DATA_FORMAT = "Error in data format.";
   public static final String ERROR_WHILE_FETCHING_KEY_VALUE_FROM_ETCD =
       "error while fetching key-value from etcd";
   public static final String ERROR_WHILE_SAVING_KEY_VALUE_FROM_ETCD =
@@ -169,7 +164,7 @@ public class ExceptionMessages {
       "The server cannot return the response as " + "requested.";
   public static final String USER_EXTENSION_CORRESPONDING_TO_NAMESPACE_DOES_NOT_COMPLY_WITH_SCHEMA =
       "User "
-          + "extension corresponding to namespace %s does not comply with schema as follows: %s";
+          + "openepcis corresponding to namespace %s does not comply with schema as follows: %s";
   public static final String PREFIX_NAME_ALREADY_MAPPED_TO_NAMESPACE =
       "Prefix name is already mapped to a namespace";
   public static final String NAMESPACE_ALREADY_MAPPED_JSON_SCHEMA =
@@ -179,6 +174,13 @@ public class ExceptionMessages {
   public static final String
       NON_ZERO_CONCENTRATION_VALUE_IS_INCOMPATIBLE_WITH_BOOLEANVALUE_FALSE_IN_SENSOR_REPORT =
           "A non-zero concentration value is incompatible with booleanValue=false in sensor report";
+  public static final String SUBSCRIPTION_STREAM_AND_SCHEDULE_ARE_MUTUALLY_EXCLUSIVE =
+      "Query subscription stream and schedule are mutually exclusive";
+  public static final String SIGNATURE_TOKEN_MUST_BE_256BITS_LONG =
+      "The signatureToken provided must be at least 256 bits long";
+
+  public static final String UNSUPPORTED_QUERY_PARAMETER =
+          "Unsupported query parameter: %s";
 
   private ExceptionMessages() {
     // Bunch of constants so there should be no need to create object of this class

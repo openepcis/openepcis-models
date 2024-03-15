@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 benelog GmbH & Co. KG
+ * Copyright 2022-2023 benelog GmbH & Co. KG
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -16,26 +16,21 @@
 package io.openepcis.model.epcis.modifier;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 public class CustomInstantAdapter extends XmlAdapter<String, OffsetDateTime> {
 
-  @Override
-  public String marshal(OffsetDateTime v) {
-    return v.format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
-  }
-
-  @Override
-  public OffsetDateTime unmarshal(String v) {
-    try {
-      return ZonedDateTime.parse(v, DateTimeFormatter.ISO_ZONED_DATE_TIME).toOffsetDateTime();
-    } catch (DateTimeParseException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new RuntimeException(e.getMessage(), e);
+    @Override
+    public String marshal(OffsetDateTime v) {
+        return v.truncatedTo(ChronoUnit.MILLIS).format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
     }
-  }
+
+    @Override
+    public OffsetDateTime unmarshal(String v) {
+        return ZonedDateTime.parse(v, DateTimeFormatter.ISO_ZONED_DATE_TIME).toOffsetDateTime();
+    }
 }

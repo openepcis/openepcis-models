@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2022 benelog GmbH & Co. KG
+    Copyright 2022-2023 benelog GmbH & Co. KG
 
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
@@ -22,9 +22,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.openepcis</groupId>
-        <artifactId>openepcis-bom</artifactId>
-        <version>0.9.1-SNAPSHOT</version>
-        <relativePath></relativePath>
+        <artifactId>openepcis-model-build</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>openepcis-model-core</artifactId>
@@ -61,19 +60,17 @@
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>sonatype-staging</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-    </repositories>
 
 </project>
