@@ -64,6 +64,7 @@ public class ExceptionMessages extends RESTExceptionMessages {
   public static final String QUERY_TYPE_MUST = "Query type is required";
   public static final String ERROR_WHILE_PROCESSING_QUERY =
       "Error while processing ElasticSearch query.";
+  public static final String ERROR_WHILE_SAVING_EPC = "Error while persisting epc";
   public static final String ERROR_WHILE_SAVING_QUERY = "Error while persisting epcis-query";
   public static final String NO_QUERY_EXIST_WITH_NAME = "No EPCIS Query exists with the name: ";
   public static final String QUERY_NAME_ALREADY_EXIST = "The specified query name already exists.";
