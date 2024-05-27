@@ -179,11 +179,12 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
   private List<Object> anyElements;
 
   @JsonAnySetter
+  @JsonDeserialize(using = DefaultNamespaceDeserializer.class)
   public void setUserExtensions(String key, Object value) {
-    if (userExtensions == null) {
-      userExtensions = new HashMap<>();
-    }
     userExtensions.put(key, value);
+
+    //Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present add namespacesURI that are later used for XML marshalling
+    DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
   }
 
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {

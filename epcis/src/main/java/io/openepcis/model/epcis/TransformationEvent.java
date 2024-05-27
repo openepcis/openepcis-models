@@ -16,10 +16,12 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.epc.translator.util.ConverterUtil;
 import io.openepcis.model.epcis.extension.OpenEPCISExtension;
 import io.openepcis.model.epcis.modifier.CustomExtensionAdapter;
+import io.openepcis.model.epcis.modifier.DefaultNamespaceDeserializer;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
@@ -134,6 +136,7 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
   // To avoid issues conflicting Ilmd type, this variable has been created. This will also avoid
   // making changes to CustomExtensionAdapter class.
   @XmlJavaTypeAdapter(CustomExtensionAdapter.class)
+  @JsonDeserialize(using = DefaultNamespaceDeserializer.class)
   @JsonSerialize(using = CustomExtensionsSerializer.class)
   @UserExtensions(extension = "ilmd")
   @JsonProperty("ilmd")
