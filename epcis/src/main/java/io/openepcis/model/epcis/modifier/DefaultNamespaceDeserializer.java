@@ -31,7 +31,6 @@ public class DefaultNamespaceDeserializer extends JsonDeserializer<Map<String, O
     @Override
     public Map<String, Object> deserialize(final JsonParser jsonParser, final DeserializationContext context) throws IOException {
         final Map<String, Object> extensionsNode = objectMapper.readValue(jsonParser, new TypeReference<>() {});
-        System.out.println(extensionsNode);
         processExtensions(extensionsNode);
         return extensionsNode;
     }
