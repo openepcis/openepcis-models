@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.modifier.CustomExtensionAdapter;
+import io.openepcis.model.epcis.modifier.DefaultNamespaceDeserializer;
 import io.openepcis.model.epcis.modifier.ExtensionsModifier;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -68,6 +69,9 @@ public class SensorElementList implements Serializable {
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {
     userExtensions.put(key, value);
+
+    //Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present add namespacesURI that are later used for XML marshalling
+    DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
   }
 
   @JsonAnyGetter
