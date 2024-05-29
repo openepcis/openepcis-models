@@ -74,7 +74,7 @@ public class DefaultNamespaceDeserializer extends JsonDeserializer<Map<String, O
      * @param key key of the userExtension gs1:lotNumber, etc.
      */
     private void findNamespace(final String key) {
-        final String prefix = key != null ? key.substring(0, key.indexOf(":")) : null;
+        final String prefix = key != null && key.contains(":") ? key.substring(0, key.indexOf(":")) : "";
         final Optional<String> namespaceOpt = EPCIS_DEFAULT_NAMESPACES.entrySet().stream()
                 .filter(entry -> entry.getKey().equals(prefix))
                 .map(entry -> (String) entry.getValue())
