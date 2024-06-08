@@ -41,7 +41,7 @@ class OpenEPCISModelTest {
 
 
     @Test
-    void testOpenSearchClient() throws Exception {
+    void testJAXBContextInjection() throws Exception {
         assertNotNull(openEPCISJAXBContext);
         assertNotNull(jaxbContext);
         assertNotNull(jaxbContext.createMarshaller());
