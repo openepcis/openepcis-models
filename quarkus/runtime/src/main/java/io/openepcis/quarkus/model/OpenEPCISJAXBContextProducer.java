@@ -16,6 +16,7 @@
 package io.openepcis.quarkus.model;
 
 import io.openepcis.model.epcis.util.EPCISNamespacePrefixMapper;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
@@ -26,6 +27,27 @@ import org.eclipse.persistence.jaxb.JAXBContextProperties;
 import java.util.HashMap;
 
 @ApplicationScoped
+@RegisterForReflection(targets = {
+        jakarta.xml.bind.JAXBElement.class,
+        javax.xml.namespace.QName.class,
+        org.eclipse.persistence.asm.ASMFactory.class,
+        org.eclipse.persistence.asm.internal.platform.ow2.SerialVersionUIDAdderImpl.class,
+        org.eclipse.persistence.asm.internal.platform.ow2.ClassReaderImpl.class,
+        org.eclipse.persistence.asm.internal.platform.ow2.FieldVisitorImpl.class,
+        org.eclipse.persistence.asm.internal.platform.ow2.AnnotationVisitorImpl.class,
+        org.eclipse.persistence.asm.internal.platform.ow2.MethodVisitorImpl.class,
+        org.eclipse.persistence.sessions.coordination.jms.JMSPublishingTransportManager.class,
+        org.eclipse.persistence.eis.EISLogin.class,
+        org.eclipse.persistence.eis.EISPlatform.class,
+        org.eclipse.persistence.eis.EISConnectionSpec.class,
+        org.eclipse.persistence.internal.databaseaccess.DatasourcePlatform.class,
+        org.eclipse.persistence.internal.sessions.coordination.jms.JMSTopicRemoteConnection.class,
+        org.eclipse.persistence.sessions.coordination.RemoteCommandManager.class,
+        org.eclipse.persistence.sessions.coordination.broadcast.BroadcastTransportManager.class,
+        org.eclipse.persistence.sessions.coordination.TransportManager.class,
+        org.eclipse.persistence.sessions.DatasourceLogin.class,
+        org.eclipse.persistence.internal.sessions.coordination.jms.JMSTopicRemoteConnection.class
+})
 public class OpenEPCISJAXBContextProducer {
 
   @Produces
