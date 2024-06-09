@@ -36,9 +36,9 @@ public class OpenEPCISModelHealthCheck implements HealthCheck {
         HealthCheckResponseBuilder builder = HealthCheckResponse.named("OpenEPCIS EPCIS Model health check").up();
         try {
             if (org.eclipse.persistence.jaxb.JAXBContext.class.isAssignableFrom(jaxbContext.getClass())) {
-                builder.down().withData("status", jaxbContext.getClass().getName());
+                builder.up().withData("jaxbContext", jaxbContext.getClass().getName());
             } else {
-                builder.up().withData("status", jaxbContext.getClass().getName());
+                builder.down().withData("jaxbContext", jaxbContext.getClass().getName());
             }
         } catch (Exception e) {
             return builder.down().withData("reason", e.getMessage()).build();

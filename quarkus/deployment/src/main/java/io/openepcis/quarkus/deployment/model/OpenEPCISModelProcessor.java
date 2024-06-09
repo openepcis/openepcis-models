@@ -24,7 +24,7 @@ import io.quarkus.smallrye.health.deployment.spi.HealthBuildItem;
 
 public class OpenEPCISModelProcessor {
 
-  private static final String FEATURE = "opensearch-epcis-model";
+  private static final String FEATURE = "openepcis-epcis-model";
 
 
   @BuildStep
