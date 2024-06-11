@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.rest;
 
+import io.openepcis.core.model.PaginationSupport;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 @XmlRegistry
@@ -29,4 +30,5 @@ public final class ObjectFactory {
   public static ResponseBody createResponseBody() {
     return new ResponseBody();
   }
+
 }

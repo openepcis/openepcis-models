@@ -21,13 +21,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.openepcis</groupId>
-        <artifactId>openepcis-model-build</artifactId>
+        <groupId>io.openepcis.quarkus</groupId>
+        <artifactId>quarkus-openepcis-model-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>io.openepcis.quarkus</groupId>
     <artifactId>quarkus-openepcis-model</artifactId>
     <name>quarkus-openepcis-model</name>
     <description>Quarkus OpenEPCIS EPCIS Models</description>
@@ -64,6 +63,7 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
+
         <dependency>
             <groupId>io.openepcis</groupId>
             <artifactId>openepcis-epcis-constants</artifactId>
@@ -91,6 +91,32 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.core</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.asm</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.jms</groupId>
+            <artifactId>jakarta.jms-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.resource</groupId>
+            <artifactId>jakarta.resource-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
@@ -101,6 +127,10 @@
         <dependency>
             <groupId>io.quarkus.resteasy.reactive</groupId>
             <artifactId>resteasy-reactive</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
         </dependency>
 
     </dependencies>

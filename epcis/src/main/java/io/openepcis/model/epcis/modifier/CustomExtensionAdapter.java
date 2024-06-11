@@ -15,16 +15,12 @@
  */
 package io.openepcis.model.epcis.modifier;
 
+import io.openepcis.model.epcis.MapWrapper;
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.JAXBElement;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlAnyElement;
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.*;
 import javax.xml.namespace.QName;
-import lombok.Getter;
-import lombok.Setter;
 
 public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, Object>> {
 
@@ -106,7 +102,3 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
   }
 }
 
-@XmlAccessorType(XmlAccessType.FIELD)
-class MapWrapper {
-  @XmlAnyElement List<Object> elements = new ArrayList<>();
-}

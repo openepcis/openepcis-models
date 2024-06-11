@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.epcis;
 
+import io.openepcis.core.model.PaginationSupport;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 @XmlRegistry
@@ -54,4 +55,6 @@ public final class ObjectFactory {
   public static EPCISQueryDocument createEpcisQueryDocument() {
     return new EPCISQueryDocument();
   }
+
+  public static MapWrapper createMapWrapper() { return new MapWrapper();}
 }

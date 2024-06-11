@@ -21,13 +21,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.openepcis</groupId>
-        <artifactId>openepcis-model-build</artifactId>
+        <groupId>io.openepcis.quarkus</groupId>
+        <artifactId>quarkus-openepcis-model-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>io.openepcis.quarkus</groupId>
     <artifactId>quarkus-openepcis-model-deployment</artifactId>
     <name>quarkus-openepcis-model-deployment</name>
     <description>Quarkus OpenEPCIS Models Deployment</description>
