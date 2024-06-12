@@ -25,7 +25,6 @@ import io.quarkus.deployment.builditem.nativeimage.NativeImageResourcePatternsBu
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
 import io.quarkus.logging.Log;
 import io.quarkus.smallrye.health.deployment.spi.HealthBuildItem;
-import lombok.extern.slf4j.Slf4j;
 import org.jboss.logging.Logger;
 
 import java.io.BufferedReader;
@@ -78,25 +77,29 @@ public class OpenEPCISModelProcessor {
             "jakarta.xml.bind.annotation.adapters.XmlAdapter",
             "jakarta.xml.bind.annotation.adapters.HexBinaryAdapter",
             "jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter",
-            "JAXBElement",
-            "QName",
-            "ASMFactory",
-            "SerialVersionUIDAdderImpl",
-            "ClassReaderImpl",
-            "FieldVisitorImpl",
-            "AnnotationVisitorImpl",
-            "MethodVisitorImpl",
-            "JMSPublishingTransportManager",
-            "EISLogin",
-            "EISPlatform",
-            "EISConnectionSpec",
-            "DatasourcePlatform",
-            "JMSTopicRemoteConnection",
-            "RemoteCommandManager",
-            "BroadcastTransportManager",
-            "TransportManager",
-            "DatasourceLogin",
-            "JMSTopicRemoteConnection"
+            "jakarta.xml.bind.JAXBElement",
+            "org.eclipse.persistence.asm.ASMFactory",
+            "org.eclipse.persistence.asm.internal.platform.ow2.*",
+            "org.eclipse.persistence.eis.EISConnectionSpec",
+            "org.eclipse.persistence.eis.EISLogin",
+            "org.eclipse.persistence.eis.EISPlatform",
+            "org.eclipse.persistence.internal.databaseaccess.DatasourcePlatform",
+            "org.eclipse.persistence.internal.sessions.coordination.jms.JMSTopicRemoteConnection",
+            "org.eclipse.persistence.sessions.DatasourceLogin",
+            "org.eclipse.persistence.sessions.coordination.RemoteCommandManager",
+            "org.eclipse.persistence.sessions.coordination.TransportManager",
+            "org.eclipse.persistence.sessions.coordination.broadcast.BroadcastTransportManager",
+            "org.eclipse.persistence.sessions.coordination.jms.JMSPublishingTransportManager",
+            "org.eclipse.persistence.asm.internal.platform.ow2.AnnotationVisitorImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.AttributeImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.ClassReaderImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.ClassVisitorImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.ClassWriterImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.FieldVisitorImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.LabelImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.MethodVisitorImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.SerialVersionUIDAdderImpl",
+            "org.eclipse.persistence.asm.internal.platform.ow2.TypeImpl"
     ).forEach(reflectiveClassNames::add);
 
     return ReflectiveClassBuildItem.builder(
@@ -170,203 +173,6 @@ public class OpenEPCISModelProcessor {
     return builder.build();
   }
 
-  /*
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addJakartaBindMessages() {
-    return new NativeImageResourceBundleBuildItem("jakarta.xml.bind.Messages");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceBeanValidationExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.BeanValidationExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceCommunicationExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.CommunicationExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceConcurrencyExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.ConcurrencyExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceConversionExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.ConversionExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceDatabaseExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.DatabaseExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceDBWSExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.DBWSExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceDescriptorExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.DescriptorExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceDiscoveryExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.DiscoveryExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceEISExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.EISExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceEntityManagerSetupExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.EntityManagerSetupExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceExceptionMessageGenerator() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.ExceptionMessageGenerator");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.ExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceJAXBExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.JAXBExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceJMSProcessingExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.JMSProcessingExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceJPARSExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.JPARSExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceJPQLExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.JPQLExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceJSONExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.JSONExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceOptimisticLockExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.OptimisticLockExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistencePersistenceUnitLoadingExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.PersistenceUnitLoadingExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceQueryExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.QueryExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceRemoteCommandManagerExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.RemoteCommandManagerExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceSDOExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.SDOExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceServerPlatformExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.ServerPlatformExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceSessionLoaderExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.SessionLoaderExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceStaticWeaveExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.StaticWeaveExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceTransactionExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.TransactionExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceValidationExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.ValidationExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceXMLConversionExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.XMLConversionExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceXMLMarshalExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.XMLMarshalExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceXMLParseExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.XMLParseExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceXMLPlatformExceptionResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.exceptions.i18n.XMLPlatformExceptionResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceEclipseLinkLocalizationResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.internal.localization.i18n.EclipseLinkLocalizationResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceDMSLocalizationResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.internal.localization.i18n.DMSLocalizationResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceExceptionLocalizationResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.internal.localization.i18n.ExceptionLocalizationResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceJAXBLocalizationResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.internal.localization.i18n.JAXBLocalizationResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceLoggingLocalizationResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.internal.localization.i18n.LoggingLocalizationResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceToStringLocalizationResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.internal.localization.i18n.ToStringLocalizationResource");
-  }
-
-  @BuildStep
-  NativeImageResourceBundleBuildItem addEclipsePersistenceTraceLocalizationResource() {
-    return new NativeImageResourceBundleBuildItem("org.eclipse.persistence.internal.localization.i18n.TraceLocalizationResource");
-  }
-*/
   @BuildStep
   NativeImageResourcePatternsBuildItem addNativeImageResourceBuildItem() {
     return NativeImageResourcePatternsBuildItem.builder().includeGlobs(
