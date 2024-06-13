@@ -23,13 +23,15 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CaptureStatusMessage {
+public class CaptureStatusMessage extends Tracer{
+
   public enum Type {
     CAPTURED,
     VALID,
