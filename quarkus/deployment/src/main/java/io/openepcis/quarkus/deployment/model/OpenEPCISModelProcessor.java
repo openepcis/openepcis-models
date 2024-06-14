@@ -99,7 +99,8 @@ public class OpenEPCISModelProcessor {
             "org.eclipse.persistence.asm.internal.platform.ow2.LabelImpl",
             "org.eclipse.persistence.asm.internal.platform.ow2.MethodVisitorImpl",
             "org.eclipse.persistence.asm.internal.platform.ow2.SerialVersionUIDAdderImpl",
-            "org.eclipse.persistence.asm.internal.platform.ow2.TypeImpl"
+            "org.eclipse.persistence.asm.internal.platform.ow2.TypeImpl",
+            "org.eclipse.persistence.platform.xml.jaxp.JAXPPlatform"
     ).forEach(reflectiveClassNames::add);
 
     return ReflectiveClassBuildItem.builder(
