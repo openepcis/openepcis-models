@@ -125,7 +125,7 @@ public class AssociationEvent extends EPCISEvent implements XmlSupportExtension 
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
-      String certificationInfo,
+      Map<String, Object> certificationInfo,
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
