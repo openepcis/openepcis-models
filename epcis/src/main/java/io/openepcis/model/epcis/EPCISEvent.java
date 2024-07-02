@@ -107,7 +107,11 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
   @XmlTransient
   private List<Object> contextInfo;
 
-  private String certificationInfo;
+  @XmlJavaTypeAdapter(CustomExtensionAdapter.class)
+  @JsonDeserialize(using = DefaultNamespaceDeserializer.class)
+  @JsonSerialize(using = CustomExtensionsSerializer.class)
+  @UserExtensions(extension = "certificationInfo")
+  private Map<String, Object> certificationInfo;
 
   @JsonIgnore @XmlTransient private String expandedJSONLDString;
 
@@ -132,7 +136,7 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
-      String certificationInfo,
+      Map<String, Object> certificationInfo,
       String expandedJSONLDString,
       OpenEPCISExtension openEPCISExtension) {
     this.type = type;
