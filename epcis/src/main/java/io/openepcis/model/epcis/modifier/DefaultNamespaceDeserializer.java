@@ -16,6 +16,7 @@
 package io.openepcis.model.epcis.modifier;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -37,17 +38,29 @@ import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
  */
 @Slf4j
 @NoArgsConstructor
-public class DefaultNamespaceDeserializer extends JsonDeserializer<Map<String, Object>> {
+public class DefaultNamespaceDeserializer extends JsonDeserializer<Object> {
 
     private static DefaultNamespaceDeserializer instance;
     private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver = DefaultJsonSchemaNamespaceURIResolver.getContext();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Map<String, Object> deserialize(final JsonParser jsonParser, final DeserializationContext context) throws IOException {
-        final Map<String, Object> extensionsNode = objectMapper.readValue(jsonParser, new TypeReference<>() {});
-        processExtensions(extensionsNode);
-        return extensionsNode;
+    public Object deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
+        final JsonToken currentToken = jp.currentToken();
+
+        if (currentToken == JsonToken.START_OBJECT) {
+            // Handle Map for ILMD, User Extensions, Error Extensions
+            final Map<String, Object> result = objectMapper.readValue(jp, new TypeReference<>() {});
+            processExtensions(result);
+            return result;
+        } else if (currentToken == JsonToken.START_ARRAY) {
+            // Handle List for certificationInfo
+            final List<Object> result = objectMapper.readValue(jp, new TypeReference<>() {});
+            processListExtensions(result);
+            return result;
+        } else {
+            throw new IOException("Unexpected JSON token for Deserialization of UserExtension/ILMD/ErrorExtension/CertificationInfo : " + currentToken);
+        }
     }
 
 
@@ -58,25 +71,31 @@ public class DefaultNamespaceDeserializer extends JsonDeserializer<Map<String, O
         return instance;
     }
 
-    /**
-     * This method will detect if the userExtensions, ILMD or errorExtensions contain any default namespace related prefixes. If so then include the corresponding namespace in the namespaceResolver eventNamespaces for the XML Marshalling
-     *
-     * @param extensionsNode Map of all the userExtension for which default namespace needs to be detected ex: {cbvmda:lotNumber=1234}
-     */
-    public void processExtensions(final Map<String, Object> extensionsNode) {
+    //Process the list extensions to obtain the context for fields such as certificationInfo
+    public void processListExtensions(List<Object> certificationInfo) {
+        certificationInfo.forEach(entry -> {
+            if (entry instanceof Map<?, ?>) {
+                @SuppressWarnings("unchecked") final Map<String, Object> mapEntry = (Map<String, Object>) entry;
+                processExtensions(mapEntry);
+            } else if (entry instanceof List) {
+                @SuppressWarnings("unchecked") final List<Object> listEntry = (List<Object>) entry;
+                processListExtensions(listEntry);
+            } else if (entry instanceof String) {
+                findNamespace((String) entry);
+            }
+        });
+    }
+
+    //Process the Map extension to obtain the context for fields such as ILMD, UserExtensions, Error Extensions
+    public void processExtensions(Map<String, Object> extensionsNode) {
         extensionsNode.forEach((key, value) -> {
-            if (value instanceof Map) {
-                findNamespace(key);
-                processExtensions((Map<String, Object>) value);
-            } else if (value instanceof List<?>) {
-                ((List<?>) value).forEach(item -> {
-                    if (item instanceof Map) {
-                        findNamespace(key);
-                        processExtensions((Map<String, Object>) item);
-                    } else if (item instanceof String || item instanceof Number) {
-                        findNamespace(key);
-                    }
-                });
+            findNamespace(key);
+            if (value instanceof Map<?, ?>) {
+                @SuppressWarnings("unchecked") final Map<String, Object> mapEntry = (Map<String, Object>) value;
+                processExtensions(mapEntry);
+            } else if (value instanceof List) {
+                @SuppressWarnings("unchecked") final List<Object> listEntry = (List<Object>) value;
+                processListExtensions(listEntry);
             } else if (value instanceof String) {
                 findNamespace(key);
             }
