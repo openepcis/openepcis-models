@@ -161,7 +161,7 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
       Map<String, Object> userExtensions,
       Map<String, Object> innerUserExtensions,
       List<Object> contextInfo,
-      Map<String, Object> certificationInfo,
+      List<Object> certificationInfo,
       List<SourceList> sourceList,
       List<DestinationList> destinationList,
       List<SensorElementList> sensorElementList,
