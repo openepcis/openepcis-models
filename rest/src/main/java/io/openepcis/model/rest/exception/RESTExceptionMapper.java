@@ -131,4 +131,16 @@ public class RESTExceptionMapper {
     return RestResponse.status(RestResponse.Status.UNAUTHORIZED, responseBody);
   }
 
+  @ServerExceptionMapper
+  public final RestResponse<ProblemResponseBody> mapException(
+          final ResourceAlreadyExistsException exception) {
+    log.error(exception.getMessage(), exception);
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(exception.getClass().getSimpleName());
+    responseBody.title(RESOURCE_ALREADY_EXISTS);
+    responseBody.setStatus(409);
+    responseBody.setDetail(exception.getMessage());
+    return RestResponse.status(RestResponse.Status.CONFLICT, responseBody);
+  }
+
 }

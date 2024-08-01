@@ -47,5 +47,5 @@ public class NamedQuerySubscription {
   private String epcFormat;
   private String cbvFormat;
   private String subscribedBy;
-  private List<String> rolesAllowed;
+  private List<String> groupsAllowed;
 }

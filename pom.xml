@@ -59,6 +59,7 @@
         <module>rest</module>
         <module>core</module>
         <module>epcis</module>
+        <module>gs1-web-vocab</module>
         <module>quarkus/runtime</module>
         <module>quarkus/deployment</module>
     </modules>
@@ -95,6 +96,11 @@
                 <artifactId>openepcis-epc-digitallink-translator</artifactId>
                 <version>${project.parent.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.openepcis</groupId>
+                <artifactId>openepcis-model-gs1-web-vocab</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

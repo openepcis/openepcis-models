@@ -68,4 +68,6 @@ public class CommonConstants {
   public static final String GS1_SIGNATURE = "GS1-Signature";
   public static final String ISO8601_TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
   public static final String DOCUMENT_TYPE = "DocumentType";
+  public static final String IS_DUPLICATE = "isDuplicate";
+  public static final String CAPTURED_BY = "capturedBy";
 }

@@ -20,10 +20,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import java.util.Map;
+
+import lombok.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -42,20 +41,22 @@ public class CaptureStatusMessage extends Tracer{
   Type type;
   protected int value;
   protected List<InvalidEPCISEventInfo> errors = new ArrayList<>();
+  private Map<String,Object> metadata;
 
-  public static CaptureStatusMessage eventCapturedCount(int count) {
-    return new CaptureStatusMessage(Type.CAPTURED, count, Collections.emptyList());
+
+  public static CaptureStatusMessage eventCapturedCount(int count,Map<String,Object> metadata) {
+    return new CaptureStatusMessage(Type.CAPTURED, count, Collections.emptyList(),metadata);
   }
 
-  public static CaptureStatusMessage valid(int count) {
-    return new CaptureStatusMessage(Type.VALID, count, Collections.emptyList());
+  public static CaptureStatusMessage valid(int count,Map<String,Object> metadata) {
+    return new CaptureStatusMessage(Type.VALID, count, Collections.emptyList(),metadata);
   }
 
-  public static CaptureStatusMessage invalid(int count, List<InvalidEPCISEventInfo> errors) {
-    return new CaptureStatusMessage(Type.INVALID, count, errors);
+  public static CaptureStatusMessage invalid(int count, List<InvalidEPCISEventInfo> errors,Map<String,Object> metadata) {
+    return new CaptureStatusMessage(Type.INVALID, count, errors,metadata);
   }
 
-  public static CaptureStatusMessage processed(int count) {
-    return new CaptureStatusMessage(Type.PROCESSED, count, Collections.emptyList());
+  public static CaptureStatusMessage processed(int count,Map<String,Object> metadata) {
+    return new CaptureStatusMessage(Type.PROCESSED, count, Collections.emptyList(),metadata);
   }
 }

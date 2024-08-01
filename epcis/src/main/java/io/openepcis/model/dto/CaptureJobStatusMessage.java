@@ -15,12 +15,20 @@
  */
 package io.openepcis.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.OffsetDateTime;
+import java.util.Map;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import static com.fasterxml.jackson.annotation.JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE;
+import static com.fasterxml.jackson.annotation.JsonFormat.Feature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -35,6 +43,7 @@ public class CaptureJobStatusMessage extends CaptureJob {
   private int capturedEventCount = 0;
   protected String s3Bucket;
   protected String s3Key;
+  private Map<String,Object> metadata;
 
   public CaptureJobStatusMessage(
       String captureID,
