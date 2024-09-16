@@ -25,5 +25,4 @@ import lombok.NoArgsConstructor;
 public class Tracer {
     private String traceId;
     private String spanId;
-    private String defaultGroup;
 }
