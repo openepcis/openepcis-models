@@ -7,11 +7,7 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -22,7 +18,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="WearableProduct">
  *   <complexContent>
- *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     <extension base="{}Product">
  *       <sequence>
  *         <element name="consumerLifestage" type="{}ConsumerLifestageCode"/>
  *         <element name="isPatterned" type="{}NonbinaryLogicCode"/>
@@ -39,7 +35,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="targetConsumerGender" type="{}TargetConsumerGenderCode"/>
  *         <element name="textileMaterialContent" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       </sequence>
- *     </restriction>
+ *     </extension>
  *   </complexContent>
  * </complexType>
  * }</pre>
@@ -63,7 +59,13 @@ import jakarta.xml.bind.annotation.XmlType;
     "targetConsumerGender",
     "textileMaterialContent"
 })
-public class WearableProduct {
+@XmlSeeAlso({
+    Clothing.class,
+    Footwear.class
+})
+public class WearableProduct
+    extends Product
+{
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")

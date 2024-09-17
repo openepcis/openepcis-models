@@ -7,11 +7,7 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -22,14 +18,14 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="MeatPoultry">
  *   <complexContent>
- *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     <extension base="{}FoodBeverageTobaccoProduct">
  *       <sequence>
  *         <element name="anatomicalForm" type="{}AnatomicalFormCode"/>
  *         <element name="bonelessClaim" type="{}NonbinaryLogicCode"/>
  *         <element name="meatPoultryType" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="minimumMeatPoultryContent" type="{}QuantitativeValue"/>
  *       </sequence>
- *     </restriction>
+ *     </extension>
  *   </complexContent>
  * </complexType>
  * }</pre>
@@ -43,7 +39,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "meatPoultryType",
     "minimumMeatPoultryContent"
 })
-public class MeatPoultry {
+public class MeatPoultry
+    extends FoodBeverageTobaccoProduct
+{
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")

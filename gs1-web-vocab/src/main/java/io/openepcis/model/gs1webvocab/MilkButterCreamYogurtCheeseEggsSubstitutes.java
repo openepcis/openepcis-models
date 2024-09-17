@@ -7,11 +7,7 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -22,7 +18,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="MilkButterCreamYogurtCheeseEggsSubstitutes">
  *   <complexContent>
- *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     <extension base="{}FoodBeverageTobaccoProduct">
  *       <sequence>
  *         <element name="cheeseFirmness" type="{}CheeseFirmnessCode"/>
  *         <element name="cheeseMaturationPeriodDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -32,7 +28,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="isRindEdible" type="{}NonbinaryLogicCode"/>
  *         <element name="sharpnessOfCheese" type="{}SharpnessOfCheeseCode"/>
  *       </sequence>
- *     </restriction>
+ *     </extension>
  *   </complexContent>
  * </complexType>
  * }</pre>
@@ -49,7 +45,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "isRindEdible",
     "sharpnessOfCheese"
 })
-public class MilkButterCreamYogurtCheeseEggsSubstitutes {
+public class MilkButterCreamYogurtCheeseEggsSubstitutes
+    extends FoodBeverageTobaccoProduct
+{
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")

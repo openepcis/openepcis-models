@@ -7,11 +7,7 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -222,6 +218,10 @@ import jakarta.xml.bind.annotation.XmlType;
     "targetMarket",
     "variantDescription",
     "warningCopyDescription"
+})
+@XmlSeeAlso({
+    FoodBeverageTobaccoProduct.class,
+    WearableProduct.class
 })
 public class Product {
 

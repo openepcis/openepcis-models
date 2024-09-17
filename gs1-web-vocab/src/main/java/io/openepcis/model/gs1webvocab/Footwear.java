@@ -7,11 +7,7 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -22,13 +18,13 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="Footwear">
  *   <complexContent>
- *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     <extension base="{}WearableProduct">
  *       <sequence>
  *         <element name="footwearFasteningType" type="{}FootwearFasteningTypeCode"/>
  *         <element name="footwearUpperType" type="{}UpperTypeCode"/>
  *         <element name="upperMaterialType" type="{}TextileMaterialDetails"/>
  *       </sequence>
- *     </restriction>
+ *     </extension>
  *   </complexContent>
  * </complexType>
  * }</pre>
@@ -41,7 +37,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "footwearUpperType",
     "upperMaterialType"
 })
-public class Footwear {
+public class Footwear
+    extends WearableProduct
+{
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")

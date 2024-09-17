@@ -7,10 +7,7 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -37,6 +34,9 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "QuantitativeValue", propOrder = {
     "unitCode",
     "value"
+})
+@XmlSeeAlso({
+    NutritionMeasurementType.class
 })
 public class QuantitativeValue {
 

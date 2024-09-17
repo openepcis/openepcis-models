@@ -21,11 +21,11 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="NutritionMeasurementType">
  *   <complexContent>
- *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     <extension base="{}QuantitativeValue">
  *       <sequence>
  *         <element name="dailyValueIntakePercent" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       </sequence>
- *     </restriction>
+ *     </extension>
  *   </complexContent>
  * </complexType>
  * }</pre>
@@ -36,7 +36,9 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "NutritionMeasurementType", propOrder = {
     "dailyValueIntakePercent"
 })
-public class NutritionMeasurementType {
+public class NutritionMeasurementType
+    extends QuantitativeValue
+{
 
     @XmlElement(required = true)
     protected String dailyValueIntakePercent;

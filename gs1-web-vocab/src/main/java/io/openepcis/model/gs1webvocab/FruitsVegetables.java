@@ -7,11 +7,7 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -22,7 +18,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="FruitsVegetables">
  *   <complexContent>
- *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     <extension base="{}FoodBeverageTobaccoProduct">
  *       <sequence>
  *         <element name="isPittedStoned" type="{}NonbinaryLogicCode"/>
  *         <element name="isSeedless" type="{}NonbinaryLogicCode"/>
@@ -30,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="isWashedReadyToEat" type="{}NonbinaryLogicCode"/>
  *         <element name="maturationMethod" type="{}MaturationMethodCode"/>
  *       </sequence>
- *     </restriction>
+ *     </extension>
  *   </complexContent>
  * </complexType>
  * }</pre>
@@ -45,7 +41,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "isWashedReadyToEat",
     "maturationMethod"
 })
-public class FruitsVegetables {
+public class FruitsVegetables
+    extends FoodBeverageTobaccoProduct
+{
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
