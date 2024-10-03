@@ -15,10 +15,12 @@
  */
 package io.openepcis.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashMap;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +29,5 @@ public class Tracer {
     private String traceId;
     private String spanId;
     private String defaultGroup;
+    private HashMap<String,Set<String>> subscribedUserGroups;
 }
