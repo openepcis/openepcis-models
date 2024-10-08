@@ -29,5 +29,7 @@ public class Tracer {
     private String traceId;
     private String spanId;
     private String defaultGroup;
+    @Deprecated
+    private HashMap<String,Set<String>> subscribedUserGroups;
     private Set<String> userId;
 }
