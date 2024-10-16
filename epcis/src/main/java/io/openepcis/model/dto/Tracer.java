@@ -31,5 +31,6 @@ public class Tracer {
     private String defaultGroup;
     @Deprecated
     private HashMap<String,Set<String>> subscribedUserGroups;
+    @Deprecated
     private Set<String> userId;
 }
