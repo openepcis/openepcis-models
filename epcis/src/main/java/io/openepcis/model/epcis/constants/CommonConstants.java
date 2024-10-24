@@ -70,4 +70,5 @@ public class CommonConstants {
   public static final String DOCUMENT_TYPE = "DocumentType";
   public static final String IS_DUPLICATE = "isDuplicate";
   public static final String CAPTURED_BY = "capturedBy";
+  public static final String ERROR_DECLARATION= "errorDeclaration";
 }
