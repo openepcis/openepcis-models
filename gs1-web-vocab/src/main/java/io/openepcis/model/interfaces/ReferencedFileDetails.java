@@ -1,6 +1,6 @@
 package io.openepcis.model.interfaces;
 
-public interface ReferencedFileDetails {
+public interface ReferencedFileDetails<QV extends QuantitativeValue> {
     String getFileLanguageCode();
 
     void setFileLanguageCode(String value);
@@ -21,9 +21,9 @@ public interface ReferencedFileDetails {
 
     void setReferencedFileEffectiveStartDateTime(String value);
 
-    QuantitativeValue getReferencedFileSize();
+    QV getReferencedFileSize();
 
-    void setReferencedFileSize(QuantitativeValue value);
+    void setReferencedFileSize(QV value);
 
     String getReferencedFileType();
 

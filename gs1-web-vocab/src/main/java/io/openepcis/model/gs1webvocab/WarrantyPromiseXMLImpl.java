@@ -40,10 +40,10 @@ import jakarta.xml.bind.annotation.XmlType;
     "durationOfWarranty",
     "warrantyScopeDescription"
 })
-public class WarrantyPromiseXMLImpl implements WarrantyPromise {
+public class WarrantyPromiseXMLImpl implements WarrantyPromise<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
-    protected QuantitativeValue durationOfWarranty;
+    protected QuantitativeValueXMLImpl durationOfWarranty;
     @XmlElement(required = true)
     protected String warrantyScopeDescription;
 
@@ -56,7 +56,7 @@ public class WarrantyPromiseXMLImpl implements WarrantyPromise {
      *     
      */
     @Override
-    public QuantitativeValue getDurationOfWarranty() {
+    public QuantitativeValueXMLImpl getDurationOfWarranty() {
         return durationOfWarranty;
     }
 
@@ -69,7 +69,7 @@ public class WarrantyPromiseXMLImpl implements WarrantyPromise {
      *     
      */
     @Override
-    public void setDurationOfWarranty(QuantitativeValue value) {
+    public void setDurationOfWarranty(QuantitativeValueXMLImpl value) {
         this.durationOfWarranty = value;
     }
 
