@@ -48,12 +48,12 @@ import jakarta.xml.bind.annotation.XmlType;
     "awardPrizeName",
     "awardPrizeYear"
 })
-public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails {
+public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails<CountryXMLImpl> {
 
     @XmlElement(required = true)
     protected String awardPrizeCode;
     @XmlElement(required = true)
-    protected Country awardPrizeCountryCode;
+    protected CountryXMLImpl awardPrizeCountryCode;
     @XmlElement(required = true)
     protected String awardPrizeDescription;
     @XmlElement(required = true)
@@ -98,7 +98,7 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails {
      *     
      */
     @Override
-    public Country getAwardPrizeCountryCode() {
+    public CountryXMLImpl getAwardPrizeCountryCode() {
         return awardPrizeCountryCode;
     }
 
@@ -111,7 +111,7 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails {
      *     
      */
     @Override
-    public void setAwardPrizeCountryCode(Country value) {
+    public void setAwardPrizeCountryCode(CountryXMLImpl value) {
         this.awardPrizeCountryCode = value;
     }
 

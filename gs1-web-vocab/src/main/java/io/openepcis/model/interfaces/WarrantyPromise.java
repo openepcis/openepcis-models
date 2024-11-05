@@ -1,9 +1,9 @@
 package io.openepcis.model.interfaces;
 
-public interface WarrantyPromise {
-    QuantitativeValue getDurationOfWarranty();
+public interface WarrantyPromise<QV extends QuantitativeValue> {
+    QV getDurationOfWarranty();
 
-    void setDurationOfWarranty(QuantitativeValue value);
+    void setDurationOfWarranty(QV value);
 
     String getWarrantyScopeDescription();
 

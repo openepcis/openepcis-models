@@ -52,7 +52,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "referencedFileType",
     "referencedFileURL"
 })
-public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails {
+public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
     protected String fileLanguageCode;
@@ -65,7 +65,7 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails {
     @XmlElement(required = true)
     protected String referencedFileEffectiveStartDateTime;
     @XmlElement(required = true)
-    protected QuantitativeValue referencedFileSize;
+    protected QuantitativeValueXMLImpl referencedFileSize;
     @XmlElement(required = true)
     protected String referencedFileType;
     @XmlElement(required = true)
@@ -210,7 +210,7 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails {
      *     
      */
     @Override
-    public QuantitativeValue getReferencedFileSize() {
+    public QuantitativeValueXMLImpl getReferencedFileSize() {
         return referencedFileSize;
     }
 
@@ -223,7 +223,7 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails {
      *     
      */
     @Override
-    public void setReferencedFileSize(QuantitativeValue value) {
+    public void setReferencedFileSize(QuantitativeValueXMLImpl value) {
         this.referencedFileSize = value;
     }
 

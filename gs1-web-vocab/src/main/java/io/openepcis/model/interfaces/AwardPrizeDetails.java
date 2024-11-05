@@ -1,13 +1,13 @@
 package io.openepcis.model.interfaces;
 
-public interface AwardPrizeDetails {
+public interface AwardPrizeDetails<C extends Country> {
     String getAwardPrizeCode();
 
     void setAwardPrizeCode(String value);
 
-    Country getAwardPrizeCountryCode();
+    C getAwardPrizeCountryCode();
 
-    void setAwardPrizeCountryCode(Country value);
+    void setAwardPrizeCountryCode(C value);
 
     String getAwardPrizeDescription();
 
