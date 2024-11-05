@@ -2,38 +2,39 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface Place {
-    LocationIDDetails getAdditionalLocationID();
+public interface Place<L extends LocationIDDetails,PO extends PostalAddress,C extends ContactPoint,P extends Place
+        ,CD extends CertificationDetails, O extends Organization,LO extends LocationStatusHistory> {
+    L getAdditionalLocationID();
 
-    void setAdditionalLocationID(LocationIDDetails value);
+    void setAdditionalLocationID(L value);
 
-    PostalAddressXMLImpl getAddress();
+    PO getAddress();
 
-    void setAddress(PostalAddressXMLImpl value);
+    void setAddress(PO value);
 
-    ContactPoint getAfterHoursContact();
+    C getAfterHoursContact();
 
-    void setAfterHoursContact(ContactPoint value);
+    void setAfterHoursContact(C value);
 
-    PlaceXMLImpl getBaseLocation();
+    P getBaseLocation();
 
-    void setBaseLocation(PlaceXMLImpl value);
+    void setBaseLocation(P value);
 
-    CertificationDetailsXMLImpl getCertification();
+    CD getCertification();
 
-    void setCertification(CertificationDetailsXMLImpl value);
+    void setCertification(CD value);
 
-    ContactPoint getContactPoint();
+    C getContactPoint();
 
-    void setContactPoint(ContactPoint value);
+    void setContactPoint(C value);
 
-    PlaceXMLImpl getContainedInPlace();
+    P getContainedInPlace();
 
-    void setContainedInPlace(PlaceXMLImpl value);
+    void setContainedInPlace(P value);
 
-    PlaceXMLImpl getContainsPlace();
+    P getContainsPlace();
 
-    void setContainsPlace(PlaceXMLImpl value);
+    void setContainsPlace(P value);
 
     String getDigitalAddress();
 
@@ -43,9 +44,9 @@ public interface Place {
 
     void setDigitalLocationName(String value);
 
-    PlaceXMLImpl getGeo();
+    P getGeo();
 
-    void setGeo(PlaceXMLImpl value);
+    void setGeo(P value);
 
     GLNTypeCode getGlnType();
 
@@ -55,63 +56,63 @@ public interface Place {
 
     void setGlobalLocationNumber(String value);
 
-    OrganizationXMLImpl getLeasedFrom();
+    O getLeasedFrom();
 
-    void setLeasedFrom(OrganizationXMLImpl value);
+    void setLeasedFrom(O value);
 
-    OrganizationXMLImpl getLeasedTo();
+    O getLeasedTo();
 
-    void setLeasedTo(OrganizationXMLImpl value);
+    void setLeasedTo(O value);
 
     String getLocationGLN();
 
     void setLocationGLN(String value);
 
-    LocationStatusHistory getLocationHistory();
+    LO getLocationHistory();
 
-    void setLocationHistory(LocationStatusHistory value);
+    void setLocationHistory(LO value);
 
     String getLocationRole();
 
     void setLocationRole(String value);
 
-    OrganizationXMLImpl getManagedBy();
+    O getManagedBy();
 
-    void setManagedBy(OrganizationXMLImpl value);
+    void setManagedBy(O value);
 
-    OrganizationXMLImpl getManagedFor();
+    O getManagedFor();
 
-    void setManagedFor(OrganizationXMLImpl value);
+    void setManagedFor(O value);
 
-    OrganizationXMLImpl getOccupiedBy();
+    O getOccupiedBy();
 
-    void setOccupiedBy(OrganizationXMLImpl value);
+    void setOccupiedBy(O value);
 
-    OrganizationXMLImpl getOwnedBy();
+    O getOwnedBy();
 
-    void setOwnedBy(OrganizationXMLImpl value);
+    void setOwnedBy(O value);
 
     String getPhysicalLocationName();
 
     void setPhysicalLocationName(String value);
 
-    OrganizationXMLImpl getPrimaryLocationOf();
+    O getPrimaryLocationOf();
 
-    void setPrimaryLocationOf(OrganizationXMLImpl value);
+    void setPrimaryLocationOf(O value);
 
-    OrganizationXMLImpl getRelatedOrganization();
+    O getRelatedOrganization();
 
-    void setRelatedOrganization(OrganizationXMLImpl value);
+    void setRelatedOrganization(O value);
 
-    PlaceXMLImpl getReplacedByPlace();
+    P getReplacedByPlace();
 
-    void setReplacedByPlace(PlaceXMLImpl value);
+    void setReplacedByPlace(P value);
 
-    PlaceXMLImpl getReplacedPlace();
+    P getReplacedPlace();
 
-    void setReplacedPlace(PlaceXMLImpl value);
+    void setReplacedPlace(P value);
 
-    OrganizationXMLImpl getResponsibleOrganization();
+    O getResponsibleOrganization();
 
-    void setResponsibleOrganization(OrganizationXMLImpl value);
+    void setResponsibleOrganization(O value);
 }

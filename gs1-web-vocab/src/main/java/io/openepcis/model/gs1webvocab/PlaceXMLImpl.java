@@ -91,20 +91,21 @@ import jakarta.xml.bind.annotation.*;
     "replacedPlace",
     "responsibleOrganization"
 })
-public class PlaceXMLImpl implements Place {
+public class PlaceXMLImpl implements Place<LocationIDDetailsXMLImpl,PostalAddressXMLImpl,ContactPointXMLImpl,PlaceXMLImpl
+        ,CertificationDetailsXMLImpl,OrganizationXMLImpl,LocationStatusHistoryXMLImpl> {
 
     @XmlElement(required = true)
-    protected LocationIDDetails additionalLocationID;
+    protected LocationIDDetailsXMLImpl additionalLocationID;
     @XmlElement(required = true)
     protected PostalAddressXMLImpl address;
     @XmlElement(required = true)
-    protected ContactPoint afterHoursContact;
+    protected ContactPointXMLImpl afterHoursContact;
     @XmlElement(required = true)
     protected PlaceXMLImpl baseLocation;
     @XmlElement(required = true)
     protected CertificationDetailsXMLImpl certification;
     @XmlElement(required = true)
-    protected ContactPoint contactPoint;
+    protected ContactPointXMLImpl contactPoint;
     @XmlElement(required = true)
     protected PlaceXMLImpl containedInPlaceXMLImpl;
     @XmlElement(required = true)
@@ -127,7 +128,7 @@ public class PlaceXMLImpl implements Place {
     @XmlElement(required = true)
     protected String locationGLN;
     @XmlElement(required = true)
-    protected LocationStatusHistory locationHistory;
+    protected LocationStatusHistoryXMLImpl locationHistory;
     @XmlElement(required = true)
     protected String locationRole;
     @XmlElement(required = true)
@@ -160,7 +161,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public LocationIDDetails getAdditionalLocationID() {
+    public LocationIDDetailsXMLImpl getAdditionalLocationID() {
         return additionalLocationID;
     }
 
@@ -173,7 +174,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public void setAdditionalLocationID(LocationIDDetails value) {
+    public void setAdditionalLocationID(LocationIDDetailsXMLImpl value) {
         this.additionalLocationID = value;
     }
 
@@ -212,7 +213,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public ContactPoint getAfterHoursContact() {
+    public ContactPointXMLImpl getAfterHoursContact() {
         return afterHoursContact;
     }
 
@@ -225,7 +226,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public void setAfterHoursContact(ContactPoint value) {
+    public void setAfterHoursContact(ContactPointXMLImpl value) {
         this.afterHoursContact = value;
     }
 
@@ -290,7 +291,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public ContactPoint getContactPoint() {
+    public ContactPointXMLImpl getContactPoint() {
         return contactPoint;
     }
 
@@ -303,7 +304,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public void setContactPoint(ContactPoint value) {
+    public void setContactPoint(ContactPointXMLImpl value) {
         this.contactPoint = value;
     }
 
@@ -576,7 +577,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public LocationStatusHistory getLocationHistory() {
+    public LocationStatusHistoryXMLImpl getLocationHistory() {
         return locationHistory;
     }
 
@@ -589,7 +590,7 @@ public class PlaceXMLImpl implements Place {
      *     
      */
     @Override
-    public void setLocationHistory(LocationStatusHistory value) {
+    public void setLocationHistory(LocationStatusHistoryXMLImpl value) {
         this.locationHistory = value;
     }
 

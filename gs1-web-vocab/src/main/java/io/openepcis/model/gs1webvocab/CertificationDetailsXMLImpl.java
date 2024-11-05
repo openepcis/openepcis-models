@@ -60,7 +60,7 @@ import jakarta.xml.bind.annotation.*;
     "certificationValue",
     "initialCertificationDate"
 })
-public class CertificationDetailsXMLImpl implements CertificationDetails {
+public class CertificationDetailsXMLImpl implements CertificationDetails<OrganizationXMLImpl> {
 
     @XmlElement(required = true)
     protected String certificationAgency;

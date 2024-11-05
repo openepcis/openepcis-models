@@ -1,9 +1,9 @@
 package io.openepcis.model.interfaces;
 
-public interface PostalAddress {
-    Country getAddressCountry();
+public interface PostalAddress<C extends Country> {
+    C getAddressCountry();
 
-    void setAddressCountry(Country value);
+    void setAddressCountry(C country);
 
     String getAddressLocality();
 
