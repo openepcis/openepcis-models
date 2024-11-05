@@ -3,14 +3,14 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.CertificationStatus;
 import io.openepcis.model.gs1webvocab.OrganizationXMLImpl;
 
-public interface CertificationDetails {
+public interface CertificationDetails<O extends Organization> {
     String getCertificationAgency();
 
     void setCertificationAgency(String value);
 
-    OrganizationXMLImpl getCertificationAgencyURL();
+    O getCertificationAgencyURL();
 
-    void setCertificationAgencyURL(OrganizationXMLImpl value);
+    void setCertificationAgencyURL(O value);
 
     String getCertificationAuditDate();
 

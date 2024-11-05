@@ -64,10 +64,10 @@ import jakarta.xml.bind.annotation.XmlType;
     "streetAddressLine3",
     "streetAddressLine4"
 })
-public class PostalAddressXMLImpl implements PostalAddress {
+public class PostalAddressXMLImpl implements PostalAddress<CountryXMLImpl> {
 
     @XmlElement(required = true)
-    protected Country addressCountry;
+    protected CountryXMLImpl addressCountry;
     @XmlElement(required = true)
     protected String addressLocality;
     @XmlElement(required = true)
@@ -104,7 +104,7 @@ public class PostalAddressXMLImpl implements PostalAddress {
      *     
      */
     @Override
-    public Country getAddressCountry() {
+    public CountryXMLImpl getAddressCountry() {
         return addressCountry;
     }
 
@@ -117,7 +117,7 @@ public class PostalAddressXMLImpl implements PostalAddress {
      *     
      */
     @Override
-    public void setAddressCountry(Country value) {
+    public void setAddressCountry(CountryXMLImpl value) {
         this.addressCountry = value;
     }
 

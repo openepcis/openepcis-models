@@ -67,7 +67,8 @@ import jakarta.xml.bind.annotation.*;
     "seller",
     "warranty"
 })
-public class OfferXMLImpl implements Offer {
+public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl,ProductXMLImpl,DiscountXMLImpl,ReferencedFileDetailsXMLImpl
+        ,PriceSpecificationXMLImpl,WarrantyPromiseXMLImpl,OrganizationXMLImpl> {
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
@@ -79,11 +80,11 @@ public class OfferXMLImpl implements Offer {
     @XmlElement(required = true)
     protected PlaceXMLImpl availableAtOrFrom;
     @XmlElement(required = true)
-    protected QuantitativeValue eligibleQuantity;
+    protected QuantitativeValueXMLImpl eligibleQuantity;
     @XmlElement(required = true)
-    protected QuantitativeValue eligibleQuantityMaximum;
+    protected QuantitativeValueXMLImpl eligibleQuantityMaximum;
     @XmlElement(required = true)
-    protected QuantitativeValue eligibleQuantityMinimum;
+    protected QuantitativeValueXMLImpl eligibleQuantityMinimum;
     @XmlElement(required = true)
     protected ProductXMLImpl itemOffered;
     @XmlElement(required = true)
@@ -91,7 +92,7 @@ public class OfferXMLImpl implements Offer {
     @XmlElement(required = true)
     protected DiscountXMLImpl offerDiscountXMLImpl;
     @XmlElement(required = true)
-    protected ReferencedFileDetails offerRedemptionURL;
+    protected ReferencedFileDetailsXMLImpl offerRedemptionURL;
     @XmlElement(required = true)
     protected String paymentTerms;
     @XmlElement(required = true)
@@ -101,7 +102,7 @@ public class OfferXMLImpl implements Offer {
     @XmlElement(required = true)
     protected OrganizationXMLImpl seller;
     @XmlElement(required = true)
-    protected WarrantyPromise warranty;
+    protected WarrantyPromiseXMLImpl warranty;
 
     /**
      * Gets the value of the acceptedPaymentMethod property.
@@ -216,7 +217,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public QuantitativeValue getEligibleQuantity() {
+    public QuantitativeValueXMLImpl getEligibleQuantity() {
         return eligibleQuantity;
     }
 
@@ -229,7 +230,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public void setEligibleQuantity(QuantitativeValue value) {
+    public void setEligibleQuantity(QuantitativeValueXMLImpl value) {
         this.eligibleQuantity = value;
     }
 
@@ -242,7 +243,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public QuantitativeValue getEligibleQuantityMaximum() {
+    public QuantitativeValueXMLImpl getEligibleQuantityMaximum() {
         return eligibleQuantityMaximum;
     }
 
@@ -255,7 +256,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public void setEligibleQuantityMaximum(QuantitativeValue value) {
+    public void setEligibleQuantityMaximum(QuantitativeValueXMLImpl value) {
         this.eligibleQuantityMaximum = value;
     }
 
@@ -268,7 +269,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public QuantitativeValue getEligibleQuantityMinimum() {
+    public QuantitativeValueXMLImpl getEligibleQuantityMinimum() {
         return eligibleQuantityMinimum;
     }
 
@@ -281,7 +282,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public void setEligibleQuantityMinimum(QuantitativeValue value) {
+    public void setEligibleQuantityMinimum(QuantitativeValueXMLImpl value) {
         this.eligibleQuantityMinimum = value;
     }
 
@@ -372,7 +373,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public ReferencedFileDetails getOfferRedemptionURL() {
+    public ReferencedFileDetailsXMLImpl getOfferRedemptionURL() {
         return offerRedemptionURL;
     }
 
@@ -385,7 +386,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public void setOfferRedemptionURL(ReferencedFileDetails value) {
+    public void setOfferRedemptionURL(ReferencedFileDetailsXMLImpl value) {
         this.offerRedemptionURL = value;
     }
 
@@ -502,7 +503,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public WarrantyPromise getWarranty() {
+    public WarrantyPromiseXMLImpl getWarranty() {
         return warranty;
     }
 
@@ -515,7 +516,7 @@ public class OfferXMLImpl implements Offer {
      *     
      */
     @Override
-    public void setWarranty(WarrantyPromise value) {
+    public void setWarranty(WarrantyPromiseXMLImpl value) {
         this.warranty = value;
     }
 

@@ -2,7 +2,8 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface Offer {
+public interface Offer<P extends Place,Q extends QuantitativeValue,PR extends Product,D extends Discount
+        ,R extends ReferencedFileDetails,PS extends PriceSpecification,W extends WarrantyPromise,O extends Organization>{
     PaymentMethod getAcceptedPaymentMethod();
 
     void setAcceptedPaymentMethod(PaymentMethod value);
@@ -15,55 +16,55 @@ public interface Offer {
 
     void setAvailabilityStarts(String value);
 
-    PlaceXMLImpl getAvailableAtOrFrom();
+    P getAvailableAtOrFrom();
 
-    void setAvailableAtOrFrom(PlaceXMLImpl value);
+    void setAvailableAtOrFrom(P value);
 
-    QuantitativeValue getEligibleQuantity();
+    Q getEligibleQuantity();
 
-    void setEligibleQuantity(QuantitativeValue value);
+    void setEligibleQuantity(Q value);
 
-    QuantitativeValue getEligibleQuantityMaximum();
+    Q getEligibleQuantityMaximum();
 
-    void setEligibleQuantityMaximum(QuantitativeValue value);
+    void setEligibleQuantityMaximum(Q value);
 
-    QuantitativeValue getEligibleQuantityMinimum();
+    Q getEligibleQuantityMinimum();
 
-    void setEligibleQuantityMinimum(QuantitativeValue value);
+    void setEligibleQuantityMinimum(Q value);
 
-    ProductXMLImpl getItemOffered();
+    PR getItemOffered();
 
-    void setItemOffered(ProductXMLImpl value);
+    void setItemOffered(PR value);
 
     String getOfferDescription();
 
     void setOfferDescription(String value);
 
-    DiscountXMLImpl getOfferDiscount();
+    D getOfferDiscount();
 
-    void setOfferDiscount(DiscountXMLImpl value);
+    void setOfferDiscount(D value);
 
-    ReferencedFileDetails getOfferRedemptionURL();
+    R getOfferRedemptionURL();
 
-    void setOfferRedemptionURL(ReferencedFileDetails value);
+    void setOfferRedemptionURL(R value);
 
     String getPaymentTerms();
 
     void setPaymentTerms(String value);
 
-    PriceSpecificationXMLImpl getPriceSpecification();
+    PS getPriceSpecification();
 
-    void setPriceSpecification(PriceSpecificationXMLImpl value);
+    void setPriceSpecification(PS value);
 
-    OrganizationXMLImpl getSeeker();
+    O getSeeker();
 
-    void setSeeker(OrganizationXMLImpl value);
+    void setSeeker(O value);
 
-    OrganizationXMLImpl getSeller();
+    O getSeller();
 
-    void setSeller(OrganizationXMLImpl value);
+    void setSeller(O value);
 
-    WarrantyPromise getWarranty();
+    W getWarranty();
 
-    void setWarranty(WarrantyPromise value);
+    void setWarranty(W value);
 }
