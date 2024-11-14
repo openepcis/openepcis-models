@@ -2,7 +2,7 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface Discount {
+public interface Discount<P extends PriceSpecification, A extends AdditionalProductClassificationDetails> {
     String getDiscountRepeatsPerMultipleMinimum();
 
     void setDiscountRepeatsPerMultipleMinimum(String value);
@@ -15,9 +15,9 @@ public interface Discount {
 
     void setEligibleTradeChannel(TradeChannelCode value);
 
-    PriceSpecificationXMLImpl getExactDiscountAmount();
+    P getExactDiscountAmount();
 
-    void setExactDiscountAmount(PriceSpecificationXMLImpl value);
+    void setExactDiscountAmount(P value);
 
     String getExactDiscountPercentage();
 
@@ -51,9 +51,9 @@ public interface Discount {
 
     void setIsPromoterExclusiveOffer(String value);
 
-    PriceSpecificationXMLImpl getMaximumDiscountAmount();
+    P getMaximumDiscountAmount();
 
-    void setMaximumDiscountAmount(PriceSpecificationXMLImpl value);
+    void setMaximumDiscountAmount(P value);
 
     String getMaximumDiscountPercentage();
 
@@ -63,13 +63,13 @@ public interface Discount {
 
     void setMaximumQualifyingItems(String value);
 
-    PriceSpecificationXMLImpl getMaximumQualifyingSpend();
+    P getMaximumQualifyingSpend();
 
-    void setMaximumQualifyingSpend(PriceSpecificationXMLImpl value);
+    void setMaximumQualifyingSpend(P value);
 
-    PriceSpecificationXMLImpl getMinimumDiscountAmount();
+    P getMinimumDiscountAmount();
 
-    void setMinimumDiscountAmount(PriceSpecificationXMLImpl value);
+    void setMinimumDiscountAmount(P value);
 
     String getMinimumDiscountPercentage();
 
@@ -79,9 +79,9 @@ public interface Discount {
 
     void setMinimumQualifyingItems(String value);
 
-    PriceSpecificationXMLImpl getMinimumQualifyingSpend();
+    P getMinimumQualifyingSpend();
 
-    void setMinimumQualifyingSpend(PriceSpecificationXMLImpl value);
+    void setMinimumQualifyingSpend(P value);
 
     OfferRedemptionTypeCode getOfferRedemptionType();
 
@@ -103,9 +103,9 @@ public interface Discount {
 
     void setQualifyingProductCategoryDescription(String value);
 
-    AdditionalProductClassificationDetails getQualifyingProductClassificationCode();
+    A getQualifyingProductClassificationCode();
 
-    void setQualifyingProductClassificationCode(AdditionalProductClassificationDetails value);
+    void setQualifyingProductClassificationCode(A value);
 
     String getQualifyingProductGTINs();
 

@@ -2,30 +2,32 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface Organization {
-    OrganizationIDDetails getAdditionalOrganizationID();
+public interface Organization<OI extends OrganizationIDDetails,PO extends PostalAddress,CP extends ContactPoint,C extends CertificationDetails
+        ,P extends Place, O extends Organization,OF extends Offer,OS extends OrganizationStatusHistory> {
 
-    void setAdditionalOrganizationID(OrganizationIDDetails value);
+    OI getAdditionalOrganizationID();
+
+    void setAdditionalOrganizationID(OI value);
 
     String getAdditionalOrganizationIdentificationTypeValue();
 
     void setAdditionalOrganizationIdentificationTypeValue(String value);
 
-    PostalAddressXMLImpl getAddress();
+    PO getAddress();
 
-    void setAddress(PostalAddressXMLImpl value);
+    void setAddress(PO value);
 
-    ContactPoint getAfterHoursContact();
+    CP getAfterHoursContact();
 
-    void setAfterHoursContact(ContactPoint value);
+    void setAfterHoursContact(CP value);
 
-    CertificationDetailsXMLImpl getCertification();
+    C getCertification();
 
-    void setCertification(CertificationDetailsXMLImpl value);
+    void setCertification(C value);
 
-    ContactPoint getContactPoint();
+    CP getContactPoint();
 
-    void setContactPoint(ContactPoint value);
+    void setContactPoint(CP value);
 
     String getDepartment();
 
@@ -39,41 +41,41 @@ public interface Organization {
 
     void setGlobalLocationNumber(String value);
 
-    PlaceXMLImpl getHasPrimaryLocation();
+    P getHasPrimaryLocation();
 
-    void setHasPrimaryLocation(PlaceXMLImpl value);
+    void setHasPrimaryLocation(P value);
 
-    PlaceXMLImpl getLesseeOf();
+    P getLesseeOf();
 
-    void setLesseeOf(PlaceXMLImpl value);
+    void setLesseeOf(P value);
 
-    PlaceXMLImpl getLessorFor();
+    P getLessorFor();
 
-    void setLessorFor(PlaceXMLImpl value);
+    void setLessorFor(P value);
 
-    PlaceXMLImpl getLocation();
+    P getLocation();
 
-    void setLocation(PlaceXMLImpl value);
+    void setLocation(P value);
 
-    OfferXMLImpl getMakesOffer();
+    OF getMakesOffer();
 
-    void setMakesOffer(OfferXMLImpl value);
+    void setMakesOffer(OF value);
 
-    OrganizationXMLImpl getManagedBy();
+    O getManagedBy();
 
-    void setManagedBy(OrganizationXMLImpl value);
+    void setManagedBy(O value);
 
-    OrganizationXMLImpl getManages();
+    O getManages();
 
-    void setManages(OrganizationXMLImpl value);
+    void setManages(O value);
 
-    PlaceXMLImpl getOccupies();
+    P getOccupies();
 
-    void setOccupies(PlaceXMLImpl value);
+    void setOccupies(P value);
 
-    OrganizationStatusHistory getOrganizationHistory();
+    OS getOrganizationHistory();
 
-    void setOrganizationHistory(OrganizationStatusHistory value);
+    void setOrganizationHistory(OS value);
 
     String getOrganizationName();
 
@@ -83,39 +85,39 @@ public interface Organization {
 
     void setOrganizationRole(OrganizationRoleType value);
 
-    OrganizationXMLImpl getOwnedBy();
+    O getOwnedBy();
 
-    void setOwnedBy(OrganizationXMLImpl value);
+    void setOwnedBy(O value);
 
-    OrganizationXMLImpl getOwns();
+    O getOwns();
 
-    void setOwns(OrganizationXMLImpl value);
+    void setOwns(O value);
 
-    OrganizationXMLImpl getParentOrganization();
+    O getParentOrganization();
 
-    void setParentOrganization(OrganizationXMLImpl value);
+    void setParentOrganization(O value);
 
     String getPartyGLN();
 
     void setPartyGLN(String value);
 
-    OrganizationXMLImpl getReplacedByOrganization();
+    O getReplacedByOrganization();
 
-    void setReplacedByOrganization(OrganizationXMLImpl value);
+    void setReplacedByOrganization(O value);
 
-    OrganizationXMLImpl getReplacedOrganization();
+    O getReplacedOrganization();
 
-    void setReplacedOrganization(OrganizationXMLImpl value);
+    void setReplacedOrganization(O value);
 
-    PlaceXMLImpl getResponsibleForLocation();
+    P getResponsibleForLocation();
 
-    void setResponsibleForLocation(PlaceXMLImpl value);
+    void setResponsibleForLocation(P value);
 
-    OrganizationXMLImpl getSubOrganization();
+    O getSubOrganization();
 
-    void setSubOrganization(OrganizationXMLImpl value);
+    void setSubOrganization(O value);
 
-    PlaceXMLImpl getUsesManagedLocation();
+    P getUsesManagedLocation();
 
-    void setUsesManagedLocation(PlaceXMLImpl value);
+    void setUsesManagedLocation(P value);
 }

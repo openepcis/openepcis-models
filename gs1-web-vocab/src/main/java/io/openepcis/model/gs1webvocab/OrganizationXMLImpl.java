@@ -93,20 +93,21 @@ import jakarta.xml.bind.annotation.*;
     "subOrganization",
     "usesManagedLocation"
 })
-public class OrganizationXMLImpl implements Organization {
+public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXMLImpl,PostalAddressXMLImpl,ContactPointXMLImpl
+        ,CertificationDetailsXMLImpl,PlaceXMLImpl,OrganizationXMLImpl,OfferXMLImpl,OrganizationStatusHistoryXMLImpl> {
 
     @XmlElement(required = true)
-    protected OrganizationIDDetails additionalOrganizationID;
+    protected OrganizationIDDetailsXMLImpl additionalOrganizationID;
     @XmlElement(required = true)
     protected String additionalOrganizationIdentificationTypeValue;
     @XmlElement(required = true)
     protected PostalAddressXMLImpl address;
     @XmlElement(required = true)
-    protected ContactPoint afterHoursContact;
+    protected ContactPointXMLImpl afterHoursContact;
     @XmlElement(required = true)
     protected CertificationDetailsXMLImpl certification;
     @XmlElement(required = true)
-    protected ContactPoint contactPoint;
+    protected ContactPointXMLImpl contactPoint;
     @XmlElement(required = true)
     protected String department;
     @XmlElement(required = true)
@@ -131,7 +132,7 @@ public class OrganizationXMLImpl implements Organization {
     @XmlElement(required = true)
     protected PlaceXMLImpl occupies;
     @XmlElement(required = true)
-    protected OrganizationStatusHistory organizationHistory;
+    protected OrganizationStatusHistoryXMLImpl organizationHistory;
     @XmlElement(required = true)
     protected String organizationName;
     @XmlElement(required = true)
@@ -165,7 +166,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public OrganizationIDDetails getAdditionalOrganizationID() {
+    public OrganizationIDDetailsXMLImpl getAdditionalOrganizationID() {
         return additionalOrganizationID;
     }
 
@@ -178,7 +179,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public void setAdditionalOrganizationID(OrganizationIDDetails value) {
+    public void setAdditionalOrganizationID(OrganizationIDDetailsXMLImpl value) {
         this.additionalOrganizationID = value;
     }
 
@@ -243,7 +244,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public ContactPoint getAfterHoursContact() {
+    public ContactPointXMLImpl getAfterHoursContact() {
         return afterHoursContact;
     }
 
@@ -256,7 +257,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public void setAfterHoursContact(ContactPoint value) {
+    public void setAfterHoursContact(ContactPointXMLImpl value) {
         this.afterHoursContact = value;
     }
 
@@ -295,7 +296,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public ContactPoint getContactPoint() {
+    public ContactPointXMLImpl getContactPoint() {
         return contactPoint;
     }
 
@@ -308,7 +309,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public void setContactPoint(ContactPoint value) {
+    public void setContactPoint(ContactPointXMLImpl value) {
         this.contactPoint = value;
     }
 
@@ -607,7 +608,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public OrganizationStatusHistory getOrganizationHistory() {
+    public OrganizationStatusHistoryXMLImpl getOrganizationHistory() {
         return organizationHistory;
     }
 
@@ -620,7 +621,7 @@ public class OrganizationXMLImpl implements Organization {
      *     
      */
     @Override
-    public void setOrganizationHistory(OrganizationStatusHistory value) {
+    public void setOrganizationHistory(OrganizationStatusHistoryXMLImpl value) {
         this.organizationHistory = value;
     }
 

@@ -91,7 +91,7 @@ import jakarta.xml.bind.annotation.*;
     "qualifyingSubBrandName",
     "selectedProductsOnly"
 })
-public class DiscountXMLImpl implements Discount {
+public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,AdditionalProductClassificationDetailsXMLImpl> {
 
     @XmlElement(required = true)
     protected String discountRepeatsPerMultipleMinimum;
@@ -148,7 +148,7 @@ public class DiscountXMLImpl implements Discount {
     @XmlElement(required = true)
     protected String qualifyingProductCategoryDescription;
     @XmlElement(required = true)
-    protected AdditionalProductClassificationDetails qualifyingProductClassificationCode;
+    protected AdditionalProductClassificationDetailsXMLImpl qualifyingProductClassificationCode;
     @XmlElement(required = true)
     protected String qualifyingProductGTINs;
     @XmlElement(required = true)
@@ -815,7 +815,7 @@ public class DiscountXMLImpl implements Discount {
      *     
      */
     @Override
-    public AdditionalProductClassificationDetails getQualifyingProductClassificationCode() {
+    public AdditionalProductClassificationDetailsXMLImpl getQualifyingProductClassificationCode() {
         return qualifyingProductClassificationCode;
     }
 
@@ -828,7 +828,7 @@ public class DiscountXMLImpl implements Discount {
      *     
      */
     @Override
-    public void setQualifyingProductClassificationCode(AdditionalProductClassificationDetails value) {
+    public void setQualifyingProductClassificationCode(AdditionalProductClassificationDetailsXMLImpl value) {
         this.qualifyingProductClassificationCode = value;
     }
 
