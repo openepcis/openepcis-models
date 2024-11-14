@@ -1,6 +1,6 @@
 package io.openepcis.model.interfaces;
 
-public interface PriceSpecification {
+public interface PriceSpecification<Q extends QuantitativeValue> {
     String getDutyFeeTaxAmount();
 
     void setDutyFeeTaxAmount(String value);
@@ -13,17 +13,17 @@ public interface PriceSpecification {
 
     void setDutyFeeTaxRate(String value);
 
-    QuantitativeValue getEligibleQuantity();
+    Q getEligibleQuantity();
 
-    void setEligibleQuantity(QuantitativeValue value);
+    void setEligibleQuantity(Q value);
 
-    QuantitativeValue getEligibleQuantityMaximum();
+    Q getEligibleQuantityMaximum();
 
-    void setEligibleQuantityMaximum(QuantitativeValue value);
+    void setEligibleQuantityMaximum(Q value);
 
-    QuantitativeValue getEligibleQuantityMinimum();
+    Q getEligibleQuantityMinimum();
 
-    void setEligibleQuantityMinimum(QuantitativeValue value);
+    void setEligibleQuantityMinimum(Q value);
 
     String getMaxPrice();
 
