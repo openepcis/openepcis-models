@@ -60,7 +60,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "validFrom",
     "validThrough"
 })
-public class PriceSpecificationXMLImpl implements PriceSpecification {
+public class PriceSpecificationXMLImpl implements PriceSpecification<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
     protected String dutyFeeTaxAmount;
@@ -69,11 +69,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification {
     @XmlElement(required = true)
     protected String dutyFeeTaxRate;
     @XmlElement(required = true)
-    protected QuantitativeValue eligibleQuantity;
+    protected QuantitativeValueXMLImpl eligibleQuantity;
     @XmlElement(required = true)
-    protected QuantitativeValue eligibleQuantityMaximum;
+    protected QuantitativeValueXMLImpl eligibleQuantityMaximum;
     @XmlElement(required = true)
-    protected QuantitativeValue eligibleQuantityMinimum;
+    protected QuantitativeValueXMLImpl eligibleQuantityMinimum;
     @XmlElement(required = true)
     protected String maxPrice;
     @XmlElement(required = true)
@@ -174,7 +174,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification {
      *     
      */
     @Override
-    public QuantitativeValue getEligibleQuantity() {
+    public QuantitativeValueXMLImpl getEligibleQuantity() {
         return eligibleQuantity;
     }
 
@@ -187,7 +187,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification {
      *     
      */
     @Override
-    public void setEligibleQuantity(QuantitativeValue value) {
+    public void setEligibleQuantity(QuantitativeValueXMLImpl value) {
         this.eligibleQuantity = value;
     }
 
@@ -200,7 +200,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification {
      *     
      */
     @Override
-    public QuantitativeValue getEligibleQuantityMaximum() {
+    public QuantitativeValueXMLImpl getEligibleQuantityMaximum() {
         return eligibleQuantityMaximum;
     }
 
@@ -213,7 +213,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification {
      *     
      */
     @Override
-    public void setEligibleQuantityMaximum(QuantitativeValue value) {
+    public void setEligibleQuantityMaximum(QuantitativeValueXMLImpl value) {
         this.eligibleQuantityMaximum = value;
     }
 
@@ -226,7 +226,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification {
      *     
      */
     @Override
-    public QuantitativeValue getEligibleQuantityMinimum() {
+    public QuantitativeValueXMLImpl getEligibleQuantityMinimum() {
         return eligibleQuantityMinimum;
     }
 
@@ -239,7 +239,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification {
      *     
      */
     @Override
-    public void setEligibleQuantityMinimum(QuantitativeValue value) {
+    public void setEligibleQuantityMinimum(QuantitativeValueXMLImpl value) {
         this.eligibleQuantityMinimum = value;
     }
 
