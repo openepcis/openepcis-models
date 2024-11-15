@@ -2,14 +2,14 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.PackagingMaterialTypeCode;
 
-public interface PackagingMaterialDetails {
-    QuantitativeValue getPackagingMaterialCompositionQuantity();
+public interface PackagingMaterialDetails<QV extends QuantitativeValue> {
+    QV getPackagingMaterialCompositionQuantity();
 
-    void setPackagingMaterialCompositionQuantity(QuantitativeValue value);
+    void setPackagingMaterialCompositionQuantity(QV value);
 
-    QuantitativeValue getPackagingMaterialThickness();
+    QV getPackagingMaterialThickness();
 
-    void setPackagingMaterialThickness(QuantitativeValue value);
+    void setPackagingMaterialThickness(QV value);
 
     PackagingMaterialTypeCode getPackagingMaterialType();
 

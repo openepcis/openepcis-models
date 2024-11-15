@@ -40,12 +40,12 @@ import jakarta.xml.bind.annotation.XmlType;
     "consumerFirstAvailabilityDateTime",
     "targetMarketCountries"
 })
-public class TargetMarketDetailsXMLImpl implements TargetMarketDetails {
+public class TargetMarketDetailsXMLImpl implements TargetMarketDetails<CountryXMLImpl> {
 
     @XmlElement(required = true)
     protected String consumerFirstAvailabilityDateTime;
     @XmlElement(required = true)
-    protected Country targetMarketCountries;
+    protected CountryXMLImpl targetMarketCountries;
 
     /**
      * Gets the value of the consumerFirstAvailabilityDateTime property.
@@ -82,7 +82,7 @@ public class TargetMarketDetailsXMLImpl implements TargetMarketDetails {
      *     
      */
     @Override
-    public Country getTargetMarketCountries() {
+    public CountryXMLImpl getTargetMarketCountries() {
         return targetMarketCountries;
     }
 
@@ -95,7 +95,7 @@ public class TargetMarketDetailsXMLImpl implements TargetMarketDetails {
      *     
      */
     @Override
-    public void setTargetMarketCountries(Country value) {
+    public void setTargetMarketCountries(CountryXMLImpl value) {
         this.targetMarketCountries = value;
     }
 

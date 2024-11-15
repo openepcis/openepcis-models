@@ -2,10 +2,10 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface PackagingDetails {
-    ReturnablePackageDepositDetails getHasReturnablePackageDeposit();
+public interface PackagingDetails<RPD extends ReturnablePackageDepositDetails, PM extends PackagingMaterialDetails> {
+    RPD getHasReturnablePackageDeposit();
 
-    void setHasReturnablePackageDeposit(ReturnablePackageDepositDetails value);
+    void setHasReturnablePackageDeposit(RPD value);
 
     PackagingFeatureCode getPackagingFeature();
 
@@ -15,9 +15,9 @@ public interface PackagingDetails {
 
     void setPackagingFunction(PackagingFunctionCode value);
 
-    PackagingMaterialDetails getPackagingMaterial();
+    PM getPackagingMaterial();
 
-    void setPackagingMaterial(PackagingMaterialDetails value);
+    void setPackagingMaterial(PM value);
 
     PackagingRecyclingProcessTypeCode getPackagingRecyclingProcessType();
 
