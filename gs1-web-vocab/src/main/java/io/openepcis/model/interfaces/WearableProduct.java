@@ -2,7 +2,7 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface WearableProduct extends Product {
+public interface WearableProduct {
     ConsumerLifestageCode getConsumerLifestage();
 
     void setConsumerLifestage(ConsumerLifestageCode value);

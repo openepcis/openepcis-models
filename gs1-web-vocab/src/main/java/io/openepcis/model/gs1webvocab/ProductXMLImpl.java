@@ -224,34 +224,37 @@ import jakarta.xml.bind.annotation.*;
     FoodBeverageTobaccoProductXMLImpl.class,
     WearableProductXMLImpl.class
 })
-public class ProductXMLImpl implements Product {
+public class ProductXMLImpl implements Product<AdditionalProductClassificationDetailsXMLImpl,AdditiveDetailsXMLImpl,ReferencedFileDetailsXMLImpl,
+        AuthenticityDetailsXMLImpl,AwardPrizeDetailsXMLImpl,BrandXMLImpl,OrganizationXMLImpl,CertificationDetailsXMLImpl,ColourCodeDetailsXMLImpl,
+        CountryXMLImpl,ProductXMLImpl,QuantitativeValueXMLImpl,WarrantyPromiseXMLImpl,OrganicClaimDetailsXMLImpl,PackagingDetailsXMLImpl,
+        SizeCodeDetailsXMLImpl,TargetMarketDetailsXMLImpl> {
 
     @XmlElement(required = true)
-    protected AdditionalProductClassificationDetails additionalProductClassification;
+    protected AdditionalProductClassificationDetailsXMLImpl additionalProductClassification;
     @XmlElement(required = true)
     protected String additionalProductDescription;
     @XmlElement(required = true)
-    protected AdditiveDetails additive;
+    protected AdditiveDetailsXMLImpl additive;
     @XmlElement(required = true)
-    protected ReferencedFileDetails audioFile;
+    protected ReferencedFileDetailsXMLImpl audioFile;
     @XmlElement(required = true)
-    protected AuthenticityDetails authenticity;
+    protected AuthenticityDetailsXMLImpl authenticity;
     @XmlElement(required = true)
-    protected AwardPrizeDetails awardPrize;
+    protected AwardPrizeDetailsXMLImpl awardPrize;
     @XmlElement(required = true)
     protected String bestBeforeDate;
     @XmlElement(required = true)
-    protected Brand brand;
+    protected BrandXMLImpl brand;
     @XmlElement(required = true)
     protected OrganizationXMLImpl brandOwner;
     @XmlElement(required = true)
     protected CertificationDetailsXMLImpl certification;
     @XmlElement(required = true)
-    protected ColourCodeDetails colourCode;
+    protected ColourCodeDetailsXMLImpl colourCode;
     @XmlElement(required = true)
     protected String colourDescription;
     @XmlElement(required = true)
-    protected ReferencedFileDetails consumerHandlingStorage;
+    protected ReferencedFileDetailsXMLImpl consumerHandlingStorage;
     @XmlElement(required = true)
     protected String consumerPackageDisclaimer;
     @XmlElement(required = true)
@@ -266,11 +269,11 @@ public class ProductXMLImpl implements Product {
     @XmlElement(required = true)
     protected String consumerUsageInstructions;
     @XmlElement(required = true)
-    protected Country countryOfAssembly;
+    protected CountryXMLImpl countryOfAssembly;
     @XmlElement(required = true)
-    protected Country countryOfLastProcessing;
+    protected CountryXMLImpl countryOfLastProcessing;
     @XmlElement(required = true)
-    protected Country countryOfOrigin;
+    protected CountryXMLImpl countryOfOrigin;
     @XmlElement(required = true)
     protected String countryOfOriginStatement;
     @XmlElement(required = true)
@@ -296,11 +299,11 @@ public class ProductXMLImpl implements Product {
     @XmlElement(required = true)
     protected String gpcCategoryDescription;
     @XmlElement(required = true)
-    protected QuantitativeValue grossArea;
+    protected QuantitativeValueXMLImpl grossArea;
     @XmlElement(required = true)
-    protected QuantitativeValue grossVolume;
+    protected QuantitativeValueXMLImpl grossVolume;
     @XmlElement(required = true)
-    protected QuantitativeValue grossWeight;
+    protected QuantitativeValueXMLImpl grossWeight;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected GrowingMethodCode growingMethod;
@@ -321,19 +324,19 @@ public class ProductXMLImpl implements Product {
     @XmlElement(required = true)
     protected String healthClaimDescription;
     @XmlElement(required = true)
-    protected ReferencedFileDetails image;
+    protected ReferencedFileDetailsXMLImpl image;
     @XmlElement(required = true)
-    protected QuantitativeValue inPackageDepth;
+    protected QuantitativeValueXMLImpl inPackageDepth;
     @XmlElement(required = true)
-    protected QuantitativeValue inPackageDiameter;
+    protected QuantitativeValueXMLImpl inPackageDiameter;
     @XmlElement(required = true)
-    protected QuantitativeValue inPackageHeight;
+    protected QuantitativeValueXMLImpl inPackageHeight;
     @XmlElement(required = true)
-    protected QuantitativeValue inPackageWidth;
+    protected QuantitativeValueXMLImpl inPackageWidth;
     @XmlElement(required = true)
     protected String includedAccessories;
     @XmlElement(required = true)
-    protected ReferencedFileDetails instructionsForUse;
+    protected ReferencedFileDetailsXMLImpl instructionsForUse;
     @XmlElement(required = true)
     protected String isProductRecalled;
     @XmlElement(required = true)
@@ -341,29 +344,29 @@ public class ProductXMLImpl implements Product {
     @XmlElement(required = true)
     protected OrganizationXMLImpl manufacturer;
     @XmlElement(required = true)
-    protected WarrantyPromise manufacturersWarranty;
+    protected WarrantyPromiseXMLImpl manufacturersWarranty;
     @XmlElement(required = true)
     protected OrganizationXMLImpl manufacturingPlant;
     @XmlElement(required = true)
-    protected QuantitativeValue massPerUnitArea;
+    protected QuantitativeValueXMLImpl massPerUnitArea;
     @XmlElement(required = true)
-    protected QuantitativeValue netArea;
+    protected QuantitativeValueXMLImpl netArea;
     @XmlElement(required = true)
-    protected QuantitativeValue netContent;
+    protected QuantitativeValueXMLImpl netContent;
     @XmlElement(required = true)
-    protected QuantitativeValue netWeight;
+    protected QuantitativeValueXMLImpl netWeight;
     @XmlElement(required = true)
-    protected OrganicClaimDetails organicClaim;
+    protected OrganicClaimDetailsXMLImpl organicClaim;
     @XmlElement(required = true)
-    protected QuantitativeValue outOfPackageDepth;
+    protected QuantitativeValueXMLImpl outOfPackageDepth;
     @XmlElement(required = true)
-    protected QuantitativeValue outOfPackageDiameter;
+    protected QuantitativeValueXMLImpl outOfPackageDiameter;
     @XmlElement(required = true)
-    protected QuantitativeValue outOfPackageHeight;
+    protected QuantitativeValueXMLImpl outOfPackageHeight;
     @XmlElement(required = true)
-    protected QuantitativeValue outOfPackageWidth;
+    protected QuantitativeValueXMLImpl outOfPackageWidth;
     @XmlElement(required = true)
-    protected PackagingDetails packaging;
+    protected PackagingDetailsXMLImpl packaging;
     @XmlElement(required = true)
     protected String packagingDate;
     @XmlElement(required = true)
@@ -398,7 +401,7 @@ public class ProductXMLImpl implements Product {
     @XmlElement(required = true)
     protected String provenanceStatement;
     @XmlElement(required = true)
-    protected ReferencedFileDetails referencedFile;
+    protected ReferencedFileDetailsXMLImpl referencedFile;
     @XmlElement(required = true)
     protected String regulatedProductName;
     @XmlElement(required = true)
@@ -408,11 +411,11 @@ public class ProductXMLImpl implements Product {
     @XmlElement(required = true)
     protected String sellByDate;
     @XmlElement(required = true)
-    protected SizeCodeDetails sizeCode;
+    protected SizeCodeDetailsXMLImpl sizeCode;
     @XmlElement(required = true)
     protected String supplierSpecifiedMinimumConsumerStorageDays;
     @XmlElement(required = true)
-    protected TargetMarketDetails targetMarket;
+    protected TargetMarketDetailsXMLImpl targetMarket;
     @XmlElement(required = true)
     protected String variantDescription;
     @XmlElement(required = true)
@@ -427,7 +430,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public AdditionalProductClassificationDetails getAdditionalProductClassification() {
+    public AdditionalProductClassificationDetailsXMLImpl getAdditionalProductClassification() {
         return additionalProductClassification;
     }
 
@@ -440,7 +443,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setAdditionalProductClassification(AdditionalProductClassificationDetails value) {
+    public void setAdditionalProductClassification(AdditionalProductClassificationDetailsXMLImpl value) {
         this.additionalProductClassification = value;
     }
 
@@ -479,7 +482,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public AdditiveDetails getAdditive() {
+    public AdditiveDetailsXMLImpl getAdditive() {
         return additive;
     }
 
@@ -492,7 +495,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setAdditive(AdditiveDetails value) {
+    public void setAdditive(AdditiveDetailsXMLImpl value) {
         this.additive = value;
     }
 
@@ -505,7 +508,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public ReferencedFileDetails getAudioFile() {
+    public ReferencedFileDetailsXMLImpl getAudioFile() {
         return audioFile;
     }
 
@@ -518,7 +521,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setAudioFile(ReferencedFileDetails value) {
+    public void setAudioFile(ReferencedFileDetailsXMLImpl value) {
         this.audioFile = value;
     }
 
@@ -531,7 +534,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public AuthenticityDetails getAuthenticity() {
+    public AuthenticityDetailsXMLImpl getAuthenticity() {
         return authenticity;
     }
 
@@ -544,7 +547,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setAuthenticity(AuthenticityDetails value) {
+    public void setAuthenticity(AuthenticityDetailsXMLImpl value) {
         this.authenticity = value;
     }
 
@@ -557,7 +560,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public AwardPrizeDetails getAwardPrize() {
+    public AwardPrizeDetailsXMLImpl getAwardPrize() {
         return awardPrize;
     }
 
@@ -570,7 +573,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setAwardPrize(AwardPrizeDetails value) {
+    public void setAwardPrize(AwardPrizeDetailsXMLImpl value) {
         this.awardPrize = value;
     }
 
@@ -609,7 +612,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public Brand getBrand() {
+    public BrandXMLImpl getBrand() {
         return brand;
     }
 
@@ -622,7 +625,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setBrand(Brand value) {
+    public void setBrand(BrandXMLImpl value) {
         this.brand = value;
     }
 
@@ -687,7 +690,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public ColourCodeDetails getColourCode() {
+    public ColourCodeDetailsXMLImpl getColourCode() {
         return colourCode;
     }
 
@@ -700,7 +703,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setColourCode(ColourCodeDetails value) {
+    public void setColourCode(ColourCodeDetailsXMLImpl value) {
         this.colourCode = value;
     }
 
@@ -739,7 +742,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public ReferencedFileDetails getConsumerHandlingStorage() {
+    public ReferencedFileDetailsXMLImpl getConsumerHandlingStorage() {
         return consumerHandlingStorage;
     }
 
@@ -752,7 +755,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setConsumerHandlingStorage(ReferencedFileDetails value) {
+    public void setConsumerHandlingStorage(ReferencedFileDetailsXMLImpl value) {
         this.consumerHandlingStorage = value;
     }
 
@@ -921,7 +924,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public Country getCountryOfAssembly() {
+    public CountryXMLImpl getCountryOfAssembly() {
         return countryOfAssembly;
     }
 
@@ -934,7 +937,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setCountryOfAssembly(Country value) {
+    public void setCountryOfAssembly(CountryXMLImpl value) {
         this.countryOfAssembly = value;
     }
 
@@ -947,7 +950,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public Country getCountryOfLastProcessing() {
+    public CountryXMLImpl getCountryOfLastProcessing() {
         return countryOfLastProcessing;
     }
 
@@ -960,7 +963,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setCountryOfLastProcessing(Country value) {
+    public void setCountryOfLastProcessing(CountryXMLImpl value) {
         this.countryOfLastProcessing = value;
     }
 
@@ -973,7 +976,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public Country getCountryOfOrigin() {
+    public CountryXMLImpl getCountryOfOrigin() {
         return countryOfOrigin;
     }
 
@@ -986,7 +989,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setCountryOfOrigin(Country value) {
+    public void setCountryOfOrigin(CountryXMLImpl value) {
         this.countryOfOrigin = value;
     }
 
@@ -1311,7 +1314,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getGrossArea() {
+    public QuantitativeValueXMLImpl getGrossArea() {
         return grossArea;
     }
 
@@ -1324,7 +1327,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setGrossArea(QuantitativeValue value) {
+    public void setGrossArea(QuantitativeValueXMLImpl value) {
         this.grossArea = value;
     }
 
@@ -1337,7 +1340,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getGrossVolume() {
+    public QuantitativeValueXMLImpl getGrossVolume() {
         return grossVolume;
     }
 
@@ -1350,7 +1353,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setGrossVolume(QuantitativeValue value) {
+    public void setGrossVolume(QuantitativeValueXMLImpl value) {
         this.grossVolume = value;
     }
 
@@ -1363,7 +1366,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getGrossWeight() {
+    public QuantitativeValueXMLImpl getGrossWeight() {
         return grossWeight;
     }
 
@@ -1376,7 +1379,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setGrossWeight(QuantitativeValue value) {
+    public void setGrossWeight(QuantitativeValueXMLImpl value) {
         this.grossWeight = value;
     }
 
@@ -1623,7 +1626,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public ReferencedFileDetails getImage() {
+    public ReferencedFileDetailsXMLImpl getImage() {
         return image;
     }
 
@@ -1636,7 +1639,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setImage(ReferencedFileDetails value) {
+    public void setImage(ReferencedFileDetailsXMLImpl value) {
         this.image = value;
     }
 
@@ -1649,7 +1652,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getInPackageDepth() {
+    public QuantitativeValueXMLImpl getInPackageDepth() {
         return inPackageDepth;
     }
 
@@ -1662,7 +1665,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setInPackageDepth(QuantitativeValue value) {
+    public void setInPackageDepth(QuantitativeValueXMLImpl value) {
         this.inPackageDepth = value;
     }
 
@@ -1675,7 +1678,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getInPackageDiameter() {
+    public QuantitativeValueXMLImpl getInPackageDiameter() {
         return inPackageDiameter;
     }
 
@@ -1688,7 +1691,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setInPackageDiameter(QuantitativeValue value) {
+    public void setInPackageDiameter(QuantitativeValueXMLImpl value) {
         this.inPackageDiameter = value;
     }
 
@@ -1701,7 +1704,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getInPackageHeight() {
+    public QuantitativeValueXMLImpl getInPackageHeight() {
         return inPackageHeight;
     }
 
@@ -1714,7 +1717,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setInPackageHeight(QuantitativeValue value) {
+    public void setInPackageHeight(QuantitativeValueXMLImpl value) {
         this.inPackageHeight = value;
     }
 
@@ -1727,7 +1730,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getInPackageWidth() {
+    public QuantitativeValueXMLImpl getInPackageWidth() {
         return inPackageWidth;
     }
 
@@ -1740,7 +1743,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setInPackageWidth(QuantitativeValue value) {
+    public void setInPackageWidth(QuantitativeValueXMLImpl value) {
         this.inPackageWidth = value;
     }
 
@@ -1779,7 +1782,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public ReferencedFileDetails getInstructionsForUse() {
+    public ReferencedFileDetailsXMLImpl getInstructionsForUse() {
         return instructionsForUse;
     }
 
@@ -1792,7 +1795,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setInstructionsForUse(ReferencedFileDetails value) {
+    public void setInstructionsForUse(ReferencedFileDetailsXMLImpl value) {
         this.instructionsForUse = value;
     }
 
@@ -1883,7 +1886,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public WarrantyPromise getManufacturersWarranty() {
+    public WarrantyPromiseXMLImpl getManufacturersWarranty() {
         return manufacturersWarranty;
     }
 
@@ -1896,7 +1899,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setManufacturersWarranty(WarrantyPromise value) {
+    public void setManufacturersWarranty(WarrantyPromiseXMLImpl value) {
         this.manufacturersWarranty = value;
     }
 
@@ -1935,7 +1938,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getMassPerUnitArea() {
+    public QuantitativeValueXMLImpl getMassPerUnitArea() {
         return massPerUnitArea;
     }
 
@@ -1948,7 +1951,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setMassPerUnitArea(QuantitativeValue value) {
+    public void setMassPerUnitArea(QuantitativeValueXMLImpl value) {
         this.massPerUnitArea = value;
     }
 
@@ -1961,7 +1964,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getNetArea() {
+    public QuantitativeValueXMLImpl getNetArea() {
         return netArea;
     }
 
@@ -1974,7 +1977,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setNetArea(QuantitativeValue value) {
+    public void setNetArea(QuantitativeValueXMLImpl value) {
         this.netArea = value;
     }
 
@@ -1987,7 +1990,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getNetContent() {
+    public QuantitativeValueXMLImpl getNetContent() {
         return netContent;
     }
 
@@ -2000,7 +2003,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setNetContent(QuantitativeValue value) {
+    public void setNetContent(QuantitativeValueXMLImpl value) {
         this.netContent = value;
     }
 
@@ -2013,7 +2016,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getNetWeight() {
+    public QuantitativeValueXMLImpl getNetWeight() {
         return netWeight;
     }
 
@@ -2026,7 +2029,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setNetWeight(QuantitativeValue value) {
+    public void setNetWeight(QuantitativeValueXMLImpl value) {
         this.netWeight = value;
     }
 
@@ -2039,7 +2042,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public OrganicClaimDetails getOrganicClaim() {
+    public OrganicClaimDetailsXMLImpl getOrganicClaim() {
         return organicClaim;
     }
 
@@ -2052,7 +2055,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setOrganicClaim(OrganicClaimDetails value) {
+    public void setOrganicClaim(OrganicClaimDetailsXMLImpl value) {
         this.organicClaim = value;
     }
 
@@ -2065,7 +2068,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getOutOfPackageDepth() {
+    public QuantitativeValueXMLImpl getOutOfPackageDepth() {
         return outOfPackageDepth;
     }
 
@@ -2078,7 +2081,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setOutOfPackageDepth(QuantitativeValue value) {
+    public void setOutOfPackageDepth(QuantitativeValueXMLImpl value) {
         this.outOfPackageDepth = value;
     }
 
@@ -2091,7 +2094,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getOutOfPackageDiameter() {
+    public QuantitativeValueXMLImpl getOutOfPackageDiameter() {
         return outOfPackageDiameter;
     }
 
@@ -2104,7 +2107,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setOutOfPackageDiameter(QuantitativeValue value) {
+    public void setOutOfPackageDiameter(QuantitativeValueXMLImpl value) {
         this.outOfPackageDiameter = value;
     }
 
@@ -2117,7 +2120,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getOutOfPackageHeight() {
+    public QuantitativeValueXMLImpl getOutOfPackageHeight() {
         return outOfPackageHeight;
     }
 
@@ -2130,7 +2133,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setOutOfPackageHeight(QuantitativeValue value) {
+    public void setOutOfPackageHeight(QuantitativeValueXMLImpl value) {
         this.outOfPackageHeight = value;
     }
 
@@ -2143,7 +2146,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public QuantitativeValue getOutOfPackageWidth() {
+    public QuantitativeValueXMLImpl getOutOfPackageWidth() {
         return outOfPackageWidth;
     }
 
@@ -2156,7 +2159,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setOutOfPackageWidth(QuantitativeValue value) {
+    public void setOutOfPackageWidth(QuantitativeValueXMLImpl value) {
         this.outOfPackageWidth = value;
     }
 
@@ -2169,7 +2172,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public PackagingDetails getPackaging() {
+    public PackagingDetailsXMLImpl getPackaging() {
         return packaging;
     }
 
@@ -2182,7 +2185,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setPackaging(PackagingDetails value) {
+    public void setPackaging(PackagingDetailsXMLImpl value) {
         this.packaging = value;
     }
 
@@ -2611,7 +2614,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public ReferencedFileDetails getReferencedFile() {
+    public ReferencedFileDetailsXMLImpl getReferencedFile() {
         return referencedFile;
     }
 
@@ -2624,7 +2627,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setReferencedFile(ReferencedFileDetails value) {
+    public void setReferencedFile(ReferencedFileDetailsXMLImpl value) {
         this.referencedFile = value;
     }
 
@@ -2741,7 +2744,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public SizeCodeDetails getSizeCode() {
+    public SizeCodeDetailsXMLImpl getSizeCode() {
         return sizeCode;
     }
 
@@ -2754,7 +2757,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setSizeCode(SizeCodeDetails value) {
+    public void setSizeCode(SizeCodeDetailsXMLImpl value) {
         this.sizeCode = value;
     }
 
@@ -2793,7 +2796,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public TargetMarketDetails getTargetMarket() {
+    public TargetMarketDetailsXMLImpl getTargetMarket() {
         return targetMarket;
     }
 
@@ -2806,7 +2809,7 @@ public class ProductXMLImpl implements Product {
      *     
      */
     @Override
-    public void setTargetMarket(TargetMarketDetails value) {
+    public void setTargetMarket(TargetMarketDetailsXMLImpl value) {
         this.targetMarket = value;
     }
 

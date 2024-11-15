@@ -2,58 +2,61 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface Product {
-    AdditionalProductClassificationDetails getAdditionalProductClassification();
+public interface Product<AP extends AdditionalProductClassificationDetails,AD extends AdditiveDetails,
+        RF extends ReferencedFileDetails,AU extends AuthenticityDetails,AW extends AwardPrizeDetails,B extends Brand,O extends Organization,
+        CD extends CertificationDetails,CC extends ColourCodeDetails,C extends Country, P extends Product,QV extends QuantitativeValue,
+        WP extends WarrantyPromise,OC extends OrganicClaimDetails, PD extends PackagingDetails, SC extends SizeCodeDetails,TM extends TargetMarketDetails> {
+    AP getAdditionalProductClassification();
 
-    void setAdditionalProductClassification(AdditionalProductClassificationDetails value);
+    void setAdditionalProductClassification(AP value);
 
     String getAdditionalProductDescription();
 
     void setAdditionalProductDescription(String value);
 
-    AdditiveDetails getAdditive();
+    AD getAdditive();
 
-    void setAdditive(AdditiveDetails value);
+    void setAdditive(AD value);
 
-    ReferencedFileDetails getAudioFile();
+    RF getAudioFile();
 
-    void setAudioFile(ReferencedFileDetails value);
+    void setAudioFile(RF value);
 
-    AuthenticityDetails getAuthenticity();
+    AU getAuthenticity();
 
-    void setAuthenticity(AuthenticityDetails value);
+    void setAuthenticity(AU value);
 
-    AwardPrizeDetails getAwardPrize();
+    AW getAwardPrize();
 
-    void setAwardPrize(AwardPrizeDetails value);
+    void setAwardPrize(AW value);
 
     String getBestBeforeDate();
 
     void setBestBeforeDate(String value);
 
-    Brand getBrand();
+    B getBrand();
 
-    void setBrand(Brand value);
+    void setBrand(B value);
 
-    OrganizationXMLImpl getBrandOwner();
+    O getBrandOwner();
 
-    void setBrandOwner(OrganizationXMLImpl value);
+    void setBrandOwner(O value);
 
-    CertificationDetailsXMLImpl getCertification();
+    CD getCertification();
 
-    void setCertification(CertificationDetailsXMLImpl value);
+    void setCertification(CD value);
 
-    ColourCodeDetails getColourCode();
+    CC getColourCode();
 
-    void setColourCode(ColourCodeDetails value);
+    void setColourCode(CC value);
 
     String getColourDescription();
 
     void setColourDescription(String value);
 
-    ReferencedFileDetails getConsumerHandlingStorage();
+    RF getConsumerHandlingStorage();
 
-    void setConsumerHandlingStorage(ReferencedFileDetails value);
+    void setConsumerHandlingStorage(RF value);
 
     String getConsumerPackageDisclaimer();
 
@@ -79,29 +82,29 @@ public interface Product {
 
     void setConsumerUsageInstructions(String value);
 
-    Country getCountryOfAssembly();
+    C getCountryOfAssembly();
 
-    void setCountryOfAssembly(Country value);
+    void setCountryOfAssembly(C value);
 
-    Country getCountryOfLastProcessing();
+    C getCountryOfLastProcessing();
 
-    void setCountryOfLastProcessing(Country value);
+    void setCountryOfLastProcessing(C value);
 
-    Country getCountryOfOrigin();
+    C getCountryOfOrigin();
 
-    void setCountryOfOrigin(Country value);
+    void setCountryOfOrigin(C value);
 
     String getCountryOfOriginStatement();
 
     void setCountryOfOriginStatement(String value);
 
-    OrganizationXMLImpl getCustomerSupportCentre();
+    O getCustomerSupportCentre();
 
-    void setCustomerSupportCentre(OrganizationXMLImpl value);
+    void setCustomerSupportCentre(O value);
 
-    ProductXMLImpl getDependentProprietaryProduct();
+    P getDependentProprietaryProduct();
 
-    void setDependentProprietaryProduct(ProductXMLImpl value);
+    void setDependentProprietaryProduct(P value);
 
     String getDescriptiveSize();
 
@@ -111,9 +114,9 @@ public interface Product {
 
     void setDueDate(String value);
 
-    ProductXMLImpl getEquivalentProduct();
+    P getEquivalentProduct();
 
-    void setEquivalentProduct(ProductXMLImpl value);
+    void setEquivalentProduct(P value);
 
     String getExpirationDate();
 
@@ -139,17 +142,17 @@ public interface Product {
 
     void setGpcCategoryDescription(String value);
 
-    QuantitativeValue getGrossArea();
+    QV getGrossArea();
 
-    void setGrossArea(QuantitativeValue value);
+    void setGrossArea(QV value);
 
-    QuantitativeValue getGrossVolume();
+    QV getGrossVolume();
 
-    void setGrossVolume(QuantitativeValue value);
+    void setGrossVolume(QV value);
 
-    QuantitativeValue getGrossWeight();
+    QV getGrossWeight();
 
-    void setGrossWeight(QuantitativeValue value);
+    void setGrossWeight(QV value);
 
     GrowingMethodCode getGrowingMethod();
 
@@ -187,33 +190,33 @@ public interface Product {
 
     void setHealthClaimDescription(String value);
 
-    ReferencedFileDetails getImage();
+    RF getImage();
 
-    void setImage(ReferencedFileDetails value);
+    void setImage(RF value);
 
-    QuantitativeValue getInPackageDepth();
+    QV getInPackageDepth();
 
-    void setInPackageDepth(QuantitativeValue value);
+    void setInPackageDepth(QV value);
 
-    QuantitativeValue getInPackageDiameter();
+    QV getInPackageDiameter();
 
-    void setInPackageDiameter(QuantitativeValue value);
+    void setInPackageDiameter(QV value);
 
-    QuantitativeValue getInPackageHeight();
+    QV getInPackageHeight();
 
-    void setInPackageHeight(QuantitativeValue value);
+    void setInPackageHeight(QV value);
 
-    QuantitativeValue getInPackageWidth();
+    QV getInPackageWidth();
 
-    void setInPackageWidth(QuantitativeValue value);
+    void setInPackageWidth(QV value);
 
     String getIncludedAccessories();
 
     void setIncludedAccessories(String value);
 
-    ReferencedFileDetails getInstructionsForUse();
+    RF getInstructionsForUse();
 
-    void setInstructionsForUse(ReferencedFileDetails value);
+    void setInstructionsForUse(RF value);
 
     String getIsProductRecalled();
 
@@ -223,57 +226,57 @@ public interface Product {
 
     void setJws(String value);
 
-    OrganizationXMLImpl getManufacturer();
+    O getManufacturer();
 
-    void setManufacturer(OrganizationXMLImpl value);
+    void setManufacturer(O value);
 
-    WarrantyPromise getManufacturersWarranty();
+    WP getManufacturersWarranty();
 
-    void setManufacturersWarranty(WarrantyPromise value);
+    void setManufacturersWarranty(WP value);
 
-    OrganizationXMLImpl getManufacturingPlant();
+    O getManufacturingPlant();
 
-    void setManufacturingPlant(OrganizationXMLImpl value);
+    void setManufacturingPlant(O value);
 
-    QuantitativeValue getMassPerUnitArea();
+    QV getMassPerUnitArea();
 
-    void setMassPerUnitArea(QuantitativeValue value);
+    void setMassPerUnitArea(QV value);
 
-    QuantitativeValue getNetArea();
+    QV getNetArea();
 
-    void setNetArea(QuantitativeValue value);
+    void setNetArea(QV value);
 
-    QuantitativeValue getNetContent();
+    QV getNetContent();
 
-    void setNetContent(QuantitativeValue value);
+    void setNetContent(QV value);
 
-    QuantitativeValue getNetWeight();
+    QV getNetWeight();
 
-    void setNetWeight(QuantitativeValue value);
+    void setNetWeight(QV value);
 
-    OrganicClaimDetails getOrganicClaim();
+    OC getOrganicClaim();
 
-    void setOrganicClaim(OrganicClaimDetails value);
+    void setOrganicClaim(OC value);
 
-    QuantitativeValue getOutOfPackageDepth();
+    QV getOutOfPackageDepth();
 
-    void setOutOfPackageDepth(QuantitativeValue value);
+    void setOutOfPackageDepth(QV value);
 
-    QuantitativeValue getOutOfPackageDiameter();
+    QV getOutOfPackageDiameter();
 
-    void setOutOfPackageDiameter(QuantitativeValue value);
+    void setOutOfPackageDiameter(QV value);
 
-    QuantitativeValue getOutOfPackageHeight();
+    QV getOutOfPackageHeight();
 
-    void setOutOfPackageHeight(QuantitativeValue value);
+    void setOutOfPackageHeight(QV value);
 
-    QuantitativeValue getOutOfPackageWidth();
+    QV getOutOfPackageWidth();
 
-    void setOutOfPackageWidth(QuantitativeValue value);
+    void setOutOfPackageWidth(QV value);
 
-    PackagingDetails getPackaging();
+    PD getPackaging();
 
-    void setPackaging(PackagingDetails value);
+    void setPackaging(PD value);
 
     String getPackagingDate();
 
@@ -283,9 +286,9 @@ public interface Product {
 
     void setPackagingMarkedLabelAccreditation(PackagingMarkedLabelAccreditationCode value);
 
-    ProductXMLImpl getPrimaryAlternateProduct();
+    P getPrimaryAlternateProduct();
 
-    void setPrimaryAlternateProduct(ProductXMLImpl value);
+    void setPrimaryAlternateProduct(P value);
 
     String getProductDescription();
 
@@ -339,37 +342,37 @@ public interface Product {
 
     void setProvenanceStatement(String value);
 
-    ReferencedFileDetails getReferencedFile();
+    RF getReferencedFile();
 
-    void setReferencedFile(ReferencedFileDetails value);
+    void setReferencedFile(RF value);
 
     String getRegulatedProductName();
 
     void setRegulatedProductName(String value);
 
-    ProductXMLImpl getReplacedByProduct();
+    P getReplacedByProduct();
 
-    void setReplacedByProduct(ProductXMLImpl value);
+    void setReplacedByProduct(P value);
 
-    ProductXMLImpl getReplacedProduct();
+    P getReplacedProduct();
 
-    void setReplacedProduct(ProductXMLImpl value);
+    void setReplacedProduct(P value);
 
     String getSellByDate();
 
     void setSellByDate(String value);
 
-    SizeCodeDetails getSizeCode();
+    SC getSizeCode();
 
-    void setSizeCode(SizeCodeDetails value);
+    void setSizeCode(SC value);
 
     String getSupplierSpecifiedMinimumConsumerStorageDays();
 
     void setSupplierSpecifiedMinimumConsumerStorageDays(String value);
 
-    TargetMarketDetails getTargetMarket();
+    TM getTargetMarket();
 
-    void setTargetMarket(TargetMarketDetails value);
+    void setTargetMarket(TM value);
 
     String getVariantDescription();
 
