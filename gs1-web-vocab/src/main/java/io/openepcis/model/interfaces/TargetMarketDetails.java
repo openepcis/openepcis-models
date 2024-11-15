@@ -1,11 +1,11 @@
 package io.openepcis.model.interfaces;
 
-public interface TargetMarketDetails {
+public interface TargetMarketDetails<C extends Country> {
     String getConsumerFirstAvailabilityDateTime();
 
     void setConsumerFirstAvailabilityDateTime(String value);
 
-    Country getTargetMarketCountries();
+    C getTargetMarketCountries();
 
-    void setTargetMarketCountries(Country value);
+    void setTargetMarketCountries(C value);
 }

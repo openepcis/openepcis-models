@@ -39,12 +39,12 @@ import jakarta.xml.bind.annotation.*;
     "packagingMaterialThickness",
     "packagingMaterialType"
 })
-public class PackagingMaterialDetailsXMLImpl implements PackagingMaterialDetails {
+public class PackagingMaterialDetailsXMLImpl implements PackagingMaterialDetails<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
-    protected QuantitativeValue packagingMaterialCompositionQuantity;
+    protected QuantitativeValueXMLImpl packagingMaterialCompositionQuantity;
     @XmlElement(required = true)
-    protected QuantitativeValue packagingMaterialThickness;
+    protected QuantitativeValueXMLImpl packagingMaterialThickness;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PackagingMaterialTypeCode packagingMaterialType;
@@ -58,7 +58,7 @@ public class PackagingMaterialDetailsXMLImpl implements PackagingMaterialDetails
      *     
      */
     @Override
-    public QuantitativeValue getPackagingMaterialCompositionQuantity() {
+    public QuantitativeValueXMLImpl getPackagingMaterialCompositionQuantity() {
         return packagingMaterialCompositionQuantity;
     }
 
@@ -71,7 +71,7 @@ public class PackagingMaterialDetailsXMLImpl implements PackagingMaterialDetails
      *     
      */
     @Override
-    public void setPackagingMaterialCompositionQuantity(QuantitativeValue value) {
+    public void setPackagingMaterialCompositionQuantity(QuantitativeValueXMLImpl value) {
         this.packagingMaterialCompositionQuantity = value;
     }
 
@@ -84,7 +84,7 @@ public class PackagingMaterialDetailsXMLImpl implements PackagingMaterialDetails
      *     
      */
     @Override
-    public QuantitativeValue getPackagingMaterialThickness() {
+    public QuantitativeValueXMLImpl getPackagingMaterialThickness() {
         return packagingMaterialThickness;
     }
 
@@ -97,7 +97,7 @@ public class PackagingMaterialDetailsXMLImpl implements PackagingMaterialDetails
      *     
      */
     @Override
-    public void setPackagingMaterialThickness(QuantitativeValue value) {
+    public void setPackagingMaterialThickness(QuantitativeValueXMLImpl value) {
         this.packagingMaterialThickness = value;
     }
 

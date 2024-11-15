@@ -50,10 +50,10 @@ import jakarta.xml.bind.annotation.*;
     "packagingShape",
     "packagingType"
 })
-public class PackagingDetailsXMLImpl implements PackagingDetails {
+public class PackagingDetailsXMLImpl implements PackagingDetails<ReturnablePackageDepositDetailsXMLImpl, PackagingMaterialDetailsXMLImpl> {
 
     @XmlElement(required = true)
-    protected ReturnablePackageDepositDetails hasReturnablePackageDeposit;
+    protected ReturnablePackageDepositDetailsXMLImpl hasReturnablePackageDeposit;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PackagingFeatureCode packagingFeature;
@@ -61,7 +61,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails {
     @XmlSchemaType(name = "string")
     protected PackagingFunctionCode packagingFunction;
     @XmlElement(required = true)
-    protected PackagingMaterialDetails packagingMaterial;
+    protected PackagingMaterialDetailsXMLImpl packagingMaterial;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PackagingRecyclingProcessTypeCode packagingRecyclingProcessType;
@@ -83,7 +83,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails {
      *     
      */
     @Override
-    public ReturnablePackageDepositDetails getHasReturnablePackageDeposit() {
+    public ReturnablePackageDepositDetailsXMLImpl getHasReturnablePackageDeposit() {
         return hasReturnablePackageDeposit;
     }
 
@@ -96,7 +96,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails {
      *     
      */
     @Override
-    public void setHasReturnablePackageDeposit(ReturnablePackageDepositDetails value) {
+    public void setHasReturnablePackageDeposit(ReturnablePackageDepositDetailsXMLImpl value) {
         this.hasReturnablePackageDeposit = value;
     }
 
@@ -161,7 +161,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails {
      *     
      */
     @Override
-    public PackagingMaterialDetails getPackagingMaterial() {
+    public PackagingMaterialDetailsXMLImpl getPackagingMaterial() {
         return packagingMaterial;
     }
 
@@ -174,7 +174,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails {
      *     
      */
     @Override
-    public void setPackagingMaterial(PackagingMaterialDetails value) {
+    public void setPackagingMaterial(PackagingMaterialDetailsXMLImpl value) {
         this.packagingMaterial = value;
     }
 

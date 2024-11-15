@@ -40,12 +40,12 @@ import jakarta.xml.bind.annotation.XmlType;
     "returnablePackageDepositAmount",
     "returnablePackageDepositRegion"
 })
-public class ReturnablePackageDepositDetailsXMLImpl implements ReturnablePackageDepositDetails {
+public class ReturnablePackageDepositDetailsXMLImpl implements ReturnablePackageDepositDetails<PriceSpecificationXMLImpl,CountryXMLImpl> {
 
     @XmlElement(required = true)
     protected PriceSpecificationXMLImpl returnablePackageDepositAmount;
     @XmlElement(required = true)
-    protected Country returnablePackageDepositRegion;
+    protected CountryXMLImpl returnablePackageDepositRegion;
 
     /**
      * Gets the value of the returnablePackageDepositAmount property.
@@ -82,7 +82,7 @@ public class ReturnablePackageDepositDetailsXMLImpl implements ReturnablePackage
      *     
      */
     @Override
-    public Country getReturnablePackageDepositRegion() {
+    public CountryXMLImpl getReturnablePackageDepositRegion() {
         return returnablePackageDepositRegion;
     }
 
@@ -95,7 +95,7 @@ public class ReturnablePackageDepositDetailsXMLImpl implements ReturnablePackage
      *     
      */
     @Override
-    public void setReturnablePackageDepositRegion(Country value) {
+    public void setReturnablePackageDepositRegion(CountryXMLImpl value) {
         this.returnablePackageDepositRegion = value;
     }
 
