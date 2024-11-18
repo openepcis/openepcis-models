@@ -66,7 +66,7 @@ import jakarta.xml.bind.annotation.*;
     FootwearXMLImpl.class
 })
 public class WearableProductXMLImpl
-    extends ProductXMLImpl implements WearableProduct {
+    extends ProductXMLImpl implements WearableProduct<SizeDetailsXMLImpl> {
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
@@ -91,7 +91,7 @@ public class WearableProductXMLImpl
     @XmlSchemaType(name = "string")
     protected SeasonParameterCode seasonParameter;
     @XmlElement(required = true)
-    protected SizeDetails size;
+    protected SizeDetailsXMLImpl size;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected SportingActivityTypeCode sportingActivityType;
@@ -322,7 +322,7 @@ public class WearableProductXMLImpl
      *     
      */
     @Override
-    public SizeDetails getSize() {
+    public SizeDetailsXMLImpl getSize() {
         return size;
     }
 
@@ -335,7 +335,7 @@ public class WearableProductXMLImpl
      *     
      */
     @Override
-    public void setSize(SizeDetails value) {
+    public void setSize(SizeDetailsXMLImpl value) {
         this.size = value;
     }
 

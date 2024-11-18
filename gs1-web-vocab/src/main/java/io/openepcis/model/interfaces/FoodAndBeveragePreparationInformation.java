@@ -2,7 +2,7 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.PreparationTypeCode;
 
-public interface FoodAndBeveragePreparationInformation {
+public interface FoodAndBeveragePreparationInformation<PY extends ProductYieldDetails,QV extends QuantitativeValue> {
     String getConvenienceLevelPercent();
 
     void setConvenienceLevelPercent(String value);
@@ -11,13 +11,13 @@ public interface FoodAndBeveragePreparationInformation {
 
     void setManufacturerPreparationCode(PreparationTypeCode value);
 
-    QuantitativeValue getMaximumOptimumConsumptionTemperature();
+    QV getMaximumOptimumConsumptionTemperature();
 
-    void setMaximumOptimumConsumptionTemperature(QuantitativeValue value);
+    void setMaximumOptimumConsumptionTemperature(QV value);
 
-    QuantitativeValue getMinimumOptimumConsumptionTemperature();
+    QV getMinimumOptimumConsumptionTemperature();
 
-    void setMinimumOptimumConsumptionTemperature(QuantitativeValue value);
+    void setMinimumOptimumConsumptionTemperature(QV value);
 
     PreparationTypeCode getPreparationCode();
 
@@ -31,7 +31,7 @@ public interface FoodAndBeveragePreparationInformation {
 
     void setPreparationInstructions(String value);
 
-    ProductYieldDetails getYield();
+    PY getYield();
 
-    void setYield(ProductYieldDetails value);
+    void setYield(PY value);
 }

@@ -50,7 +50,7 @@ import jakarta.xml.bind.annotation.*;
     "preparationInstructions",
     "yield"
 })
-public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeveragePreparationInformation {
+public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeveragePreparationInformation<ProductYieldDetailsXMLImpl,QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
     protected String convenienceLevelPercent;
@@ -58,9 +58,9 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
     @XmlSchemaType(name = "string")
     protected PreparationTypeCode manufacturerPreparationCode;
     @XmlElement(required = true)
-    protected QuantitativeValue maximumOptimumConsumptionTemperature;
+    protected QuantitativeValueXMLImpl maximumOptimumConsumptionTemperature;
     @XmlElement(required = true)
-    protected QuantitativeValue minimumOptimumConsumptionTemperature;
+    protected QuantitativeValueXMLImpl minimumOptimumConsumptionTemperature;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PreparationTypeCode preparationCode;
@@ -69,7 +69,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
     @XmlElement(required = true)
     protected String preparationInstructions;
     @XmlElement(required = true)
-    protected ProductYieldDetails yield;
+    protected ProductYieldDetailsXMLImpl yield;
 
     /**
      * Gets the value of the convenienceLevelPercent property.
@@ -132,7 +132,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public QuantitativeValue getMaximumOptimumConsumptionTemperature() {
+    public QuantitativeValueXMLImpl getMaximumOptimumConsumptionTemperature() {
         return maximumOptimumConsumptionTemperature;
     }
 
@@ -145,7 +145,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public void setMaximumOptimumConsumptionTemperature(QuantitativeValue value) {
+    public void setMaximumOptimumConsumptionTemperature(QuantitativeValueXMLImpl value) {
         this.maximumOptimumConsumptionTemperature = value;
     }
 
@@ -158,7 +158,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public QuantitativeValue getMinimumOptimumConsumptionTemperature() {
+    public QuantitativeValueXMLImpl getMinimumOptimumConsumptionTemperature() {
         return minimumOptimumConsumptionTemperature;
     }
 
@@ -171,7 +171,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public void setMinimumOptimumConsumptionTemperature(QuantitativeValue value) {
+    public void setMinimumOptimumConsumptionTemperature(QuantitativeValueXMLImpl value) {
         this.minimumOptimumConsumptionTemperature = value;
     }
 
@@ -262,7 +262,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public ProductYieldDetails getYield() {
+    public ProductYieldDetailsXMLImpl getYield() {
         return yield;
     }
 
@@ -275,7 +275,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public void setYield(ProductYieldDetails value) {
+    public void setYield(ProductYieldDetailsXMLImpl value) {
         this.yield = value;
     }
 

@@ -4,10 +4,10 @@ import io.openepcis.model.gs1webvocab.SizeGroupCode;
 import io.openepcis.model.gs1webvocab.SizeSystemCode;
 import io.openepcis.model.gs1webvocab.SizeTypeCode;
 
-public interface SizeDetails {
-    QuantitativeValue getSizeDimension();
+public interface SizeDetails<QV extends QuantitativeValue> {
+    QV getSizeDimension();
 
-    void setSizeDimension(QuantitativeValue value);
+    void setSizeDimension(QV value);
 
     SizeGroupCode getSizeGroup();
 

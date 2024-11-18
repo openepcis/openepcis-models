@@ -39,10 +39,10 @@ import jakarta.xml.bind.annotation.*;
     "productYieldType",
     "productYieldVariationPercentage"
 })
-public class ProductYieldDetailsXMLImpl implements ProductYieldDetails {
+public class ProductYieldDetailsXMLImpl implements ProductYieldDetails<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
-    protected QuantitativeValue productYield;
+    protected QuantitativeValueXMLImpl productYield;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected ProductYieldTypeCode productYieldType;
@@ -58,7 +58,7 @@ public class ProductYieldDetailsXMLImpl implements ProductYieldDetails {
      *     
      */
     @Override
-    public QuantitativeValue getProductYield() {
+    public QuantitativeValueXMLImpl getProductYield() {
         return productYield;
     }
 
@@ -71,7 +71,7 @@ public class ProductYieldDetailsXMLImpl implements ProductYieldDetails {
      *     
      */
     @Override
-    public void setProductYield(QuantitativeValue value) {
+    public void setProductYield(QuantitativeValueXMLImpl value) {
         this.productYield = value;
     }
 
