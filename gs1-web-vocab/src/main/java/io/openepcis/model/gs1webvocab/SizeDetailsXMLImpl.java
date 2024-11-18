@@ -41,10 +41,10 @@ import jakarta.xml.bind.annotation.*;
     "sizeSystem",
     "sizeType"
 })
-public class SizeDetailsXMLImpl implements SizeDetails {
+public class SizeDetailsXMLImpl implements SizeDetails<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
-    protected QuantitativeValue sizeDimension;
+    protected QuantitativeValueXMLImpl sizeDimension;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected SizeGroupCode sizeGroup;
@@ -64,7 +64,7 @@ public class SizeDetailsXMLImpl implements SizeDetails {
      *     
      */
     @Override
-    public QuantitativeValue getSizeDimension() {
+    public QuantitativeValueXMLImpl getSizeDimension() {
         return sizeDimension;
     }
 
@@ -77,7 +77,7 @@ public class SizeDetailsXMLImpl implements SizeDetails {
      *     
      */
     @Override
-    public void setSizeDimension(QuantitativeValue value) {
+    public void setSizeDimension(QuantitativeValueXMLImpl value) {
         this.sizeDimension = value;
     }
 
