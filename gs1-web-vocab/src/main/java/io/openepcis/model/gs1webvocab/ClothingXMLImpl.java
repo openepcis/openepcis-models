@@ -42,7 +42,7 @@ import jakarta.xml.bind.annotation.*;
     "textileMaterial"
 })
 public class ClothingXMLImpl
-    extends WearableProductXMLImpl implements Clothing {
+    extends WearableProductXMLImpl implements Clothing<TextileMaterialDetailsXMLImpl> {
 
     @XmlElement(required = true)
     protected String clothingCut;
@@ -52,7 +52,7 @@ public class ClothingXMLImpl
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode isMaternity;
     @XmlElement(required = true)
-    protected TextileMaterialDetails textileMaterial;
+    protected TextileMaterialDetailsXMLImpl textileMaterial;
 
     /**
      * Gets the value of the clothingCut property.
@@ -141,7 +141,7 @@ public class ClothingXMLImpl
      *     
      */
     @Override
-    public TextileMaterialDetails getTextileMaterial() {
+    public TextileMaterialDetailsXMLImpl getTextileMaterial() {
         return textileMaterial;
     }
 
@@ -154,7 +154,7 @@ public class ClothingXMLImpl
      *     
      */
     @Override
-    public void setTextileMaterial(TextileMaterialDetails value) {
+    public void setTextileMaterial(TextileMaterialDetailsXMLImpl value) {
         this.textileMaterial = value;
     }
 

@@ -44,7 +44,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "textileMaterialThreadCount",
     "textileMaterialWeight"
 })
-public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails {
+public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
     protected String textileMaterialDescription;
@@ -53,7 +53,7 @@ public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails {
     @XmlElement(required = true)
     protected String textileMaterialThreadCount;
     @XmlElement(required = true)
-    protected QuantitativeValue textileMaterialWeight;
+    protected QuantitativeValueXMLImpl textileMaterialWeight;
 
     /**
      * Gets the value of the textileMaterialDescription property.
@@ -142,7 +142,7 @@ public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails {
      *     
      */
     @Override
-    public QuantitativeValue getTextileMaterialWeight() {
+    public QuantitativeValueXMLImpl getTextileMaterialWeight() {
         return textileMaterialWeight;
     }
 
@@ -155,7 +155,7 @@ public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails {
      *     
      */
     @Override
-    public void setTextileMaterialWeight(QuantitativeValue value) {
+    public void setTextileMaterialWeight(QuantitativeValueXMLImpl value) {
         this.textileMaterialWeight = value;
     }
 

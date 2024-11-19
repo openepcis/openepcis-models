@@ -4,7 +4,7 @@ import io.openepcis.model.gs1webvocab.CheeseFirmnessCode;
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 import io.openepcis.model.gs1webvocab.SharpnessOfCheeseCode;
 
-public interface MilkButterCreamYogurtCheeseEggsSubstitutes extends FoodBeverageTobaccoProduct {
+public interface MilkButterCreamYogurtCheeseEggsSubstitutes {
     CheeseFirmnessCode getCheeseFirmness();
 
     void setCheeseFirmness(CheeseFirmnessCode value);

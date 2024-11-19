@@ -40,7 +40,7 @@ import jakarta.xml.bind.annotation.*;
     "upperMaterialType"
 })
 public class FootwearXMLImpl
-    extends WearableProductXMLImpl implements Footwear {
+    extends WearableProductXMLImpl implements Footwear<TextileMaterialDetailsXMLImpl> {
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
@@ -49,7 +49,7 @@ public class FootwearXMLImpl
     @XmlSchemaType(name = "string")
     protected UpperTypeCode footwearUpperType;
     @XmlElement(required = true)
-    protected TextileMaterialDetails upperMaterialType;
+    protected TextileMaterialDetailsXMLImpl upperMaterialType;
 
     /**
      * Gets the value of the footwearFasteningType property.
@@ -112,7 +112,7 @@ public class FootwearXMLImpl
      *     
      */
     @Override
-    public TextileMaterialDetails getUpperMaterialType() {
+    public TextileMaterialDetailsXMLImpl getUpperMaterialType() {
         return upperMaterialType;
     }
 
@@ -125,7 +125,7 @@ public class FootwearXMLImpl
      *     
      */
     @Override
-    public void setUpperMaterialType(TextileMaterialDetails value) {
+    public void setUpperMaterialType(TextileMaterialDetailsXMLImpl value) {
         this.upperMaterialType = value;
     }
 

@@ -1,6 +1,6 @@
 package io.openepcis.model.interfaces;
 
-public interface TextileMaterialDetails {
+public interface TextileMaterialDetails<QV extends QuantitativeValue> {
     String getTextileMaterialDescription();
 
     void setTextileMaterialDescription(String value);
@@ -13,7 +13,7 @@ public interface TextileMaterialDetails {
 
     void setTextileMaterialThreadCount(String value);
 
-    QuantitativeValue getTextileMaterialWeight();
+    QV getTextileMaterialWeight();
 
-    void setTextileMaterialWeight(QuantitativeValue value);
+    void setTextileMaterialWeight(QV value);
 }

@@ -42,7 +42,7 @@ import jakarta.xml.bind.annotation.*;
     "minimumMeatPoultryContent"
 })
 public class MeatPoultryXMLImpl
-    extends FoodBeverageTobaccoProductXMLImpl implements MeatPoultry {
+    extends FoodBeverageTobaccoProductXMLImpl implements MeatPoultry<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
@@ -53,7 +53,7 @@ public class MeatPoultryXMLImpl
     @XmlElement(required = true)
     protected String meatPoultryType;
     @XmlElement(required = true)
-    protected QuantitativeValue minimumMeatPoultryContent;
+    protected QuantitativeValueXMLImpl minimumMeatPoultryContent;
 
     /**
      * Gets the value of the anatomicalForm property.
@@ -142,7 +142,7 @@ public class MeatPoultryXMLImpl
      *     
      */
     @Override
-    public QuantitativeValue getMinimumMeatPoultryContent() {
+    public QuantitativeValueXMLImpl getMinimumMeatPoultryContent() {
         return minimumMeatPoultryContent;
     }
 
@@ -155,7 +155,7 @@ public class MeatPoultryXMLImpl
      *     
      */
     @Override
-    public void setMinimumMeatPoultryContent(QuantitativeValue value) {
+    public void setMinimumMeatPoultryContent(QuantitativeValueXMLImpl value) {
         this.minimumMeatPoultryContent = value;
     }
 

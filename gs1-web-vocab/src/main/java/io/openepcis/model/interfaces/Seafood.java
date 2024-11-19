@@ -2,7 +2,7 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.FreshOrSeawaterFarmedCode;
 
-public interface Seafood {
+public interface Seafood<QV extends QuantitativeValue> {
     String getCatchZone();
 
     void setCatchZone(String value);
@@ -15,7 +15,7 @@ public interface Seafood {
 
     void setFreshOrSeawaterFarmed(FreshOrSeawaterFarmedCode value);
 
-    QuantitativeValue getMinimumFishContent();
+    QV getMinimumFishContent();
 
-    void setMinimumFishContent(QuantitativeValue value);
+    void setMinimumFishContent(QV value);
 }

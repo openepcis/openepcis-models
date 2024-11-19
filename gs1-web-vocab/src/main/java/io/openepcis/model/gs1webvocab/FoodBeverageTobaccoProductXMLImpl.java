@@ -194,7 +194,8 @@ import jakarta.xml.bind.annotation.*;
     SeafoodXMLImpl.class
 })
 public class FoodBeverageTobaccoProductXMLImpl
-    extends ProductXMLImpl implements FoodBeverageTobaccoProduct {
+    extends ProductXMLImpl implements FoodBeverageTobaccoProduct<NutritionMeasurementTypeXMLImpl,FoodAndBeveragePreparationInformationXMLImpl,
+        AllergenDetailsXMLImpl, FoodBeverageTobaccoIngredientDetailsXMLImpl,QuantitativeValueXMLImpl,DietTypeCodeDetailsXMLImpl> {
 
     @XmlElement(required = true)
     protected String allergenSpecificationAgency;
@@ -203,37 +204,37 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlElement(required = true)
     protected String allergenStatement;
     @XmlElement(required = true)
-    protected NutritionMeasurementType biotinPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl biotinPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType calciumPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl calciumPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType carbohydratesPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl carbohydratesPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType chloridePerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl chloridePerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType cholesterolPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl cholesterolPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType chromiumPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl chromiumPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType copperPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl copperPerNutrientBasis;
     @XmlElement(required = true)
-    protected DietTypeCodeDetails dietCode;
+    protected DietTypeCodeDetailsXMLImpl dietCode;
     @XmlElement(required = true)
     protected String dietTypeDescription;
     @XmlElement(required = true)
-    protected QuantitativeValue drainedWeight;
+    protected QuantitativeValueXMLImpl drainedWeight;
     @XmlElement(required = true)
-    protected NutritionMeasurementType energyFromFatPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl energyFromFatPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType energyPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl energyPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType fatPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl fatPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType fibrePerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl fibrePerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType fluoridePerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl fluoridePerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType folicAcidPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl folicAcidPerNutrientBasis;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected FoodBeverageRefrigerationClaimCode foodBeverageRefrigerationClaim;
@@ -244,17 +245,17 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlSchemaType(name = "string")
     protected LevelOfContainmentCode geneticallyModifiedDeclaration;
     @XmlElement(required = true)
-    protected AllergenDetails hasAllergen;
+    protected AllergenDetailsXMLImpl hasAllergen;
     @XmlElement(required = true)
-    protected FoodBeverageTobaccoIngredientDetails ingredient;
+    protected FoodBeverageTobaccoIngredientDetailsXMLImpl ingredient;
     @XmlElement(required = true)
     protected String ingredientOfConcern;
     @XmlElement(required = true)
     protected String ingredientStatement;
     @XmlElement(required = true)
-    protected NutritionMeasurementType iodinePerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl iodinePerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType ironPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl ironPerNutrientBasis;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode irradiatedCode;
@@ -267,15 +268,15 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlElement(required = true)
     protected String juiceContentPercent;
     @XmlElement(required = true)
-    protected NutritionMeasurementType magnesiumPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl magnesiumPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType manganesePerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl manganesePerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType molybdenumPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl molybdenumPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType monounsaturatedFatPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl monounsaturatedFatPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType niacinPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl niacinPerNutrientBasis;
     @XmlElement(required = true)
     protected String numberOfServingsPerPackage;
     @XmlElement(required = true)
@@ -284,7 +285,7 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlElement(required = true)
     protected String numberOfServingsRangeDescription;
     @XmlElement(required = true)
-    protected QuantitativeValue nutrientBasisQuantity;
+    protected QuantitativeValueXMLImpl nutrientBasisQuantity;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected NutrientBasisQuantityCode nutrientBasisQuantityType;
@@ -303,68 +304,68 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlSchemaType(name = "string")
     protected PackagingMarkedFreeFromCode packagingMarkedFreeFrom;
     @XmlElement(required = true)
-    protected NutritionMeasurementType pantothenicAcidPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl pantothenicAcidPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType phosphorusPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl phosphorusPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType polyolsPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl polyolsPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType polyunsaturatedFatPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl polyunsaturatedFatPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType potassiumPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl potassiumPerNutrientBasis;
     @XmlElement(required = true)
-    protected FoodAndBeveragePreparationInformation preparationInformation;
+    protected FoodAndBeveragePreparationInformationXMLImpl preparationInformation;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PreservationTechniqueCode preservationTechnique;
     @XmlElement(required = true)
-    protected NutritionMeasurementType proteinPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl proteinPerNutrientBasis;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode reheatingClaim;
     @XmlElement(required = true)
-    protected NutritionMeasurementType riboflavinPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl riboflavinPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType saltPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl saltPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType saturatedFatPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl saturatedFatPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType seleniumPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl seleniumPerNutrientBasis;
     @XmlElement(required = true)
-    protected QuantitativeValue servingSize;
+    protected QuantitativeValueXMLImpl servingSize;
     @XmlElement(required = true)
     protected String servingSizeDescription;
     @XmlElement(required = true)
     protected String servingSuggestion;
     @XmlElement(required = true)
-    protected NutritionMeasurementType sodiumPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl sodiumPerNutrientBasis;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected SourceAnimalCode sourceAnimal;
     @XmlElement(required = true)
-    protected NutritionMeasurementType starchPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl starchPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType sugarsPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl sugarsPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType thiaminPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl thiaminPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType transFatPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl transFatPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType vitaminAPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl vitaminAPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType vitaminB12PerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl vitaminB12PerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType vitaminB6PerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl vitaminB6PerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType vitaminCPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl vitaminCPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType vitaminDPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl vitaminDPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType vitaminEPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl vitaminEPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType vitaminKPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl vitaminKPerNutrientBasis;
     @XmlElement(required = true)
-    protected NutritionMeasurementType zincPerNutrientBasis;
+    protected NutritionMeasurementTypeXMLImpl zincPerNutrientBasis;
 
     /**
      * Gets the value of the allergenSpecificationAgency property.
@@ -453,7 +454,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getBiotinPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getBiotinPerNutrientBasis() {
         return biotinPerNutrientBasis;
     }
 
@@ -466,7 +467,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setBiotinPerNutrientBasis(NutritionMeasurementType value) {
+    public void setBiotinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.biotinPerNutrientBasis = value;
     }
 
@@ -479,7 +480,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getCalciumPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getCalciumPerNutrientBasis() {
         return calciumPerNutrientBasis;
     }
 
@@ -492,7 +493,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setCalciumPerNutrientBasis(NutritionMeasurementType value) {
+    public void setCalciumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.calciumPerNutrientBasis = value;
     }
 
@@ -505,7 +506,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getCarbohydratesPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getCarbohydratesPerNutrientBasis() {
         return carbohydratesPerNutrientBasis;
     }
 
@@ -518,7 +519,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setCarbohydratesPerNutrientBasis(NutritionMeasurementType value) {
+    public void setCarbohydratesPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.carbohydratesPerNutrientBasis = value;
     }
 
@@ -531,7 +532,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getChloridePerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getChloridePerNutrientBasis() {
         return chloridePerNutrientBasis;
     }
 
@@ -544,7 +545,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setChloridePerNutrientBasis(NutritionMeasurementType value) {
+    public void setChloridePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.chloridePerNutrientBasis = value;
     }
 
@@ -557,7 +558,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getCholesterolPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getCholesterolPerNutrientBasis() {
         return cholesterolPerNutrientBasis;
     }
 
@@ -570,7 +571,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setCholesterolPerNutrientBasis(NutritionMeasurementType value) {
+    public void setCholesterolPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.cholesterolPerNutrientBasis = value;
     }
 
@@ -583,7 +584,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getChromiumPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getChromiumPerNutrientBasis() {
         return chromiumPerNutrientBasis;
     }
 
@@ -596,7 +597,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setChromiumPerNutrientBasis(NutritionMeasurementType value) {
+    public void setChromiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.chromiumPerNutrientBasis = value;
     }
 
@@ -609,7 +610,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getCopperPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getCopperPerNutrientBasis() {
         return copperPerNutrientBasis;
     }
 
@@ -622,7 +623,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setCopperPerNutrientBasis(NutritionMeasurementType value) {
+    public void setCopperPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.copperPerNutrientBasis = value;
     }
 
@@ -635,7 +636,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public DietTypeCodeDetails getDietCode() {
+    public DietTypeCodeDetailsXMLImpl getDietCode() {
         return dietCode;
     }
 
@@ -648,7 +649,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setDietCode(DietTypeCodeDetails value) {
+    public void setDietCode(DietTypeCodeDetailsXMLImpl value) {
         this.dietCode = value;
     }
 
@@ -687,7 +688,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public QuantitativeValue getDrainedWeight() {
+    public QuantitativeValueXMLImpl getDrainedWeight() {
         return drainedWeight;
     }
 
@@ -700,7 +701,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setDrainedWeight(QuantitativeValue value) {
+    public void setDrainedWeight(QuantitativeValueXMLImpl value) {
         this.drainedWeight = value;
     }
 
@@ -713,7 +714,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getEnergyFromFatPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getEnergyFromFatPerNutrientBasis() {
         return energyFromFatPerNutrientBasis;
     }
 
@@ -726,7 +727,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setEnergyFromFatPerNutrientBasis(NutritionMeasurementType value) {
+    public void setEnergyFromFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.energyFromFatPerNutrientBasis = value;
     }
 
@@ -739,7 +740,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getEnergyPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getEnergyPerNutrientBasis() {
         return energyPerNutrientBasis;
     }
 
@@ -752,7 +753,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setEnergyPerNutrientBasis(NutritionMeasurementType value) {
+    public void setEnergyPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.energyPerNutrientBasis = value;
     }
 
@@ -765,7 +766,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getFatPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getFatPerNutrientBasis() {
         return fatPerNutrientBasis;
     }
 
@@ -778,7 +779,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setFatPerNutrientBasis(NutritionMeasurementType value) {
+    public void setFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.fatPerNutrientBasis = value;
     }
 
@@ -791,7 +792,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getFibrePerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getFibrePerNutrientBasis() {
         return fibrePerNutrientBasis;
     }
 
@@ -804,7 +805,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setFibrePerNutrientBasis(NutritionMeasurementType value) {
+    public void setFibrePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.fibrePerNutrientBasis = value;
     }
 
@@ -817,7 +818,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getFluoridePerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getFluoridePerNutrientBasis() {
         return fluoridePerNutrientBasis;
     }
 
@@ -830,7 +831,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setFluoridePerNutrientBasis(NutritionMeasurementType value) {
+    public void setFluoridePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.fluoridePerNutrientBasis = value;
     }
 
@@ -843,7 +844,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getFolicAcidPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getFolicAcidPerNutrientBasis() {
         return folicAcidPerNutrientBasis;
     }
 
@@ -856,7 +857,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setFolicAcidPerNutrientBasis(NutritionMeasurementType value) {
+    public void setFolicAcidPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.folicAcidPerNutrientBasis = value;
     }
 
@@ -947,7 +948,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public AllergenDetails getHasAllergen() {
+    public AllergenDetailsXMLImpl getHasAllergen() {
         return hasAllergen;
     }
 
@@ -960,7 +961,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setHasAllergen(AllergenDetails value) {
+    public void setHasAllergen(AllergenDetailsXMLImpl value) {
         this.hasAllergen = value;
     }
 
@@ -973,7 +974,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public FoodBeverageTobaccoIngredientDetails getIngredient() {
+    public FoodBeverageTobaccoIngredientDetailsXMLImpl getIngredient() {
         return ingredient;
     }
 
@@ -986,7 +987,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setIngredient(FoodBeverageTobaccoIngredientDetails value) {
+    public void setIngredient(FoodBeverageTobaccoIngredientDetailsXMLImpl value) {
         this.ingredient = value;
     }
 
@@ -1051,7 +1052,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getIodinePerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getIodinePerNutrientBasis() {
         return iodinePerNutrientBasis;
     }
 
@@ -1064,7 +1065,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setIodinePerNutrientBasis(NutritionMeasurementType value) {
+    public void setIodinePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.iodinePerNutrientBasis = value;
     }
 
@@ -1077,7 +1078,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getIronPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getIronPerNutrientBasis() {
         return ironPerNutrientBasis;
     }
 
@@ -1090,7 +1091,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setIronPerNutrientBasis(NutritionMeasurementType value) {
+    public void setIronPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.ironPerNutrientBasis = value;
     }
 
@@ -1207,7 +1208,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getMagnesiumPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getMagnesiumPerNutrientBasis() {
         return magnesiumPerNutrientBasis;
     }
 
@@ -1220,7 +1221,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setMagnesiumPerNutrientBasis(NutritionMeasurementType value) {
+    public void setMagnesiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.magnesiumPerNutrientBasis = value;
     }
 
@@ -1233,7 +1234,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getManganesePerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getManganesePerNutrientBasis() {
         return manganesePerNutrientBasis;
     }
 
@@ -1246,7 +1247,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setManganesePerNutrientBasis(NutritionMeasurementType value) {
+    public void setManganesePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.manganesePerNutrientBasis = value;
     }
 
@@ -1259,7 +1260,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getMolybdenumPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getMolybdenumPerNutrientBasis() {
         return molybdenumPerNutrientBasis;
     }
 
@@ -1272,7 +1273,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setMolybdenumPerNutrientBasis(NutritionMeasurementType value) {
+    public void setMolybdenumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.molybdenumPerNutrientBasis = value;
     }
 
@@ -1285,7 +1286,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getMonounsaturatedFatPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getMonounsaturatedFatPerNutrientBasis() {
         return monounsaturatedFatPerNutrientBasis;
     }
 
@@ -1298,7 +1299,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setMonounsaturatedFatPerNutrientBasis(NutritionMeasurementType value) {
+    public void setMonounsaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.monounsaturatedFatPerNutrientBasis = value;
     }
 
@@ -1311,7 +1312,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getNiacinPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getNiacinPerNutrientBasis() {
         return niacinPerNutrientBasis;
     }
 
@@ -1324,7 +1325,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setNiacinPerNutrientBasis(NutritionMeasurementType value) {
+    public void setNiacinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.niacinPerNutrientBasis = value;
     }
 
@@ -1415,7 +1416,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public QuantitativeValue getNutrientBasisQuantity() {
+    public QuantitativeValueXMLImpl getNutrientBasisQuantity() {
         return nutrientBasisQuantity;
     }
 
@@ -1428,7 +1429,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setNutrientBasisQuantity(QuantitativeValue value) {
+    public void setNutrientBasisQuantity(QuantitativeValueXMLImpl value) {
         this.nutrientBasisQuantity = value;
     }
 
@@ -1597,7 +1598,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getPantothenicAcidPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getPantothenicAcidPerNutrientBasis() {
         return pantothenicAcidPerNutrientBasis;
     }
 
@@ -1610,7 +1611,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setPantothenicAcidPerNutrientBasis(NutritionMeasurementType value) {
+    public void setPantothenicAcidPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.pantothenicAcidPerNutrientBasis = value;
     }
 
@@ -1623,7 +1624,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getPhosphorusPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getPhosphorusPerNutrientBasis() {
         return phosphorusPerNutrientBasis;
     }
 
@@ -1636,7 +1637,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setPhosphorusPerNutrientBasis(NutritionMeasurementType value) {
+    public void setPhosphorusPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.phosphorusPerNutrientBasis = value;
     }
 
@@ -1649,7 +1650,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getPolyolsPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getPolyolsPerNutrientBasis() {
         return polyolsPerNutrientBasis;
     }
 
@@ -1662,7 +1663,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setPolyolsPerNutrientBasis(NutritionMeasurementType value) {
+    public void setPolyolsPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.polyolsPerNutrientBasis = value;
     }
 
@@ -1675,7 +1676,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getPolyunsaturatedFatPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getPolyunsaturatedFatPerNutrientBasis() {
         return polyunsaturatedFatPerNutrientBasis;
     }
 
@@ -1688,7 +1689,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setPolyunsaturatedFatPerNutrientBasis(NutritionMeasurementType value) {
+    public void setPolyunsaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.polyunsaturatedFatPerNutrientBasis = value;
     }
 
@@ -1701,7 +1702,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getPotassiumPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getPotassiumPerNutrientBasis() {
         return potassiumPerNutrientBasis;
     }
 
@@ -1714,7 +1715,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setPotassiumPerNutrientBasis(NutritionMeasurementType value) {
+    public void setPotassiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.potassiumPerNutrientBasis = value;
     }
 
@@ -1727,7 +1728,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public FoodAndBeveragePreparationInformation getPreparationInformation() {
+    public FoodAndBeveragePreparationInformationXMLImpl getPreparationInformation() {
         return preparationInformation;
     }
 
@@ -1740,7 +1741,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setPreparationInformation(FoodAndBeveragePreparationInformation value) {
+    public void setPreparationInformation(FoodAndBeveragePreparationInformationXMLImpl value) {
         this.preparationInformation = value;
     }
 
@@ -1779,7 +1780,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getProteinPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getProteinPerNutrientBasis() {
         return proteinPerNutrientBasis;
     }
 
@@ -1792,7 +1793,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setProteinPerNutrientBasis(NutritionMeasurementType value) {
+    public void setProteinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.proteinPerNutrientBasis = value;
     }
 
@@ -1831,7 +1832,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getRiboflavinPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getRiboflavinPerNutrientBasis() {
         return riboflavinPerNutrientBasis;
     }
 
@@ -1844,7 +1845,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setRiboflavinPerNutrientBasis(NutritionMeasurementType value) {
+    public void setRiboflavinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.riboflavinPerNutrientBasis = value;
     }
 
@@ -1857,7 +1858,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getSaltPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getSaltPerNutrientBasis() {
         return saltPerNutrientBasis;
     }
 
@@ -1870,7 +1871,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setSaltPerNutrientBasis(NutritionMeasurementType value) {
+    public void setSaltPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.saltPerNutrientBasis = value;
     }
 
@@ -1883,7 +1884,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getSaturatedFatPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getSaturatedFatPerNutrientBasis() {
         return saturatedFatPerNutrientBasis;
     }
 
@@ -1896,7 +1897,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setSaturatedFatPerNutrientBasis(NutritionMeasurementType value) {
+    public void setSaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.saturatedFatPerNutrientBasis = value;
     }
 
@@ -1909,7 +1910,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getSeleniumPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getSeleniumPerNutrientBasis() {
         return seleniumPerNutrientBasis;
     }
 
@@ -1922,7 +1923,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setSeleniumPerNutrientBasis(NutritionMeasurementType value) {
+    public void setSeleniumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.seleniumPerNutrientBasis = value;
     }
 
@@ -1935,7 +1936,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public QuantitativeValue getServingSize() {
+    public QuantitativeValueXMLImpl getServingSize() {
         return servingSize;
     }
 
@@ -1948,7 +1949,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setServingSize(QuantitativeValue value) {
+    public void setServingSize(QuantitativeValueXMLImpl value) {
         this.servingSize = value;
     }
 
@@ -2013,7 +2014,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getSodiumPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getSodiumPerNutrientBasis() {
         return sodiumPerNutrientBasis;
     }
 
@@ -2026,7 +2027,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setSodiumPerNutrientBasis(NutritionMeasurementType value) {
+    public void setSodiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.sodiumPerNutrientBasis = value;
     }
 
@@ -2065,7 +2066,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getStarchPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getStarchPerNutrientBasis() {
         return starchPerNutrientBasis;
     }
 
@@ -2078,7 +2079,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setStarchPerNutrientBasis(NutritionMeasurementType value) {
+    public void setStarchPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.starchPerNutrientBasis = value;
     }
 
@@ -2091,7 +2092,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getSugarsPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getSugarsPerNutrientBasis() {
         return sugarsPerNutrientBasis;
     }
 
@@ -2104,7 +2105,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setSugarsPerNutrientBasis(NutritionMeasurementType value) {
+    public void setSugarsPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.sugarsPerNutrientBasis = value;
     }
 
@@ -2117,7 +2118,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getThiaminPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getThiaminPerNutrientBasis() {
         return thiaminPerNutrientBasis;
     }
 
@@ -2130,7 +2131,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setThiaminPerNutrientBasis(NutritionMeasurementType value) {
+    public void setThiaminPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.thiaminPerNutrientBasis = value;
     }
 
@@ -2143,7 +2144,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getTransFatPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getTransFatPerNutrientBasis() {
         return transFatPerNutrientBasis;
     }
 
@@ -2156,7 +2157,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setTransFatPerNutrientBasis(NutritionMeasurementType value) {
+    public void setTransFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.transFatPerNutrientBasis = value;
     }
 
@@ -2169,7 +2170,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getVitaminAPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getVitaminAPerNutrientBasis() {
         return vitaminAPerNutrientBasis;
     }
 
@@ -2182,7 +2183,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setVitaminAPerNutrientBasis(NutritionMeasurementType value) {
+    public void setVitaminAPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.vitaminAPerNutrientBasis = value;
     }
 
@@ -2195,7 +2196,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getVitaminB12PerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getVitaminB12PerNutrientBasis() {
         return vitaminB12PerNutrientBasis;
     }
 
@@ -2208,7 +2209,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setVitaminB12PerNutrientBasis(NutritionMeasurementType value) {
+    public void setVitaminB12PerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.vitaminB12PerNutrientBasis = value;
     }
 
@@ -2221,7 +2222,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getVitaminB6PerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getVitaminB6PerNutrientBasis() {
         return vitaminB6PerNutrientBasis;
     }
 
@@ -2234,7 +2235,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setVitaminB6PerNutrientBasis(NutritionMeasurementType value) {
+    public void setVitaminB6PerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.vitaminB6PerNutrientBasis = value;
     }
 
@@ -2247,7 +2248,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getVitaminCPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getVitaminCPerNutrientBasis() {
         return vitaminCPerNutrientBasis;
     }
 
@@ -2260,7 +2261,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setVitaminCPerNutrientBasis(NutritionMeasurementType value) {
+    public void setVitaminCPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.vitaminCPerNutrientBasis = value;
     }
 
@@ -2273,7 +2274,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getVitaminDPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getVitaminDPerNutrientBasis() {
         return vitaminDPerNutrientBasis;
     }
 
@@ -2286,7 +2287,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setVitaminDPerNutrientBasis(NutritionMeasurementType value) {
+    public void setVitaminDPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.vitaminDPerNutrientBasis = value;
     }
 
@@ -2299,7 +2300,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getVitaminEPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getVitaminEPerNutrientBasis() {
         return vitaminEPerNutrientBasis;
     }
 
@@ -2312,7 +2313,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setVitaminEPerNutrientBasis(NutritionMeasurementType value) {
+    public void setVitaminEPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.vitaminEPerNutrientBasis = value;
     }
 
@@ -2325,7 +2326,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getVitaminKPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getVitaminKPerNutrientBasis() {
         return vitaminKPerNutrientBasis;
     }
 
@@ -2338,7 +2339,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setVitaminKPerNutrientBasis(NutritionMeasurementType value) {
+    public void setVitaminKPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.vitaminKPerNutrientBasis = value;
     }
 
@@ -2351,7 +2352,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public NutritionMeasurementType getZincPerNutrientBasis() {
+    public NutritionMeasurementTypeXMLImpl getZincPerNutrientBasis() {
         return zincPerNutrientBasis;
     }
 
@@ -2364,7 +2365,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setZincPerNutrientBasis(NutritionMeasurementType value) {
+    public void setZincPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
         this.zincPerNutrientBasis = value;
     }
 
