@@ -2,7 +2,8 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface FoodBeverageTobaccoProduct {
+public interface FoodBeverageTobaccoProduct<NM extends NutritionMeasurementType, FBI extends FoodAndBeveragePreparationInformation,
+        AD extends AllergenDetails, FBT extends FoodBeverageTobaccoIngredientDetails,QV extends QuantitativeValue,DT extends DietTypeCodeDetails> {
     String getAllergenSpecificationAgency();
 
     void setAllergenSpecificationAgency(String value);
@@ -15,69 +16,69 @@ public interface FoodBeverageTobaccoProduct {
 
     void setAllergenStatement(String value);
 
-    NutritionMeasurementType getBiotinPerNutrientBasis();
+    NM getBiotinPerNutrientBasis();
 
-    void setBiotinPerNutrientBasis(NutritionMeasurementType value);
+    void setBiotinPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getCalciumPerNutrientBasis();
+    NM getCalciumPerNutrientBasis();
 
-    void setCalciumPerNutrientBasis(NutritionMeasurementType value);
+    void setCalciumPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getCarbohydratesPerNutrientBasis();
+    NM getCarbohydratesPerNutrientBasis();
 
-    void setCarbohydratesPerNutrientBasis(NutritionMeasurementType value);
+    void setCarbohydratesPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getChloridePerNutrientBasis();
+    NM getChloridePerNutrientBasis();
 
-    void setChloridePerNutrientBasis(NutritionMeasurementType value);
+    void setChloridePerNutrientBasis(NM value);
 
-    NutritionMeasurementType getCholesterolPerNutrientBasis();
+    NM getCholesterolPerNutrientBasis();
 
-    void setCholesterolPerNutrientBasis(NutritionMeasurementType value);
+    void setCholesterolPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getChromiumPerNutrientBasis();
+    NM getChromiumPerNutrientBasis();
 
-    void setChromiumPerNutrientBasis(NutritionMeasurementType value);
+    void setChromiumPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getCopperPerNutrientBasis();
+    NM getCopperPerNutrientBasis();
 
-    void setCopperPerNutrientBasis(NutritionMeasurementType value);
+    void setCopperPerNutrientBasis(NM value);
 
-    DietTypeCodeDetails getDietCode();
+    DT getDietCode();
 
-    void setDietCode(DietTypeCodeDetails value);
+    void setDietCode(DT value);
 
     String getDietTypeDescription();
 
     void setDietTypeDescription(String value);
 
-    QuantitativeValue getDrainedWeight();
+    QV getDrainedWeight();
 
-    void setDrainedWeight(QuantitativeValue value);
+    void setDrainedWeight(QV value);
 
-    NutritionMeasurementType getEnergyFromFatPerNutrientBasis();
+    NM getEnergyFromFatPerNutrientBasis();
 
-    void setEnergyFromFatPerNutrientBasis(NutritionMeasurementType value);
+    void setEnergyFromFatPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getEnergyPerNutrientBasis();
+    NM getEnergyPerNutrientBasis();
 
-    void setEnergyPerNutrientBasis(NutritionMeasurementType value);
+    void setEnergyPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getFatPerNutrientBasis();
+    NM getFatPerNutrientBasis();
 
-    void setFatPerNutrientBasis(NutritionMeasurementType value);
+    void setFatPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getFibrePerNutrientBasis();
+    NM getFibrePerNutrientBasis();
 
-    void setFibrePerNutrientBasis(NutritionMeasurementType value);
+    void setFibrePerNutrientBasis(NM value);
 
-    NutritionMeasurementType getFluoridePerNutrientBasis();
+    NM getFluoridePerNutrientBasis();
 
-    void setFluoridePerNutrientBasis(NutritionMeasurementType value);
+    void setFluoridePerNutrientBasis(NM value);
 
-    NutritionMeasurementType getFolicAcidPerNutrientBasis();
+    NM getFolicAcidPerNutrientBasis();
 
-    void setFolicAcidPerNutrientBasis(NutritionMeasurementType value);
+    void setFolicAcidPerNutrientBasis(NM value);
 
     FoodBeverageRefrigerationClaimCode getFoodBeverageRefrigerationClaim();
 
@@ -91,13 +92,13 @@ public interface FoodBeverageTobaccoProduct {
 
     void setGeneticallyModifiedDeclaration(LevelOfContainmentCode value);
 
-    AllergenDetails getHasAllergen();
+    AD getHasAllergen();
 
-    void setHasAllergen(AllergenDetails value);
+    void setHasAllergen(AD value);
 
-    FoodBeverageTobaccoIngredientDetails getIngredient();
+    FBT getIngredient();
 
-    void setIngredient(FoodBeverageTobaccoIngredientDetails value);
+    void setIngredient(FBT value);
 
     String getIngredientOfConcern();
 
@@ -107,13 +108,13 @@ public interface FoodBeverageTobaccoProduct {
 
     void setIngredientStatement(String value);
 
-    NutritionMeasurementType getIodinePerNutrientBasis();
+    NM getIodinePerNutrientBasis();
 
-    void setIodinePerNutrientBasis(NutritionMeasurementType value);
+    void setIodinePerNutrientBasis(NM value);
 
-    NutritionMeasurementType getIronPerNutrientBasis();
+    NM getIronPerNutrientBasis();
 
-    void setIronPerNutrientBasis(NutritionMeasurementType value);
+    void setIronPerNutrientBasis(NM value);
 
     NonbinaryLogicCode getIrradiatedCode();
 
@@ -131,25 +132,25 @@ public interface FoodBeverageTobaccoProduct {
 
     void setJuiceContentPercent(String value);
 
-    NutritionMeasurementType getMagnesiumPerNutrientBasis();
+    NM getMagnesiumPerNutrientBasis();
 
-    void setMagnesiumPerNutrientBasis(NutritionMeasurementType value);
+    void setMagnesiumPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getManganesePerNutrientBasis();
+    NM getManganesePerNutrientBasis();
 
-    void setManganesePerNutrientBasis(NutritionMeasurementType value);
+    void setManganesePerNutrientBasis(NM value);
 
-    NutritionMeasurementType getMolybdenumPerNutrientBasis();
+    NM getMolybdenumPerNutrientBasis();
 
-    void setMolybdenumPerNutrientBasis(NutritionMeasurementType value);
+    void setMolybdenumPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getMonounsaturatedFatPerNutrientBasis();
+    NM getMonounsaturatedFatPerNutrientBasis();
 
-    void setMonounsaturatedFatPerNutrientBasis(NutritionMeasurementType value);
+    void setMonounsaturatedFatPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getNiacinPerNutrientBasis();
+    NM getNiacinPerNutrientBasis();
 
-    void setNiacinPerNutrientBasis(NutritionMeasurementType value);
+    void setNiacinPerNutrientBasis(NM value);
 
     String getNumberOfServingsPerPackage();
 
@@ -163,9 +164,9 @@ public interface FoodBeverageTobaccoProduct {
 
     void setNumberOfServingsRangeDescription(String value);
 
-    QuantitativeValue getNutrientBasisQuantity();
+    QV getNutrientBasisQuantity();
 
-    void setNutrientBasisQuantity(QuantitativeValue value);
+    void setNutrientBasisQuantity(QV value);
 
     NutrientBasisQuantityCode getNutrientBasisQuantityType();
 
@@ -191,61 +192,61 @@ public interface FoodBeverageTobaccoProduct {
 
     void setPackagingMarkedFreeFrom(PackagingMarkedFreeFromCode value);
 
-    NutritionMeasurementType getPantothenicAcidPerNutrientBasis();
+    NM getPantothenicAcidPerNutrientBasis();
 
-    void setPantothenicAcidPerNutrientBasis(NutritionMeasurementType value);
+    void setPantothenicAcidPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getPhosphorusPerNutrientBasis();
+    NM getPhosphorusPerNutrientBasis();
 
-    void setPhosphorusPerNutrientBasis(NutritionMeasurementType value);
+    void setPhosphorusPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getPolyolsPerNutrientBasis();
+    NM getPolyolsPerNutrientBasis();
 
-    void setPolyolsPerNutrientBasis(NutritionMeasurementType value);
+    void setPolyolsPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getPolyunsaturatedFatPerNutrientBasis();
+    NM getPolyunsaturatedFatPerNutrientBasis();
 
-    void setPolyunsaturatedFatPerNutrientBasis(NutritionMeasurementType value);
+    void setPolyunsaturatedFatPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getPotassiumPerNutrientBasis();
+    NM getPotassiumPerNutrientBasis();
 
-    void setPotassiumPerNutrientBasis(NutritionMeasurementType value);
+    void setPotassiumPerNutrientBasis(NM value);
 
-    FoodAndBeveragePreparationInformation getPreparationInformation();
+    FBI getPreparationInformation();
 
-    void setPreparationInformation(FoodAndBeveragePreparationInformation value);
+    void setPreparationInformation(FBI value);
 
     PreservationTechniqueCode getPreservationTechnique();
 
     void setPreservationTechnique(PreservationTechniqueCode value);
 
-    NutritionMeasurementType getProteinPerNutrientBasis();
+    NM getProteinPerNutrientBasis();
 
-    void setProteinPerNutrientBasis(NutritionMeasurementType value);
+    void setProteinPerNutrientBasis(NM value);
 
     NonbinaryLogicCode getReheatingClaim();
 
     void setReheatingClaim(NonbinaryLogicCode value);
 
-    NutritionMeasurementType getRiboflavinPerNutrientBasis();
+    NM getRiboflavinPerNutrientBasis();
 
-    void setRiboflavinPerNutrientBasis(NutritionMeasurementType value);
+    void setRiboflavinPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getSaltPerNutrientBasis();
+    NM getSaltPerNutrientBasis();
 
-    void setSaltPerNutrientBasis(NutritionMeasurementType value);
+    void setSaltPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getSaturatedFatPerNutrientBasis();
+    NM getSaturatedFatPerNutrientBasis();
 
-    void setSaturatedFatPerNutrientBasis(NutritionMeasurementType value);
+    void setSaturatedFatPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getSeleniumPerNutrientBasis();
+    NM getSeleniumPerNutrientBasis();
 
-    void setSeleniumPerNutrientBasis(NutritionMeasurementType value);
+    void setSeleniumPerNutrientBasis(NM value);
 
-    QuantitativeValue getServingSize();
+    QV getServingSize();
 
-    void setServingSize(QuantitativeValue value);
+    void setServingSize(QV value);
 
     String getServingSizeDescription();
 
@@ -255,59 +256,59 @@ public interface FoodBeverageTobaccoProduct {
 
     void setServingSuggestion(String value);
 
-    NutritionMeasurementType getSodiumPerNutrientBasis();
+    NM getSodiumPerNutrientBasis();
 
-    void setSodiumPerNutrientBasis(NutritionMeasurementType value);
+    void setSodiumPerNutrientBasis(NM value);
 
     SourceAnimalCode getSourceAnimal();
 
     void setSourceAnimal(SourceAnimalCode value);
 
-    NutritionMeasurementType getStarchPerNutrientBasis();
+    NM getStarchPerNutrientBasis();
 
-    void setStarchPerNutrientBasis(NutritionMeasurementType value);
+    void setStarchPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getSugarsPerNutrientBasis();
+    NM getSugarsPerNutrientBasis();
 
-    void setSugarsPerNutrientBasis(NutritionMeasurementType value);
+    void setSugarsPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getThiaminPerNutrientBasis();
+    NM getThiaminPerNutrientBasis();
 
-    void setThiaminPerNutrientBasis(NutritionMeasurementType value);
+    void setThiaminPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getTransFatPerNutrientBasis();
+    NM getTransFatPerNutrientBasis();
 
-    void setTransFatPerNutrientBasis(NutritionMeasurementType value);
+    void setTransFatPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getVitaminAPerNutrientBasis();
+    NM getVitaminAPerNutrientBasis();
 
-    void setVitaminAPerNutrientBasis(NutritionMeasurementType value);
+    void setVitaminAPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getVitaminB12PerNutrientBasis();
+    NM getVitaminB12PerNutrientBasis();
 
-    void setVitaminB12PerNutrientBasis(NutritionMeasurementType value);
+    void setVitaminB12PerNutrientBasis(NM value);
 
-    NutritionMeasurementType getVitaminB6PerNutrientBasis();
+    NM getVitaminB6PerNutrientBasis();
 
-    void setVitaminB6PerNutrientBasis(NutritionMeasurementType value);
+    void setVitaminB6PerNutrientBasis(NM value);
 
-    NutritionMeasurementType getVitaminCPerNutrientBasis();
+    NM getVitaminCPerNutrientBasis();
 
-    void setVitaminCPerNutrientBasis(NutritionMeasurementType value);
+    void setVitaminCPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getVitaminDPerNutrientBasis();
+    NM getVitaminDPerNutrientBasis();
 
-    void setVitaminDPerNutrientBasis(NutritionMeasurementType value);
+    void setVitaminDPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getVitaminEPerNutrientBasis();
+    NM getVitaminEPerNutrientBasis();
 
-    void setVitaminEPerNutrientBasis(NutritionMeasurementType value);
+    void setVitaminEPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getVitaminKPerNutrientBasis();
+    NM getVitaminKPerNutrientBasis();
 
-    void setVitaminKPerNutrientBasis(NutritionMeasurementType value);
+    void setVitaminKPerNutrientBasis(NM value);
 
-    NutritionMeasurementType getZincPerNutrientBasis();
+    NM getZincPerNutrientBasis();
 
-    void setZincPerNutrientBasis(NutritionMeasurementType value);
+    void setZincPerNutrientBasis(NM value);
 }

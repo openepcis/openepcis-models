@@ -3,7 +3,7 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.AnatomicalFormCode;
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 
-public interface MeatPoultry extends FoodBeverageTobaccoProduct {
+public interface MeatPoultry<QV extends QuantitativeValue> {
     AnatomicalFormCode getAnatomicalForm();
 
     void setAnatomicalForm(AnatomicalFormCode value);
@@ -16,7 +16,7 @@ public interface MeatPoultry extends FoodBeverageTobaccoProduct {
 
     void setMeatPoultryType(String value);
 
-    QuantitativeValue getMinimumMeatPoultryContent();
+    QV getMinimumMeatPoultryContent();
 
-    void setMinimumMeatPoultryContent(QuantitativeValue value);
+    void setMinimumMeatPoultryContent(QV value);
 }

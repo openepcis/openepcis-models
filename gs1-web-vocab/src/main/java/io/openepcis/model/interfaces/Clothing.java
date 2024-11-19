@@ -2,7 +2,7 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 
-public interface Clothing {
+public interface Clothing<TM extends TextileMaterialDetails> {
     String getClothingCut();
 
     void setClothingCut(String value);
@@ -15,7 +15,7 @@ public interface Clothing {
 
     void setIsMaternity(NonbinaryLogicCode value);
 
-    TextileMaterialDetails getTextileMaterial();
+    TM getTextileMaterial();
 
-    void setTextileMaterial(TextileMaterialDetails value);
+    void setTextileMaterial(TM value);
 }

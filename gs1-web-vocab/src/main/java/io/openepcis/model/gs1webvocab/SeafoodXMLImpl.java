@@ -42,7 +42,7 @@ import jakarta.xml.bind.annotation.*;
     "minimumFishContent"
 })
 public class SeafoodXMLImpl
-    extends FoodBeverageTobaccoProductXMLImpl implements Seafood {
+    extends FoodBeverageTobaccoProductXMLImpl implements Seafood<QuantitativeValueXMLImpl> {
 
     @XmlElement(required = true)
     protected String catchZone;
@@ -52,7 +52,7 @@ public class SeafoodXMLImpl
     @XmlSchemaType(name = "string")
     protected FreshOrSeawaterFarmedCode freshOrSeawaterFarmed;
     @XmlElement(required = true)
-    protected QuantitativeValue minimumFishContent;
+    protected QuantitativeValueXMLImpl minimumFishContent;
 
     /**
      * Gets the value of the catchZone property.
@@ -141,7 +141,7 @@ public class SeafoodXMLImpl
      *     
      */
     @Override
-    public QuantitativeValue getMinimumFishContent() {
+    public QuantitativeValueXMLImpl getMinimumFishContent() {
         return minimumFishContent;
     }
 
@@ -154,7 +154,7 @@ public class SeafoodXMLImpl
      *     
      */
     @Override
-    public void setMinimumFishContent(QuantitativeValue value) {
+    public void setMinimumFishContent(QuantitativeValueXMLImpl value) {
         this.minimumFishContent = value;
     }
 

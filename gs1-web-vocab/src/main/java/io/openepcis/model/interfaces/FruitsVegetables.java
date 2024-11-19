@@ -3,7 +3,7 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.MaturationMethodCode;
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 
-public interface FruitsVegetables extends FoodBeverageTobaccoProduct {
+public interface FruitsVegetables {
     NonbinaryLogicCode getIsPittedStoned();
 
     void setIsPittedStoned(NonbinaryLogicCode value);
