@@ -17,6 +17,7 @@ package io.openepcis.model.epcis;
 
 import static com.fasterxml.jackson.annotation.JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE;
 import static com.fasterxml.jackson.annotation.JsonFormat.Feature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS;
+import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -186,6 +187,17 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
     //Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present add namespacesURI that are later used for XML marshalling
     DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
+  }
+
+  //Getter method for the @context field to either set to null if only default namespaces are present else return all namespaces
+  public List<Object> getContextInfo() {
+    //Check if the XML-> JSON conversion has custom namespaces apart from default namespaces
+    final Map<String, String> eventNamespaces = DefaultJsonSchemaNamespaceURIResolver.getContext().getEventNamespaces();
+    final boolean hasCustomNamespace = eventNamespaces.values().stream().anyMatch(value -> !EPCIS_DEFAULT_NAMESPACES.containsKey(value));
+
+    // If hasCustomNamespace then return all the namespaces
+    // If does not have additional namespaces then do not include the default namespace in json
+    return hasCustomNamespace ?  contextInfo : null;
   }
 
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
