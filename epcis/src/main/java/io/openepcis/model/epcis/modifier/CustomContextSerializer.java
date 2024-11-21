@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
+
 public class CustomContextSerializer extends JsonSerializer<List<Object>> {
 
   private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
@@ -58,9 +60,13 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
         final Map<String, String> modifiedNamespaces = namespaceResolver.getEventNamespaces();
 
         for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
-          jsonGenerator.writeStartObject();
-          jsonGenerator.writeStringField(entry.getValue(), entry.getKey());
-          jsonGenerator.writeEndObject();
+
+          //Filter and do not add the Default namespaces such as cbvmda to event @context
+          if (!EPCIS_DEFAULT_NAMESPACES.containsValue(entry.getKey())) {
+            jsonGenerator.writeStartObject();
+            jsonGenerator.writeStringField(entry.getValue(), entry.getKey());
+            jsonGenerator.writeEndObject();
+          }
         }
 
         jsonGenerator.writeEndArray();
