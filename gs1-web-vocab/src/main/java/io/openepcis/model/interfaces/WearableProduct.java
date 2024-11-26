@@ -2,6 +2,8 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 public interface WearableProduct<SD extends SizeDetails> {
     ConsumerLifestageCode getConsumerLifestage();
 
@@ -23,9 +25,9 @@ public interface WearableProduct<SD extends SizeDetails> {
 
     void setIsWearableItemDisposable(NonbinaryLogicCode value);
 
-    String getSeasonCalendarYear();
+    XMLGregorianCalendar getSeasonCalendarYear();
 
-    void setSeasonCalendarYear(String value);
+    void setSeasonCalendarYear(XMLGregorianCalendar value);
 
     String getSeasonName();
 

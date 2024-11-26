@@ -5,9 +5,9 @@ public interface TextileMaterialDetails<QV extends QuantitativeValue> {
 
     void setTextileMaterialDescription(String value);
 
-    String getTextileMaterialPercentage();
+    float getTextileMaterialPercentage();
 
-    void setTextileMaterialPercentage(String value);
+    void setTextileMaterialPercentage(float value);
 
     String getTextileMaterialThreadCount();
 

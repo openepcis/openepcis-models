@@ -22,7 +22,7 @@ import jakarta.xml.bind.annotation.*;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="organicClaimAgency" type="{}OrganicClaimAgencyCode"/>
- *         <element name="organicPercentClaim" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="organicPercentClaim" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -41,8 +41,8 @@ public class OrganicClaimDetailsXMLImpl implements OrganicClaimDetails {
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected OrganicClaimAgencyCode organicClaimAgency;
-    @XmlElement(required = true)
-    protected String organicPercentClaim;
+    protected float organicPercentClaim;
+
 
     /**
      * Gets the value of the organicClaimAgency property.
@@ -72,14 +72,9 @@ public class OrganicClaimDetailsXMLImpl implements OrganicClaimDetails {
 
     /**
      * Gets the value of the organicPercentClaim property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getOrganicPercentClaim() {
+    public float getOrganicPercentClaim() {
         return organicPercentClaim;
     }
 
@@ -92,7 +87,7 @@ public class OrganicClaimDetailsXMLImpl implements OrganicClaimDetails {
      *     
      */
     @Override
-    public void setOrganicPercentClaim(String value) {
+    public void setOrganicPercentClaim(float value) {
         this.organicPercentClaim = value;
     }
 

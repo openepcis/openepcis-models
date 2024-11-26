@@ -2,6 +2,9 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigInteger;
+
 public interface Product<AP extends AdditionalProductClassificationDetails,AD extends AdditiveDetails,
         RF extends ReferencedFileDetails,AU extends AuthenticityDetails,AW extends AwardPrizeDetails,B extends Brand,O extends Organization,
         CD extends CertificationDetails,CC extends ColourCodeDetails,C extends Country, P extends Product,QV extends QuantitativeValue,
@@ -30,9 +33,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setAwardPrize(AW value);
 
-    String getBestBeforeDate();
+    XMLGregorianCalendar getBestBeforeDate();
 
-    void setBestBeforeDate(String value);
+    void setBestBeforeDate(XMLGregorianCalendar value);
 
     B getBrand();
 
@@ -110,25 +113,25 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setDescriptiveSize(String value);
 
-    String getDueDate();
+    XMLGregorianCalendar getDueDate();
 
-    void setDueDate(String value);
+    void setDueDate(XMLGregorianCalendar value);
 
     P getEquivalentProduct();
 
     void setEquivalentProduct(P value);
 
-    String getExpirationDate();
+    XMLGregorianCalendar getExpirationDate();
 
-    void setExpirationDate(String value);
+    void setExpirationDate(XMLGregorianCalendar value);
 
-    String getExpirationDateTime();
+    XMLGregorianCalendar getExpirationDateTime();
 
-    void setExpirationDateTime(String value);
+    void setExpirationDateTime(XMLGregorianCalendar value);
 
-    String getFirstFreezeDate();
+    XMLGregorianCalendar getFirstFreezeDate();
 
-    void setFirstFreezeDate(String value);
+    void setFirstFreezeDate(XMLGregorianCalendar value);
 
     String getFunctionalName();
 
@@ -162,17 +165,17 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setGtin(String value);
 
-    String getHarvestDate();
+    XMLGregorianCalendar getHarvestDate();
 
-    void setHarvestDate(String value);
+    void setHarvestDate(XMLGregorianCalendar value);
 
-    String getHarvestDateEnd();
+    XMLGregorianCalendar getHarvestDateEnd();
 
-    void setHarvestDateEnd(String value);
+    void setHarvestDateEnd(XMLGregorianCalendar value);
 
-    String getHarvestDateStart();
+    XMLGregorianCalendar getHarvestDateStart();
 
-    void setHarvestDateStart(String value);
+    void setHarvestDateStart(XMLGregorianCalendar value);
 
     String getHasBatchLotNumber();
 
@@ -218,9 +221,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setInstructionsForUse(RF value);
 
-    String getIsProductRecalled();
+    boolean getIsProductRecalled();
 
-    void setIsProductRecalled(String value);
+    void setIsProductRecalled(boolean value);
 
     String getJws();
 
@@ -278,9 +281,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setPackaging(PD value);
 
-    String getPackagingDate();
+    XMLGregorianCalendar getPackagingDate();
 
-    void setPackagingDate(String value);
+    void setPackagingDate(XMLGregorianCalendar value);
 
     PackagingMarkedLabelAccreditationCode getPackagingMarkedLabelAccreditation();
 
@@ -322,21 +325,21 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setProductSustainabilityInfo(String value);
 
-    String getProductionDate();
+    XMLGregorianCalendar getProductionDate();
 
-    void setProductionDate(String value);
+    void setProductionDate(XMLGregorianCalendar value);
 
-    String getProductionDateTime();
+    XMLGregorianCalendar getProductionDateTime();
 
-    void setProductionDateTime(String value);
+    void setProductionDateTime(XMLGregorianCalendar value);
 
     String getProductionVariantDescription();
 
     void setProductionVariantDescription(String value);
 
-    String getProductionVariantEffectiveDateTime();
+    XMLGregorianCalendar getProductionVariantEffectiveDateTime();
 
-    void setProductionVariantEffectiveDateTime(String value);
+    void setProductionVariantEffectiveDateTime(XMLGregorianCalendar value);
 
     String getProvenanceStatement();
 
@@ -358,17 +361,17 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setReplacedProduct(P value);
 
-    String getSellByDate();
+    XMLGregorianCalendar getSellByDate();
 
-    void setSellByDate(String value);
+    void setSellByDate(XMLGregorianCalendar value);
 
     SC getSizeCode();
 
     void setSizeCode(SC value);
 
-    String getSupplierSpecifiedMinimumConsumerStorageDays();
+    BigInteger getSupplierSpecifiedMinimumConsumerStorageDays();
 
-    void setSupplierSpecifiedMinimumConsumerStorageDays(String value);
+    void setSupplierSpecifiedMinimumConsumerStorageDays(BigInteger value);
 
     TM getTargetMarket();
 

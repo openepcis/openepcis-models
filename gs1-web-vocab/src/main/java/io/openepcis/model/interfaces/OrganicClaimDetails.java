@@ -7,7 +7,7 @@ public interface OrganicClaimDetails {
 
     void setOrganicClaimAgency(OrganicClaimAgencyCode value);
 
-    String getOrganicPercentClaim();
+    float getOrganicPercentClaim();
 
-    void setOrganicPercentClaim(String value);
+    void setOrganicPercentClaim(float value);
 }

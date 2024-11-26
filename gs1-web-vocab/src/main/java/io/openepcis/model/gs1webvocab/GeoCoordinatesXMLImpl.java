@@ -8,10 +8,7 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.GeoCoordinates;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -46,6 +43,7 @@ import jakarta.xml.bind.annotation.XmlType;
 public class GeoCoordinatesXMLImpl implements GeoCoordinates {
 
     @XmlElement(required = true)
+    @XmlSchemaType(name = "anyURI")
     protected String coordinateReferenceSystem;
     @XmlElement(required = true)
     protected String elevation;

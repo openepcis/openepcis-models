@@ -24,7 +24,7 @@ import jakarta.xml.bind.annotation.*;
  *       <sequence>
  *         <element name="productYield" type="{}QuantitativeValue"/>
  *         <element name="productYieldType" type="{}ProductYieldTypeCode"/>
- *         <element name="productYieldVariationPercentage" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="productYieldVariationPercentage" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -46,8 +46,8 @@ public class ProductYieldDetailsXMLImpl implements ProductYieldDetails<Quantitat
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected ProductYieldTypeCode productYieldType;
-    @XmlElement(required = true)
-    protected String productYieldVariationPercentage;
+    protected float productYieldVariationPercentage;
+
 
     /**
      * Gets the value of the productYield property.
@@ -103,27 +103,17 @@ public class ProductYieldDetailsXMLImpl implements ProductYieldDetails<Quantitat
 
     /**
      * Gets the value of the productYieldVariationPercentage property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getProductYieldVariationPercentage() {
+    public float getProductYieldVariationPercentage() {
         return productYieldVariationPercentage;
     }
 
     /**
      * Sets the value of the productYieldVariationPercentage property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setProductYieldVariationPercentage(String value) {
+    public void setProductYieldVariationPercentage(float value) {
         this.productYieldVariationPercentage = value;
     }
 

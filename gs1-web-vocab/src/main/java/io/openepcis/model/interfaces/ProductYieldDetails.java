@@ -11,7 +11,7 @@ public interface ProductYieldDetails<QV extends QuantitativeValue> {
 
     void setProductYieldType(ProductYieldTypeCode value);
 
-    String getProductYieldVariationPercentage();
+    float getProductYieldVariationPercentage();
 
-    void setProductYieldVariationPercentage(String value);
+    void setProductYieldVariationPercentage(float value);
 }

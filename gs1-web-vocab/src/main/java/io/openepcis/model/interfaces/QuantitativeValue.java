@@ -5,7 +5,7 @@ public interface QuantitativeValue {
 
     void setUnitCode(String value);
 
-    String getValue();
+    float getValue();
 
-    void setValue(String value);
+    void setValue(float value);
 }

@@ -10,6 +10,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.CertificationDetails;
 import jakarta.xml.bind.annotation.*;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
  * <p>Java class for CertificationDetails complex type</p>.
@@ -23,18 +25,18 @@ import jakarta.xml.bind.annotation.*;
  *       <sequence>
  *         <element name="certificationAgency" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="certificationAgencyURL" type="{}Organization"/>
- *         <element name="certificationAuditDate" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="certificationEndDate" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="certificationAuditDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         <element name="certificationEndDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         <element name="certificationIdentification" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="certificationStandard" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="certificationStartDate" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="certificationStartDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         <element name="certificationStatement" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="certificationStatus" type="{}CertificationStatus"/>
  *         <element name="certificationSubject" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="certificationType" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="certificationURI" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="certificationURI" type="{http://www.w3.org/2001/XMLSchema}anyURI"/>
  *         <element name="certificationValue" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="initialCertificationDate" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="initialCertificationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -67,15 +69,18 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
     @XmlElement(required = true)
     protected OrganizationXMLImpl certificationAgencyURL;
     @XmlElement(required = true)
-    protected String certificationAuditDate;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar certificationAuditDate;
     @XmlElement(required = true)
-    protected String certificationEndDate;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar certificationEndDate;
     @XmlElement(required = true)
     protected String certificationIdentification;
     @XmlElement(required = true)
     protected String certificationStandard;
     @XmlElement(required = true)
-    protected String certificationStartDate;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar certificationStartDate;
     @XmlElement(required = true)
     protected String certificationStatement;
     @XmlElement(required = true)
@@ -86,11 +91,13 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
     @XmlElement(required = true)
     protected String certificationType;
     @XmlElement(required = true)
+    @XmlSchemaType(name = "anyURI")
     protected String certificationURI;
     @XmlElement(required = true)
     protected String certificationValue;
     @XmlElement(required = true)
-    protected String initialCertificationDate;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar initialCertificationDate;
 
     /**
      * Gets the value of the certificationAgency property.
@@ -149,11 +156,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getCertificationAuditDate() {
+    public XMLGregorianCalendar getCertificationAuditDate() {
         return certificationAuditDate;
     }
 
@@ -162,11 +169,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setCertificationAuditDate(String value) {
+    public void setCertificationAuditDate(XMLGregorianCalendar value) {
         this.certificationAuditDate = value;
     }
 
@@ -175,11 +182,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getCertificationEndDate() {
+    public XMLGregorianCalendar getCertificationEndDate() {
         return certificationEndDate;
     }
 
@@ -188,11 +195,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setCertificationEndDate(String value) {
+    public void setCertificationEndDate(XMLGregorianCalendar value) {
         this.certificationEndDate = value;
     }
 
@@ -253,11 +260,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getCertificationStartDate() {
+    public XMLGregorianCalendar getCertificationStartDate() {
         return certificationStartDate;
     }
 
@@ -266,11 +273,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setCertificationStartDate(String value) {
+    public void setCertificationStartDate(XMLGregorianCalendar value) {
         this.certificationStartDate = value;
     }
 
@@ -435,11 +442,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getInitialCertificationDate() {
+    public XMLGregorianCalendar getInitialCertificationDate() {
         return initialCertificationDate;
     }
 
@@ -448,11 +455,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setInitialCertificationDate(String value) {
+    public void setInitialCertificationDate(XMLGregorianCalendar value) {
         this.initialCertificationDate = value;
     }
 

@@ -3,6 +3,8 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.CertificationStatus;
 import io.openepcis.model.gs1webvocab.OrganizationXMLImpl;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 public interface CertificationDetails<O extends Organization> {
     String getCertificationAgency();
 
@@ -12,13 +14,13 @@ public interface CertificationDetails<O extends Organization> {
 
     void setCertificationAgencyURL(O value);
 
-    String getCertificationAuditDate();
+    XMLGregorianCalendar getCertificationAuditDate();
 
-    void setCertificationAuditDate(String value);
+    void setCertificationAuditDate(XMLGregorianCalendar value);
 
-    String getCertificationEndDate();
+    XMLGregorianCalendar getCertificationEndDate();
 
-    void setCertificationEndDate(String value);
+    void setCertificationEndDate(XMLGregorianCalendar value);
 
     String getCertificationIdentification();
 
@@ -28,9 +30,9 @@ public interface CertificationDetails<O extends Organization> {
 
     void setCertificationStandard(String value);
 
-    String getCertificationStartDate();
+    XMLGregorianCalendar getCertificationStartDate();
 
-    void setCertificationStartDate(String value);
+    void setCertificationStartDate(XMLGregorianCalendar value);
 
     String getCertificationStatement();
 
@@ -56,7 +58,7 @@ public interface CertificationDetails<O extends Organization> {
 
     void setCertificationValue(String value);
 
-    String getInitialCertificationDate();
+    XMLGregorianCalendar getInitialCertificationDate();
 
-    void setInitialCertificationDate(String value);
+    void setInitialCertificationDate(XMLGregorianCalendar value);
 }

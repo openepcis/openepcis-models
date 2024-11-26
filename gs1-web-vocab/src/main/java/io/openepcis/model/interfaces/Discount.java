@@ -2,10 +2,12 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface Discount<P extends PriceSpecification, A extends AdditionalProductClassificationDetails> {
-    String getDiscountRepeatsPerMultipleMinimum();
+import java.math.BigInteger;
 
-    void setDiscountRepeatsPerMultipleMinimum(String value);
+public interface Discount<P extends PriceSpecification, A extends AdditionalProductClassificationDetails> {
+    boolean getDiscountRepeatsPerMultipleMinimum();
+
+    void setDiscountRepeatsPerMultipleMinimum(boolean value);
 
     DiscountTypeCode getDiscountType();
 
@@ -19,49 +21,49 @@ public interface Discount<P extends PriceSpecification, A extends AdditionalProd
 
     void setExactDiscountAmount(P value);
 
-    String getExactDiscountPercentage();
+    float getExactDiscountPercentage();
 
-    void setExactDiscountPercentage(String value);
+    void setExactDiscountPercentage(float value);
 
     String getExclusionDescription();
 
     void setExclusionDescription(String value);
 
-    String getIsOnlyAvailableThroughRetailer();
+    boolean getIsOnlyAvailableThroughRetailer();
 
-    void setIsOnlyAvailableThroughRetailer(String value);
+    void setIsOnlyAvailableThroughRetailer(boolean value);
 
-    String getIsOnlyWithMailingListSignup();
+    boolean getIsOnlyWithMailingListSignup();
 
-    void setIsOnlyWithMailingListSignup(String value);
+    void setIsOnlyWithMailingListSignup(boolean value);
 
     PaymentMethod getIsOnlyWithPaymentCard();
 
     void setIsOnlyWithPaymentCard(PaymentMethod value);
 
-    String getIsOnlyWithRetailerLoyaltyCard();
+    boolean getIsOnlyWithRetailerLoyaltyCard();
 
-    void setIsOnlyWithRetailerLoyaltyCard(String value);
+    void setIsOnlyWithRetailerLoyaltyCard(boolean value);
 
-    String getIsOnlyWithRetailerPaymentCard();
+    boolean getIsOnlyWithRetailerPaymentCard();
 
-    void setIsOnlyWithRetailerPaymentCard(String value);
+    void setIsOnlyWithRetailerPaymentCard(boolean value);
 
-    String getIsPromoterExclusiveOffer();
+    boolean getIsPromoterExclusiveOffer();
 
-    void setIsPromoterExclusiveOffer(String value);
+    void setIsPromoterExclusiveOffer(boolean value);
 
     P getMaximumDiscountAmount();
 
     void setMaximumDiscountAmount(P value);
 
-    String getMaximumDiscountPercentage();
+    float getMaximumDiscountPercentage();
 
-    void setMaximumDiscountPercentage(String value);
+    void setMaximumDiscountPercentage(float value);
 
-    String getMaximumQualifyingItems();
+    BigInteger getMaximumQualifyingItems();
 
-    void setMaximumQualifyingItems(String value);
+    void setMaximumQualifyingItems(BigInteger value);
 
     P getMaximumQualifyingSpend();
 
@@ -71,13 +73,13 @@ public interface Discount<P extends PriceSpecification, A extends AdditionalProd
 
     void setMinimumDiscountAmount(P value);
 
-    String getMinimumDiscountPercentage();
+    float getMinimumDiscountPercentage();
 
-    void setMinimumDiscountPercentage(String value);
+    void setMinimumDiscountPercentage(float value);
 
-    String getMinimumQualifyingItems();
+    BigInteger getMinimumQualifyingItems();
 
-    void setMinimumQualifyingItems(String value);
+    void setMinimumQualifyingItems(BigInteger value);
 
     P getMinimumQualifyingSpend();
 
@@ -115,7 +117,7 @@ public interface Discount<P extends PriceSpecification, A extends AdditionalProd
 
     void setQualifyingSubBrandName(String value);
 
-    String getSelectedProductsOnly();
+    boolean getSelectedProductsOnly();
 
-    void setSelectedProductsOnly(String value);
+    void setSelectedProductsOnly(boolean value);
 }

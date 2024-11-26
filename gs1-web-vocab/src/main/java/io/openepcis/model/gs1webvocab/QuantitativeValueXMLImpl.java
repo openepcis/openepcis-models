@@ -22,7 +22,7 @@ import jakarta.xml.bind.annotation.*;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="unitCode" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="value" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="value" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -43,8 +43,8 @@ public class QuantitativeValueXMLImpl implements QuantitativeValue {
 
     @XmlElement(required = true)
     protected String unitCode;
-    @XmlElement(required = true)
-    protected String value;
+    protected float value;
+
 
     /**
      * Gets the value of the unitCode property.
@@ -74,27 +74,17 @@ public class QuantitativeValueXMLImpl implements QuantitativeValue {
 
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getValue() {
+    public float getValue() {
         return value;
     }
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setValue(String value) {
+    public void setValue(float value) {
         this.value = value;
     }
 

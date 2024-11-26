@@ -13,6 +13,8 @@ import io.openepcis.model.interfaces.ReferencedFileDetails;
 import io.openepcis.model.interfaces.WarrantyPromise;
 import jakarta.xml.bind.annotation.*;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
  * <p>Java class for Offer complex type</p>.
@@ -25,8 +27,8 @@ import jakarta.xml.bind.annotation.*;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="acceptedPaymentMethod" type="{}PaymentMethod"/>
- *         <element name="availabilityEnds" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="availabilityStarts" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="availabilityEnds" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         <element name="availabilityStarts" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         <element name="availableAtOrFrom" type="{}Place"/>
  *         <element name="eligibleQuantity" type="{}QuantitativeValue"/>
  *         <element name="eligibleQuantityMaximum" type="{}QuantitativeValue"/>
@@ -74,9 +76,11 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
     @XmlSchemaType(name = "string")
     protected PaymentMethod acceptedPaymentMethod;
     @XmlElement(required = true)
-    protected String availabilityEnds;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar availabilityEnds;
     @XmlElement(required = true)
-    protected String availabilityStarts;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar availabilityStarts;
     @XmlElement(required = true)
     protected PlaceXMLImpl availableAtOrFrom;
     @XmlElement(required = true)
@@ -135,11 +139,11 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getAvailabilityEnds() {
+    public XMLGregorianCalendar getAvailabilityEnds() {
         return availabilityEnds;
     }
 
@@ -148,11 +152,11 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setAvailabilityEnds(String value) {
+    public void setAvailabilityEnds(XMLGregorianCalendar value) {
         this.availabilityEnds = value;
     }
 
@@ -165,7 +169,7 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      *     
      */
     @Override
-    public String getAvailabilityStarts() {
+    public XMLGregorianCalendar getAvailabilityStarts() {
         return availabilityStarts;
     }
 
@@ -178,7 +182,7 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      *     
      */
     @Override
-    public void setAvailabilityStarts(String value) {
+    public void setAvailabilityStarts(XMLGregorianCalendar value) {
         this.availabilityStarts = value;
     }
 

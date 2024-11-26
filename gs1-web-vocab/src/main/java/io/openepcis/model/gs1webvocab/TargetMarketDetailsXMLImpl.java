@@ -9,10 +9,9 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Country;
 import io.openepcis.model.interfaces.TargetMarketDetails;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
+
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -25,7 +24,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="consumerFirstAvailabilityDateTime" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="consumerFirstAvailabilityDateTime" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         <element name="targetMarketCountries" type="{}Country"/>
  *       </sequence>
  *     </restriction>
@@ -43,7 +42,8 @@ import jakarta.xml.bind.annotation.XmlType;
 public class TargetMarketDetailsXMLImpl implements TargetMarketDetails<CountryXMLImpl> {
 
     @XmlElement(required = true)
-    protected String consumerFirstAvailabilityDateTime;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar consumerFirstAvailabilityDateTime;
     @XmlElement(required = true)
     protected CountryXMLImpl targetMarketCountries;
 
@@ -56,7 +56,7 @@ public class TargetMarketDetailsXMLImpl implements TargetMarketDetails<CountryXM
      *     
      */
     @Override
-    public String getConsumerFirstAvailabilityDateTime() {
+    public XMLGregorianCalendar getConsumerFirstAvailabilityDateTime() {
         return consumerFirstAvailabilityDateTime;
     }
 
@@ -69,7 +69,7 @@ public class TargetMarketDetailsXMLImpl implements TargetMarketDetails<CountryXM
      *     
      */
     @Override
-    public void setConsumerFirstAvailabilityDateTime(String value) {
+    public void setConsumerFirstAvailabilityDateTime(XMLGregorianCalendar value) {
         this.consumerFirstAvailabilityDateTime = value;
     }
 

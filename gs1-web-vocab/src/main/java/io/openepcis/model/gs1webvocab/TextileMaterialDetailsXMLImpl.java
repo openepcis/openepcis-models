@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="textileMaterialDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="textileMaterialPercentage" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="textileMaterialPercentage" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="textileMaterialThreadCount" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="textileMaterialWeight" type="{}QuantitativeValue"/>
  *       </sequence>
@@ -48,8 +48,7 @@ public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails<Qua
 
     @XmlElement(required = true)
     protected String textileMaterialDescription;
-    @XmlElement(required = true)
-    protected String textileMaterialPercentage;
+    protected float textileMaterialPercentage;
     @XmlElement(required = true)
     protected String textileMaterialThreadCount;
     @XmlElement(required = true)
@@ -90,7 +89,7 @@ public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails<Qua
      *     
      */
     @Override
-    public String getTextileMaterialPercentage() {
+    public float getTextileMaterialPercentage() {
         return textileMaterialPercentage;
     }
 
@@ -103,7 +102,7 @@ public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails<Qua
      *     
      */
     @Override
-    public void setTextileMaterialPercentage(String value) {
+    public void setTextileMaterialPercentage(float value) {
         this.textileMaterialPercentage = value;
     }
 

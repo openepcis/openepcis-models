@@ -11,12 +11,14 @@ import io.openepcis.model.interfaces.SizeDetails;
 import io.openepcis.model.interfaces.WearableProduct;
 import jakarta.xml.bind.annotation.*;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
  * <p>Java class for WearableProduct complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="WearableProduct">
  *   <complexContent>
@@ -27,7 +29,7 @@ import jakarta.xml.bind.annotation.*;
  *         <element name="isThermal" type="{}NonbinaryLogicCode"/>
  *         <element name="isWaterproof" type="{}NonbinaryLogicCode"/>
  *         <element name="isWearableItemDisposable" type="{}NonbinaryLogicCode"/>
- *         <element name="seasonCalendarYear" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="seasonCalendarYear" type="{http://www.w3.org/2001/XMLSchema}gYear"/>
  *         <element name="seasonName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="seasonParameter" type="{}SeasonParameterCode"/>
  *         <element name="size" type="{}SizeDetails"/>
@@ -41,32 +43,32 @@ import jakarta.xml.bind.annotation.*;
  *   </complexContent>
  * </complexType>
  * }</pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "WearableProduct", propOrder = {
-    "consumerLifestage",
-    "isPatterned",
-    "isThermal",
-    "isWaterproof",
-    "isWearableItemDisposable",
-    "seasonCalendarYear",
-    "seasonName",
-    "seasonParameter",
-    "size",
-    "sportingActivityType",
-    "styleDescription",
-    "targetConsumerAge",
-    "targetConsumerGender",
-    "textileMaterialContent"
+        "consumerLifestage",
+        "isPatterned",
+        "isThermal",
+        "isWaterproof",
+        "isWearableItemDisposable",
+        "seasonCalendarYear",
+        "seasonName",
+        "seasonParameter",
+        "size",
+        "sportingActivityType",
+        "styleDescription",
+        "targetConsumerAge",
+        "targetConsumerGender",
+        "textileMaterialContent"
 })
 @XmlSeeAlso({
-    ClothingXMLImpl.class,
-    FootwearXMLImpl.class
+        ClothingXMLImpl.class,
+        FootwearXMLImpl.class
 })
 public class WearableProductXMLImpl
-    extends ProductXMLImpl implements WearableProduct<SizeDetailsXMLImpl> {
+        extends ProductXMLImpl implements WearableProduct<SizeDetailsXMLImpl> {
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
@@ -84,7 +86,8 @@ public class WearableProductXMLImpl
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode isWearableItemDisposable;
     @XmlElement(required = true)
-    protected String seasonCalendarYear;
+    @XmlSchemaType(name = "gYear")
+    protected XMLGregorianCalendar seasonCalendarYear;
     @XmlElement(required = true)
     protected String seasonName;
     @XmlElement(required = true)
@@ -107,11 +110,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the consumerLifestage property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link ConsumerLifestageCode }
-     *     
+     *
      */
     @Override
     public ConsumerLifestageCode getConsumerLifestage() {
@@ -120,11 +123,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the consumerLifestage property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link ConsumerLifestageCode }
-     *     
+     *
      */
     @Override
     public void setConsumerLifestage(ConsumerLifestageCode value) {
@@ -133,11 +136,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the isPatterned property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public NonbinaryLogicCode getIsPatterned() {
@@ -146,11 +149,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the isPatterned property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public void setIsPatterned(NonbinaryLogicCode value) {
@@ -159,11 +162,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the isThermal property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public NonbinaryLogicCode getIsThermal() {
@@ -172,11 +175,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the isThermal property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public void setIsThermal(NonbinaryLogicCode value) {
@@ -185,11 +188,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the isWaterproof property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public NonbinaryLogicCode getIsWaterproof() {
@@ -198,11 +201,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the isWaterproof property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public void setIsWaterproof(NonbinaryLogicCode value) {
@@ -211,11 +214,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the isWearableItemDisposable property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public NonbinaryLogicCode getIsWearableItemDisposable() {
@@ -224,11 +227,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the isWearableItemDisposable property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link NonbinaryLogicCode }
-     *     
+     *
      */
     @Override
     public void setIsWearableItemDisposable(NonbinaryLogicCode value) {
@@ -237,37 +240,37 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the seasonCalendarYear property.
-     * 
+     *
      * @return
      *     possible object is
-     *     {@link String }
-     *     
+     *     {@link XMLGregorianCalendar }
+     *
      */
     @Override
-    public String getSeasonCalendarYear() {
+    public XMLGregorianCalendar getSeasonCalendarYear() {
         return seasonCalendarYear;
     }
 
     /**
      * Sets the value of the seasonCalendarYear property.
-     * 
+     *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *     
+     *     {@link XMLGregorianCalendar }
+     *
      */
     @Override
-    public void setSeasonCalendarYear(String value) {
+    public void setSeasonCalendarYear(XMLGregorianCalendar value) {
         this.seasonCalendarYear = value;
     }
 
     /**
      * Gets the value of the seasonName property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public String getSeasonName() {
@@ -276,11 +279,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the seasonName property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public void setSeasonName(String value) {
@@ -289,11 +292,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the seasonParameter property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link SeasonParameterCode }
-     *     
+     *
      */
     @Override
     public SeasonParameterCode getSeasonParameter() {
@@ -302,11 +305,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the seasonParameter property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link SeasonParameterCode }
-     *     
+     *
      */
     @Override
     public void setSeasonParameter(SeasonParameterCode value) {
@@ -315,11 +318,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the size property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link SizeDetailsXMLImpl }
-     *     
+     *
      */
     @Override
     public SizeDetailsXMLImpl getSize() {
@@ -328,11 +331,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the size property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link SizeDetailsXMLImpl }
-     *     
+     *
      */
     @Override
     public void setSize(SizeDetailsXMLImpl value) {
@@ -341,11 +344,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the sportingActivityType property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link SportingActivityTypeCode }
-     *     
+     *
      */
     @Override
     public SportingActivityTypeCode getSportingActivityType() {
@@ -354,11 +357,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the sportingActivityType property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link SportingActivityTypeCode }
-     *     
+     *
      */
     @Override
     public void setSportingActivityType(SportingActivityTypeCode value) {
@@ -367,11 +370,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the styleDescription property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public String getStyleDescription() {
@@ -380,11 +383,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the styleDescription property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public void setStyleDescription(String value) {
@@ -393,11 +396,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the targetConsumerAge property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public String getTargetConsumerAge() {
@@ -406,11 +409,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the targetConsumerAge property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public void setTargetConsumerAge(String value) {
@@ -419,11 +422,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the targetConsumerGender property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link TargetConsumerGenderCode }
-     *     
+     *
      */
     @Override
     public TargetConsumerGenderCode getTargetConsumerGender() {
@@ -432,11 +435,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the targetConsumerGender property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link TargetConsumerGenderCode }
-     *     
+     *
      */
     @Override
     public void setTargetConsumerGender(TargetConsumerGenderCode value) {
@@ -445,11 +448,11 @@ public class WearableProductXMLImpl
 
     /**
      * Gets the value of the textileMaterialContent property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public String getTextileMaterialContent() {
@@ -458,11 +461,11 @@ public class WearableProductXMLImpl
 
     /**
      * Sets the value of the textileMaterialContent property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public void setTextileMaterialContent(String value) {

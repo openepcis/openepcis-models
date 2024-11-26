@@ -1,5 +1,7 @@
 package io.openepcis.model.interfaces;
 
+import java.math.BigInteger;
+
 public interface FoodBeverageTobaccoIngredientDetails {
     String getIngredientContentPercentage();
 
@@ -9,7 +11,7 @@ public interface FoodBeverageTobaccoIngredientDetails {
 
     void setIngredientName(String value);
 
-    String getIngredientSequence();
+    BigInteger getIngredientSequence();
 
-    void setIngredientSequence(String value);
+    void setIngredientSequence(BigInteger value);
 }
