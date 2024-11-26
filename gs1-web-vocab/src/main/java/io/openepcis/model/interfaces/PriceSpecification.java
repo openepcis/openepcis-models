@@ -1,6 +1,6 @@
 package io.openepcis.model.interfaces;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDateTime;
 
 public interface PriceSpecification<Q extends QuantitativeValue> {
     float getDutyFeeTaxAmount();
@@ -43,11 +43,11 @@ public interface PriceSpecification<Q extends QuantitativeValue> {
 
     void setPriceCurrency(String value);
 
-    XMLGregorianCalendar getValidFrom();
+    LocalDateTime getValidFrom();
 
-    void setValidFrom(XMLGregorianCalendar value);
+    void setValidFrom(LocalDateTime value);
 
-    XMLGregorianCalendar getValidThrough();
+    LocalDateTime getValidThrough();
 
-    void setValidThrough(XMLGregorianCalendar value);
+    void setValidThrough(LocalDateTime value);
 }

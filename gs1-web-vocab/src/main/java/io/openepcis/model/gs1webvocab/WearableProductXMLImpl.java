@@ -7,11 +7,10 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import io.openepcis.model.interfaces.SizeDetails;
 import io.openepcis.model.interfaces.WearableProduct;
 import jakarta.xml.bind.annotation.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDate;
 
 
 /**
@@ -87,7 +86,7 @@ public class WearableProductXMLImpl
     protected NonbinaryLogicCode isWearableItemDisposable;
     @XmlElement(required = true)
     @XmlSchemaType(name = "gYear")
-    protected XMLGregorianCalendar seasonCalendarYear;
+    protected LocalDate seasonCalendarYear;
     @XmlElement(required = true)
     protected String seasonName;
     @XmlElement(required = true)
@@ -243,11 +242,11 @@ public class WearableProductXMLImpl
      *
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *
      */
     @Override
-    public XMLGregorianCalendar getSeasonCalendarYear() {
+    public LocalDate getSeasonCalendarYear() {
         return seasonCalendarYear;
     }
 
@@ -256,11 +255,11 @@ public class WearableProductXMLImpl
      *
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *
      */
     @Override
-    public void setSeasonCalendarYear(XMLGregorianCalendar value) {
+    public void setSeasonCalendarYear(LocalDate value) {
         this.seasonCalendarYear = value;
     }
 

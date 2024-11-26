@@ -45,8 +45,7 @@ import java.math.BigInteger;
 })
 public class FoodBeverageTobaccoIngredientDetailsXMLImpl implements FoodBeverageTobaccoIngredientDetails {
 
-    @XmlElement(required = true)
-    protected String ingredientContentPercentage;
+    protected float ingredientContentPercentage;
     @XmlElement(required = true)
     protected String ingredientName;
     @XmlElement(required = true)
@@ -54,27 +53,17 @@ public class FoodBeverageTobaccoIngredientDetailsXMLImpl implements FoodBeverage
 
     /**
      * Gets the value of the ingredientContentPercentage property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getIngredientContentPercentage() {
+    public float getIngredientContentPercentage() {
         return ingredientContentPercentage;
     }
 
     /**
      * Sets the value of the ingredientContentPercentage property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setIngredientContentPercentage(String value) {
+    public void setIngredientContentPercentage(float value) {
         this.ingredientContentPercentage = value;
     }
 

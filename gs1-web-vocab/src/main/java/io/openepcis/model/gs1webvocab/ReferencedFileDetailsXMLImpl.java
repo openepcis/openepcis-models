@@ -7,12 +7,12 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import io.openepcis.model.interfaces.QuantitativeValue;
 import io.openepcis.model.interfaces.ReferencedFileDetails;
 import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 
 /**
@@ -60,12 +60,14 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
     protected BigInteger filePixelHeight;
     @XmlElement(required = true)
     protected BigInteger filePixelWidth;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar referencedFileEffectiveEndDateTime;
-    @XmlElement(required = true)
+    protected LocalDateTime referencedFileEffectiveEndDateTime;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar referencedFileEffectiveStartDateTime;
+    protected LocalDateTime referencedFileEffectiveStartDateTime;
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl referencedFileSize;
     @XmlElement(required = true)
@@ -157,11 +159,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getReferencedFileEffectiveEndDateTime() {
+    public LocalDateTime getReferencedFileEffectiveEndDateTime() {
         return referencedFileEffectiveEndDateTime;
     }
 
@@ -170,11 +172,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setReferencedFileEffectiveEndDateTime(XMLGregorianCalendar value) {
+    public void setReferencedFileEffectiveEndDateTime(LocalDateTime value) {
         this.referencedFileEffectiveEndDateTime = value;
     }
 
@@ -183,11 +185,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getReferencedFileEffectiveStartDateTime() {
+    public LocalDateTime getReferencedFileEffectiveStartDateTime() {
         return referencedFileEffectiveStartDateTime;
     }
 
@@ -196,11 +198,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setReferencedFileEffectiveStartDateTime(XMLGregorianCalendar value) {
+    public void setReferencedFileEffectiveStartDateTime(LocalDateTime value) {
         this.referencedFileEffectiveStartDateTime = value;
     }
 

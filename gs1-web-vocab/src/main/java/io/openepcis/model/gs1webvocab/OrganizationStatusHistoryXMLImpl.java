@@ -9,8 +9,9 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.OrganizationStatusHistory;
 import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDateTime;
 
 
 /**
@@ -43,9 +44,10 @@ public class OrganizationStatusHistoryXMLImpl implements OrganizationStatusHisto
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected StatusType organizationStatus;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar statusTimestamp;
+    protected LocalDateTime statusTimestamp;
 
     /**
      * Gets the value of the organizationStatus property.
@@ -78,11 +80,11 @@ public class OrganizationStatusHistoryXMLImpl implements OrganizationStatusHisto
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getStatusTimestamp() {
+    public LocalDateTime getStatusTimestamp() {
         return statusTimestamp;
     }
 
@@ -91,11 +93,11 @@ public class OrganizationStatusHistoryXMLImpl implements OrganizationStatusHisto
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setStatusTimestamp(XMLGregorianCalendar value) {
+    public void setStatusTimestamp(LocalDateTime value) {
         this.statusTimestamp = value;
     }
 

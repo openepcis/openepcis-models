@@ -9,9 +9,11 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.*;
 import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 /**
@@ -244,9 +246,10 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     protected AuthenticityDetailsXMLImpl authenticity;
     @XmlElement(required = true)
     protected AwardPrizeDetailsXMLImpl awardPrize;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar bestBeforeDate;
+    protected LocalDate bestBeforeDate;
     @XmlElement(required = true)
     protected BrandXMLImpl brand;
     @XmlElement(required = true)
@@ -286,20 +289,24 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     protected ProductXMLImpl dependentProprietaryProduct;
     @XmlElement(required = true)
     protected String descriptiveSize;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar dueDate;
+    protected LocalDate dueDate;
     @XmlElement(required = true)
     protected ProductXMLImpl equivalentProduct;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar expirationDate;
-    @XmlElement(required = true)
+    protected LocalDate expirationDate;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar expirationDateTime;
-    @XmlElement(required = true)
+    protected LocalDate expirationDateTime;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar firstFreezeDate;
+    protected LocalDate firstFreezeDate;
     @XmlElement(required = true)
     protected String functionalName;
     @XmlElement(required = true)
@@ -317,15 +324,18 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     protected GrowingMethodCode growingMethod;
     @XmlElement(required = true)
     protected String gtin;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar harvestDate;
-    @XmlElement(required = true)
+    protected LocalDate harvestDate;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar harvestDateEnd;
-    @XmlElement(required = true)
+    protected LocalDate harvestDateEnd;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar harvestDateStart;
+    protected LocalDate harvestDateStart;
     @XmlElement(required = true)
     protected String hasBatchLotNumber;
     @XmlElement(required = true)
@@ -378,9 +388,10 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     protected QuantitativeValueXMLImpl outOfPackageWidth;
     @XmlElement(required = true)
     protected PackagingDetailsXMLImpl packaging;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar packagingDate;
+    protected LocalDate packagingDate;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PackagingMarkedLabelAccreditationCode packagingMarkedLabelAccreditation;
@@ -403,17 +414,20 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     @XmlElement(required = true)
     @XmlSchemaType(name = "anyURI")
     protected String productSustainabilityInfo;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar productionDate;
-    @XmlElement(required = true)
+    protected LocalDate productionDate;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar productionDateTime;
+    protected LocalDate productionDateTime;
     @XmlElement(required = true)
     protected String productionVariantDescription;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar productionVariantEffectiveDateTime;
+    protected LocalDateTime productionVariantEffectiveDateTime;
     @XmlElement(required = true)
     protected String provenanceStatement;
     @XmlElement(required = true)
@@ -424,9 +438,10 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     protected ProductXMLImpl replacedByProduct;
     @XmlElement(required = true)
     protected ProductXMLImpl replacedProduct;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar sellByDate;
+    protected LocalDate sellByDate;
     @XmlElement(required = true)
     protected SizeCodeDetailsXMLImpl sizeCode;
     @XmlElement(required = true)
@@ -599,11 +614,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getBestBeforeDate() {
+    public LocalDate getBestBeforeDate() {
         return bestBeforeDate;
     }
 
@@ -612,11 +627,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setBestBeforeDate(XMLGregorianCalendar value) {
+    public void setBestBeforeDate(LocalDate value) {
         this.bestBeforeDate = value;
     }
 
@@ -1119,11 +1134,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
@@ -1132,11 +1147,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setDueDate(XMLGregorianCalendar value) {
+    public void setDueDate(LocalDate value) {
         this.dueDate = value;
     }
 
@@ -1171,11 +1186,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
@@ -1184,11 +1199,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setExpirationDate(XMLGregorianCalendar value) {
+    public void setExpirationDate(LocalDate value) {
         this.expirationDate = value;
     }
 
@@ -1197,11 +1212,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getExpirationDateTime() {
+    public LocalDate getExpirationDateTime() {
         return expirationDateTime;
     }
 
@@ -1210,11 +1225,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setExpirationDateTime(XMLGregorianCalendar value) {
+    public void setExpirationDateTime(LocalDate value) {
         this.expirationDateTime = value;
     }
 
@@ -1223,11 +1238,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getFirstFreezeDate() {
+    public LocalDate getFirstFreezeDate() {
         return firstFreezeDate;
     }
 
@@ -1236,11 +1251,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setFirstFreezeDate(XMLGregorianCalendar value) {
+    public void setFirstFreezeDate(LocalDate value) {
         this.firstFreezeDate = value;
     }
 
@@ -1457,11 +1472,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getHarvestDate() {
+    public LocalDate getHarvestDate() {
         return harvestDate;
     }
 
@@ -1470,11 +1485,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setHarvestDate(XMLGregorianCalendar value) {
+    public void setHarvestDate(LocalDate value) {
         this.harvestDate = value;
     }
 
@@ -1483,11 +1498,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getHarvestDateEnd() {
+    public LocalDate getHarvestDateEnd() {
         return harvestDateEnd;
     }
 
@@ -1496,11 +1511,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setHarvestDateEnd(XMLGregorianCalendar value) {
+    public void setHarvestDateEnd(LocalDate value) {
         this.harvestDateEnd = value;
     }
 
@@ -1509,11 +1524,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getHarvestDateStart() {
+    public LocalDate getHarvestDateStart() {
         return harvestDateStart;
     }
 
@@ -1522,11 +1537,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setHarvestDateStart(XMLGregorianCalendar value) {
+    public void setHarvestDateStart(LocalDate value) {
         this.harvestDateStart = value;
     }
 
@@ -2201,11 +2216,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getPackagingDate() {
+    public LocalDate getPackagingDate() {
         return packagingDate;
     }
 
@@ -2214,11 +2229,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setPackagingDate(XMLGregorianCalendar value) {
+    public void setPackagingDate(LocalDate value) {
         this.packagingDate = value;
     }
 
@@ -2487,11 +2502,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getProductionDate() {
+    public LocalDate getProductionDate() {
         return productionDate;
     }
 
@@ -2500,11 +2515,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setProductionDate(XMLGregorianCalendar value) {
+    public void setProductionDate(LocalDate value) {
         this.productionDate = value;
     }
 
@@ -2513,11 +2528,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getProductionDateTime() {
+    public LocalDate getProductionDateTime() {
         return productionDateTime;
     }
 
@@ -2526,11 +2541,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setProductionDateTime(XMLGregorianCalendar value) {
+    public void setProductionDateTime(LocalDate value) {
         this.productionDateTime = value;
     }
 
@@ -2539,7 +2554,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
     @Override
@@ -2565,11 +2580,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getProductionVariantEffectiveDateTime() {
+    public LocalDateTime getProductionVariantEffectiveDateTime() {
         return productionVariantEffectiveDateTime;
     }
 
@@ -2578,11 +2593,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setProductionVariantEffectiveDateTime(XMLGregorianCalendar value) {
+    public void setProductionVariantEffectiveDateTime(LocalDateTime value) {
         this.productionVariantEffectiveDateTime = value;
     }
 
@@ -2721,11 +2736,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public XMLGregorianCalendar getSellByDate() {
+    public LocalDate getSellByDate() {
         return sellByDate;
     }
 
@@ -2734,11 +2749,11 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDate }
      *     
      */
     @Override
-    public void setSellByDate(XMLGregorianCalendar value) {
+    public void setSellByDate(LocalDate value) {
         this.sellByDate = value;
     }
 

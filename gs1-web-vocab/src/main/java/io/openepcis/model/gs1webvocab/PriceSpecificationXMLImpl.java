@@ -8,10 +8,10 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.PriceSpecification;
-import io.openepcis.model.interfaces.QuantitativeValue;
 import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDateTime;
 
 
 /**
@@ -76,12 +76,14 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
     protected float price;
     @XmlElement(required = true)
     protected String priceCurrency;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar validFrom;
-    @XmlElement(required = true)
+    protected LocalDateTime validFrom;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar validThrough;
+    protected LocalDateTime validThrough;
 
     /**
      * Gets the value of the dutyFeeTaxAmount property.
@@ -298,11 +300,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getValidFrom() {
+    public LocalDateTime getValidFrom() {
         return validFrom;
     }
 
@@ -311,11 +313,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setValidFrom(XMLGregorianCalendar value) {
+    public void setValidFrom(LocalDateTime value) {
         this.validFrom = value;
     }
 
@@ -324,11 +326,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getValidThrough() {
+    public LocalDateTime getValidThrough() {
         return validThrough;
     }
 
@@ -337,11 +339,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setValidThrough(XMLGregorianCalendar value) {
+    public void setValidThrough(LocalDateTime value) {
         this.validThrough = value;
     }
 
