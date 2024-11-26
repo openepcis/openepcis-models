@@ -2,14 +2,14 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.StatusType;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDateTime;
 
 public interface OrganizationStatusHistory {
     StatusType getOrganizationStatus();
 
     void setOrganizationStatus(StatusType value);
 
-    XMLGregorianCalendar getStatusTimestamp();
+    LocalDateTime getStatusTimestamp();
 
-    void setStatusTimestamp(XMLGregorianCalendar value);
+    void setStatusTimestamp(LocalDateTime value);
 }

@@ -7,11 +7,11 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import io.openepcis.model.interfaces.Country;
 import io.openepcis.model.interfaces.TargetMarketDetails;
 import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDateTime;
 
 
 /**
@@ -41,9 +41,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class TargetMarketDetailsXMLImpl implements TargetMarketDetails<CountryXMLImpl> {
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar consumerFirstAvailabilityDateTime;
+    protected LocalDateTime consumerFirstAvailabilityDateTime;
     @XmlElement(required = true)
     protected CountryXMLImpl targetMarketCountries;
 
@@ -52,11 +53,11 @@ public class TargetMarketDetailsXMLImpl implements TargetMarketDetails<CountryXM
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getConsumerFirstAvailabilityDateTime() {
+    public LocalDateTime getConsumerFirstAvailabilityDateTime() {
         return consumerFirstAvailabilityDateTime;
     }
 
@@ -65,11 +66,11 @@ public class TargetMarketDetailsXMLImpl implements TargetMarketDetails<CountryXM
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setConsumerFirstAvailabilityDateTime(XMLGregorianCalendar value) {
+    public void setConsumerFirstAvailabilityDateTime(LocalDateTime value) {
         this.consumerFirstAvailabilityDateTime = value;
     }
 

@@ -1,6 +1,6 @@
 package io.openepcis.model.interfaces;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDate;
 
 public interface AwardPrizeDetails<C extends Country> {
     String getAwardPrizeCode();
@@ -23,7 +23,7 @@ public interface AwardPrizeDetails<C extends Country> {
 
     void setAwardPrizeName(String value);
 
-    XMLGregorianCalendar getAwardPrizeYear();
+    LocalDate getAwardPrizeYear();
 
-    void setAwardPrizeYear(XMLGregorianCalendar value);
+    void setAwardPrizeYear(LocalDate value);
 }

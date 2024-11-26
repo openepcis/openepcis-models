@@ -1,7 +1,7 @@
 package io.openepcis.model.interfaces;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 public interface ReferencedFileDetails<QV extends QuantitativeValue> {
     String getFileLanguageCode();
@@ -16,13 +16,13 @@ public interface ReferencedFileDetails<QV extends QuantitativeValue> {
 
     void setFilePixelWidth(BigInteger value);
 
-    XMLGregorianCalendar getReferencedFileEffectiveEndDateTime();
+    LocalDateTime getReferencedFileEffectiveEndDateTime();
 
-    void setReferencedFileEffectiveEndDateTime(XMLGregorianCalendar value);
+    void setReferencedFileEffectiveEndDateTime(LocalDateTime value);
 
-    XMLGregorianCalendar getReferencedFileEffectiveStartDateTime();
+    LocalDateTime getReferencedFileEffectiveStartDateTime();
 
-    void setReferencedFileEffectiveStartDateTime(XMLGregorianCalendar value);
+    void setReferencedFileEffectiveStartDateTime(LocalDateTime value);
 
     QV getReferencedFileSize();
 

@@ -8,12 +8,10 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Offer;
-import io.openepcis.model.interfaces.QuantitativeValue;
-import io.openepcis.model.interfaces.ReferencedFileDetails;
-import io.openepcis.model.interfaces.WarrantyPromise;
 import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDateTime;
 
 
 /**
@@ -75,12 +73,14 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PaymentMethod acceptedPaymentMethod;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar availabilityEnds;
-    @XmlElement(required = true)
+    protected LocalDateTime availabilityEnds;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar availabilityStarts;
+    protected LocalDateTime availabilityStarts;
     @XmlElement(required = true)
     protected PlaceXMLImpl availableAtOrFrom;
     @XmlElement(required = true)
@@ -139,11 +139,11 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getAvailabilityEnds() {
+    public LocalDateTime getAvailabilityEnds() {
         return availabilityEnds;
     }
 
@@ -152,11 +152,11 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setAvailabilityEnds(XMLGregorianCalendar value) {
+    public void setAvailabilityEnds(LocalDateTime value) {
         this.availabilityEnds = value;
     }
 
@@ -165,11 +165,11 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public XMLGregorianCalendar getAvailabilityStarts() {
+    public LocalDateTime getAvailabilityStarts() {
         return availabilityStarts;
     }
 
@@ -178,11 +178,11 @@ public class OfferXMLImpl implements Offer<PlaceXMLImpl,QuantitativeValueXMLImpl
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link LocalDateTime }
      *     
      */
     @Override
-    public void setAvailabilityStarts(XMLGregorianCalendar value) {
+    public void setAvailabilityStarts(LocalDateTime value) {
         this.availabilityStarts = value;
     }
 

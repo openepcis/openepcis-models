@@ -2,7 +2,7 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDateTime;
 
 public interface Offer<P extends Place,Q extends QuantitativeValue,PR extends Product,D extends Discount
         ,R extends ReferencedFileDetails,PS extends PriceSpecification,W extends WarrantyPromise,O extends Organization>{
@@ -10,13 +10,13 @@ public interface Offer<P extends Place,Q extends QuantitativeValue,PR extends Pr
 
     void setAcceptedPaymentMethod(PaymentMethod value);
 
-    XMLGregorianCalendar getAvailabilityEnds();
+    LocalDateTime getAvailabilityEnds();
 
-    void setAvailabilityEnds(XMLGregorianCalendar value);
+    void setAvailabilityEnds(LocalDateTime value);
 
-    XMLGregorianCalendar getAvailabilityStarts();
+    LocalDateTime getAvailabilityStarts();
 
-    void setAvailabilityStarts(XMLGregorianCalendar value);
+    void setAvailabilityStarts(LocalDateTime value);
 
     P getAvailableAtOrFrom();
 

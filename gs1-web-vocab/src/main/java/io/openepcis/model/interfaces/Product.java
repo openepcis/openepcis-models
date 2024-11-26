@@ -2,8 +2,9 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public interface Product<AP extends AdditionalProductClassificationDetails,AD extends AdditiveDetails,
         RF extends ReferencedFileDetails,AU extends AuthenticityDetails,AW extends AwardPrizeDetails,B extends Brand,O extends Organization,
@@ -33,9 +34,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setAwardPrize(AW value);
 
-    XMLGregorianCalendar getBestBeforeDate();
+    LocalDate getBestBeforeDate();
 
-    void setBestBeforeDate(XMLGregorianCalendar value);
+    void setBestBeforeDate(LocalDate value);
 
     B getBrand();
 
@@ -113,25 +114,25 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setDescriptiveSize(String value);
 
-    XMLGregorianCalendar getDueDate();
+    LocalDate getDueDate();
 
-    void setDueDate(XMLGregorianCalendar value);
+    void setDueDate(LocalDate value);
 
     P getEquivalentProduct();
 
     void setEquivalentProduct(P value);
 
-    XMLGregorianCalendar getExpirationDate();
+    LocalDate getExpirationDate();
 
-    void setExpirationDate(XMLGregorianCalendar value);
+    void setExpirationDate(LocalDate value);
 
-    XMLGregorianCalendar getExpirationDateTime();
+    LocalDate getExpirationDateTime();
 
-    void setExpirationDateTime(XMLGregorianCalendar value);
+    void setExpirationDateTime(LocalDate value);
 
-    XMLGregorianCalendar getFirstFreezeDate();
+    LocalDate getFirstFreezeDate();
 
-    void setFirstFreezeDate(XMLGregorianCalendar value);
+    void setFirstFreezeDate(LocalDate value);
 
     String getFunctionalName();
 
@@ -165,17 +166,17 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setGtin(String value);
 
-    XMLGregorianCalendar getHarvestDate();
+    LocalDate getHarvestDate();
 
-    void setHarvestDate(XMLGregorianCalendar value);
+    void setHarvestDate(LocalDate value);
 
-    XMLGregorianCalendar getHarvestDateEnd();
+    LocalDate getHarvestDateEnd();
 
-    void setHarvestDateEnd(XMLGregorianCalendar value);
+    void setHarvestDateEnd(LocalDate value);
 
-    XMLGregorianCalendar getHarvestDateStart();
+    LocalDate getHarvestDateStart();
 
-    void setHarvestDateStart(XMLGregorianCalendar value);
+    void setHarvestDateStart(LocalDate value);
 
     String getHasBatchLotNumber();
 
@@ -281,9 +282,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setPackaging(PD value);
 
-    XMLGregorianCalendar getPackagingDate();
+    LocalDate getPackagingDate();
 
-    void setPackagingDate(XMLGregorianCalendar value);
+    void setPackagingDate(LocalDate value);
 
     PackagingMarkedLabelAccreditationCode getPackagingMarkedLabelAccreditation();
 
@@ -325,21 +326,21 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setProductSustainabilityInfo(String value);
 
-    XMLGregorianCalendar getProductionDate();
+    LocalDate getProductionDate();
 
-    void setProductionDate(XMLGregorianCalendar value);
+    void setProductionDate(LocalDate value);
 
-    XMLGregorianCalendar getProductionDateTime();
+    LocalDate getProductionDateTime();
 
-    void setProductionDateTime(XMLGregorianCalendar value);
+    void setProductionDateTime(LocalDate value);
 
     String getProductionVariantDescription();
 
     void setProductionVariantDescription(String value);
 
-    XMLGregorianCalendar getProductionVariantEffectiveDateTime();
+    LocalDateTime getProductionVariantEffectiveDateTime();
 
-    void setProductionVariantEffectiveDateTime(XMLGregorianCalendar value);
+    void setProductionVariantEffectiveDateTime(LocalDateTime value);
 
     String getProvenanceStatement();
 
@@ -361,9 +362,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setReplacedProduct(P value);
 
-    XMLGregorianCalendar getSellByDate();
+    LocalDate getSellByDate();
 
-    void setSellByDate(XMLGregorianCalendar value);
+    void setSellByDate(LocalDate value);
 
     SC getSizeCode();
 
