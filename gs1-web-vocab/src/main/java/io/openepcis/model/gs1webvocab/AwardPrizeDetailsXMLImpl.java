@@ -2,8 +2,10 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.AwardPrizeDetails;
 import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.time.LocalDate;
+import java.time.Year;
 
 
 /**
@@ -51,9 +53,10 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails<CountryXMLImp
     protected String awardPrizeJury;
     @XmlElement(required = true)
     protected String awardPrizeName;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "date")
-    protected LocalDate awardPrizeYear;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter3 .class)
+    @XmlSchemaType(name = "gYear")
+    protected Year awardPrizeYear;
 
     /**
      * Gets the value of the awardPrizeCode property.
@@ -190,11 +193,11 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails<CountryXMLImp
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link Year }
      *     
      */
     @Override
-    public LocalDate getAwardPrizeYear() {
+    public Year getAwardPrizeYear() {
         return awardPrizeYear;
     }
 
@@ -203,11 +206,11 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails<CountryXMLImp
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link Year }
      *     
      */
     @Override
-    public void setAwardPrizeYear(LocalDate value) {
+    public void setAwardPrizeYear(Year value) {
         this.awardPrizeYear = value;
     }
 

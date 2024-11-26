@@ -1,6 +1,7 @@
 package io.openepcis.model.interfaces;
 
 import java.time.LocalDate;
+import java.time.Year;
 
 public interface AwardPrizeDetails<C extends Country> {
     String getAwardPrizeCode();
@@ -23,7 +24,7 @@ public interface AwardPrizeDetails<C extends Country> {
 
     void setAwardPrizeName(String value);
 
-    LocalDate getAwardPrizeYear();
+    Year getAwardPrizeYear();
 
-    void setAwardPrizeYear(LocalDate value);
+    void setAwardPrizeYear(Year value);
 }

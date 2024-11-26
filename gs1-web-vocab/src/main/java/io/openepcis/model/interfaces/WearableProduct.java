@@ -1,8 +1,7 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
-
-import java.time.LocalDate;
+import java.time.Year;
 
 public interface WearableProduct<SD extends SizeDetails> {
     ConsumerLifestageCode getConsumerLifestage();
@@ -25,9 +24,9 @@ public interface WearableProduct<SD extends SizeDetails> {
 
     void setIsWearableItemDisposable(NonbinaryLogicCode value);
 
-    LocalDate getSeasonCalendarYear();
+    Year getSeasonCalendarYear();
 
-    void setSeasonCalendarYear(LocalDate value);
+    void setSeasonCalendarYear(Year value);
 
     String getSeasonName();
 
