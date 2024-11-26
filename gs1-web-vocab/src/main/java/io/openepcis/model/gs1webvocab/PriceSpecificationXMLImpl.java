@@ -9,41 +9,40 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.PriceSpecification;
 import io.openepcis.model.interfaces.QuantitativeValue;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
+
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Java class for PriceSpecification complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="PriceSpecification">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="dutyFeeTaxAmount" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="dutyFeeTaxAmount" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="dutyFeeTaxDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="dutyFeeTaxRate" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="dutyFeeTaxRate" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="eligibleQuantity" type="{}QuantitativeValue"/>
  *         <element name="eligibleQuantityMaximum" type="{}QuantitativeValue"/>
  *         <element name="eligibleQuantityMinimum" type="{}QuantitativeValue"/>
- *         <element name="maxPrice" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="minPrice" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="price" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="maxPrice" type="{http://www.w3.org/2001/XMLSchema}float"/>
+ *         <element name="minPrice" type="{http://www.w3.org/2001/XMLSchema}float"/>
+ *         <element name="price" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="priceCurrency" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="validFrom" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="validThrough" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="validFrom" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         <element name="validThrough" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
  * </complexType>
  * }</pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PriceSpecification", propOrder = {
@@ -62,54 +61,41 @@ import jakarta.xml.bind.annotation.XmlType;
 })
 public class PriceSpecificationXMLImpl implements PriceSpecification<QuantitativeValueXMLImpl> {
 
-    @XmlElement(required = true)
-    protected String dutyFeeTaxAmount;
+    protected float dutyFeeTaxAmount;
     @XmlElement(required = true)
     protected String dutyFeeTaxDescription;
-    @XmlElement(required = true)
-    protected String dutyFeeTaxRate;
+    protected float dutyFeeTaxRate;
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl eligibleQuantity;
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl eligibleQuantityMaximum;
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl eligibleQuantityMinimum;
-    @XmlElement(required = true)
-    protected String maxPrice;
-    @XmlElement(required = true)
-    protected String minPrice;
-    @XmlElement(required = true)
-    protected String price;
+    protected float maxPrice;
+    protected float minPrice;
+    protected float price;
     @XmlElement(required = true)
     protected String priceCurrency;
     @XmlElement(required = true)
-    protected String validFrom;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar validFrom;
     @XmlElement(required = true)
-    protected String validThrough;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar validThrough;
 
     /**
      * Gets the value of the dutyFeeTaxAmount property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getDutyFeeTaxAmount() {
+    public float getDutyFeeTaxAmount() {
         return dutyFeeTaxAmount;
     }
 
     /**
      * Sets the value of the dutyFeeTaxAmount property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setDutyFeeTaxAmount(String value) {
+    public void setDutyFeeTaxAmount(float value) {
         this.dutyFeeTaxAmount = value;
     }
 
@@ -141,27 +127,17 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
 
     /**
      * Gets the value of the dutyFeeTaxRate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getDutyFeeTaxRate() {
+    public float getDutyFeeTaxRate() {
         return dutyFeeTaxRate;
     }
 
     /**
      * Sets the value of the dutyFeeTaxRate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setDutyFeeTaxRate(String value) {
+    public void setDutyFeeTaxRate(float value) {
         this.dutyFeeTaxRate = value;
     }
 
@@ -245,79 +221,49 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
 
     /**
      * Gets the value of the maxPrice property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getMaxPrice() {
+    public float getMaxPrice() {
         return maxPrice;
     }
 
     /**
      * Sets the value of the maxPrice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setMaxPrice(String value) {
+    public void setMaxPrice(float value) {
         this.maxPrice = value;
     }
 
     /**
      * Gets the value of the minPrice property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getMinPrice() {
+    public float getMinPrice() {
         return minPrice;
     }
 
     /**
      * Sets the value of the minPrice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setMinPrice(String value) {
+    public void setMinPrice(float value) {
         this.minPrice = value;
     }
 
     /**
      * Gets the value of the price property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
     /**
      * Sets the value of the price property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setPrice(String value) {
+    public void setPrice(float value) {
         this.price = value;
     }
 
@@ -352,11 +298,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getValidFrom() {
+    public XMLGregorianCalendar getValidFrom() {
         return validFrom;
     }
 
@@ -365,11 +311,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setValidFrom(String value) {
+    public void setValidFrom(XMLGregorianCalendar value) {
         this.validFrom = value;
     }
 
@@ -378,11 +324,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getValidThrough() {
+    public XMLGregorianCalendar getValidThrough() {
         return validThrough;
     }
 
@@ -391,11 +337,11 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setValidThrough(String value) {
+    public void setValidThrough(XMLGregorianCalendar value) {
         this.validThrough = value;
     }
 

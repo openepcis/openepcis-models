@@ -10,6 +10,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.LocationStatusHistory;
 import jakarta.xml.bind.annotation.*;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
  * <p>Java class for LocationStatusHistory complex type</p>.
@@ -42,7 +44,8 @@ public class LocationStatusHistoryXMLImpl implements LocationStatusHistory {
     @XmlSchemaType(name = "string")
     protected StatusType locationStatus;
     @XmlElement(required = true)
-    protected String statusTimestamp;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar statusTimestamp;
 
     /**
      * Gets the value of the locationStatus property.
@@ -75,11 +78,11 @@ public class LocationStatusHistoryXMLImpl implements LocationStatusHistory {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getStatusTimestamp() {
+    public XMLGregorianCalendar getStatusTimestamp() {
         return statusTimestamp;
     }
 
@@ -88,11 +91,11 @@ public class LocationStatusHistoryXMLImpl implements LocationStatusHistory {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setStatusTimestamp(String value) {
+    public void setStatusTimestamp(XMLGregorianCalendar value) {
         this.statusTimestamp = value;
     }
 

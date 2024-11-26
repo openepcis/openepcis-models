@@ -9,10 +9,10 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.QuantitativeValue;
 import io.openepcis.model.interfaces.ReferencedFileDetails;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
+
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigInteger;
 
 
 /**
@@ -26,13 +26,13 @@ import jakarta.xml.bind.annotation.XmlType;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="fileLanguageCode" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="filePixelHeight" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="filePixelWidth" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="referencedFileEffectiveEndDateTime" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="referencedFileEffectiveStartDateTime" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="filePixelHeight" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         <element name="filePixelWidth" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         <element name="referencedFileEffectiveEndDateTime" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         <element name="referencedFileEffectiveStartDateTime" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         <element name="referencedFileSize" type="{}QuantitativeValue"/>
  *         <element name="referencedFileType" type="{}ReferencedFileTypeCode"/>
- *         <element name="referencedFileURL" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="referencedFileURL" type="{http://www.w3.org/2001/XMLSchema}anyURI"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -57,18 +57,21 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
     @XmlElement(required = true)
     protected String fileLanguageCode;
     @XmlElement(required = true)
-    protected String filePixelHeight;
+    protected BigInteger filePixelHeight;
     @XmlElement(required = true)
-    protected String filePixelWidth;
+    protected BigInteger filePixelWidth;
     @XmlElement(required = true)
-    protected String referencedFileEffectiveEndDateTime;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar referencedFileEffectiveEndDateTime;
     @XmlElement(required = true)
-    protected String referencedFileEffectiveStartDateTime;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar referencedFileEffectiveStartDateTime;
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl referencedFileSize;
     @XmlElement(required = true)
     protected String referencedFileType;
     @XmlElement(required = true)
+    @XmlSchemaType(name = "anyURI")
     protected String referencedFileURL;
 
     /**
@@ -102,11 +105,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public String getFilePixelHeight() {
+    public BigInteger getFilePixelHeight() {
         return filePixelHeight;
     }
 
@@ -115,11 +118,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public void setFilePixelHeight(String value) {
+    public void setFilePixelHeight(BigInteger value) {
         this.filePixelHeight = value;
     }
 
@@ -128,11 +131,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public String getFilePixelWidth() {
+    public BigInteger getFilePixelWidth() {
         return filePixelWidth;
     }
 
@@ -141,11 +144,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public void setFilePixelWidth(String value) {
+    public void setFilePixelWidth(BigInteger value) {
         this.filePixelWidth = value;
     }
 
@@ -154,11 +157,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getReferencedFileEffectiveEndDateTime() {
+    public XMLGregorianCalendar getReferencedFileEffectiveEndDateTime() {
         return referencedFileEffectiveEndDateTime;
     }
 
@@ -167,11 +170,11 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setReferencedFileEffectiveEndDateTime(String value) {
+    public void setReferencedFileEffectiveEndDateTime(XMLGregorianCalendar value) {
         this.referencedFileEffectiveEndDateTime = value;
     }
 
@@ -184,7 +187,7 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      *     
      */
     @Override
-    public String getReferencedFileEffectiveStartDateTime() {
+    public XMLGregorianCalendar getReferencedFileEffectiveStartDateTime() {
         return referencedFileEffectiveStartDateTime;
     }
 
@@ -197,7 +200,7 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      *     
      */
     @Override
-    public void setReferencedFileEffectiveStartDateTime(String value) {
+    public void setReferencedFileEffectiveStartDateTime(XMLGregorianCalendar value) {
         this.referencedFileEffectiveStartDateTime = value;
     }
 

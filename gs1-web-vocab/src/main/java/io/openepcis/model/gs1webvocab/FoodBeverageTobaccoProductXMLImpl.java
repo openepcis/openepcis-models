@@ -52,13 +52,13 @@ import jakarta.xml.bind.annotation.*;
  *         <element name="irradiatedCode" type="{}NonbinaryLogicCode"/>
  *         <element name="isInstant" type="{}NonbinaryLogicCode"/>
  *         <element name="isSliced" type="{}NonbinaryLogicCode"/>
- *         <element name="juiceContentPercent" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="juiceContentPercent" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="magnesiumPerNutrientBasis" type="{}NutritionMeasurementType"/>
  *         <element name="manganesePerNutrientBasis" type="{}NutritionMeasurementType"/>
  *         <element name="molybdenumPerNutrientBasis" type="{}NutritionMeasurementType"/>
  *         <element name="monounsaturatedFatPerNutrientBasis" type="{}NutritionMeasurementType"/>
  *         <element name="niacinPerNutrientBasis" type="{}NutritionMeasurementType"/>
- *         <element name="numberOfServingsPerPackage" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="numberOfServingsPerPackage" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="numberOfServingsPerPackageMeasurementPrecision" type="{}MeasurementPrecisionCode"/>
  *         <element name="numberOfServingsRangeDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="nutrientBasisQuantity" type="{}QuantitativeValue"/>
@@ -265,8 +265,7 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode isSliced;
-    @XmlElement(required = true)
-    protected String juiceContentPercent;
+    protected float juiceContentPercent;
     @XmlElement(required = true)
     protected NutritionMeasurementTypeXMLImpl magnesiumPerNutrientBasis;
     @XmlElement(required = true)
@@ -277,8 +276,7 @@ public class FoodBeverageTobaccoProductXMLImpl
     protected NutritionMeasurementTypeXMLImpl monounsaturatedFatPerNutrientBasis;
     @XmlElement(required = true)
     protected NutritionMeasurementTypeXMLImpl niacinPerNutrientBasis;
-    @XmlElement(required = true)
-    protected String numberOfServingsPerPackage;
+    protected float numberOfServingsPerPackage;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected MeasurementPrecisionCode numberOfServingsPerPackageMeasurementPrecision;
@@ -1182,7 +1180,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public String getJuiceContentPercent() {
+    public float getJuiceContentPercent() {
         return juiceContentPercent;
     }
 
@@ -1195,7 +1193,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setJuiceContentPercent(String value) {
+    public void setJuiceContentPercent(float value) {
         this.juiceContentPercent = value;
     }
 
@@ -1338,7 +1336,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public String getNumberOfServingsPerPackage() {
+    public float getNumberOfServingsPerPackage() {
         return numberOfServingsPerPackage;
     }
 
@@ -1351,7 +1349,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setNumberOfServingsPerPackage(String value) {
+    public void setNumberOfServingsPerPackage(float value) {
         this.numberOfServingsPerPackage = value;
     }
 

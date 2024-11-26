@@ -27,7 +27,7 @@ import jakarta.xml.bind.annotation.*;
  *         <element name="isDecaffeinated" type="{}NonbinaryLogicCode"/>
  *         <element name="isFromConcentrate" type="{}NonbinaryLogicCode"/>
  *         <element name="isVintage" type="{}NonbinaryLogicCode"/>
- *         <element name="percentageOfAlcoholByVolume" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="percentageOfAlcoholByVolume" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="vintner" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       </sequence>
  *     </extension>
@@ -67,8 +67,7 @@ public class BeverageXMLImpl
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode isVintage;
-    @XmlElement(required = true)
-    protected String percentageOfAlcoholByVolume;
+    protected float percentageOfAlcoholByVolume;
     @XmlElement(required = true)
     protected String vintner;
 
@@ -237,7 +236,7 @@ public class BeverageXMLImpl
      *     
      */
     @Override
-    public String getPercentageOfAlcoholByVolume() {
+    public float getPercentageOfAlcoholByVolume() {
         return percentageOfAlcoholByVolume;
     }
 
@@ -250,7 +249,7 @@ public class BeverageXMLImpl
      *     
      */
     @Override
-    public void setPercentageOfAlcoholByVolume(String value) {
+    public void setPercentageOfAlcoholByVolume(float value) {
         this.percentageOfAlcoholByVolume = value;
     }
 

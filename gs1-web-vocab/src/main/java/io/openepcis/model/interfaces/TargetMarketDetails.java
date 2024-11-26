@@ -1,9 +1,11 @@
 package io.openepcis.model.interfaces;
 
-public interface TargetMarketDetails<C extends Country> {
-    String getConsumerFirstAvailabilityDateTime();
+import javax.xml.datatype.XMLGregorianCalendar;
 
-    void setConsumerFirstAvailabilityDateTime(String value);
+public interface TargetMarketDetails<C extends Country> {
+    XMLGregorianCalendar getConsumerFirstAvailabilityDateTime();
+
+    void setConsumerFirstAvailabilityDateTime(XMLGregorianCalendar value);
 
     C getTargetMarketCountries();
 

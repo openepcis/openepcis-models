@@ -24,7 +24,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <extension base="{}QuantitativeValue">
  *       <sequence>
- *         <element name="dailyValueIntakePercent" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="dailyValueIntakePercent" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *       </sequence>
  *     </extension>
  *   </complexContent>
@@ -40,32 +40,22 @@ import jakarta.xml.bind.annotation.XmlType;
 public class NutritionMeasurementTypeXMLImpl
     extends QuantitativeValueXMLImpl implements NutritionMeasurementType {
 
-    @XmlElement(required = true)
-    protected String dailyValueIntakePercent;
+    protected float dailyValueIntakePercent;
+
 
     /**
      * Gets the value of the dailyValueIntakePercent property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     @Override
-    public String getDailyValueIntakePercent() {
+    public float getDailyValueIntakePercent() {
         return dailyValueIntakePercent;
     }
 
     /**
      * Sets the value of the dailyValueIntakePercent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     @Override
-    public void setDailyValueIntakePercent(String value) {
+    public void setDailyValueIntakePercent(float value) {
         this.dailyValueIntakePercent = value;
     }
 

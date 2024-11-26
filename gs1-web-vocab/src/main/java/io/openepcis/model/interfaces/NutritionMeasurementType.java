@@ -1,7 +1,7 @@
 package io.openepcis.model.interfaces;
 
 public interface NutritionMeasurementType {
-    String getDailyValueIntakePercent();
+    float getDailyValueIntakePercent();
 
-    void setDailyValueIntakePercent(String value);
+    void setDailyValueIntakePercent(float value);
 }

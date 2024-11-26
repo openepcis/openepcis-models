@@ -9,38 +9,41 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.AdditionalProductClassificationDetails;
 import io.openepcis.model.interfaces.Discount;
+import io.openepcis.model.interfaces.PriceSpecification;
 import jakarta.xml.bind.annotation.*;
+
+import java.math.BigInteger;
 
 
 /**
  * <p>Java class for Discount complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Discount">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="discountRepeatsPerMultipleMinimum" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="discountRepeatsPerMultipleMinimum" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         <element name="discountType" type="{}DiscountTypeCode"/>
  *         <element name="eligibleTradeChannel" type="{}TradeChannelCode"/>
  *         <element name="exactDiscountAmount" type="{}PriceSpecification"/>
- *         <element name="exactDiscountPercentage" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="exactDiscountPercentage" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="exclusionDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="isOnlyAvailableThroughRetailer" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="isOnlyWithMailingListSignup" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="isOnlyAvailableThroughRetailer" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         <element name="isOnlyWithMailingListSignup" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         <element name="isOnlyWithPaymentCard" type="{}PaymentMethod"/>
- *         <element name="isOnlyWithRetailerLoyaltyCard" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="isOnlyWithRetailerPaymentCard" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="isPromoterExclusiveOffer" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="isOnlyWithRetailerLoyaltyCard" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         <element name="isOnlyWithRetailerPaymentCard" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         <element name="isPromoterExclusiveOffer" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         <element name="maximumDiscountAmount" type="{}PriceSpecification"/>
- *         <element name="maximumDiscountPercentage" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="maximumQualifyingItems" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="maximumDiscountPercentage" type="{http://www.w3.org/2001/XMLSchema}float"/>
+ *         <element name="maximumQualifyingItems" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         <element name="maximumQualifyingSpend" type="{}PriceSpecification"/>
  *         <element name="minimumDiscountAmount" type="{}PriceSpecification"/>
- *         <element name="minimumDiscountPercentage" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="minimumQualifyingItems" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="minimumDiscountPercentage" type="{http://www.w3.org/2001/XMLSchema}float"/>
+ *         <element name="minimumQualifyingItems" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         <element name="minimumQualifyingSpend" type="{}PriceSpecification"/>
  *         <element name="offerRedemptionType" type="{}OfferRedemptionTypeCode"/>
  *         <element name="offerRestrictionDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -50,14 +53,14 @@ import jakarta.xml.bind.annotation.*;
  *         <element name="qualifyingProductClassificationCode" type="{}AdditionalProductClassificationDetails"/>
  *         <element name="qualifyingProductGTINs" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="qualifyingSubBrandName" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="selectedProductsOnly" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="selectedProductsOnly" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
  * </complexType>
  * }</pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Discount", propOrder = {
@@ -93,8 +96,7 @@ import jakarta.xml.bind.annotation.*;
 })
 public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,AdditionalProductClassificationDetailsXMLImpl> {
 
-    @XmlElement(required = true)
-    protected String discountRepeatsPerMultipleMinimum;
+    protected boolean discountRepeatsPerMultipleMinimum;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected DiscountTypeCode discountType;
@@ -103,37 +105,30 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
     protected TradeChannelCode eligibleTradeChannel;
     @XmlElement(required = true)
     protected PriceSpecificationXMLImpl exactDiscountAmount;
-    @XmlElement(required = true)
-    protected String exactDiscountPercentage;
+    protected float exactDiscountPercentage;
     @XmlElement(required = true)
     protected String exclusionDescription;
-    @XmlElement(required = true)
-    protected String isOnlyAvailableThroughRetailer;
-    @XmlElement(required = true)
-    protected String isOnlyWithMailingListSignup;
+    protected boolean isOnlyAvailableThroughRetailer;
+    protected boolean isOnlyWithMailingListSignup;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PaymentMethod isOnlyWithPaymentCard;
-    @XmlElement(required = true)
-    protected String isOnlyWithRetailerLoyaltyCard;
-    @XmlElement(required = true)
-    protected String isOnlyWithRetailerPaymentCard;
-    @XmlElement(required = true)
-    protected String isPromoterExclusiveOffer;
+    protected boolean isOnlyWithRetailerLoyaltyCard;
+    protected boolean isOnlyWithRetailerPaymentCard;
+    protected boolean isPromoterExclusiveOffer;
     @XmlElement(required = true)
     protected PriceSpecificationXMLImpl maximumDiscountAmount;
+    protected float maximumDiscountPercentage;
     @XmlElement(required = true)
-    protected String maximumDiscountPercentage;
-    @XmlElement(required = true)
-    protected String maximumQualifyingItems;
+    protected BigInteger maximumQualifyingItems;
     @XmlElement(required = true)
     protected PriceSpecificationXMLImpl maximumQualifyingSpend;
     @XmlElement(required = true)
     protected PriceSpecificationXMLImpl minimumDiscountAmount;
+    protected float minimumDiscountPercentage;
+
     @XmlElement(required = true)
-    protected String minimumDiscountPercentage;
-    @XmlElement(required = true)
-    protected String minimumQualifyingItems;
+    protected BigInteger minimumQualifyingItems;
     @XmlElement(required = true)
     protected PriceSpecificationXMLImpl minimumQualifyingSpend;
     @XmlElement(required = true)
@@ -153,19 +148,19 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
     protected String qualifyingProductGTINs;
     @XmlElement(required = true)
     protected String qualifyingSubBrandName;
-    @XmlElement(required = true)
-    protected String selectedProductsOnly;
+    protected boolean selectedProductsOnly;
+
 
     /**
      * Gets the value of the discountRepeatsPerMultipleMinimum property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public String getDiscountRepeatsPerMultipleMinimum() {
+    public boolean getDiscountRepeatsPerMultipleMinimum() {
         return discountRepeatsPerMultipleMinimum;
     }
 
@@ -174,11 +169,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public void setDiscountRepeatsPerMultipleMinimum(String value) {
+    public void setDiscountRepeatsPerMultipleMinimum(boolean value) {
         this.discountRepeatsPerMultipleMinimum = value;
     }
 
@@ -265,11 +260,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public String getExactDiscountPercentage() {
+    public float getExactDiscountPercentage() {
         return exactDiscountPercentage;
     }
 
@@ -282,7 +277,7 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      *     
      */
     @Override
-    public void setExactDiscountPercentage(String value) {
+    public void setExactDiscountPercentage(float value) {
         this.exactDiscountPercentage = value;
     }
 
@@ -317,11 +312,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public String getIsOnlyAvailableThroughRetailer() {
+    public boolean getIsOnlyAvailableThroughRetailer() {
         return isOnlyAvailableThroughRetailer;
     }
 
@@ -330,11 +325,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public void setIsOnlyAvailableThroughRetailer(String value) {
+    public void setIsOnlyAvailableThroughRetailer(boolean value) {
         this.isOnlyAvailableThroughRetailer = value;
     }
 
@@ -343,11 +338,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public String getIsOnlyWithMailingListSignup() {
+    public boolean getIsOnlyWithMailingListSignup() {
         return isOnlyWithMailingListSignup;
     }
 
@@ -356,11 +351,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public void setIsOnlyWithMailingListSignup(String value) {
+    public void setIsOnlyWithMailingListSignup(boolean value) {
         this.isOnlyWithMailingListSignup = value;
     }
 
@@ -395,11 +390,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public String getIsOnlyWithRetailerLoyaltyCard() {
+    public boolean getIsOnlyWithRetailerLoyaltyCard() {
         return isOnlyWithRetailerLoyaltyCard;
     }
 
@@ -408,11 +403,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public void setIsOnlyWithRetailerLoyaltyCard(String value) {
+    public void setIsOnlyWithRetailerLoyaltyCard(boolean value) {
         this.isOnlyWithRetailerLoyaltyCard = value;
     }
 
@@ -421,11 +416,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public String getIsOnlyWithRetailerPaymentCard() {
+    public boolean getIsOnlyWithRetailerPaymentCard() {
         return isOnlyWithRetailerPaymentCard;
     }
 
@@ -434,11 +429,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public void setIsOnlyWithRetailerPaymentCard(String value) {
+    public void setIsOnlyWithRetailerPaymentCard(boolean value) {
         this.isOnlyWithRetailerPaymentCard = value;
     }
 
@@ -447,11 +442,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public String getIsPromoterExclusiveOffer() {
+    public boolean getIsPromoterExclusiveOffer() {
         return isPromoterExclusiveOffer;
     }
 
@@ -460,11 +455,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public void setIsPromoterExclusiveOffer(String value) {
+    public void setIsPromoterExclusiveOffer(boolean value) {
         this.isPromoterExclusiveOffer = value;
     }
 
@@ -499,11 +494,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public String getMaximumDiscountPercentage() {
+    public float getMaximumDiscountPercentage() {
         return maximumDiscountPercentage;
     }
 
@@ -512,11 +507,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public void setMaximumDiscountPercentage(String value) {
+    public void setMaximumDiscountPercentage(float value) {
         this.maximumDiscountPercentage = value;
     }
 
@@ -525,11 +520,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public String getMaximumQualifyingItems() {
+    public BigInteger getMaximumQualifyingItems() {
         return maximumQualifyingItems;
     }
 
@@ -538,11 +533,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public void setMaximumQualifyingItems(String value) {
+    public void setMaximumQualifyingItems(BigInteger value) {
         this.maximumQualifyingItems = value;
     }
 
@@ -603,11 +598,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public String getMinimumDiscountPercentage() {
+    public float getMinimumDiscountPercentage() {
         return minimumDiscountPercentage;
     }
 
@@ -616,11 +611,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public void setMinimumDiscountPercentage(String value) {
+    public void setMinimumDiscountPercentage(float value) {
         this.minimumDiscountPercentage = value;
     }
 
@@ -629,11 +624,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public String getMinimumQualifyingItems() {
+    public BigInteger getMinimumQualifyingItems() {
         return minimumQualifyingItems;
     }
 
@@ -642,11 +637,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
     @Override
-    public void setMinimumQualifyingItems(String value) {
+    public void setMinimumQualifyingItems(BigInteger value) {
         this.minimumQualifyingItems = value;
     }
 
@@ -889,11 +884,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public String getSelectedProductsOnly() {
+    public boolean getSelectedProductsOnly() {
         return selectedProductsOnly;
     }
 
@@ -902,11 +897,11 @@ public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl,Addit
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link boolean }
      *     
      */
     @Override
-    public void setSelectedProductsOnly(String value) {
+    public void setSelectedProductsOnly(boolean value) {
         this.selectedProductsOnly = value;
     }
 

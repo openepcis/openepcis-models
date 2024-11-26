@@ -1,17 +1,19 @@
 package io.openepcis.model.interfaces;
 
-public interface PriceSpecification<Q extends QuantitativeValue> {
-    String getDutyFeeTaxAmount();
+import javax.xml.datatype.XMLGregorianCalendar;
 
-    void setDutyFeeTaxAmount(String value);
+public interface PriceSpecification<Q extends QuantitativeValue> {
+    float getDutyFeeTaxAmount();
+
+    void setDutyFeeTaxAmount(float value);
 
     String getDutyFeeTaxDescription();
 
     void setDutyFeeTaxDescription(String value);
 
-    String getDutyFeeTaxRate();
+    float getDutyFeeTaxRate();
 
-    void setDutyFeeTaxRate(String value);
+    void setDutyFeeTaxRate(float value);
 
     Q getEligibleQuantity();
 
@@ -25,27 +27,27 @@ public interface PriceSpecification<Q extends QuantitativeValue> {
 
     void setEligibleQuantityMinimum(Q value);
 
-    String getMaxPrice();
+    float getMaxPrice();
 
-    void setMaxPrice(String value);
+    void setMaxPrice(float value);
 
-    String getMinPrice();
+    float getMinPrice();
 
-    void setMinPrice(String value);
+    void setMinPrice(float value);
 
-    String getPrice();
+    float getPrice();
 
-    void setPrice(String value);
+    void setPrice(float value);
 
     String getPriceCurrency();
 
     void setPriceCurrency(String value);
 
-    String getValidFrom();
+    XMLGregorianCalendar getValidFrom();
 
-    void setValidFrom(String value);
+    void setValidFrom(XMLGregorianCalendar value);
 
-    String getValidThrough();
+    XMLGregorianCalendar getValidThrough();
 
-    void setValidThrough(String value);
+    void setValidThrough(XMLGregorianCalendar value);
 }

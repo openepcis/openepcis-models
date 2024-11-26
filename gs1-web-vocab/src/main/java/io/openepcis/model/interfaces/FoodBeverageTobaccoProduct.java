@@ -128,9 +128,9 @@ public interface FoodBeverageTobaccoProduct<NM extends NutritionMeasurementType,
 
     void setIsSliced(NonbinaryLogicCode value);
 
-    String getJuiceContentPercent();
+    float getJuiceContentPercent();
 
-    void setJuiceContentPercent(String value);
+    void setJuiceContentPercent(float value);
 
     NM getMagnesiumPerNutrientBasis();
 
@@ -152,9 +152,9 @@ public interface FoodBeverageTobaccoProduct<NM extends NutritionMeasurementType,
 
     void setNiacinPerNutrientBasis(NM value);
 
-    String getNumberOfServingsPerPackage();
+    float getNumberOfServingsPerPackage();
 
-    void setNumberOfServingsPerPackage(String value);
+    void setNumberOfServingsPerPackage(float value);
 
     MeasurementPrecisionCode getNumberOfServingsPerPackageMeasurementPrecision();
 

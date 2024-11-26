@@ -13,13 +13,13 @@ public interface MilkButterCreamYogurtCheeseEggsSubstitutes {
 
     void setCheeseMaturationPeriodDescription(String value);
 
-    String getFatInMilkContent();
+    float getFatInMilkContent();
 
-    void setFatInMilkContent(String value);
+    void setFatInMilkContent(float value);
 
-    String getFatpercentageInDryMatter();
+    float getFatpercentageInDryMatter();
 
-    void setFatpercentageInDryMatter(String value);
+    void setFatpercentageInDryMatter(float value);
 
     NonbinaryLogicCode getIsHomogenised();
 

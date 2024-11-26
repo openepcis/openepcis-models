@@ -9,10 +9,9 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.AwardPrizeDetails;
 import io.openepcis.model.interfaces.Country;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
+
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -30,7 +29,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="awardPrizeDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="awardPrizeJury" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="awardPrizeName" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="awardPrizeYear" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="awardPrizeYear" type="{http://www.w3.org/2001/XMLSchema}gYear"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -61,7 +60,8 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails<CountryXMLImp
     @XmlElement(required = true)
     protected String awardPrizeName;
     @XmlElement(required = true)
-    protected String awardPrizeYear;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar awardPrizeYear;
 
     /**
      * Gets the value of the awardPrizeCode property.
@@ -202,7 +202,7 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails<CountryXMLImp
      *     
      */
     @Override
-    public String getAwardPrizeYear() {
+    public XMLGregorianCalendar getAwardPrizeYear() {
         return awardPrizeYear;
     }
 
@@ -215,7 +215,7 @@ public class AwardPrizeDetailsXMLImpl implements AwardPrizeDetails<CountryXMLImp
      *     
      */
     @Override
-    public void setAwardPrizeYear(String value) {
+    public void setAwardPrizeYear(XMLGregorianCalendar value) {
         this.awardPrizeYear = value;
     }
 

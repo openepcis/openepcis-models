@@ -54,10 +54,8 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
     protected CheeseFirmnessCode cheeseFirmness;
     @XmlElement(required = true)
     protected String cheeseMaturationPeriodDescription;
-    @XmlElement(required = true)
-    protected String fatInMilkContent;
-    @XmlElement(required = true)
-    protected String fatpercentageInDryMatter;
+    protected float fatInMilkContent;
+    protected float fatpercentageInDryMatter;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode isHomogenised;
@@ -125,11 +123,11 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public String getFatInMilkContent() {
+    public float getFatInMilkContent() {
         return fatInMilkContent;
     }
 
@@ -138,11 +136,11 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public void setFatInMilkContent(String value) {
+    public void setFatInMilkContent(float value) {
         this.fatInMilkContent = value;
     }
 
@@ -151,11 +149,11 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public String getFatpercentageInDryMatter() {
+    public float getFatpercentageInDryMatter() {
         return fatpercentageInDryMatter;
     }
 
@@ -164,11 +162,11 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link float }
      *     
      */
     @Override
-    public void setFatpercentageInDryMatter(String value) {
+    public void setFatpercentageInDryMatter(float value) {
         this.fatpercentageInDryMatter = value;
     }
 

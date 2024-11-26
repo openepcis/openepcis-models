@@ -27,9 +27,9 @@ public interface Beverage {
 
     void setIsVintage(NonbinaryLogicCode value);
 
-    String getPercentageOfAlcoholByVolume();
+    float getPercentageOfAlcoholByVolume();
 
-    void setPercentageOfAlcoholByVolume(String value);
+    void setPercentageOfAlcoholByVolume(float value);
 
     String getVintner();
 

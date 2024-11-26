@@ -10,6 +10,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.OrganizationStatusHistory;
 import jakarta.xml.bind.annotation.*;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
  * <p>Java class for OrganizationStatusHistory complex type</p>.
@@ -22,7 +24,7 @@ import jakarta.xml.bind.annotation.*;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="organizationStatus" type="{}StatusType"/>
- *         <element name="statusTimestamp" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="statusTimestamp" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -42,7 +44,8 @@ public class OrganizationStatusHistoryXMLImpl implements OrganizationStatusHisto
     @XmlSchemaType(name = "string")
     protected StatusType organizationStatus;
     @XmlElement(required = true)
-    protected String statusTimestamp;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar statusTimestamp;
 
     /**
      * Gets the value of the organizationStatus property.
@@ -75,11 +78,11 @@ public class OrganizationStatusHistoryXMLImpl implements OrganizationStatusHisto
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public String getStatusTimestamp() {
+    public XMLGregorianCalendar getStatusTimestamp() {
         return statusTimestamp;
     }
 
@@ -88,11 +91,11 @@ public class OrganizationStatusHistoryXMLImpl implements OrganizationStatusHisto
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
     @Override
-    public void setStatusTimestamp(String value) {
+    public void setStatusTimestamp(XMLGregorianCalendar value) {
         this.statusTimestamp = value;
     }
 

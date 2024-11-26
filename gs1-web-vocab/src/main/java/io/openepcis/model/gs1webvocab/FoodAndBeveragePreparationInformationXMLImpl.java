@@ -52,8 +52,7 @@ import jakarta.xml.bind.annotation.*;
 })
 public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeveragePreparationInformation<ProductYieldDetailsXMLImpl,QuantitativeValueXMLImpl> {
 
-    @XmlElement(required = true)
-    protected String convenienceLevelPercent;
+    protected float convenienceLevelPercent;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PreparationTypeCode manufacturerPreparationCode;
@@ -80,7 +79,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public String getConvenienceLevelPercent() {
+    public float getConvenienceLevelPercent() {
         return convenienceLevelPercent;
     }
 
@@ -93,7 +92,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public void setConvenienceLevelPercent(String value) {
+    public void setConvenienceLevelPercent(float value) {
         this.convenienceLevelPercent = value;
     }
 

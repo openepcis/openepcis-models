@@ -13,6 +13,8 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
+import java.math.BigInteger;
+
 
 /**
  * <p>Java class for FoodBeverageTobaccoIngredientDetails complex type</p>.
@@ -48,7 +50,7 @@ public class FoodBeverageTobaccoIngredientDetailsXMLImpl implements FoodBeverage
     @XmlElement(required = true)
     protected String ingredientName;
     @XmlElement(required = true)
-    protected String ingredientSequence;
+    protected BigInteger ingredientSequence;
 
     /**
      * Gets the value of the ingredientContentPercentage property.
@@ -111,7 +113,7 @@ public class FoodBeverageTobaccoIngredientDetailsXMLImpl implements FoodBeverage
      *     
      */
     @Override
-    public String getIngredientSequence() {
+    public BigInteger getIngredientSequence() {
         return ingredientSequence;
     }
 
@@ -124,7 +126,7 @@ public class FoodBeverageTobaccoIngredientDetailsXMLImpl implements FoodBeverage
      *     
      */
     @Override
-    public void setIngredientSequence(String value) {
+    public void setIngredientSequence(BigInteger value) {
         this.ingredientSequence = value;
     }
 
