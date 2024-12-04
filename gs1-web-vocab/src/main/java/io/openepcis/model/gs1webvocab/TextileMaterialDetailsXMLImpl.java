@@ -16,10 +16,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * Details on the composition of any materials used to make a product using textiles.
+ *
  * <p>Java class for TextileMaterialDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="TextileMaterialDetails">
  *   <complexContent>

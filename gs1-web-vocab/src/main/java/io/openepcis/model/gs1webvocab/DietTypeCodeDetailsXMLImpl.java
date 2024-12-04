@@ -12,10 +12,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A set of diet type code details (diet type code and diet type sub code) for the product.
+ *
  * <p>Java class for DietTypeCodeDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="DietTypeCodeDetails">
  *   <complexContent>

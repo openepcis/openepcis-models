@@ -15,10 +15,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Entities that have a somewhat fixed, physical location.
+ *
  * <p>Java class for Place complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Place">
  *   <complexContent>
@@ -130,7 +132,8 @@ public class PlaceXMLImpl implements Place<LocationIDDetailsXMLImpl,PostalAddres
     @XmlElement(required = true)
     protected LocationStatusHistoryXMLImpl locationHistory;
     @XmlElement(required = true)
-    protected String locationRole;
+    @XmlSchemaType(name = "string")
+    protected LocationRoleType locationRole;
     @XmlElement(required = true)
     protected OrganizationXMLImpl managedBy;
     @XmlElement(required = true)
@@ -596,27 +599,27 @@ public class PlaceXMLImpl implements Place<LocationIDDetailsXMLImpl,PostalAddres
 
     /**
      * Gets the value of the locationRole property.
-     * 
+     *
      * @return
      *     possible object is
-     *     {@link String }
-     *     
+     *     {@link LocationRoleType }
+     *
      */
     @Override
-    public String getLocationRole() {
+    public LocationRoleType getLocationRole() {
         return locationRole;
     }
 
     /**
      * Sets the value of the locationRole property.
-     * 
+     *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *     
+     *     {@link LocationRoleType }
+     *
      */
     @Override
-    public void setLocationRole(String value) {
+    public void setLocationRole(LocationRoleType value) {
         this.locationRole = value;
     }
 

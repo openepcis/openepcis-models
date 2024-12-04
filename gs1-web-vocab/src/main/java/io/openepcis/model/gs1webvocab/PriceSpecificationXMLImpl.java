@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 
 
 /**
+ * A structured value representing a monetary amount, consisting of a value and currency code.
+ *
  * <p>Java class for PriceSpecification complex type</p>.
  *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>

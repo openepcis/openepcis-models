@@ -14,10 +14,13 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Food and Beverage Preparation Information is a complex data type that indicates a preparation state code and preparation
+ *                 instructions.
+ *
  * <p>Java class for FoodAndBeveragePreparationInformation complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="FoodAndBeveragePreparationInformation">
  *   <complexContent>

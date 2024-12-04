@@ -13,10 +13,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A grouping of properties related to the yield of a food or beverage product according to a specified type of preparation.
+ *
  * <p>Java class for ProductYieldDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="ProductYieldDetails">
  *   <complexContent>

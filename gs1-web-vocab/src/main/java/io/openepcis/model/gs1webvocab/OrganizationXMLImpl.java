@@ -15,10 +15,13 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * An Organization is any legal or physical entity involved at any point in any supply chain and upon which there is a need to retrieve
+ *                 predefined information. An Organization is uniquely identified by a Global Location Number (GLN).
+ *
  * <p>Java class for Organization complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Organization">
  *   <complexContent>

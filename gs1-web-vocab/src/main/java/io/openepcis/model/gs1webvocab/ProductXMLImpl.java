@@ -17,6 +17,9 @@ import java.time.LocalDateTime;
 
 
 /**
+ * Any item (product or service) upon which there is a need to retrieve pre-defined information and that may be priced, or ordered, or
+ *                 invoiced at any point in any supply chain.
+ *
  * <p>Java class for Product complex type</p>.
  *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
@@ -411,6 +414,10 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     protected String productName;
     @XmlElement(required = true)
     protected String productRange;
+    /**
+     * This term has been deprecated. Please use gs1:sustainabilityInfo instead.
+     *
+     */
     @XmlElement(required = true)
     @XmlSchemaType(name = "anyURI")
     protected String productSustainabilityInfo;

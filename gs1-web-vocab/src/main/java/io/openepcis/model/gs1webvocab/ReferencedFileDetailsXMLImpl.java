@@ -16,10 +16,12 @@ import java.time.LocalDateTime;
 
 
 /**
+ * Provides URL and other information on a referenced electronic file.
+ *
  * <p>Java class for ReferencedFileDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="ReferencedFileDetails">
  *   <complexContent>
@@ -71,7 +73,8 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl referencedFileSize;
     @XmlElement(required = true)
-    protected String referencedFileType;
+    @XmlSchemaType(name = "string")
+    protected ReferencedFileTypeCode referencedFileType;
     @XmlElement(required = true)
     @XmlSchemaType(name = "anyURI")
     protected String referencedFileURL;
@@ -241,7 +244,7 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      *     
      */
     @Override
-    public String getReferencedFileType() {
+    public ReferencedFileTypeCode getReferencedFileType() {
         return referencedFileType;
     }
 
@@ -254,7 +257,7 @@ public class ReferencedFileDetailsXMLImpl implements ReferencedFileDetails<Quant
      *     
      */
     @Override
-    public void setReferencedFileType(String value) {
+    public void setReferencedFileType(ReferencedFileTypeCode value) {
         this.referencedFileType = value;
     }
 

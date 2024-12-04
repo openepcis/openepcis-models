@@ -16,10 +16,13 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * An assurance that the product is reliable and that repairs or replacement will be done free of charge within a given time limit and
+ *                 under certain conditions in the event of a defect.
+ *
  * <p>Java class for WarrantyPromise complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="WarrantyPromise">
  *   <complexContent>

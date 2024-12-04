@@ -14,10 +14,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Details on packaging for a product for example packaging type (bottle), materials, features, recycling, etc..
+ *
  * <p>Java class for PackagingDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="PackagingDetails">
  *   <complexContent>

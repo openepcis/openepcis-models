@@ -12,6 +12,8 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ *  A set of details about one of the additives within the product.
+ *
  * <p>Java class for AdditiveDetails complex type</p>.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.</p>

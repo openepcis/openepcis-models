@@ -15,8 +15,10 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * A product classification for the product other than the Global Product Classification(GPC brick value).
+ *
  * <p>Java class for AdditionalProductClassificationDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
  * 
  * <pre>{@code

@@ -13,10 +13,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A product that is worn on the body.
+ *
  * <p>Java class for Clothing complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Clothing">
  *   <complexContent>

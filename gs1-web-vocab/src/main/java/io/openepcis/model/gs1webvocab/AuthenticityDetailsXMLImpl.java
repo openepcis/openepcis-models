@@ -12,8 +12,11 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A set of details about covert or overt security features that may contribute to checking the authenticity of a product or product
+ *                 instance.
+ *
  * <p>Java class for AuthenticityDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
  * 
  * <pre>{@code

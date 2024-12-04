@@ -12,10 +12,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A food, beverage or tobacco product.
+ *
  * <p>Java class for FoodBeverageTobaccoProduct complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="FoodBeverageTobaccoProduct">
  *   <complexContent>

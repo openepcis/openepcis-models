@@ -1,5 +1,7 @@
 package io.openepcis.model.interfaces;
 
+import io.openepcis.model.gs1webvocab.ReferencedFileTypeCode;
+
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
@@ -28,9 +30,9 @@ public interface ReferencedFileDetails<QV extends QuantitativeValue> {
 
     void setReferencedFileSize(QV value);
 
-    String getReferencedFileType();
+    ReferencedFileTypeCode getReferencedFileType();
 
-    void setReferencedFileType(String value);
+    void setReferencedFileType(ReferencedFileTypeCode value);
 
     String getReferencedFileURL();
 

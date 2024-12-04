@@ -13,10 +13,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A grouping of properties related to the size of a wearable product
+ *
  * <p>Java class for SizeDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="SizeDetails">
  *   <complexContent>

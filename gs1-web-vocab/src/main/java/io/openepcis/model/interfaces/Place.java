@@ -72,9 +72,9 @@ public interface Place<L extends LocationIDDetails,PO extends PostalAddress,C ex
 
     void setLocationHistory(LO value);
 
-    String getLocationRole();
+    LocationRoleType getLocationRole();
 
-    void setLocationRole(String value);
+    void setLocationRole(LocationRoleType value);
 
     O getManagedBy();
 

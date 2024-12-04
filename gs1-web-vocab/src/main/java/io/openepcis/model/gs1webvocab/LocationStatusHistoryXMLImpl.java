@@ -15,10 +15,13 @@ import java.time.LocalDateTime;
 
 
 /**
+ * Over the lifetime of a location, it may go through periods of being active and inactive. gs1:LocationStatusHistory allows changes in
+ *                 status to be communicated in advance and tracked over time.
+ *
  * <p>Java class for LocationStatusHistory complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="LocationStatusHistory">
  *   <complexContent>

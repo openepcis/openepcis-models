@@ -15,10 +15,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * A grouping of properties related to the representing the size of a product, by specifying a value from a specified code list.
+ *
  * <p>Java class for SizeCodeDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="SizeCodeDetails">
  *   <complexContent>
