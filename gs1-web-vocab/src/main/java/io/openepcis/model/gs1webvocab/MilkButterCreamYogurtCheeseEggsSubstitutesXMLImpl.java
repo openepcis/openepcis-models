@@ -12,10 +12,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Milk butter cream yogurts cheese eggs and any substitutes for these products.
+ *
  * <p>Java class for MilkButterCreamYogurtCheeseEggsSubstitutes complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="MilkButterCreamYogurtCheeseEggsSubstitutes">
  *   <complexContent>

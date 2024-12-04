@@ -15,10 +15,12 @@ import java.time.LocalDateTime;
 
 
 /**
+ * A set of target market details (product release date and associated countries) for the product.
+ *
  * <p>Java class for TargetMarketDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="TargetMarketDetails">
  *   <complexContent>

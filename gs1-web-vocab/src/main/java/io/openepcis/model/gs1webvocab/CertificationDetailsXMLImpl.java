@@ -1,6 +1,7 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.CertificationDetails;
+import io.openepcis.model.interfaces.Thing;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -8,10 +9,12 @@ import java.time.LocalDate;
 
 
 /**
+ * Certification issued by a certifying body to a certification subject (Organization, Place, Product).
+ *
  * <p>Java class for CertificationDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="CertificationDetails">
  *   <complexContent>
@@ -26,8 +29,8 @@ import java.time.LocalDate;
  *         <element name="certificationStartDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         <element name="certificationStatement" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="certificationStatus" type="{}CertificationStatus"/>
- *         <element name="certificationSubject" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="certificationType" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="certificationSubject" type="{}Thing">
+ *         <element name="certificationType" type="{}Thing"/>
  *         <element name="certificationURI" type="{http://www.w3.org/2001/XMLSchema}anyURI"/>
  *         <element name="certificationValue" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="initialCertificationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
@@ -84,9 +87,9 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
     @XmlSchemaType(name = "string")
     protected CertificationStatus certificationStatus;
     @XmlElement(required = true)
-    protected String certificationSubject;
+    protected Object certificationSubject;
     @XmlElement(required = true)
-    protected String certificationType;
+    protected Object certificationType;
     @XmlElement(required = true)
     @XmlSchemaType(name = "anyURI")
     protected String certificationURI;
@@ -333,53 +336,53 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
 
     /**
      * Gets the value of the certificationSubject property.
-     * 
+     *
      * @return
      *     possible object is
-     *     {@link String }
-     *     
+     *     {@link Object }
+     *
      */
     @Override
-    public String getCertificationSubject() {
+    public Object getCertificationSubject() {
         return certificationSubject;
     }
 
     /**
      * Sets the value of the certificationSubject property.
-     * 
+     *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *     
+     *     {@link Object }
+     *
      */
     @Override
-    public void setCertificationSubject(String value) {
+    public void setCertificationSubject(Object value) {
         this.certificationSubject = value;
     }
 
     /**
      * Gets the value of the certificationType property.
-     * 
+     *
      * @return
      *     possible object is
-     *     {@link String }
-     *     
+     *     {@link Object }
+     *
      */
     @Override
-    public String getCertificationType() {
+    public Object getCertificationType() {
         return certificationType;
     }
 
     /**
      * Sets the value of the certificationType property.
-     * 
+     *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *     
+     *     {@link Object }
+     *
      */
     @Override
-    public void setCertificationType(String value) {
+    public void setCertificationType(Object value) {
         this.certificationType = value;
     }
 

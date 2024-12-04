@@ -12,10 +12,14 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Government bodies, trade organisations, and other parties issue identifiers that are associated to legal entities and/or functions.
+ *                 Linking these identifiers to GLN and one another supports consolidating records, mapping related, collaborative identifiers, enhances search ability and enables
+ *                 more efficient transitions between identifiers. This class provides a mechanism for connecting and sharing party identifiers.
+ *
  * <p>Java class for OrganizationID_Details complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="OrganizationID_Details">
  *   <complexContent>

@@ -15,10 +15,13 @@ import java.time.LocalDateTime;
 
 
 /**
+ * An offer to transfer some rights to an item or to provide a service,for example, an offer to sell tickets to an event, to rent the DVD
+ *                 of a movie, to stream a TV show over the internet, to repair a motorcycle, or to loan a book.
+ *
  * <p>Java class for Offer complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Offer">
  *   <complexContent>

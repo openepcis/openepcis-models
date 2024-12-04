@@ -15,10 +15,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * A class providing nutritional value and intake percent.
+ *
  * <p>Java class for NutritionMeasurementType complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="NutritionMeasurementType">
  *   <complexContent>

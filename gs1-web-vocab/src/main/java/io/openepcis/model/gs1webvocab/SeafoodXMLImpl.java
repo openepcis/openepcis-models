@@ -13,10 +13,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Seafood Products including fish and shellfish.
+ *
  * <p>Java class for Seafood complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Seafood">
  *   <complexContent>

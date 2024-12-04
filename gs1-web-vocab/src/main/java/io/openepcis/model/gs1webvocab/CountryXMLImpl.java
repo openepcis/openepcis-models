@@ -15,10 +15,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * Country is a complex data type that indicates a country and a country subdivision.
+ *
  * <p>Java class for Country complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Country">
  *   <complexContent>

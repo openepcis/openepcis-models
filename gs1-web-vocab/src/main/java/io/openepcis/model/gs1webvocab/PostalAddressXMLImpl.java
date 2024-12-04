@@ -16,10 +16,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * The location at which a particular organization or person may be found or reached.
+ *
  * <p>Java class for PostalAddress complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="PostalAddress">
  *   <complexContent>

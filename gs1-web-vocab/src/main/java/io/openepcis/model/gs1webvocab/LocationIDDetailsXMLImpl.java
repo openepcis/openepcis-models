@@ -12,10 +12,14 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Government bodies, trade organisations, and other parties issue identifiers that are associated to locations. Linking these identifiers
+ *                 to GLN and one another supports consolidating records, mapping related, collaborative identifiers, enhances search ability and enables more efficient transitions
+ *                 between identifiers. This class provides a mechanism for connecting and sharing location identifiers.
+ *
  * <p>Java class for LocationID_Details complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="LocationID_Details">
  *   <complexContent>

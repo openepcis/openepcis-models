@@ -12,10 +12,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A point value or interval for product characteristics and other purposes. A unit of measurement is also specified.
+ *
  * <p>Java class for QuantitativeValue complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="QuantitativeValue">
  *   <complexContent>

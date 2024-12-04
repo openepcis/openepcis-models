@@ -9,8 +9,10 @@ import java.time.Year;
 
 
 /**
+ * Describes a prize or award won by a product or organization.
+ *
  * <p>Java class for AwardPrizeDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
  * 
  * <pre>{@code

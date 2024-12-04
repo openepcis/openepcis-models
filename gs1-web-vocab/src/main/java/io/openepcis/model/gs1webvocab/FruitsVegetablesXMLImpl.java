@@ -12,10 +12,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Contains properties related specifically to fruit and vegetable products.
+ *
  * <p>Java class for FruitsVegetables complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="FruitsVegetables">
  *   <complexContent>

@@ -12,10 +12,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A set of colour code details (colour code, party controlling the code list) for the product.
+ *
  * <p>Java class for ColourCodeDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="ColourCodeDetails">
  *   <complexContent>

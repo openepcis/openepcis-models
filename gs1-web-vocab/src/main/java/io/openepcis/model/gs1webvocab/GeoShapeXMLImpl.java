@@ -15,10 +15,13 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude
+ *                 pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points.
+ *
  * <p>Java class for GeoShape complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="GeoShape">
  *   <complexContent>

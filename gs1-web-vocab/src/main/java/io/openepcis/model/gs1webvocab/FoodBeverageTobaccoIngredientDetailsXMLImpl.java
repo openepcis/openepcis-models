@@ -17,10 +17,12 @@ import java.math.BigInteger;
 
 
 /**
+ * Food Beverage Tobacco Ingredient is a complex data type that includes an ingredient statement and details.
+ *
  * <p>Java class for FoodBeverageTobaccoIngredientDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="FoodBeverageTobaccoIngredientDetails">
  *   <complexContent>

@@ -12,10 +12,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * A set of organic claim details for the product.
+ *
  * <p>Java class for OrganicClaimDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="OrganicClaimDetails">
  *   <complexContent>

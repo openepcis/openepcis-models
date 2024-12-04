@@ -16,6 +16,8 @@ import java.math.BigInteger;
 
 
 /**
+ * Provides information on a discount applicable to an offer for example 2 percent.
+ *
  * <p>Java class for Discount complex type</p>.
  *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>

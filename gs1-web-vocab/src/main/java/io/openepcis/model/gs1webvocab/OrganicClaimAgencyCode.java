@@ -8,6 +8,7 @@
 package io.openepcis.model.gs1webvocab;
 
 import jakarta.xml.bind.annotation.XmlEnum;
+import jakarta.xml.bind.annotation.XmlEnumValue;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -20,6 +21,40 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <simpleType name="OrganicClaimAgencyCode">
  *   <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *     <enumeration value="1"/>
+ *     <enumeration value="10"/>
+ *     <enumeration value="11"/>
+ *     <enumeration value="12"/>
+ *     <enumeration value="13"/>
+ *     <enumeration value="14"/>
+ *     <enumeration value="15"/>
+ *     <enumeration value="16"/>
+ *     <enumeration value="17"/>
+ *     <enumeration value="19"/>
+ *     <enumeration value="2"/>
+ *     <enumeration value="20"/>
+ *     <enumeration value="21"/>
+ *     <enumeration value="22"/>
+ *     <enumeration value="23"/>
+ *     <enumeration value="24"/>
+ *     <enumeration value="25"/>
+ *     <enumeration value="26"/>
+ *     <enumeration value="27"/>
+ *     <enumeration value="28"/>
+ *     <enumeration value="29"/>
+ *     <enumeration value="3"/>
+ *     <enumeration value="30"/>
+ *     <enumeration value="31"/>
+ *     <enumeration value="32"/>
+ *     <enumeration value="33"/>
+ *     <enumeration value="34"/>
+ *     <enumeration value="4"/>
+ *     <enumeration value="5"/>
+ *     <enumeration value="6"/>
+ *     <enumeration value="7"/>
+ *     <enumeration value="8"/>
+ *     <enumeration value="9"/>
+ *     <enumeration value="999"/>
  *     <enumeration value="BFA"/>
  *     <enumeration value="BIOLAND"/>
  *     <enumeration value="DEMETER_BUND"/>
@@ -45,29 +80,139 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum OrganicClaimAgencyCode {
 
-    BFA,
-    BIOLAND,
-    DEMETER_BUND,
-    DEMETER_INTERNATIONAL,
-    ECOLAND,
-    ECOVIN,
-    EPA,
-    FDA,
-    FSA,
-    GAA,
-    IFOA,
-    IFOAM,
-    NATURLAND,
-    QAI,
-    SUDITIROL,
-    USDA;
+    @XmlEnumValue("1")
+    VALUE_1("1"),
+    @XmlEnumValue("10")
+    VALUE_2("10"),
+    @XmlEnumValue("11")
+    VALUE_3("11"),
+    @XmlEnumValue("12")
+    VALUE_4("12"),
+    @XmlEnumValue("13")
+    VALUE_5("13"),
+    @XmlEnumValue("14")
+    VALUE_6("14"),
+    @XmlEnumValue("15")
+    VALUE_7("15"),
+    @XmlEnumValue("16")
+    VALUE_8("16"),
+    @XmlEnumValue("17")
+    VALUE_9("17"),
+    @XmlEnumValue("19")
+    VALUE_10("19"),
+    @XmlEnumValue("2")
+    VALUE_11("2"),
+    @XmlEnumValue("20")
+    VALUE_12("20"),
+    @XmlEnumValue("21")
+    VALUE_13("21"),
+    @XmlEnumValue("22")
+    VALUE_14("22"),
+    @XmlEnumValue("23")
+    VALUE_15("23"),
+    @XmlEnumValue("24")
+    VALUE_16("24"),
+    @XmlEnumValue("25")
+    VALUE_17("25"),
+    @XmlEnumValue("26")
+    VALUE_18("26"),
+    @XmlEnumValue("27")
+    VALUE_19("27"),
+    @XmlEnumValue("28")
+    VALUE_20("28"),
+    @XmlEnumValue("29")
+    VALUE_21("29"),
+    @XmlEnumValue("3")
+    VALUE_22("3"),
+    @XmlEnumValue("30")
+    VALUE_23("30"),
+    @XmlEnumValue("31")
+    VALUE_24("31"),
+    @XmlEnumValue("32")
+    VALUE_25("32"),
+    @XmlEnumValue("33")
+    VALUE_26("33"),
+    @XmlEnumValue("34")
+    VALUE_27("34"),
+    @XmlEnumValue("4")
+    VALUE_28("4"),
+    @XmlEnumValue("5")
+    VALUE_29("5"),
+    @XmlEnumValue("6")
+    VALUE_30("6"),
+    @XmlEnumValue("7")
+    VALUE_31("7"),
+    @XmlEnumValue("8")
+    VALUE_32("8"),
+    @XmlEnumValue("9")
+    VALUE_33("9"),
+    @XmlEnumValue("999")
+    VALUE_34("999"),
+    @XmlEnumValue("BFA")
+    VALUE_35("BFA"),
+    @XmlEnumValue("BIOLAND")
+    VALUE_36("BIOLAND"),
+    @XmlEnumValue("DEMETER_BUND")
+    VALUE_37("DEMETER_BUND"),
+    @XmlEnumValue("DEMETER_INTERNATIONAL")
+    VALUE_38("DEMETER_INTERNATIONAL"),
+    @XmlEnumValue("ECOLAND")
+    VALUE_39("ECOLAND"),
+    @XmlEnumValue("ECOVIN")
+    VALUE_40("ECOVIN"),
+    @XmlEnumValue("EPA")
+    VALUE_41("EPA"),
+    @XmlEnumValue("FDA")
+    VALUE_42("FDA"),
+    @XmlEnumValue("FSA")
+    VALUE_43("FSA"),
+    @XmlEnumValue("GAA")
+    VALUE_44("GAA"),
+    @XmlEnumValue("IFOA")
+    VALUE_45("IFOA"),
+    @XmlEnumValue("IFOAM")
+    VALUE_46("IFOAM"),
+    @XmlEnumValue("NATURLAND")
+    VALUE_47("NATURLAND"),
+    @XmlEnumValue("QAI")
+    VALUE_48("QAI"),
+    @XmlEnumValue("SUDITIROL")
+    VALUE_49("SUDITIROL"),
+    @XmlEnumValue("USDA")
+    VALUE_50("USDA");
+    private final String value;
 
-    public String value() {
-        return name();
+    OrganicClaimAgencyCode(String v) {
+        value = v;
     }
 
+    /**
+     * Gets the value associated to the enum constant.
+     * 
+     * @return
+     *     The value linked to the enum.
+     */
+    public String value() {
+        return value;
+    }
+
+    /**
+     * Gets the enum associated to the value passed as parameter.
+     * 
+     * @param v
+     *     The value to get the enum from.
+     * @return
+     *     The enum which corresponds to the value, if it exists.
+     * @throws IllegalArgumentException
+     *     If no value matches in the enum declaration.
+     */
     public static OrganicClaimAgencyCode fromValue(String v) {
-        return valueOf(v);
+        for (OrganicClaimAgencyCode c: OrganicClaimAgencyCode.values()) {
+            if (c.value.equals(v)) {
+                return c;
+            }
+        }
+        throw new IllegalArgumentException(v);
     }
 
 }

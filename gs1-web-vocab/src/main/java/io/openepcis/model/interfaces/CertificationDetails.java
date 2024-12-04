@@ -41,13 +41,13 @@ public interface CertificationDetails<O extends Organization> {
 
     void setCertificationStatus(CertificationStatus value);
 
-    String getCertificationSubject();
+    Object getCertificationSubject();
 
-    void setCertificationSubject(String value);
+    void setCertificationSubject(Object value);
 
-    String getCertificationType();
+    Object getCertificationType();
 
-    void setCertificationType(String value);
+    void setCertificationType(Object value);
 
     String getCertificationURI();
 

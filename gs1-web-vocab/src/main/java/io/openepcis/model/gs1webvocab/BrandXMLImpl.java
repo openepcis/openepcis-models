@@ -15,10 +15,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * Information on brands and sub-brands for a product.
+ *
  * <p>Java class for Brand complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="Brand">
  *   <complexContent>

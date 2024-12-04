@@ -13,10 +13,12 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Meat and poultry products.
+ *
  * <p>Java class for MeatPoultry complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="MeatPoultry">
  *   <complexContent>

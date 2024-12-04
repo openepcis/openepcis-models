@@ -16,10 +16,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * Details of the deposit for returnable packaging for a product.
+ *
  * <p>Java class for ReturnablePackageDepositDetails complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="ReturnablePackageDepositDetails">
  *   <complexContent>

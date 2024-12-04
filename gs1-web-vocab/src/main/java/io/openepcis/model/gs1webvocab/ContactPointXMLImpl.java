@@ -15,10 +15,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
+ * Information on an individual or department acting as point of contact for an organiation.
+ *
  * <p>Java class for ContactPoint complex type</p>.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
- * 
+ *
  * <pre>{@code
  * <complexType name="ContactPoint">
  *   <complexContent>

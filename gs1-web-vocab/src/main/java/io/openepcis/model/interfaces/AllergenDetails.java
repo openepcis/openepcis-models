@@ -1,5 +1,6 @@
 package io.openepcis.model.interfaces;
 
+import io.openepcis.model.gs1webvocab.AllergenTypeCode;
 import io.openepcis.model.gs1webvocab.LevelOfContainmentCode;
 
 public interface AllergenDetails {
@@ -7,7 +8,7 @@ public interface AllergenDetails {
 
     void setAllergenLevelOfContainmentCode(LevelOfContainmentCode value);
 
-    String getAllergenType();
+    AllergenTypeCode getAllergenType();
 
-    void setAllergenType(String value);
+    void setAllergenType(AllergenTypeCode value);
 }

@@ -12,6 +12,8 @@ import jakarta.xml.bind.annotation.*;
 
 
 /**
+ * Details of an allergen for a product.
+ *
  * <p>Java class for AllergenDetails complex type</p>.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
@@ -42,7 +44,8 @@ public class AllergenDetailsXMLImpl implements AllergenDetails {
     @XmlSchemaType(name = "string")
     protected LevelOfContainmentCode allergenLevelOfContainmentCode;
     @XmlElement(required = true)
-    protected String allergenType;
+    @XmlSchemaType(name = "string")
+    protected AllergenTypeCode allergenType;
 
     /**
      * Gets the value of the allergenLevelOfContainmentCode property.
@@ -79,7 +82,7 @@ public class AllergenDetailsXMLImpl implements AllergenDetails {
      *     
      */
     @Override
-    public String getAllergenType() {
+    public AllergenTypeCode getAllergenType() {
         return allergenType;
     }
 
@@ -92,7 +95,7 @@ public class AllergenDetailsXMLImpl implements AllergenDetails {
      *     
      */
     @Override
-    public void setAllergenType(String value) {
+    public void setAllergenType(AllergenTypeCode value) {
         this.allergenType = value;
     }
 

@@ -16,6 +16,8 @@ import java.time.Year;
 
 
 /**
+ * Products that are worn on the body.
+ *
  * <p>Java class for WearableProduct complex type</p>.
  *
  * <p>The following schema fragment specifies the expected content contained within this class.</p>
