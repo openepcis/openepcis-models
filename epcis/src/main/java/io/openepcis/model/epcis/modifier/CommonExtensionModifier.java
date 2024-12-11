@@ -20,6 +20,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -43,19 +44,16 @@ public class CommonExtensionModifier {
     // This method reads elements from a list and populates a LinkedHashMap with the elements.
     private static LinkedHashMap<String, Object> elementReader(final List<Object> value) {
         final LinkedHashMap<String, Object> multiExtensions = new LinkedHashMap<>();
-
         final DefaultJsonSchemaNamespaceURIResolver namespaceResolver = DefaultJsonSchemaNamespaceURIResolver.getContext();
 
         //Loop over the elements in list
-        for (Object obj : value) {
+        for (final Object obj : value) {
             if (obj instanceof Element) {
                 Element valueElement = (Element) obj;
 
                 // If namespaces not already included then add them
                 final String namespaceURI = valueElement.getNamespaceURI();
-                if (!namespaceResolver.getAllNamespaces().containsKey(namespaceURI) &&
-                        !StringUtils.isEmpty(namespaceURI) &&
-                        !PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
+                if (!namespaceResolver.getAllNamespaces().containsKey(namespaceURI) && !StringUtils.isEmpty(namespaceURI) && !PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
                     namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
 
@@ -67,8 +65,33 @@ public class CommonExtensionModifier {
                     namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
 
+
+                // Create a new map to store the current element's attribute data <ex1:test id="some random value">
+                final LinkedHashMap<String, Object> elementData = new LinkedHashMap<>();
+
+                // Process all the attributes and store them during the conversion from XML to JSON if present
+                if (valueElement.hasAttributes()) {
+                    final NamedNodeMap attributes = valueElement.getAttributes();
+
+                    for (int attr = 0; attr < attributes.getLength(); attr++) {
+                        final Node attrNode = attributes.item(attr);
+                        final String attrNodeName = attrNode.getNodeName();
+                        final String attributeName = attrNodeName.contains(":") ? attrNodeName.split(":")[1] : attrNodeName;
+
+                        // Exclude attributes related to namespaces (e.g., xmlns or xmlns:prefix)
+                        if (!attributeName.equalsIgnoreCase("xmlns") && !attrNodeName.startsWith("xmlns:")) {
+                            elementData.put("@" + attrNodeName, attrNode.getNodeValue().trim());
+                        }
+                    }
+
+                    // Add all attributes data along with elements values & children
+                    extensionPopulate(multiExtensions, valueElement.getNodeName(), elementData);
+                }
+
+
                 //If there are many elements then loop over them and add
                 final NodeList valueList = valueElement.getChildNodes();
+
                 if (valueList.getLength() > 0) {
                     //Loop over the valueList and add to Map
                     for (int parent = 0; parent < valueList.getLength(); parent++) {
