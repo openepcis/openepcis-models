@@ -15,14 +15,15 @@
  */
 package io.openepcis.model.epcis.modifier;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 public class ExtensionsModifier {
   private final Document document;
@@ -31,42 +32,62 @@ public class ExtensionsModifier {
     document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
   }
 
-  public List<Object> createXmlElement(Map<String, Object> extensions) {
+  /**
+   * Method to create XML element during XML -> JSON/JSON-LD conversion for extensions in readPoint, bizLocation, userExtensions in event, sensorElements, etc.
+   *
+   * @param extensions Map of detected extensions from elements
+   * @return returns created XML elements list
+   */
+  public List<Object> createXmlElement(final Map<String, Object> extensions) {
+    //If the extensions are null then return empty list
     if (extensions == null) {
       return Collections.emptyList();
     }
 
-    List<Object> elements = new ArrayList<>();
+    // List to store all the created Elements based on provided extensions Map
+    final List<Object> elements = new ArrayList<>();
 
-    for (Map.Entry<String, Object> property : extensions.entrySet()) {
-      final Element root = document.createElement(property.getKey());
+    for (final Map.Entry<String, Object> property : extensions.entrySet()) {
+
+      //Skip creation of elements with @ ex: @id as XML Element instead add them as attributes later using addAttributes method
+      if (isSpecialAttribute(property.getKey())) {
+        continue;
+      }
+
+      final Element rootElement = document.createElement(property.getKey());
 
       if (property.getValue() instanceof Map) {
-        final List<Object> mapElements =
-            createXmlElement((Map<String, Object>) property.getValue());
-        mapElements.forEach(
-            innerChildren -> {
-              if (innerChildren instanceof Element element && element.getTextContent() != null) {
-                root.appendChild(document.appendChild((Element) innerChildren));
+        final Map<String, Object> mapPropertyValues = (Map<String, Object>) property.getValue();
+
+        // Attach attributes to the current element based on their property.getValue() if any entry contains @
+        addAttributes(mapPropertyValues, rootElement);
+
+        // Recursively add the elements for children/values based on their type
+        final List<Object> mapElements = createXmlElement(mapPropertyValues);
+        mapElements.forEach(innerChildren -> {
+          if (innerChildren instanceof Element element && element.getTextContent() != null) {
+            rootElement.appendChild(document.appendChild((Element) innerChildren));
+          }
+        });
+        elements.add(rootElement);
+      } else if (property.getValue() instanceof String stringPropertyValue) {
+        rootElement.setTextContent(stringPropertyValue);
+        elements.add(rootElement);
+      } else if (property.getValue() instanceof ArrayList arrayPropertyValues) {
+        for (Object dupItems : arrayPropertyValues) {
+          if (dupItems instanceof Map mapElements) {
+            final Element arrayElement = document.createElement(property.getKey());
+
+            // Attach attributes to the element based on their values if any entry contains @
+            addAttributes(mapElements, arrayElement);
+
+            final List<Object> arrayMapElements = createXmlElement(mapElements);
+            arrayMapElements.forEach(mapChildren -> {
+              if (mapChildren instanceof Element arrElement && arrElement.getTextContent() != null) {
+                arrayElement.appendChild(document.appendChild((arrElement)));
               }
             });
-        elements.add(root);
-      } else if (property.getValue() instanceof String string) {
-        root.setTextContent(string);
-        elements.add(root);
-      } else if (property.getValue() instanceof ArrayList arrayList) {
-        for (Object dupItems : arrayList) {
-          if (dupItems instanceof Map mapElements) {
-            final Element arrayMap = document.createElement(property.getKey());
-            final List<Object> arrayMapElements = createXmlElement(mapElements);
-            arrayMapElements.forEach(
-                mapChildren -> {
-                  if (mapChildren instanceof Element arrElement
-                      && arrElement.getTextContent() != null) {
-                    arrayMap.appendChild(document.appendChild((arrElement)));
-                  }
-                });
-            elements.add(arrayMap);
+            elements.add(arrayElement);
           } else if (dupItems instanceof String stringValue) {
             final Element arrayString = document.createElement(property.getKey());
             arrayString.setTextContent(stringValue);
@@ -80,5 +101,27 @@ public class ExtensionsModifier {
 
   public Map<String, Object> createObject(final List<Object> value) {
     return CommonExtensionModifier.unmarshaller(value);
+  }
+
+  /**
+   * Detect if UserExtensions keys that starts with @ such as @id for EmbeddedWebVoc during JSON to XML conversion.
+   * If starts with @ then consider them as special
+   *
+   * @param extensionKey key that needs to be checked before converting to XML
+   * @return true if starts with @ else false
+   */
+  private boolean isSpecialAttribute(final String extensionKey) {
+    return extensionKey.startsWith("@");
+  }
+
+  // Attach attributes to the current XML element based on their property.getValue() if any entry contains @ ex: @id
+  private void addAttributes(final Map<String, Object> propertyValueMap, final Element element) {
+    propertyValueMap
+            .entrySet().stream()
+            .filter(propEntry -> isSpecialAttribute(propEntry.getKey()))
+            .forEach(attributeEntry -> {
+              final String attributeName = attributeEntry.getKey().substring(1);
+              element.setAttribute(attributeName, (String) attributeEntry.getValue());
+            });
   }
 }
