@@ -62,6 +62,9 @@ public class CommonExtensionModifier {
                 //If the element contains the default namespace but contains different prefix then replace with right prefix from EPCIS default namespaces
                 if (!StringUtils.isEmpty(namespaceURI) && PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
                     valueElement = replacePrefix(valueElement);
+
+                    //Populate the eventNamespaces with respective URI and Prefix
+                    namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
 
                 //If there are many elements then loop over them and add
