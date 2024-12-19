@@ -52,7 +52,7 @@ public class OpenEPCISModelProcessor {
   @BuildStep
   HealthBuildItem addHealthCheck(OpenEPCISBuildTimeConfig buildTimeConfig) {
     return new HealthBuildItem(OpenEPCISModelHealthCheck.class.getName(),
-            buildTimeConfig.healthEnabled);
+            buildTimeConfig.healthEnabled());
   }
 
   @BuildStep
