@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 @NoArgsConstructor
@@ -78,9 +79,23 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
             gen.writeString(stringValue);
           } else if (dupItems instanceof Number numberValue) {
             gen.writeNumber(numberValue.doubleValue());
+          } else if (dupItems instanceof Date) {
+            gen.writeString(value.toString());
+          } else if (dupItems instanceof Boolean booleanValue) {
+            gen.writeBoolean(booleanValue);
+          } else {
+            gen.writeObject(value);
           }
         }
         gen.writeEndArray();
+      } else if (extension.getValue() instanceof Number numberValue) {
+        gen.writeNumberField(extension.getKey(), numberValue.doubleValue());
+      } else if (extension.getValue() instanceof Date) {
+        gen.writeStringField(extension.getKey(), value.toString());
+      } else if (extension.getValue() instanceof Boolean booleanValue) {
+        gen.writeBooleanField(extension.getKey(), booleanValue);
+      } else {
+        gen.writeObject(value);
       }
     }
   }

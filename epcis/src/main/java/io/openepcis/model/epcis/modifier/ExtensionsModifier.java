@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ExtensionsModifier {
   private final Document document;
@@ -70,10 +71,7 @@ public class ExtensionsModifier {
           }
         });
         elements.add(rootElement);
-      } else if (property.getValue() instanceof String stringPropertyValue) {
-        rootElement.setTextContent(stringPropertyValue);
-        elements.add(rootElement);
-      } else if (property.getValue() instanceof ArrayList arrayPropertyValues) {
+      } else if (property.getValue() instanceof ArrayList<?> arrayPropertyValues) {
         for (Object dupItems : arrayPropertyValues) {
           if (dupItems instanceof Map mapElements) {
             final Element arrayElement = document.createElement(property.getKey());
@@ -94,6 +92,9 @@ public class ExtensionsModifier {
             elements.add(arrayString);
           }
         }
+      } else {
+        rootElement.setTextContent(String.valueOf(property.getValue()));
+        elements.add(rootElement);
       }
     }
     return elements;
@@ -119,6 +120,7 @@ public class ExtensionsModifier {
     propertyValueMap
             .entrySet().stream()
             .filter(propEntry -> isSpecialAttribute(propEntry.getKey()))
+            .filter(propEntry -> propEntry.getValue() instanceof String)
             .forEach(attributeEntry -> {
               final String attributeName = attributeEntry.getKey().substring(1);
               element.setAttribute(attributeName, (String) attributeEntry.getValue());
