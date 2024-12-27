@@ -180,4 +180,15 @@ public class EPCISExceptionMapper {
     return RestResponse.status(RestResponse.Status.NOT_IMPLEMENTED, responseBody);
   }
 
+  @ServerExceptionMapper
+  public final RestResponse<ProblemResponseBody> mapException(final PersistenceException exception) {
+    log.info(exception.getMessage());
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(RestResponse.Status.INTERNAL_SERVER_ERROR.toString());
+    responseBody.title(exception.getClass().getSimpleName());
+    responseBody.setStatus(RestResponse.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+    responseBody.setDetail(exception.getMessage());
+    return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR, responseBody);
+  }
+
 }
