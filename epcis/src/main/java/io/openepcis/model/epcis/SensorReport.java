@@ -17,9 +17,7 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
-import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
-import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
+import io.openepcis.model.epcis.modifier.*;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;

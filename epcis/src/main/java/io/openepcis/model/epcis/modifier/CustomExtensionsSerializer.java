@@ -13,35 +13,30 @@
  *     See the License for the specific language governing permissions and
  *     limitations under the License.
  */
-package io.openepcis.model.epcis;
+package io.openepcis.model.epcis.modifier;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
-import java.io.IOException;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import java.util.ArrayList;
-import java.util.Map;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Object>>
-    implements ContextualSerializer {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
+@NoArgsConstructor
+public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Object>> implements ContextualSerializer {
   private String context = "";
 
-  public CustomExtensionsSerializer(String context) {
+  public CustomExtensionsSerializer(final String context) {
     this.context = context;
   }
 
   @Override
-  public JsonSerializer<?> createContextual(
-      SerializerProvider serializerProvider, BeanProperty beanProperty) {
+  public JsonSerializer<?> createContextual(final SerializerProvider serializerProvider, final BeanProperty beanProperty) {
     UserExtensions extensions = beanProperty.getAnnotation(UserExtensions.class);
     if (extensions != null) {
       return new CustomExtensionsSerializer(extensions.extension());
@@ -50,9 +45,7 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
   }
 
   @Override
-  public void serialize(
-      Map<String, Object> value, JsonGenerator gen, SerializerProvider serializers)
-      throws IOException {
+  public void serialize(final Map<String, Object> value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException {
     if (this.context.equals("userExtensions")) {
       recursiveSerializer(value, gen);
     } else if (this.context.equals("ilmd") || this.context.equals("extension") || this.context.equals("certificationInfo")) {
@@ -62,7 +55,7 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
     }
   }
 
-  public void recursiveSerializer(Map<String, Object> value, JsonGenerator gen) throws IOException {
+  private void recursiveSerializer(final Map<String, Object> value, final JsonGenerator gen) throws IOException {
     for (Map.Entry<String, Object> extension : value.entrySet()) {
       if (extension.getValue() instanceof Map) {
         // If instance is MAP then call the recursive method
@@ -70,12 +63,11 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
         gen.writeStartObject();
         recursiveSerializer((Map<String, Object>) extension.getValue(), gen);
         gen.writeEndObject();
-      } else if (extension.getValue() instanceof String) {
+      } else if (extension.getValue() instanceof String stringValue) {
         // If instance is String directly add it to the JSON
-        gen.writeStringField(extension.getKey(), (String) extension.getValue());
+        gen.writeStringField(extension.getKey(), stringValue);
       } else if (extension.getValue() instanceof ArrayList) {
-        // If instance is ArrayList then loop over it and add it to the JSON after calling recursive
-        // method
+        // If instance is ArrayList then loop over it and add it to the JSON after calling recursive method
         gen.writeFieldName(extension.getKey());
         gen.writeStartArray();
         for (Object dupItems : (ArrayList<Object>) extension.getValue()) {
@@ -83,20 +75,29 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
             gen.writeStartObject();
             recursiveSerializer((Map<String, Object>) dupItems, gen);
             gen.writeEndObject();
-          } else if (dupItems instanceof String) {
-            gen.writeString((String) dupItems);
-          } else if (dupItems instanceof Number){
-            gen.writeNumber( ((Number) dupItems).doubleValue());
+          } else if (dupItems instanceof String stringValue) {
+            gen.writeString(stringValue);
+          } else if (dupItems instanceof Number numberValue) {
+            gen.writeNumber(numberValue.doubleValue());
+          } else if (dupItems instanceof Date) {
+            gen.writeString(value.toString());
+          } else if (dupItems instanceof Boolean booleanValue) {
+            gen.writeBoolean(booleanValue);
+          } else {
+            gen.writeObject(value);
           }
         }
         gen.writeEndArray();
+      } else if (extension.getValue() instanceof Number numberValue) {
+        gen.writeNumberField(extension.getKey(), numberValue.doubleValue());
+      } else if (extension.getValue() instanceof Date) {
+        gen.writeStringField(extension.getKey(), value.toString());
+      } else if (extension.getValue() instanceof Boolean booleanValue) {
+        gen.writeBooleanField(extension.getKey(), booleanValue);
+      } else {
+        gen.writeObject(value);
       }
     }
   }
 }
 
-@Target({ElementType.FIELD, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@interface UserExtensions {
-  String extension();
-}
