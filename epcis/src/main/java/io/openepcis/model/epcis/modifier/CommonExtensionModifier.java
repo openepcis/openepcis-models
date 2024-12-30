@@ -18,6 +18,7 @@ package io.openepcis.model.epcis.modifier;
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -66,11 +67,12 @@ public class CommonExtensionModifier {
                 }
 
 
-                // Create a new map to store the current element's attribute data <ex1:test id="some random value">
-                final LinkedHashMap<String, Object> elementData = new LinkedHashMap<>();
 
                 // Process all the attributes and store them during the conversion from XML to JSON if present
                 if (valueElement.hasAttributes()) {
+                    // Create a new map to store the current element's attribute data <ex1:test id="some random value">
+                    final LinkedHashMap<String, Object> elementData = new LinkedHashMap<>();
+
                     final NamedNodeMap attributes = valueElement.getAttributes();
 
                     for (int attr = 0; attr < attributes.getLength(); attr++) {
@@ -84,8 +86,10 @@ public class CommonExtensionModifier {
                         }
                     }
 
-                    // Add all attributes data along with elements values & children
-                    extensionPopulate(multiExtensions, valueElement.getNodeName(), elementData);
+                    // Add all attributes data along with elements values & children if present
+                    if (!MapUtils.isEmpty(elementData)) {
+                        extensionPopulate(multiExtensions, valueElement.getNodeName(), elementData);
+                    }
                 }
 
 
