@@ -82,7 +82,8 @@ public class CommonExtensionModifier {
 
                         // Exclude attributes related to namespaces (e.g., xmlns or xmlns:prefix)
                         if (!attributeName.equalsIgnoreCase("xmlns") && !attrNodeName.startsWith("xmlns:")) {
-                            elementData.put("@" + attrNodeName, attrNode.getNodeValue().trim());
+                            final String attributeKey = attrNodeName.contains(":") ? attrNodeName : "@" + attrNodeName;
+                            elementData.put(attributeKey, attrNode.getNodeValue().trim());
                         }
                     }
 

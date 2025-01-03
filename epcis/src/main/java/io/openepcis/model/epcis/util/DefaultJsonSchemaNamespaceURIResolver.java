@@ -15,79 +15,77 @@
  */
 package io.openepcis.model.epcis.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DefaultJsonSchemaNamespaceURIResolver {
+  private static final DefaultJsonSchemaNamespaceURIResolver INSTANCE = new DefaultJsonSchemaNamespaceURIResolver();
+  private final ThreadLocal<Map<String, String>> documentNamespaces = ThreadLocal.withInitial(ConcurrentHashMap::new);
+  private final ThreadLocal<Map<String, String>> eventNamespaces = ThreadLocal.withInitial(ConcurrentHashMap::new);
 
-  private static final DefaultJsonSchemaNamespaceURIResolver context =
-      new DefaultJsonSchemaNamespaceURIResolver();
-  private final ThreadLocal<Map<String, String>> documentNamespaces =
-      ThreadLocal.withInitial(ConcurrentHashMap::new);
-  private final ThreadLocal<Map<String, String>> eventNamespaces =
-      ThreadLocal.withInitial(ConcurrentHashMap::new);
+  private DefaultJsonSchemaNamespaceURIResolver() {}
 
   public static synchronized DefaultJsonSchemaNamespaceURIResolver getContext() {
-    return context;
+    return INSTANCE;
   }
 
   // Add all the Namespaces that are defined at the EPCIS document level.
-  public synchronized void populateDocumentNamespaces(
-      final String namespaceURI, final String prefix) {
-    if (namespaceURI != null
-        && prefix != null
-        && !documentNamespaces.get().containsKey(prefix)
-        && !documentNamespaces.get().containsValue(prefix)) {
-      documentNamespaces.get().put(namespaceURI, prefix);
+  public synchronized void populateDocumentNamespaces(final String namespaceURI, final String prefix) {
+    if (isNonEmpty(namespaceURI) && isNonEmpty(prefix)) {
+      documentNamespaces.get().putIfAbsent(namespaceURI, prefix);
     }
   }
 
   // Add all the namespaces that are defined at the EPCIS event level.
   public synchronized void populateEventNamespaces(final String namespaceURI, final String prefix) {
-    if (namespaceURI != null
-        && prefix != null
-        && !eventNamespaces.get().containsKey(prefix)
-        && !eventNamespaces.get().containsValue(prefix)) {
-      eventNamespaces.get().put(namespaceURI, prefix);
+    if (isNonEmpty(namespaceURI) && isNonEmpty(prefix)) {
+      eventNamespaces.get().putIfAbsent(namespaceURI, prefix);
     }
   }
 
-  // Reset the event namespaces after completing each event.
+  // Clears all event-level namespaces.
   public synchronized void resetEventNamespaces() {
     eventNamespaces.get().clear();
   }
 
-  // Reset all the document & event namespaces after completing the document.
+  //  Clears all document-level and event-level namespaces.
   public synchronized void resetAllNamespaces() {
     documentNamespaces.get().clear();
     eventNamespaces.get().clear();
   }
 
-  // Find the appropriate namespace based on the provided prefix.
+  // Finds the namespace URI associated with a given prefix. Searches both document and event namespaces.
   public synchronized Optional<String> findNamespaceByPrefix(final String prefix) {
     return getAllNamespaces().entrySet().stream()
-        .filter(entry -> entry.getValue().equals(prefix))
-        .map(Map.Entry::getKey)
-        .findFirst();
+            .filter(entry -> entry.getValue().equals(prefix))
+            .map(Map.Entry::getKey)
+            .findFirst();
   }
 
-  // Method that returns the saved Document namespaces.
+  // Retrieves a copy of the document-level namespaces.
   public synchronized Map<String, String> getDocumentNamespaces() {
     return new HashMap<>(documentNamespaces.get());
   }
 
-  // Method that returns the saved Event namespaces.
+  // Retrieves a copy of the event-level namespaces.
   public synchronized Map<String, String> getEventNamespaces() {
     return new HashMap<>(eventNamespaces.get());
   }
 
-  // Method that returns all the namespaces Document + Event combined.
+  // Retrieves a combined copy of document-level and event-level namespaces.
   public synchronized Map<String, String> getAllNamespaces() {
     final Map<String, String> allNamespaces = new HashMap<>();
     allNamespaces.putAll(documentNamespaces.get());
     allNamespaces.putAll(eventNamespaces.get());
     return allNamespaces;
+  }
+
+  // Helper method to check if a string is non-null and non-empty
+  private boolean isNonEmpty(final String value) {
+    return StringUtils.isNotBlank(value);
   }
 }
