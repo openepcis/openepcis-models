@@ -51,6 +51,7 @@ public class CommonExtensionModifier {
         for (final Object obj : value) {
             if (obj instanceof Element) {
                 Element valueElement = (Element) obj;
+                boolean hasAttribute = false;
 
                 // If namespaces not already included then add them
                 final String namespaceURI = valueElement.getNamespaceURI();
@@ -80,8 +81,10 @@ public class CommonExtensionModifier {
                         final String attrNodeName = attrNode.getNodeName();
                         final String attributeName = attrNodeName.contains(":") ? attrNodeName.split(":")[1] : attrNodeName;
 
-                        // Exclude attributes related to namespaces (e.g., xmlns or xmlns:prefix)
-                        if (!attributeName.equalsIgnoreCase("xmlns") && !attrNodeName.startsWith("xmlns:")) {
+                        // Exclude attributes related to namespaces (e.g., xmlns, xsi: or xmlns:prefix)
+                        if (!attributeName.equalsIgnoreCase("xmlns") &&
+                                !attrNodeName.startsWith("xmlns:") &&
+                                !attrNodeName.startsWith("xsi:")) {
                             final String attributeKey = attrNodeName.contains(":") ? attrNodeName : "@" + attrNodeName;
                             elementData.put(attributeKey, attrNode.getNodeValue().trim());
                         }
@@ -89,7 +92,8 @@ public class CommonExtensionModifier {
 
                     // Add all attributes data along with elements values & children if present
                     if (!MapUtils.isEmpty(elementData)) {
-                        extensionPopulate(multiExtensions, valueElement.getNodeName(), elementData);
+                        hasAttribute = true;
+                        extensionPopulate(multiExtensions, valueElement.getNodeName(), elementData, hasAttribute);
                     }
                 }
 
@@ -104,24 +108,33 @@ public class CommonExtensionModifier {
 
                         //If text node then directly add with value
                         if (parentNode.getNodeType() == Node.TEXT_NODE && !StringUtils.isBlank(parentNode.getTextContent())) {
-                            extensionPopulate(multiExtensions, valueElement.getNodeName(), parentNode.getTextContent().trim());
+                            extensionPopulate(multiExtensions, valueElement.getNodeName(), parentNode.getTextContent().trim(), hasAttribute);
                         } else if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
                             //If complex node then recursively add them
                             final HashMap<String, Object> childNodes = elementReader(List.of(parentNode));
-                            extensionPopulate(multiExtensions, valueElement.getNodeName(), childNodes);
+                            extensionPopulate(multiExtensions, valueElement.getNodeName(), childNodes, hasAttribute);
                         }
                     }
                 } else {
-                    extensionPopulate(multiExtensions, valueElement.getNodeName(), valueElement.getTextContent().trim());
+                    extensionPopulate(multiExtensions, valueElement.getNodeName(), valueElement.getTextContent().trim(), hasAttribute);
                 }
             }
         }
         return multiExtensions;
     }
 
-
     //Based on obtained name and value populate the LinkedHashMap to either simple key, value or complex key with value list
-    public static LinkedHashMap<String, Object> extensionPopulate(final LinkedHashMap<String, Object> multiExtensions, final String nodeName, final Object nodeContent) {
+    public static void extensionPopulate(final LinkedHashMap<String, Object> multiExtensions, final String nodeName, Object nodeContent, final boolean isXmlAttribute) {
+        // Check for null and empty strings to skip adding to the map.
+        if (nodeContent instanceof String stringValue && StringUtils.isBlank(stringValue)) {
+            return; // Skip adding if nodeContent is null or an empty string.
+        }
+
+        // For storing the values with XML attribute and values differentiate the values with keyword value
+        if (isXmlAttribute) {
+            nodeContent = nodeContent instanceof String ? Map.of("value", nodeContent) : nodeContent;
+        }
+
         // Check if MAP already has an entry with respective key
         if (multiExtensions.containsKey(nodeName)) {
             final Object existingValue = multiExtensions.get(nodeName);
@@ -132,7 +145,7 @@ public class CommonExtensionModifier {
                 ((List<Object>) existingValue).add(nodeContent);
             } else if (existingValue instanceof Map && nodeContent instanceof Map) {
                 final HashMap<String, Object> existingMapValues = (HashMap<String, Object>) existingValue;
-                final HashMap<String, Object> newMapValues = (HashMap<String, Object>) nodeContent;
+                final Map<String, Object> newMapValues = (Map<String, Object>) nodeContent;
 
                 newMapValues.forEach((key, value) -> {
                     if (existingMapValues.containsKey(key)) {
@@ -162,7 +175,6 @@ public class CommonExtensionModifier {
             // If the entry does not exist for the key in Map then add a new entry
             multiExtensions.put(nodeName, nodeContent);
         }
-        return multiExtensions;
     }
 
 
@@ -200,10 +212,22 @@ public class CommonExtensionModifier {
 
     // Method to find the required namespace prefix based on provided namespace URI
     public static String getNamespacePrefix(final QName namespace) {
-        return DefaultJsonSchemaNamespaceURIResolver.getContext()
-                .getAllNamespaces()
-                .get(namespace.getNamespaceURI())
-                + ":"
-                + namespace.getLocalPart();
+        final DefaultJsonSchemaNamespaceURIResolver instance = DefaultJsonSchemaNamespaceURIResolver.getContext();
+
+        // Try to find a prefix directly mapped to the namespace URI
+        String prefix = instance.getAllNamespaces().get(namespace.getNamespaceURI());
+
+        // If the prefix is not found then get the prefix from the namespaceURI by extracting the trailing values
+        if (StringUtils.isBlank(prefix)) {
+            // Remove trailing '/' if present for uniform handling and build the prefix
+            final String namespaceURI = namespace.getNamespaceURI();
+            final String processedURI = StringUtils.removeEnd(namespaceURI, "/");
+            final int lastSlashIndex = processedURI.lastIndexOf('/');
+            prefix = lastSlashIndex != -1 ? processedURI.substring(lastSlashIndex + 1) : "";
+            return prefix + ":" + namespace.getLocalPart();
+        }
+
+        //final String qualifiedPrefix = StringUtils.isNotBlank(prefix) ? prefix :
+        return prefix + ":" + namespace.getLocalPart();
     }
 }
