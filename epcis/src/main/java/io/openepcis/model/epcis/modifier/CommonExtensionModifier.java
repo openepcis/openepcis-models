@@ -39,11 +39,11 @@ public class CommonExtensionModifier {
             return Collections.emptyMap();
         }
 
-        return elementReader(value);
+        return elementReader(value, "");
     }
 
     // This method reads elements from a list and populates a LinkedHashMap with the elements.
-    private static LinkedHashMap<String, Object> elementReader(final List<Object> value) {
+    private static LinkedHashMap<String, Object> elementReader(final List<Object> value, final String parentPrefix) {
         final LinkedHashMap<String, Object> multiExtensions = new LinkedHashMap<>();
         final DefaultJsonSchemaNamespaceURIResolver namespaceResolver = DefaultJsonSchemaNamespaceURIResolver.getContext();
 
@@ -55,6 +55,14 @@ public class CommonExtensionModifier {
 
                 // If namespaces not already included then add them
                 final String namespaceURI = valueElement.getNamespaceURI();
+                String nodeName = valueElement.getNodeName();
+
+                // Check if th element has namespace/prefix and if not then add the parent prefix to its child elements as well
+                if (StringUtils.isBlank(valueElement.getPrefix()) && StringUtils.isNotBlank(parentPrefix)) {
+                    // If no prefix exists on the element, append parent's prefix, Assuming the format: <prefix:name> in getNodeName
+                    nodeName = parentPrefix + ":" + nodeName;
+                }
+
                 if (!namespaceResolver.getAllNamespaces().containsKey(namespaceURI) && !StringUtils.isEmpty(namespaceURI) && !PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
                     namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
@@ -66,8 +74,6 @@ public class CommonExtensionModifier {
                     //Populate the eventNamespaces with respective URI and Prefix
                     namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
-
-
 
                 // Process all the attributes and store them during the conversion from XML to JSON if present
                 if (valueElement.hasAttributes()) {
@@ -93,7 +99,7 @@ public class CommonExtensionModifier {
                     // Add all attributes data along with elements values & children if present
                     if (!MapUtils.isEmpty(elementData)) {
                         hasAttribute = true;
-                        extensionPopulate(multiExtensions, valueElement.getNodeName(), elementData, hasAttribute);
+                        extensionPopulate(multiExtensions, nodeName, elementData, hasAttribute);
                     }
                 }
 
@@ -108,15 +114,16 @@ public class CommonExtensionModifier {
 
                         //If text node then directly add with value
                         if (parentNode.getNodeType() == Node.TEXT_NODE && !StringUtils.isBlank(parentNode.getTextContent())) {
-                            extensionPopulate(multiExtensions, valueElement.getNodeName(), parentNode.getTextContent().trim(), hasAttribute);
+                            extensionPopulate(multiExtensions, nodeName, parentNode.getTextContent().trim(), hasAttribute);
                         } else if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
                             //If complex node then recursively add them
-                            final HashMap<String, Object> childNodes = elementReader(List.of(parentNode));
-                            extensionPopulate(multiExtensions, valueElement.getNodeName(), childNodes, hasAttribute);
+                            final String complexPrefix = StringUtils.isNotBlank(valueElement.getPrefix()) ? valueElement.getPrefix() : parentPrefix;
+                            final HashMap<String, Object> childNodes = elementReader(List.of(parentNode), complexPrefix);
+                            extensionPopulate(multiExtensions, nodeName, childNodes, hasAttribute);
                         }
                     }
                 } else {
-                    extensionPopulate(multiExtensions, valueElement.getNodeName(), valueElement.getTextContent().trim(), hasAttribute);
+                    extensionPopulate(multiExtensions, nodeName, valueElement.getTextContent().trim(), hasAttribute);
                 }
             }
         }
