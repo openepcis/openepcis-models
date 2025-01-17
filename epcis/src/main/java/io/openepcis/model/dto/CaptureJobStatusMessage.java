@@ -41,8 +41,8 @@ public class CaptureJobStatusMessage extends CaptureJob {
   private int invalidEventCount = 0;
   private int processedEventCount = 0;
   private int capturedEventCount = 0;
-  protected String s3Bucket;
-  protected String s3Key;
+  protected String storageBucket;
+  protected String storageKey;
   private Map<String,Object> metadata;
 
   public CaptureJobStatusMessage(
@@ -52,10 +52,10 @@ public class CaptureJobStatusMessage extends CaptureJob {
       OffsetDateTime createdAt,
       String captureErrorBehaviour,
       OffsetDateTime finishedAt,
-      String s3Bucket,
-      String s3Key) {
+      String storageBucket,
+      String storageKey) {
     super(captureID, running, success, createdAt, captureErrorBehaviour, finishedAt);
-    this.s3Bucket = s3Bucket;
-    this.s3Key = s3Key;
+    this.storageBucket = storageBucket;
+    this.storageKey = storageKey;
   }
 }
