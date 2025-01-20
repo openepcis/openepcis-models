@@ -52,8 +52,10 @@ public class CaptureJobStatusMessage extends CaptureJob {
       OffsetDateTime createdAt,
       String captureErrorBehaviour,
       OffsetDateTime finishedAt,
+      String storageBucket,
       String storageKey) {
     super(captureID, running, success, createdAt, captureErrorBehaviour, finishedAt);
+    this.storageBucket = storageBucket;
     this.storageKey = storageKey;
   }
 }
