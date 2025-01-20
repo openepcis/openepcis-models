@@ -60,8 +60,7 @@
         <module>core</module>
         <module>epcis</module>
         <module>gs1-web-vocab</module>
-        <module>quarkus/runtime</module>
-        <module>quarkus/deployment</module>
+        <module>quarkus</module>
     </modules>
 
     <dependencyManagement>
