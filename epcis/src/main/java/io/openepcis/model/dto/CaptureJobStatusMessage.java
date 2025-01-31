@@ -60,15 +60,28 @@ public class CaptureJobStatusMessage extends CaptureJob {
     this.storageKey = storageKey;
   }
 
-  @Deprecated
+  @Deprecated(since = "0.9", forRemoval = true)
   @JsonIgnore
   public String getS3Bucket() {
     return storageBucket;
   }
 
-  @Deprecated
+  @Deprecated(since = "0.9", forRemoval = true)
   @JsonIgnore
   public String getS3Key() {
     return storageKey;
   }
+
+  @Deprecated(since = "0.9", forRemoval = true)
+  @JsonIgnore
+  public void setS3Bucket(String s3Bucket) {
+    storageBucket = s3Bucket;
+  }
+
+  @Deprecated(since = "0.9", forRemoval = true)
+  @JsonIgnore
+  public void setS3Key(String s3Key) {
+    storageKey = s3Key;
+  }
+
 }
