@@ -58,4 +58,14 @@ public class CaptureJobStatusMessage extends CaptureJob {
     this.storageBucket = storageBucket;
     this.storageKey = storageKey;
   }
+
+  @Deprecated
+  public String getS3Bucket() {
+    return storageBucket;
+  }
+
+  @Deprecated
+  public String getS3Key() {
+    return storageKey;
+  }
 }
