@@ -16,6 +16,7 @@
 package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.OffsetDateTime;
@@ -60,11 +61,13 @@ public class CaptureJobStatusMessage extends CaptureJob {
   }
 
   @Deprecated
+  @JsonIgnore
   public String getS3Bucket() {
     return storageBucket;
   }
 
   @Deprecated
+  @JsonIgnore
   public String getS3Key() {
     return storageKey;
   }
