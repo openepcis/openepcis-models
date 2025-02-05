@@ -5,22 +5,23 @@ import io.openepcis.model.gs1webvocab.*;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface Product<AP extends AdditionalProductClassificationDetails,AD extends AdditiveDetails,
         RF extends ReferencedFileDetails,AU extends AuthenticityDetails,AW extends AwardPrizeDetails,B extends Brand,O extends Organization,
         CD extends CertificationDetails,CC extends ColourCodeDetails,C extends Country, P extends Product,QV extends QuantitativeValue,
         WP extends WarrantyPromise,OC extends OrganicClaimDetails, PD extends PackagingDetails, SC extends SizeCodeDetails,TM extends TargetMarketDetails> {
-    AP getAdditionalProductClassification();
+    List<AP> getAdditionalProductClassification();
 
-    void setAdditionalProductClassification(AP value);
+    void setAdditionalProductClassification(List<AP> value);
 
     String getAdditionalProductDescription();
 
     void setAdditionalProductDescription(String value);
 
-    AD getAdditive();
+    List<AD> getAdditive();
 
-    void setAdditive(AD value);
+    void setAdditive(List<AD> value);
 
     RF getAudioFile();
 
@@ -30,9 +31,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setAuthenticity(AU value);
 
-    AW getAwardPrize();
+    List<AW> getAwardPrize();
 
-    void setAwardPrize(AW value);
+    void setAwardPrize(List<AW> value);
 
     LocalDate getBestBeforeDate();
 
@@ -46,13 +47,13 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setBrandOwner(O value);
 
-    CD getCertification();
+    List<CD> getCertification();
 
-    void setCertification(CD value);
+    void setCertification(List<CD> value);
 
-    CC getColourCode();
+    List<CC> getColourCode();
 
-    void setColourCode(CC value);
+    void setColourCode(List<CC> value);
 
     String getColourDescription();
 
@@ -106,9 +107,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setCustomerSupportCentre(O value);
 
-    P getDependentProprietaryProduct();
+    List<P> getDependentProprietaryProduct();
 
-    void setDependentProprietaryProduct(P value);
+    void setDependentProprietaryProduct(List<P> value);
 
     String getDescriptiveSize();
 
@@ -118,9 +119,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setDueDate(LocalDate value);
 
-    P getEquivalentProduct();
+    List<P> getEquivalentProduct();
 
-    void setEquivalentProduct(P value);
+    void setEquivalentProduct(List<P> value);
 
     LocalDate getExpirationDate();
 
@@ -258,9 +259,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setNetWeight(QV value);
 
-    OC getOrganicClaim();
+    List<OC> getOrganicClaim();
 
-    void setOrganicClaim(OC value);
+    void setOrganicClaim(List<OC> value);
 
     QV getOutOfPackageDepth();
 
@@ -346,9 +347,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setProvenanceStatement(String value);
 
-    RF getReferencedFile();
+    List<RF> getReferencedFile();
 
-    void setReferencedFile(RF value);
+    void setReferencedFile(List<RF> value);
 
     String getRegulatedProductName();
 
@@ -374,9 +375,9 @@ public interface Product<AP extends AdditionalProductClassificationDetails,AD ex
 
     void setSupplierSpecifiedMinimumConsumerStorageDays(BigInteger value);
 
-    TM getTargetMarket();
+    List<TM> getTargetMarket();
 
-    void setTargetMarket(TM value);
+    void setTargetMarket(List<TM> value);
 
     String getVariantDescription();
 

@@ -13,6 +13,8 @@ import io.openepcis.model.interfaces.OrganizationIDDetails;
 import io.openepcis.model.interfaces.OrganizationStatusHistory;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * An Organization is any legal or physical entity involved at any point in any supply chain and upon which there is a need to retrieve
@@ -100,17 +102,17 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
         ,CertificationDetailsXMLImpl,PlaceXMLImpl,OrganizationXMLImpl,OfferXMLImpl,OrganizationStatusHistoryXMLImpl> {
 
     @XmlElement(required = true)
-    protected OrganizationIDDetailsXMLImpl additionalOrganizationID;
+    protected List<OrganizationIDDetailsXMLImpl> additionalOrganizationID;
     @XmlElement(required = true)
     protected String additionalOrganizationIdentificationTypeValue;
     @XmlElement(required = true)
-    protected PostalAddressXMLImpl address;
+    protected List<PostalAddressXMLImpl> address;
     @XmlElement(required = true)
-    protected ContactPointXMLImpl afterHoursContact;
+    protected List<ContactPointXMLImpl> afterHoursContact;
     @XmlElement(required = true)
     protected CertificationDetailsXMLImpl certification;
     @XmlElement(required = true)
-    protected ContactPointXMLImpl contactPoint;
+    protected List<ContactPointXMLImpl> contactPoint;
     @XmlElement(required = true)
     protected String department;
     @XmlElement(required = true)
@@ -119,19 +121,19 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
     @XmlElement(required = true)
     protected String globalLocationNumber;
     @XmlElement(required = true)
-    protected PlaceXMLImpl hasPrimaryLocation;
+    protected List<PlaceXMLImpl> hasPrimaryLocation;
     @XmlElement(required = true)
     protected PlaceXMLImpl lesseeOf;
     @XmlElement(required = true)
     protected PlaceXMLImpl lessorFor;
     @XmlElement(required = true)
-    protected PlaceXMLImpl location;
-    @XmlElement(required = true)
-    protected OfferXMLImpl makesOfferXMLImpl;
+    protected List<PlaceXMLImpl> location;
+//    @XmlElement(required = true)
+//    protected List<OfferXMLImpl> makesOffer;
     @XmlElement(required = true)
     protected OrganizationXMLImpl managedBy;
     @XmlElement(required = true)
-    protected OrganizationXMLImpl manages;
+    protected List<OrganizationXMLImpl> manages;
     @XmlElement(required = true)
     protected PlaceXMLImpl occupies;
     @XmlElement(required = true)
@@ -144,7 +146,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
     @XmlElement(required = true)
     protected OrganizationXMLImpl ownedBy;
     @XmlElement(required = true)
-    protected OrganizationXMLImpl owns;
+    protected List<OrganizationXMLImpl> owns;
     @XmlElement(required = true)
     protected OrganizationXMLImpl parentOrganizationXMLImpl;
     @XmlElement(required = true)
@@ -169,7 +171,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public OrganizationIDDetailsXMLImpl getAdditionalOrganizationID() {
+    public List<OrganizationIDDetailsXMLImpl> getAdditionalOrganizationID() {
         return additionalOrganizationID;
     }
 
@@ -182,7 +184,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setAdditionalOrganizationID(OrganizationIDDetailsXMLImpl value) {
+    public void setAdditionalOrganizationID(List<OrganizationIDDetailsXMLImpl> value) {
         this.additionalOrganizationID = value;
     }
 
@@ -221,7 +223,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public PostalAddressXMLImpl getAddress() {
+    public List<PostalAddressXMLImpl> getAddress() {
         return address;
     }
 
@@ -234,7 +236,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setAddress(PostalAddressXMLImpl value) {
+    public void setAddress(List<PostalAddressXMLImpl> value) {
         this.address = value;
     }
 
@@ -247,7 +249,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public ContactPointXMLImpl getAfterHoursContact() {
+    public List<ContactPointXMLImpl> getAfterHoursContact() {
         return afterHoursContact;
     }
 
@@ -260,7 +262,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setAfterHoursContact(ContactPointXMLImpl value) {
+    public void setAfterHoursContact(List<ContactPointXMLImpl> value) {
         this.afterHoursContact = value;
     }
 
@@ -299,7 +301,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public ContactPointXMLImpl getContactPoint() {
+    public  List<ContactPointXMLImpl> getContactPoint() {
         return contactPoint;
     }
 
@@ -312,7 +314,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setContactPoint(ContactPointXMLImpl value) {
+    public void setContactPoint(List<ContactPointXMLImpl> value) {
         this.contactPoint = value;
     }
 
@@ -403,7 +405,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public PlaceXMLImpl getHasPrimaryLocation() {
+    public List<PlaceXMLImpl> getHasPrimaryLocation() {
         return hasPrimaryLocation;
     }
 
@@ -416,7 +418,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setHasPrimaryLocation(PlaceXMLImpl value) {
+    public void setHasPrimaryLocation(List<PlaceXMLImpl> value) {
         this.hasPrimaryLocation = value;
     }
 
@@ -481,7 +483,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public PlaceXMLImpl getLocation() {
+    public List<PlaceXMLImpl> getLocation() {
         return location;
     }
 
@@ -494,7 +496,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setLocation(PlaceXMLImpl value) {
+    public void setLocation(List<PlaceXMLImpl> value) {
         this.location = value;
     }
 
@@ -506,23 +508,23 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     {@link OfferXMLImpl }
      *     
      */
-    @Override
-    public OfferXMLImpl getMakesOffer() {
-        return makesOfferXMLImpl;
-    }
-
-    /**
-     * Sets the value of the makesOffer property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OfferXMLImpl }
-     *     
-     */
-    @Override
-    public void setMakesOffer(OfferXMLImpl value) {
-        this.makesOfferXMLImpl = value;
-    }
+//    @Override
+//    public List<OfferXMLImpl> getMakesOffer() {
+//        return makesOffer;
+//    }
+//
+//    /**
+//     * Sets the value of the makesOffer property.
+//     *
+//     * @param value
+//     *     allowed object is
+//     *     {@link OfferXMLImpl }
+//     *
+//     */
+//    @Override
+//    public void setMakesOffer(List<OfferXMLImpl> value) {
+//        this.makesOffer = value;
+//    }
 
     /**
      * Gets the value of the managedBy property.
@@ -559,7 +561,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public OrganizationXMLImpl getManages() {
+    public List<OrganizationXMLImpl> getManages() {
         return manages;
     }
 
@@ -572,7 +574,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setManages(OrganizationXMLImpl value) {
+    public void setManages(List<OrganizationXMLImpl> value) {
         this.manages = value;
     }
 
@@ -715,7 +717,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public OrganizationXMLImpl getOwns() {
+    public List<OrganizationXMLImpl> getOwns() {
         return owns;
     }
 
@@ -728,7 +730,7 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     
      */
     @Override
-    public void setOwns(OrganizationXMLImpl value) {
+    public void setOwns(List<OrganizationXMLImpl> value) {
         this.owns = value;
     }
 

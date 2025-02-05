@@ -2,6 +2,7 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 import java.time.Year;
+import java.util.List;
 
 public interface WearableProduct<SD extends SizeDetails> {
     ConsumerLifestageCode getConsumerLifestage();
@@ -36,9 +37,9 @@ public interface WearableProduct<SD extends SizeDetails> {
 
     void setSeasonParameter(SeasonParameterCode value);
 
-    SD getSize();
+    List<SD> getSize();
 
-    void setSize(SD value);
+    void setSize(List<SD> value);
 
     SportingActivityTypeCode getSportingActivityType();
 

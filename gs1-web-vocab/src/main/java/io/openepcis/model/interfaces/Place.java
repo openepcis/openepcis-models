@@ -2,11 +2,13 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
+import java.util.List;
+
 public interface Place<L extends LocationIDDetails,PO extends PostalAddress,C extends ContactPoint,P extends Place
         ,CD extends CertificationDetails, O extends Organization,LO extends LocationStatusHistory> {
-    L getAdditionalLocationID();
+    List<L> getAdditionalLocationID();
 
-    void setAdditionalLocationID(L value);
+    void setAdditionalLocationID(List<L> value);
 
     PO getAddress();
 

@@ -11,6 +11,8 @@ import io.openepcis.model.interfaces.Footwear;
 import io.openepcis.model.interfaces.TextileMaterialDetails;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * Outerwear that is worn on the feet such as shoes or boots.
@@ -51,7 +53,7 @@ public class FootwearXMLImpl
     @XmlSchemaType(name = "string")
     protected UpperTypeCode footwearUpperType;
     @XmlElement(required = true)
-    protected TextileMaterialDetailsXMLImpl upperMaterialType;
+    protected List<TextileMaterialDetailsXMLImpl> upperMaterialType;
 
     /**
      * Gets the value of the footwearFasteningType property.
@@ -114,7 +116,7 @@ public class FootwearXMLImpl
      *     
      */
     @Override
-    public TextileMaterialDetailsXMLImpl getUpperMaterialType() {
+    public List<TextileMaterialDetailsXMLImpl> getUpperMaterialType() {
         return upperMaterialType;
     }
 
@@ -127,7 +129,7 @@ public class FootwearXMLImpl
      *     
      */
     @Override
-    public void setUpperMaterialType(TextileMaterialDetailsXMLImpl value) {
+    public void setUpperMaterialType(List<TextileMaterialDetailsXMLImpl> value) {
         this.upperMaterialType = value;
     }
 

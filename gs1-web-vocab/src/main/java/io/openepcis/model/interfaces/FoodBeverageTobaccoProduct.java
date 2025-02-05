@@ -2,6 +2,8 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
+import java.util.List;
+
 public interface FoodBeverageTobaccoProduct<NM extends NutritionMeasurementType, FBI extends FoodAndBeveragePreparationInformation,
         AD extends AllergenDetails, FBT extends FoodBeverageTobaccoIngredientDetails,QV extends QuantitativeValue,DT extends DietTypeCodeDetails> {
     String getAllergenSpecificationAgency();
@@ -44,9 +46,9 @@ public interface FoodBeverageTobaccoProduct<NM extends NutritionMeasurementType,
 
     void setCopperPerNutrientBasis(NM value);
 
-    DT getDietCode();
+    List<DT> getDietCode();
 
-    void setDietCode(DT value);
+    void setDietCode(List<DT> value);
 
     String getDietTypeDescription();
 
@@ -92,13 +94,13 @@ public interface FoodBeverageTobaccoProduct<NM extends NutritionMeasurementType,
 
     void setGeneticallyModifiedDeclaration(LevelOfContainmentCode value);
 
-    AD getHasAllergen();
+    List<AD> getHasAllergen();
 
-    void setHasAllergen(AD value);
+    void setHasAllergen(List<AD> value);
 
-    FBT getIngredient();
+    List<FBT> getIngredient();
 
-    void setIngredient(FBT value);
+    void setIngredient(List<FBT> value);
 
     String getIngredientOfConcern();
 

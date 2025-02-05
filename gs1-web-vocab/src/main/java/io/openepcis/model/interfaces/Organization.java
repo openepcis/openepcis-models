@@ -2,32 +2,34 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
+import java.util.List;
+
 public interface Organization<OI extends OrganizationIDDetails,PO extends PostalAddress,CP extends ContactPoint,C extends CertificationDetails
         ,P extends Place, O extends Organization,OF extends Offer,OS extends OrganizationStatusHistory> {
 
-    OI getAdditionalOrganizationID();
+    List<OI> getAdditionalOrganizationID();
 
-    void setAdditionalOrganizationID(OI value);
+    void setAdditionalOrganizationID(List<OI> value);
 
     String getAdditionalOrganizationIdentificationTypeValue();
 
     void setAdditionalOrganizationIdentificationTypeValue(String value);
 
-    PO getAddress();
+    List<PO> getAddress();
 
-    void setAddress(PO value);
+    void setAddress(List<PO> value);
 
-    CP getAfterHoursContact();
+    List<CP> getAfterHoursContact();
 
-    void setAfterHoursContact(CP value);
+    void setAfterHoursContact(List<CP> value);
 
     C getCertification();
 
     void setCertification(C value);
 
-    CP getContactPoint();
+    List<CP> getContactPoint();
 
-    void setContactPoint(CP value);
+    void setContactPoint(List<CP> value);
 
     String getDepartment();
 
@@ -41,9 +43,9 @@ public interface Organization<OI extends OrganizationIDDetails,PO extends Postal
 
     void setGlobalLocationNumber(String value);
 
-    P getHasPrimaryLocation();
+    List<P> getHasPrimaryLocation();
 
-    void setHasPrimaryLocation(P value);
+    void setHasPrimaryLocation(List<P> value);
 
     P getLesseeOf();
 
@@ -53,21 +55,21 @@ public interface Organization<OI extends OrganizationIDDetails,PO extends Postal
 
     void setLessorFor(P value);
 
-    P getLocation();
+    List<P> getLocation();
 
-    void setLocation(P value);
+    void setLocation(List<P> value);
 
-    OF getMakesOffer();
-
-    void setMakesOffer(OF value);
+//    List<OF> getMakesOffer();
+//
+//    void setMakesOffer(List<OF> value);
 
     O getManagedBy();
 
     void setManagedBy(O value);
 
-    O getManages();
+    List<O> getManages();
 
-    void setManages(O value);
+    void setManages(List<O> value);
 
     P getOccupies();
 
@@ -89,9 +91,9 @@ public interface Organization<OI extends OrganizationIDDetails,PO extends Postal
 
     void setOwnedBy(O value);
 
-    O getOwns();
+    List<O> getOwns();
 
-    void setOwns(O value);
+    void setOwns(List<O> value);
 
     O getParentOrganization();
 

@@ -2,6 +2,8 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.PreparationTypeCode;
 
+import java.util.List;
+
 public interface FoodAndBeveragePreparationInformation<PY extends ProductYieldDetails,QV extends QuantitativeValue> {
     float getConvenienceLevelPercent();
 
@@ -31,7 +33,7 @@ public interface FoodAndBeveragePreparationInformation<PY extends ProductYieldDe
 
     void setPreparationInstructions(String value);
 
-    PY getYield();
+    List<PY> getYield();
 
-    void setYield(PY value);
+    void setYield(List<PY> value);
 }

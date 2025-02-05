@@ -3,6 +3,7 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface Offer<P extends Place,Q extends QuantitativeValue,PR extends Product,D extends Discount
         ,R extends ReferencedFileDetails,PS extends PriceSpecification,W extends WarrantyPromise,O extends Organization>{

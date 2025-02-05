@@ -13,6 +13,8 @@ import io.openepcis.model.interfaces.LocationStatusHistory;
 import io.openepcis.model.interfaces.Place;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * Entities that have a somewhat fixed, physical location.
@@ -97,7 +99,7 @@ public class PlaceXMLImpl implements Place<LocationIDDetailsXMLImpl,PostalAddres
         ,CertificationDetailsXMLImpl,OrganizationXMLImpl,LocationStatusHistoryXMLImpl> {
 
     @XmlElement(required = true)
-    protected LocationIDDetailsXMLImpl additionalLocationID;
+    protected List<LocationIDDetailsXMLImpl> additionalLocationID;
     @XmlElement(required = true)
     protected PostalAddressXMLImpl address;
     @XmlElement(required = true)
@@ -164,7 +166,7 @@ public class PlaceXMLImpl implements Place<LocationIDDetailsXMLImpl,PostalAddres
      *     
      */
     @Override
-    public LocationIDDetailsXMLImpl getAdditionalLocationID() {
+    public List<LocationIDDetailsXMLImpl> getAdditionalLocationID() {
         return additionalLocationID;
     }
 
@@ -177,7 +179,7 @@ public class PlaceXMLImpl implements Place<LocationIDDetailsXMLImpl,PostalAddres
      *     
      */
     @Override
-    public void setAdditionalLocationID(LocationIDDetailsXMLImpl value) {
+    public void setAdditionalLocationID(List<LocationIDDetailsXMLImpl> value) {
         this.additionalLocationID = value;
     }
 

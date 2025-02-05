@@ -14,6 +14,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 /**
@@ -238,17 +239,17 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
         SizeCodeDetailsXMLImpl,TargetMarketDetailsXMLImpl> {
 
     @XmlElement(required = true)
-    protected AdditionalProductClassificationDetailsXMLImpl additionalProductClassification;
+    protected List<AdditionalProductClassificationDetailsXMLImpl> additionalProductClassification;
     @XmlElement(required = true)
     protected String additionalProductDescription;
     @XmlElement(required = true)
-    protected AdditiveDetailsXMLImpl additive;
+    protected List<AdditiveDetailsXMLImpl> additive;
     @XmlElement(required = true)
     protected ReferencedFileDetailsXMLImpl audioFile;
     @XmlElement(required = true)
     protected AuthenticityDetailsXMLImpl authenticity;
     @XmlElement(required = true)
-    protected AwardPrizeDetailsXMLImpl awardPrize;
+    protected List<AwardPrizeDetailsXMLImpl> awardPrize;
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
@@ -258,9 +259,9 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     @XmlElement(required = true)
     protected OrganizationXMLImpl brandOwner;
     @XmlElement(required = true)
-    protected CertificationDetailsXMLImpl certification;
+    protected List<CertificationDetailsXMLImpl> certification;
     @XmlElement(required = true)
-    protected ColourCodeDetailsXMLImpl colourCode;
+    protected List<ColourCodeDetailsXMLImpl> colourCode;
     @XmlElement(required = true)
     protected String colourDescription;
     @XmlElement(required = true)
@@ -289,7 +290,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     @XmlElement(required = true)
     protected OrganizationXMLImpl customerSupportCentre;
     @XmlElement(required = true)
-    protected ProductXMLImpl dependentProprietaryProduct;
+    protected List<ProductXMLImpl> dependentProprietaryProduct;
     @XmlElement(required = true)
     protected String descriptiveSize;
     @XmlElement(required = true, type = String.class)
@@ -297,7 +298,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     @XmlSchemaType(name = "date")
     protected LocalDate dueDate;
     @XmlElement(required = true)
-    protected ProductXMLImpl equivalentProduct;
+    protected List<ProductXMLImpl> equivalentProduct;
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
@@ -380,7 +381,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl netWeight;
     @XmlElement(required = true)
-    protected OrganicClaimDetailsXMLImpl organicClaim;
+    protected List<OrganicClaimDetailsXMLImpl> organicClaim;
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl outOfPackageDepth;
     @XmlElement(required = true)
@@ -438,7 +439,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     @XmlElement(required = true)
     protected String provenanceStatement;
     @XmlElement(required = true)
-    protected ReferencedFileDetailsXMLImpl referencedFile;
+    protected List<ReferencedFileDetailsXMLImpl> referencedFile;
     @XmlElement(required = true)
     protected String regulatedProductName;
     @XmlElement(required = true)
@@ -454,7 +455,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
     @XmlElement(required = true)
     protected BigInteger supplierSpecifiedMinimumConsumerStorageDays;
     @XmlElement(required = true)
-    protected TargetMarketDetailsXMLImpl targetMarket;
+    protected List<TargetMarketDetailsXMLImpl> targetMarket;
     @XmlElement(required = true)
     protected String variantDescription;
     @XmlElement(required = true)
@@ -462,29 +463,30 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
 
     /**
      * Gets the value of the additionalProductClassification property.
-     * 
+     *
      * @return
      *     possible object is
-     *     {@link AdditionalProductClassificationDetailsXMLImpl }
-     *     
+     *     {@link List<AdditionalProductClassificationDetailsXMLImpl> }
+     *
      */
     @Override
-    public AdditionalProductClassificationDetailsXMLImpl getAdditionalProductClassification() {
+    public List<AdditionalProductClassificationDetailsXMLImpl> getAdditionalProductClassification() {
         return additionalProductClassification;
     }
 
     /**
      * Sets the value of the additionalProductClassification property.
-     * 
+     *
      * @param value
      *     allowed object is
-     *     {@link AdditionalProductClassificationDetailsXMLImpl }
-     *     
+     *     {@link List<AdditionalProductClassificationDetailsXMLImpl> }
+     *
      */
     @Override
-    public void setAdditionalProductClassification(AdditionalProductClassificationDetailsXMLImpl value) {
-        this.additionalProductClassification = value;
+    public void setAdditionalProductClassification(List<AdditionalProductClassificationDetailsXMLImpl> additionalProductClassification) {
+        this.additionalProductClassification = additionalProductClassification;
     }
+
 
     /**
      * Gets the value of the additionalProductDescription property.
@@ -521,7 +523,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public AdditiveDetailsXMLImpl getAdditive() {
+    public List<AdditiveDetailsXMLImpl> getAdditive() {
         return additive;
     }
 
@@ -534,7 +536,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setAdditive(AdditiveDetailsXMLImpl value) {
+    public void setAdditive(List<AdditiveDetailsXMLImpl> value) {
         this.additive = value;
     }
 
@@ -599,7 +601,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public AwardPrizeDetailsXMLImpl getAwardPrize() {
+    public List<AwardPrizeDetailsXMLImpl> getAwardPrize() {
         return awardPrize;
     }
 
@@ -612,7 +614,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setAwardPrize(AwardPrizeDetailsXMLImpl value) {
+    public void setAwardPrize(List<AwardPrizeDetailsXMLImpl> value) {
         this.awardPrize = value;
     }
 
@@ -703,7 +705,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public CertificationDetailsXMLImpl getCertification() {
+    public List<CertificationDetailsXMLImpl> getCertification() {
         return certification;
     }
 
@@ -716,7 +718,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setCertification(CertificationDetailsXMLImpl value) {
+    public void setCertification(List<CertificationDetailsXMLImpl> value) {
         this.certification = value;
     }
 
@@ -729,7 +731,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public ColourCodeDetailsXMLImpl getColourCode() {
+    public List<ColourCodeDetailsXMLImpl> getColourCode() {
         return colourCode;
     }
 
@@ -742,7 +744,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setColourCode(ColourCodeDetailsXMLImpl value) {
+    public void setColourCode(List<ColourCodeDetailsXMLImpl> value) {
         this.colourCode = value;
     }
 
@@ -1093,7 +1095,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public ProductXMLImpl getDependentProprietaryProduct() {
+    public List<ProductXMLImpl> getDependentProprietaryProduct() {
         return dependentProprietaryProduct;
     }
 
@@ -1106,7 +1108,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setDependentProprietaryProduct(ProductXMLImpl value) {
+    public void setDependentProprietaryProduct(List<ProductXMLImpl> value) {
         this.dependentProprietaryProduct = value;
     }
 
@@ -1171,7 +1173,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public ProductXMLImpl getEquivalentProduct() {
+    public List<ProductXMLImpl> getEquivalentProduct() {
         return equivalentProduct;
     }
 
@@ -1184,7 +1186,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setEquivalentProduct(ProductXMLImpl value) {
+    public void setEquivalentProduct(List<ProductXMLImpl> value) {
         this.equivalentProduct = value;
     }
 
@@ -2071,7 +2073,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public OrganicClaimDetailsXMLImpl getOrganicClaim() {
+    public List<OrganicClaimDetailsXMLImpl> getOrganicClaim() {
         return organicClaim;
     }
 
@@ -2084,7 +2086,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setOrganicClaim(OrganicClaimDetailsXMLImpl value) {
+    public void setOrganicClaim(List<OrganicClaimDetailsXMLImpl> value) {
         this.organicClaim = value;
     }
 
@@ -2643,7 +2645,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public ReferencedFileDetailsXMLImpl getReferencedFile() {
+    public List<ReferencedFileDetailsXMLImpl> getReferencedFile() {
         return referencedFile;
     }
 
@@ -2656,7 +2658,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setReferencedFile(ReferencedFileDetailsXMLImpl value) {
+    public void setReferencedFile(List<ReferencedFileDetailsXMLImpl> value) {
         this.referencedFile = value;
     }
 
@@ -2825,7 +2827,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public TargetMarketDetailsXMLImpl getTargetMarket() {
+    public List<TargetMarketDetailsXMLImpl> getTargetMarket() {
         return targetMarket;
     }
 
@@ -2838,7 +2840,7 @@ public class ProductXMLImpl implements Product<AdditionalProductClassificationDe
      *     
      */
     @Override
-    public void setTargetMarket(TargetMarketDetailsXMLImpl value) {
+    public void setTargetMarket(List<TargetMarketDetailsXMLImpl> value) {
         this.targetMarket = value;
     }
 

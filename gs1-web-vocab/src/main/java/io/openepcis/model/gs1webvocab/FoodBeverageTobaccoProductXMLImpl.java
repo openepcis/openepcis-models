@@ -10,6 +10,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.*;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * A food, beverage or tobacco product.
@@ -220,7 +222,7 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlElement(required = true)
     protected NutritionMeasurementTypeXMLImpl copperPerNutrientBasis;
     @XmlElement(required = true)
-    protected DietTypeCodeDetailsXMLImpl dietCode;
+    protected List<DietTypeCodeDetailsXMLImpl> dietCode;
     @XmlElement(required = true)
     protected String dietTypeDescription;
     @XmlElement(required = true)
@@ -247,9 +249,9 @@ public class FoodBeverageTobaccoProductXMLImpl
     @XmlSchemaType(name = "string")
     protected LevelOfContainmentCode geneticallyModifiedDeclaration;
     @XmlElement(required = true)
-    protected AllergenDetailsXMLImpl hasAllergen;
+    protected List<AllergenDetailsXMLImpl> hasAllergen;
     @XmlElement(required = true)
-    protected FoodBeverageTobaccoIngredientDetailsXMLImpl ingredient;
+    protected List<FoodBeverageTobaccoIngredientDetailsXMLImpl> ingredient;
     @XmlElement(required = true)
     protected String ingredientOfConcern;
     @XmlElement(required = true)
@@ -636,7 +638,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public DietTypeCodeDetailsXMLImpl getDietCode() {
+    public List<DietTypeCodeDetailsXMLImpl> getDietCode() {
         return dietCode;
     }
 
@@ -649,7 +651,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setDietCode(DietTypeCodeDetailsXMLImpl value) {
+    public void setDietCode(List<DietTypeCodeDetailsXMLImpl> value) {
         this.dietCode = value;
     }
 
@@ -948,7 +950,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public AllergenDetailsXMLImpl getHasAllergen() {
+    public List<AllergenDetailsXMLImpl> getHasAllergen() {
         return hasAllergen;
     }
 
@@ -961,7 +963,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setHasAllergen(AllergenDetailsXMLImpl value) {
+    public void setHasAllergen(List<AllergenDetailsXMLImpl> value) {
         this.hasAllergen = value;
     }
 
@@ -974,7 +976,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public FoodBeverageTobaccoIngredientDetailsXMLImpl getIngredient() {
+    public List<FoodBeverageTobaccoIngredientDetailsXMLImpl> getIngredient() {
         return ingredient;
     }
 
@@ -987,7 +989,7 @@ public class FoodBeverageTobaccoProductXMLImpl
      *     
      */
     @Override
-    public void setIngredient(FoodBeverageTobaccoIngredientDetailsXMLImpl value) {
+    public void setIngredient(List<FoodBeverageTobaccoIngredientDetailsXMLImpl> value) {
         this.ingredient = value;
     }
 

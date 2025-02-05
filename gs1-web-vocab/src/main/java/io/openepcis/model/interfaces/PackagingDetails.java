@@ -2,10 +2,12 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
 
-public interface PackagingDetails<RPD extends ReturnablePackageDepositDetails, PM extends PackagingMaterialDetails> {
-    RPD getHasReturnablePackageDeposit();
+import java.util.List;
 
-    void setHasReturnablePackageDeposit(RPD value);
+public interface PackagingDetails<RPD extends ReturnablePackageDepositDetails, PM extends PackagingMaterialDetails> {
+    List<RPD> getHasReturnablePackageDeposit();
+
+    void setHasReturnablePackageDeposit(List<RPD> value);
 
     PackagingFeatureCode getPackagingFeature();
 
@@ -15,9 +17,9 @@ public interface PackagingDetails<RPD extends ReturnablePackageDepositDetails, P
 
     void setPackagingFunction(PackagingFunctionCode value);
 
-    PM getPackagingMaterial();
+    List<PM> getPackagingMaterial();
 
-    void setPackagingMaterial(PM value);
+    void setPackagingMaterial(List<PM> value);
 
     PackagingRecyclingProcessTypeCode getPackagingRecyclingProcessType();
 

@@ -3,6 +3,8 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.FootwearFasteningTypeCode;
 import io.openepcis.model.gs1webvocab.UpperTypeCode;
 
+import java.util.List;
+
 public interface Footwear<TM extends TextileMaterialDetails> {
     FootwearFasteningTypeCode getFootwearFasteningType();
 
@@ -12,7 +14,7 @@ public interface Footwear<TM extends TextileMaterialDetails> {
 
     void setFootwearUpperType(UpperTypeCode value);
 
-    TM getUpperMaterialType();
+    List<TM> getUpperMaterialType();
 
-    void setUpperMaterialType(TM value);
+    void setUpperMaterialType(List<TM> value);
 }

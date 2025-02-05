@@ -12,6 +12,8 @@ import io.openepcis.model.interfaces.PackagingMaterialDetails;
 import io.openepcis.model.interfaces.ReturnablePackageDepositDetails;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * Details on packaging for a product for example packaging type (bottle), materials, features, recycling, etc..
@@ -55,7 +57,7 @@ import jakarta.xml.bind.annotation.*;
 public class PackagingDetailsXMLImpl implements PackagingDetails<ReturnablePackageDepositDetailsXMLImpl, PackagingMaterialDetailsXMLImpl> {
 
     @XmlElement(required = true)
-    protected ReturnablePackageDepositDetailsXMLImpl hasReturnablePackageDeposit;
+    protected List<ReturnablePackageDepositDetailsXMLImpl> hasReturnablePackageDeposit;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PackagingFeatureCode packagingFeature;
@@ -63,7 +65,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails<ReturnablePacka
     @XmlSchemaType(name = "string")
     protected PackagingFunctionCode packagingFunction;
     @XmlElement(required = true)
-    protected PackagingMaterialDetailsXMLImpl packagingMaterial;
+    protected List<PackagingMaterialDetailsXMLImpl> packagingMaterial;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected PackagingRecyclingProcessTypeCode packagingRecyclingProcessType;
@@ -85,7 +87,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails<ReturnablePacka
      *     
      */
     @Override
-    public ReturnablePackageDepositDetailsXMLImpl getHasReturnablePackageDeposit() {
+    public List<ReturnablePackageDepositDetailsXMLImpl> getHasReturnablePackageDeposit() {
         return hasReturnablePackageDeposit;
     }
 
@@ -98,7 +100,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails<ReturnablePacka
      *     
      */
     @Override
-    public void setHasReturnablePackageDeposit(ReturnablePackageDepositDetailsXMLImpl value) {
+    public void setHasReturnablePackageDeposit(List<ReturnablePackageDepositDetailsXMLImpl> value) {
         this.hasReturnablePackageDeposit = value;
     }
 
@@ -163,7 +165,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails<ReturnablePacka
      *     
      */
     @Override
-    public PackagingMaterialDetailsXMLImpl getPackagingMaterial() {
+    public List<PackagingMaterialDetailsXMLImpl> getPackagingMaterial() {
         return packagingMaterial;
     }
 
@@ -176,7 +178,7 @@ public class PackagingDetailsXMLImpl implements PackagingDetails<ReturnablePacka
      *     
      */
     @Override
-    public void setPackagingMaterial(PackagingMaterialDetailsXMLImpl value) {
+    public void setPackagingMaterial(List<PackagingMaterialDetailsXMLImpl> value) {
         this.packagingMaterial = value;
     }
 

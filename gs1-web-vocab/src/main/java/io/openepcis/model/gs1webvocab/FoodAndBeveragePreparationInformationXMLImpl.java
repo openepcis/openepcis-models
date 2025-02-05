@@ -12,6 +12,8 @@ import io.openepcis.model.interfaces.ProductYieldDetails;
 import io.openepcis.model.interfaces.QuantitativeValue;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * Food and Beverage Preparation Information is a complex data type that indicates a preparation state code and preparation
@@ -71,7 +73,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
     @XmlElement(required = true)
     protected String preparationInstructions;
     @XmlElement(required = true)
-    protected ProductYieldDetailsXMLImpl yield;
+    protected List<ProductYieldDetailsXMLImpl> yield;
 
     /**
      * Gets the value of the convenienceLevelPercent property.
@@ -264,7 +266,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public ProductYieldDetailsXMLImpl getYield() {
+    public List<ProductYieldDetailsXMLImpl> getYield() {
         return yield;
     }
 
@@ -277,7 +279,7 @@ public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeve
      *     
      */
     @Override
-    public void setYield(ProductYieldDetailsXMLImpl value) {
+    public void setYield(List<ProductYieldDetailsXMLImpl> value) {
         this.yield = value;
     }
 

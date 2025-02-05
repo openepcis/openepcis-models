@@ -13,6 +13,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.time.LocalDate;
 import java.time.Year;
+import java.util.List;
 
 
 /**
@@ -98,7 +99,7 @@ public class WearableProductXMLImpl
     @XmlSchemaType(name = "string")
     protected SeasonParameterCode seasonParameter;
     @XmlElement(required = true)
-    protected SizeDetailsXMLImpl size;
+    protected List<SizeDetailsXMLImpl> size;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected SportingActivityTypeCode sportingActivityType;
@@ -329,7 +330,7 @@ public class WearableProductXMLImpl
      *
      */
     @Override
-    public SizeDetailsXMLImpl getSize() {
+    public List<SizeDetailsXMLImpl> getSize() {
         return size;
     }
 
@@ -342,7 +343,7 @@ public class WearableProductXMLImpl
      *
      */
     @Override
-    public void setSize(SizeDetailsXMLImpl value) {
+    public void setSize(List<SizeDetailsXMLImpl> value) {
         this.size = value;
     }
 

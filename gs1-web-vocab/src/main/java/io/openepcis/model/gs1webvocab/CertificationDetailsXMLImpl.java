@@ -141,11 +141,11 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
 
     /**
      * Sets the value of the certificationAgencyURL property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link OrganizationXMLImpl }
-     *     
+     *
      */
     @Override
     public void setCertificationAgencyURL(OrganizationXMLImpl value) {

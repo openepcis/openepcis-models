@@ -11,6 +11,8 @@ import io.openepcis.model.interfaces.Clothing;
 import io.openepcis.model.interfaces.TextileMaterialDetails;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * A product that is worn on the body.
@@ -54,7 +56,7 @@ public class ClothingXMLImpl
     @XmlSchemaType(name = "string")
     protected NonbinaryLogicCode isMaternity;
     @XmlElement(required = true)
-    protected TextileMaterialDetailsXMLImpl textileMaterial;
+    protected List<TextileMaterialDetailsXMLImpl> textileMaterial;
 
     /**
      * Gets the value of the clothingCut property.
@@ -143,7 +145,7 @@ public class ClothingXMLImpl
      *     
      */
     @Override
-    public TextileMaterialDetailsXMLImpl getTextileMaterial() {
+    public List<TextileMaterialDetailsXMLImpl> getTextileMaterial() {
         return textileMaterial;
     }
 
@@ -156,7 +158,7 @@ public class ClothingXMLImpl
      *     
      */
     @Override
-    public void setTextileMaterial(TextileMaterialDetailsXMLImpl value) {
+    public void setTextileMaterial(List<TextileMaterialDetailsXMLImpl> value) {
         this.textileMaterial = value;
     }
 
