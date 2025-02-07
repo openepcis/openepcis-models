@@ -59,9 +59,9 @@ public interface Organization<OI extends OrganizationIDDetails,PO extends Postal
 
     void setLocation(List<P> value);
 
-//    List<OF> getMakesOffer();
-//
-//    void setMakesOffer(List<OF> value);
+    List<OF> getMakesOffer();
+
+    void setMakesOffer(List<OF> value);
 
     O getManagedBy();
 

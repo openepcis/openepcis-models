@@ -128,8 +128,8 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
     protected PlaceXMLImpl lessorFor;
     @XmlElement(required = true)
     protected List<PlaceXMLImpl> location;
-//    @XmlElement(required = true)
-//    protected List<OfferXMLImpl> makesOffer;
+    @XmlElement(required = true)
+    protected List<OfferXMLImpl> makesOffer;
     @XmlElement(required = true)
     protected OrganizationXMLImpl managedBy;
     @XmlElement(required = true)
@@ -508,23 +508,23 @@ public class OrganizationXMLImpl implements Organization<OrganizationIDDetailsXM
      *     {@link OfferXMLImpl }
      *     
      */
-//    @Override
-//    public List<OfferXMLImpl> getMakesOffer() {
-//        return makesOffer;
-//    }
-//
-//    /**
-//     * Sets the value of the makesOffer property.
-//     *
-//     * @param value
-//     *     allowed object is
-//     *     {@link OfferXMLImpl }
-//     *
-//     */
-//    @Override
-//    public void setMakesOffer(List<OfferXMLImpl> value) {
-//        this.makesOffer = value;
-//    }
+    @Override
+    public List<OfferXMLImpl> getMakesOffer() {
+        return makesOffer;
+    }
+
+    /**
+     * Sets the value of the makesOffer property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link OfferXMLImpl }
+     *
+     */
+    @Override
+    public void setMakesOffer(List<OfferXMLImpl> value) {
+        this.makesOffer = value;
+    }
 
     /**
      * Gets the value of the managedBy property.
