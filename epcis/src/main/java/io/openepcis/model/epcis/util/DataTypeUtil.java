@@ -58,7 +58,12 @@ public class DataTypeUtil {
             LocalDate.parse(value.toString());
             return CommonConstants.DATE;
           } catch (Exception exp) {
-            return CommonConstants.KEYWORD;
+            try {
+              Double.parseDouble(value.toString());
+              return CommonConstants.DOUBLE;
+            } catch (Exception dexp) {
+              return CommonConstants.KEYWORD;
+            }
           }
         }
       }
@@ -81,7 +86,7 @@ public class DataTypeUtil {
 
   public static boolean isDouble(String value) {
     try {
-      Double.valueOf(value);
+      Double.parseDouble(value);
       return true;
     } catch (Exception e) {
       return false;
