@@ -1,7 +1,6 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.CertificationDetails;
-import io.openepcis.model.interfaces.Thing;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -87,9 +86,9 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
     @XmlSchemaType(name = "string")
     protected CertificationStatus certificationStatus;
     @XmlElement(required = true)
-    protected Object certificationSubject;
+    protected String certificationSubject;
     @XmlElement(required = true)
-    protected Object certificationType;
+    protected String certificationType;
     @XmlElement(required = true)
     @XmlSchemaType(name = "anyURI")
     protected String certificationURI;
@@ -343,7 +342,7 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      *
      */
     @Override
-    public Object getCertificationSubject() {
+    public String getCertificationSubject() {
         return certificationSubject;
     }
 
@@ -356,7 +355,7 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      *
      */
     @Override
-    public void setCertificationSubject(Object value) {
+    public void setCertificationSubject(String value) {
         this.certificationSubject = value;
     }
 
@@ -369,7 +368,7 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      *
      */
     @Override
-    public Object getCertificationType() {
+    public String getCertificationType() {
         return certificationType;
     }
 
@@ -382,7 +381,7 @@ public class CertificationDetailsXMLImpl implements CertificationDetails<Organiz
      *
      */
     @Override
-    public void setCertificationType(Object value) {
+    public void setCertificationType(String value) {
         this.certificationType = value;
     }
 
