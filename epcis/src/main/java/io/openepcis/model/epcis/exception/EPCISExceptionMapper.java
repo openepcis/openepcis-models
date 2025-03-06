@@ -122,6 +122,30 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
+  public final RestResponse<ProblemResponseBody> mapException(
+          final EPCISException exception) {
+    log.info(exception.getMessage());
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
+    responseBody.title("REST Exception");
+    responseBody.setStatus(exception.getStatus());
+    responseBody.setDetail(exception.getMessage());
+    return RestResponse.status(RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
+  }
+
+  @ServerExceptionMapper
+  public final RestResponse<ProblemResponseBody> mapException(
+          final QueryTooLargeException exception) {
+    log.info(exception.getMessage());
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
+    responseBody.title(SEARCH_RESULT_SIZE_TOO_LARGE_NARROW_DOWN_THE_SEARCH_CRITERIA);
+    responseBody.setStatus(exception.getStatus());
+    responseBody.setDetail(exception.getMessage());
+    return RestResponse.status(RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
+  }
+
+  @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final NoSuchNameException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
