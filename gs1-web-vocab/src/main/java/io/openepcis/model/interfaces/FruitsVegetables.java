@@ -4,23 +4,23 @@ import io.openepcis.model.gs1webvocab.MaturationMethodCode;
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 
 public interface FruitsVegetables {
-    NonbinaryLogicCode getIsPittedStoned();
+  NonbinaryLogicCode getIsPittedStoned();
 
-    void setIsPittedStoned(NonbinaryLogicCode value);
+  void setIsPittedStoned(NonbinaryLogicCode value);
 
-    NonbinaryLogicCode getIsSeedless();
+  NonbinaryLogicCode getIsSeedless();
 
-    void setIsSeedless(NonbinaryLogicCode value);
+  void setIsSeedless(NonbinaryLogicCode value);
 
-    NonbinaryLogicCode getIsShelledPeeled();
+  NonbinaryLogicCode getIsShelledPeeled();
 
-    void setIsShelledPeeled(NonbinaryLogicCode value);
+  void setIsShelledPeeled(NonbinaryLogicCode value);
 
-    NonbinaryLogicCode getIsWashedReadyToEat();
+  NonbinaryLogicCode getIsWashedReadyToEat();
 
-    void setIsWashedReadyToEat(NonbinaryLogicCode value);
+  void setIsWashedReadyToEat(NonbinaryLogicCode value);
 
-    MaturationMethodCode getMaturationMethod();
+  MaturationMethodCode getMaturationMethod();
 
-    void setMaturationMethod(MaturationMethodCode value);
+  void setMaturationMethod(MaturationMethodCode value);
 }

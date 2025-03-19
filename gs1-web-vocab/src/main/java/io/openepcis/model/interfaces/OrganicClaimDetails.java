@@ -3,11 +3,11 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.OrganicClaimAgencyCode;
 
 public interface OrganicClaimDetails {
-    OrganicClaimAgencyCode getOrganicClaimAgency();
+  OrganicClaimAgencyCode getOrganicClaimAgency();
 
-    void setOrganicClaimAgency(OrganicClaimAgencyCode value);
+  void setOrganicClaimAgency(OrganicClaimAgencyCode value);
 
-    float getOrganicPercentClaim();
+  float getOrganicPercentClaim();
 
-    void setOrganicPercentClaim(float value);
+  void setOrganicPercentClaim(float value);
 }

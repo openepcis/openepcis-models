@@ -1,227 +1,227 @@
 package io.openepcis.model.interfaces;
 
 public interface Thing {
-    String getActivityIdeas();
+  String getActivityIdeas();
 
-    void setActivityIdeas(String value);
+  void setActivityIdeas(String value);
 
-    String getAllergenInfo();
+  String getAllergenInfo();
 
-    void setAllergenInfo(String value);
+  void setAllergenInfo(String value);
 
-    String getAppDownload();
+  String getAppDownload();
 
-    void setAppDownload(String value);
+  void setAppDownload(String value);
 
-    String getBrandHomepageClinical();
+  String getBrandHomepageClinical();
 
-    void setBrandHomepageClinical(String value);
+  void setBrandHomepageClinical(String value);
 
-    String getBrandHomepagePatient();
+  String getBrandHomepagePatient();
 
-    void setBrandHomepagePatient(String value);
+  void setBrandHomepagePatient(String value);
 
-    String getCareersInfo();
+  String getCareersInfo();
 
-    void setCareersInfo(String value);
+  void setCareersInfo(String value);
 
-    String getCertificationInfo();
+  String getCertificationInfo();
 
-    void setCertificationInfo(String value);
+  void setCertificationInfo(String value);
 
-    String getConsumerHandlingStorageInfo();
+  String getConsumerHandlingStorageInfo();
 
-    void setConsumerHandlingStorageInfo(String value);
+  void setConsumerHandlingStorageInfo(String value);
 
-    String getDefaultLink();
+  String getDefaultLink();
 
-    void setDefaultLink(String value);
+  void setDefaultLink(String value);
 
-    String getDefaultLinkMulti();
+  String getDefaultLinkMulti();
 
-    void setDefaultLinkMulti(String value);
+  void setDefaultLinkMulti(String value);
 
-    String getEpcis();
+  String getEpcis();
 
-    void setEpcis(String value);
+  void setEpcis(String value);
 
-    String getEpil();
+  String getEpil();
 
-    void setEpil(String value);
+  void setEpil(String value);
 
-    String getEventsInfo();
+  String getEventsInfo();
 
-    void setEventsInfo(String value);
+  void setEventsInfo(String value);
 
-    String getFaqs();
+  String getFaqs();
 
-    void setFaqs(String value);
+  void setFaqs(String value);
 
-    String getHandledBy();
+  String getHandledBy();
 
-    void setHandledBy(String value);
+  void setHandledBy(String value);
 
-    String getHasRetailers();
+  String getHasRetailers();
 
-    void setHasRetailers(String value);
+  void setHasRetailers(String value);
 
-    String getHomepage();
+  String getHomepage();
 
-    void setHomepage(String value);
+  void setHomepage(String value);
 
-    String getIngredientsInfo();
+  String getIngredientsInfo();
 
-    void setIngredientsInfo(String value);
+  void setIngredientsInfo(String value);
 
-    String getInstructions();
+  String getInstructions();
 
-    void setInstructions(String value);
+  void setInstructions(String value);
 
-    String getJws();
+  String getJws();
 
-    void setJws(String value);
+  void setJws(String value);
 
-    String getLeaveReview();
+  String getLeaveReview();
 
-    void setLeaveReview(String value);
+  void setLeaveReview(String value);
 
-    String getLocationInfo();
+  String getLocationInfo();
 
-    void setLocationInfo(String value);
+  void setLocationInfo(String value);
 
-    String getLogisticsInfo();
+  String getLogisticsInfo();
 
-    void setLogisticsInfo(String value);
+  void setLogisticsInfo(String value);
 
-    String getLoyaltyProgram();
+  String getLoyaltyProgram();
 
-    void setLoyaltyProgram(String value);
+  void setLoyaltyProgram(String value);
 
-    String getMasterData();
+  String getMasterData();
 
-    void setMasterData(String value);
+  void setMasterData(String value);
 
-    String getMenuInfo();
+  String getMenuInfo();
 
-    void setMenuInfo(String value);
+  void setMenuInfo(String value);
 
-    String getNutritionalInfo();
+  String getNutritionalInfo();
 
-    void setNutritionalInfo(String value);
+  void setNutritionalInfo(String value);
 
-    String getOpeningHoursInfo();
+  String getOpeningHoursInfo();
 
-    void setOpeningHoursInfo(String value);
+  void setOpeningHoursInfo(String value);
 
-    String getPaymentLink();
+  String getPaymentLink();
 
-    void setPaymentLink(String value);
+  void setPaymentLink(String value);
 
-    String getPip();
+  String getPip();
 
-    void setPip(String value);
+  void setPip(String value);
 
-    String getProductSustainabilityInfo();
+  String getProductSustainabilityInfo();
 
-    void setProductSustainabilityInfo(String value);
+  void setProductSustainabilityInfo(String value);
 
-    String getPromotion();
+  String getPromotion();
 
-    void setPromotion(String value);
+  void setPromotion(String value);
 
-    String getPurchaseSuppliesOrAccessories();
+  String getPurchaseSuppliesOrAccessories();
 
-    void setPurchaseSuppliesOrAccessories(String value);
+  void setPurchaseSuppliesOrAccessories(String value);
 
-    String getQuickStartGuide();
+  String getQuickStartGuide();
 
-    void setQuickStartGuide(String value);
+  void setQuickStartGuide(String value);
 
-    String getRecallStatus();
+  String getRecallStatus();
 
-    void setRecallStatus(String value);
+  void setRecallStatus(String value);
 
-    String getRecipeInfo();
+  String getRecipeInfo();
 
-    void setRecipeInfo(String value);
+  void setRecipeInfo(String value);
 
-    String getRegisterProduct();
+  String getRegisterProduct();
 
-    void setRegisterProduct(String value);
+  void setRegisterProduct(String value);
 
-    String getRegistryEntry();
+  String getRegistryEntry();
 
-    void setRegistryEntry(String value);
+  void setRegistryEntry(String value);
 
-    String getRelatedImage();
+  String getRelatedImage();
 
-    void setRelatedImage(String value);
+  void setRelatedImage(String value);
 
-    String getRelatedVideo();
+  String getRelatedVideo();
 
-    void setRelatedVideo(String value);
+  void setRelatedVideo(String value);
 
-    String getReview();
+  String getReview();
 
-    void setReview(String value);
+  void setReview(String value);
 
-    String getSafetyInfo();
+  String getSafetyInfo();
 
-    void setSafetyInfo(String value);
+  void setSafetyInfo(String value);
 
-    String getScheduleTime();
+  String getScheduleTime();
 
-    void setScheduleTime(String value);
+  void setScheduleTime(String value);
 
-    String getServiceInfo();
+  String getServiceInfo();
 
-    void setServiceInfo(String value);
+  void setServiceInfo(String value);
 
-    String getSmartLabel();
+  String getSmartLabel();
 
-    void setSmartLabel(String value);
+  void setSmartLabel(String value);
 
-    String getSmpc();
+  String getSmpc();
 
-    void setSmpc(String value);
+  void setSmpc(String value);
 
-    String getSocialMedia();
+  String getSocialMedia();
 
-    void setSocialMedia(String value);
+  void setSocialMedia(String value);
 
-    String getStatisticInfo();
+  String getStatisticInfo();
 
-    void setStatisticInfo(String value);
+  void setStatisticInfo(String value);
 
-    String getSubscribe();
+  String getSubscribe();
 
-    void setSubscribe(String value);
+  void setSubscribe(String value);
 
-    String getSupport();
+  String getSupport();
 
-    void setSupport(String value);
+  void setSupport(String value);
 
-    String getSustainabilityInfo();
+  String getSustainabilityInfo();
 
-    void setSustainabilityInfo(String value);
+  void setSustainabilityInfo(String value);
 
-    String getTraceability();
+  String getTraceability();
 
-    void setTraceability(String value);
+  void setTraceability(String value);
 
-    String getTutorial();
+  String getTutorial();
 
-    void setTutorial(String value);
+  void setTutorial(String value);
 
-    String getUserAgreement();
+  String getUserAgreement();
 
-    void setUserAgreement(String value);
+  void setUserAgreement(String value);
 
-    String getVerificationService();
+  String getVerificationService();
 
-    void setVerificationService(String value);
+  void setVerificationService(String value);
 
-    String getWhatsInTheBox();
+  String getWhatsInTheBox();
 
-    void setWhatsInTheBox(String value);
+  void setWhatsInTheBox(String value);
 }

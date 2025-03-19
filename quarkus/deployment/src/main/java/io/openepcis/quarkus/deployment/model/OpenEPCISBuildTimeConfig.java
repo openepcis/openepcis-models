@@ -15,21 +15,17 @@
  */
 package io.openepcis.quarkus.deployment.model;
 
-import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
 import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithDefault;
 import io.smallrye.config.WithName;
-import io.smallrye.config.WithParentName;
 
 @ConfigRoot(phase = ConfigPhase.BUILD_TIME)
 @ConfigMapping(prefix = "openepcis")
 public interface OpenEPCISBuildTimeConfig {
-    /**
-     * Whether a health check is published in case the smallrye-health extension is present.
-     */
-    @WithName("health.enabled")
-    @WithDefault("true")
-    boolean healthEnabled();
+  /** Whether a health check is published in case the smallrye-health extension is present. */
+  @WithName("health.enabled")
+  @WithDefault("true")
+  boolean healthEnabled();
 }

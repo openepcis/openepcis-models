@@ -3,11 +3,11 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.LevelOfContainmentCode;
 
 public interface AdditiveDetails {
-    LevelOfContainmentCode getAdditiveLevelOfContainment();
+  LevelOfContainmentCode getAdditiveLevelOfContainment();
 
-    void setAdditiveLevelOfContainment(LevelOfContainmentCode value);
+  void setAdditiveLevelOfContainment(LevelOfContainmentCode value);
 
-    String getAdditiveName();
+  String getAdditiveName();
 
-    void setAdditiveName(String value);
+  void setAdditiveName(String value);
 }

@@ -25,19 +25,17 @@ import io.quarkus.deployment.builditem.nativeimage.NativeImageResourcePatternsBu
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
 import io.quarkus.logging.Log;
 import io.quarkus.smallrye.health.deployment.spi.HealthBuildItem;
-import org.jboss.logging.Logger;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
+import org.jboss.logging.Logger;
 
 public class OpenEPCISModelProcessor {
 
   private static final String FEATURE = "openepcis-epcis-model";
-
 
   @BuildStep
   FeatureBuildItem feature() {
@@ -51,8 +49,8 @@ public class OpenEPCISModelProcessor {
 
   @BuildStep
   HealthBuildItem addHealthCheck(OpenEPCISBuildTimeConfig buildTimeConfig) {
-    return new HealthBuildItem(OpenEPCISModelHealthCheck.class.getName(),
-            buildTimeConfig.healthEnabled());
+    return new HealthBuildItem(
+        OpenEPCISModelHealthCheck.class.getName(), buildTimeConfig.healthEnabled());
   }
 
   @BuildStep
@@ -60,7 +58,8 @@ public class OpenEPCISModelProcessor {
     final Set<String> reflectiveClassNames = new HashSet<>();
     // loop through context paths and read jaxb.index to add all EPCIS Model Classes
     for (String path : OpenEPCISJAXBContextProducer.CONTEXT_PATH.split(":")) {
-      final InputStream jaxbIndex = getClass().getResourceAsStream(path.replace('.', '/') + "/jaxb.index");
+      final InputStream jaxbIndex =
+          getClass().getResourceAsStream(path.replace('.', '/') + "/jaxb.index");
       if (jaxbIndex != null) {
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(jaxbIndex))) {
           for (String line = reader.readLine(); line != null; line = reader.readLine()) {
@@ -73,7 +72,8 @@ public class OpenEPCISModelProcessor {
       }
     }
     // add other classes
-    Stream.of("jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter",
+    Stream.of(
+            "jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter",
             "jakarta.xml.bind.annotation.adapters.XmlAdapter",
             "jakarta.xml.bind.annotation.adapters.HexBinaryAdapter",
             "jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter",
@@ -100,20 +100,17 @@ public class OpenEPCISModelProcessor {
             "org.eclipse.persistence.asm.internal.platform.ow2.MethodVisitorImpl",
             "org.eclipse.persistence.asm.internal.platform.ow2.SerialVersionUIDAdderImpl",
             "org.eclipse.persistence.asm.internal.platform.ow2.TypeImpl",
-            "org.eclipse.persistence.platform.xml.jaxp.JAXPPlatform"
-    ).forEach(reflectiveClassNames::add);
+            "org.eclipse.persistence.platform.xml.jaxp.JAXPPlatform")
+        .forEach(reflectiveClassNames::add);
 
-    return ReflectiveClassBuildItem.builder(
-                    reflectiveClassNames.toArray(new String[0])
-            )
-            .constructors()
-            .fields()
-            .methods()
-            .serialization()
-            .unsafeAllocated()
-            .build();
+    return ReflectiveClassBuildItem.builder(reflectiveClassNames.toArray(new String[0]))
+        .constructors()
+        .fields()
+        .methods()
+        .serialization()
+        .unsafeAllocated()
+        .build();
   }
-
 
   @BuildStep
   NativeImageConfigBuildItem addNativeImageConfigBuildItem() {
@@ -127,8 +124,8 @@ public class OpenEPCISModelProcessor {
             "sun.rmi.transport.DGCImpl",
             "org.eclipse.persistence.sessions.coordination.jms.JMSPublishingTransportManager",
             "org.eclipse.persistence.internal.sessions.coordination.jms.JMSTopicRemoteConnection",
-            "io.netty.handler.codec.compression.ZstdConstants"
-    ).forEach(builder::addRuntimeInitializedClass);
+            "io.netty.handler.codec.compression.ZstdConstants")
+        .forEach(builder::addRuntimeInitializedClass);
 
     Stream.of(
             "jakarta.xml.bind.Messages",
@@ -169,20 +166,20 @@ public class OpenEPCISModelProcessor {
             "org.eclipse.persistence.internal.localization.i18n.JAXBLocalizationResource",
             "org.eclipse.persistence.internal.localization.i18n.LoggingLocalizationResource",
             "org.eclipse.persistence.internal.localization.i18n.ToStringLocalizationResource",
-            "org.eclipse.persistence.internal.localization.i18n.TraceLocalizationResource"
-    ).forEach(builder::addResourceBundle);
+            "org.eclipse.persistence.internal.localization.i18n.TraceLocalizationResource")
+        .forEach(builder::addResourceBundle);
     return builder.build();
   }
 
   @BuildStep
   NativeImageResourcePatternsBuildItem addNativeImageResourceBuildItem() {
-    return NativeImageResourcePatternsBuildItem.builder().includeGlobs(
+    return NativeImageResourcePatternsBuildItem.builder()
+        .includeGlobs(
             "jakarta/**/*.properties",
             "**/jaxb.properties",
             "**/jaxb.index",
             "META-INF/services/.*",
-            "META-INF/.*.kotlin_module$"
-    ).build();
+            "META-INF/.*.kotlin_module$")
+        .build();
   }
-
 }

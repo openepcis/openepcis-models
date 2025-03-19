@@ -1,11 +1,11 @@
 package io.openepcis.model.interfaces;
 
 public interface QuantitativeValue {
-    String getUnitCode();
+  String getUnitCode();
 
-    void setUnitCode(String value);
+  void setUnitCode(String value);
 
-    float getValue();
+  float getValue();
 
-    void setValue(float value);
+  void setValue(float value);
 }

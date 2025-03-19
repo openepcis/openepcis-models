@@ -3,19 +3,19 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.OrganizationIDType;
 
 public interface OrganizationIDDetails {
-    String getOrganizationID();
+  String getOrganizationID();
 
-    void setOrganizationID(String value);
+  void setOrganizationID(String value);
 
-    String getOrganizationIDQualifier();
+  String getOrganizationIDQualifier();
 
-    void setOrganizationIDQualifier(String value);
+  void setOrganizationIDQualifier(String value);
 
-    OrganizationIDType getOrganizationIDType();
+  OrganizationIDType getOrganizationIDType();
 
-    void setOrganizationIDType(OrganizationIDType value);
+  void setOrganizationIDType(OrganizationIDType value);
 
-    String getOrganizationIDURI();
+  String getOrganizationIDURI();
 
-    void setOrganizationIDURI(String value);
+  void setOrganizationIDURI(String value);
 }

@@ -25,24 +25,25 @@ import org.eclipse.microprofile.health.Readiness;
 @ApplicationScoped
 public class OpenEPCISModelHealthCheck implements HealthCheck {
 
-    private final jakarta.xml.bind.JAXBContext jaxbContext;
+  private final jakarta.xml.bind.JAXBContext jaxbContext;
 
-    public OpenEPCISModelHealthCheck(final jakarta.xml.bind.JAXBContext jaxbContext) {
-        this.jaxbContext = jaxbContext;
-    }
+  public OpenEPCISModelHealthCheck(final jakarta.xml.bind.JAXBContext jaxbContext) {
+    this.jaxbContext = jaxbContext;
+  }
 
-    @Override
-    public HealthCheckResponse call() {
-        HealthCheckResponseBuilder builder = HealthCheckResponse.named("OpenEPCIS EPCIS Model health check").up();
-        try {
-            if (org.eclipse.persistence.jaxb.JAXBContext.class.isAssignableFrom(jaxbContext.getClass())) {
-                builder.up().withData("jaxbContext", jaxbContext.getClass().getName());
-            } else {
-                builder.down().withData("jaxbContext", jaxbContext.getClass().getName());
-            }
-        } catch (Exception e) {
-            return builder.down().withData("reason", e.getMessage()).build();
-        }
-        return builder.build();
+  @Override
+  public HealthCheckResponse call() {
+    HealthCheckResponseBuilder builder =
+        HealthCheckResponse.named("OpenEPCIS EPCIS Model health check").up();
+    try {
+      if (org.eclipse.persistence.jaxb.JAXBContext.class.isAssignableFrom(jaxbContext.getClass())) {
+        builder.up().withData("jaxbContext", jaxbContext.getClass().getName());
+      } else {
+        builder.down().withData("jaxbContext", jaxbContext.getClass().getName());
+      }
+    } catch (Exception e) {
+      return builder.down().withData("reason", e.getMessage()).build();
     }
+    return builder.build();
+  }
 }

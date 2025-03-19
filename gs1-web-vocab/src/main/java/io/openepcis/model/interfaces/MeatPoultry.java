@@ -4,19 +4,19 @@ import io.openepcis.model.gs1webvocab.AnatomicalFormCode;
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 
 public interface MeatPoultry<QV extends QuantitativeValue> {
-    AnatomicalFormCode getAnatomicalForm();
+  AnatomicalFormCode getAnatomicalForm();
 
-    void setAnatomicalForm(AnatomicalFormCode value);
+  void setAnatomicalForm(AnatomicalFormCode value);
 
-    NonbinaryLogicCode getBonelessClaim();
+  NonbinaryLogicCode getBonelessClaim();
 
-    void setBonelessClaim(NonbinaryLogicCode value);
+  void setBonelessClaim(NonbinaryLogicCode value);
 
-    String getMeatPoultryType();
+  String getMeatPoultryType();
 
-    void setMeatPoultryType(String value);
+  void setMeatPoultryType(String value);
 
-    QV getMinimumMeatPoultryContent();
+  QV getMinimumMeatPoultryContent();
 
-    void setMinimumMeatPoultryContent(QV value);
+  void setMinimumMeatPoultryContent(QV value);
 }

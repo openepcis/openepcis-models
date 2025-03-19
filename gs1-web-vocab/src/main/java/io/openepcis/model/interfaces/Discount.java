@@ -1,123 +1,123 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
-
 import java.math.BigInteger;
 
-public interface Discount<P extends PriceSpecification, A extends AdditionalProductClassificationDetails> {
-    boolean getDiscountRepeatsPerMultipleMinimum();
+public interface Discount<
+    P extends PriceSpecification, A extends AdditionalProductClassificationDetails> {
+  boolean getDiscountRepeatsPerMultipleMinimum();
 
-    void setDiscountRepeatsPerMultipleMinimum(boolean value);
+  void setDiscountRepeatsPerMultipleMinimum(boolean value);
 
-    DiscountTypeCode getDiscountType();
+  DiscountTypeCode getDiscountType();
 
-    void setDiscountType(DiscountTypeCode value);
+  void setDiscountType(DiscountTypeCode value);
 
-    TradeChannelCode getEligibleTradeChannel();
+  TradeChannelCode getEligibleTradeChannel();
 
-    void setEligibleTradeChannel(TradeChannelCode value);
+  void setEligibleTradeChannel(TradeChannelCode value);
 
-    P getExactDiscountAmount();
+  P getExactDiscountAmount();
 
-    void setExactDiscountAmount(P value);
+  void setExactDiscountAmount(P value);
 
-    float getExactDiscountPercentage();
+  float getExactDiscountPercentage();
 
-    void setExactDiscountPercentage(float value);
+  void setExactDiscountPercentage(float value);
 
-    String getExclusionDescription();
+  String getExclusionDescription();
 
-    void setExclusionDescription(String value);
+  void setExclusionDescription(String value);
 
-    boolean getIsOnlyAvailableThroughRetailer();
+  boolean getIsOnlyAvailableThroughRetailer();
 
-    void setIsOnlyAvailableThroughRetailer(boolean value);
+  void setIsOnlyAvailableThroughRetailer(boolean value);
 
-    boolean getIsOnlyWithMailingListSignup();
+  boolean getIsOnlyWithMailingListSignup();
 
-    void setIsOnlyWithMailingListSignup(boolean value);
+  void setIsOnlyWithMailingListSignup(boolean value);
 
-    PaymentMethod getIsOnlyWithPaymentCard();
+  PaymentMethod getIsOnlyWithPaymentCard();
 
-    void setIsOnlyWithPaymentCard(PaymentMethod value);
+  void setIsOnlyWithPaymentCard(PaymentMethod value);
 
-    boolean getIsOnlyWithRetailerLoyaltyCard();
+  boolean getIsOnlyWithRetailerLoyaltyCard();
 
-    void setIsOnlyWithRetailerLoyaltyCard(boolean value);
+  void setIsOnlyWithRetailerLoyaltyCard(boolean value);
 
-    boolean getIsOnlyWithRetailerPaymentCard();
+  boolean getIsOnlyWithRetailerPaymentCard();
 
-    void setIsOnlyWithRetailerPaymentCard(boolean value);
+  void setIsOnlyWithRetailerPaymentCard(boolean value);
 
-    boolean getIsPromoterExclusiveOffer();
+  boolean getIsPromoterExclusiveOffer();
 
-    void setIsPromoterExclusiveOffer(boolean value);
+  void setIsPromoterExclusiveOffer(boolean value);
 
-    P getMaximumDiscountAmount();
+  P getMaximumDiscountAmount();
 
-    void setMaximumDiscountAmount(P value);
+  void setMaximumDiscountAmount(P value);
 
-    float getMaximumDiscountPercentage();
+  float getMaximumDiscountPercentage();
 
-    void setMaximumDiscountPercentage(float value);
+  void setMaximumDiscountPercentage(float value);
 
-    BigInteger getMaximumQualifyingItems();
+  BigInteger getMaximumQualifyingItems();
 
-    void setMaximumQualifyingItems(BigInteger value);
+  void setMaximumQualifyingItems(BigInteger value);
 
-    P getMaximumQualifyingSpend();
+  P getMaximumQualifyingSpend();
 
-    void setMaximumQualifyingSpend(P value);
+  void setMaximumQualifyingSpend(P value);
 
-    P getMinimumDiscountAmount();
+  P getMinimumDiscountAmount();
 
-    void setMinimumDiscountAmount(P value);
+  void setMinimumDiscountAmount(P value);
 
-    float getMinimumDiscountPercentage();
+  float getMinimumDiscountPercentage();
 
-    void setMinimumDiscountPercentage(float value);
+  void setMinimumDiscountPercentage(float value);
 
-    BigInteger getMinimumQualifyingItems();
+  BigInteger getMinimumQualifyingItems();
 
-    void setMinimumQualifyingItems(BigInteger value);
+  void setMinimumQualifyingItems(BigInteger value);
 
-    P getMinimumQualifyingSpend();
+  P getMinimumQualifyingSpend();
 
-    void setMinimumQualifyingSpend(P value);
+  void setMinimumQualifyingSpend(P value);
 
-    OfferRedemptionTypeCode getOfferRedemptionType();
+  OfferRedemptionTypeCode getOfferRedemptionType();
 
-    void setOfferRedemptionType(OfferRedemptionTypeCode value);
+  void setOfferRedemptionType(OfferRedemptionTypeCode value);
 
-    String getOfferRestrictionDescription();
+  String getOfferRestrictionDescription();
 
-    void setOfferRestrictionDescription(String value);
+  void setOfferRestrictionDescription(String value);
 
-    String getQualifyingBrandName();
+  String getQualifyingBrandName();
 
-    void setQualifyingBrandName(String value);
+  void setQualifyingBrandName(String value);
 
-    String getQualifyingGPCs();
+  String getQualifyingGPCs();
 
-    void setQualifyingGPCs(String value);
+  void setQualifyingGPCs(String value);
 
-    String getQualifyingProductCategoryDescription();
+  String getQualifyingProductCategoryDescription();
 
-    void setQualifyingProductCategoryDescription(String value);
+  void setQualifyingProductCategoryDescription(String value);
 
-    A getQualifyingProductClassificationCode();
+  A getQualifyingProductClassificationCode();
 
-    void setQualifyingProductClassificationCode(A value);
+  void setQualifyingProductClassificationCode(A value);
 
-    String getQualifyingProductGTINs();
+  String getQualifyingProductGTINs();
 
-    void setQualifyingProductGTINs(String value);
+  void setQualifyingProductGTINs(String value);
 
-    String getQualifyingSubBrandName();
+  String getQualifyingSubBrandName();
 
-    void setQualifyingSubBrandName(String value);
+  void setQualifyingSubBrandName(String value);
 
-    boolean getSelectedProductsOnly();
+  boolean getSelectedProductsOnly();
 
-    void setSelectedProductsOnly(boolean value);
+  void setSelectedProductsOnly(boolean value);
 }

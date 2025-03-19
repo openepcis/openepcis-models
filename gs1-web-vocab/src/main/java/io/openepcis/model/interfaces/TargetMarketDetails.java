@@ -3,11 +3,11 @@ package io.openepcis.model.interfaces;
 import java.time.LocalDateTime;
 
 public interface TargetMarketDetails<C extends Country> {
-    LocalDateTime getConsumerFirstAvailabilityDateTime();
+  LocalDateTime getConsumerFirstAvailabilityDateTime();
 
-    void setConsumerFirstAvailabilityDateTime(LocalDateTime value);
+  void setConsumerFirstAvailabilityDateTime(LocalDateTime value);
 
-    C getTargetMarketCountries();
+  C getTargetMarketCountries();
 
-    void setTargetMarketCountries(C value);
+  void setTargetMarketCountries(C value);
 }

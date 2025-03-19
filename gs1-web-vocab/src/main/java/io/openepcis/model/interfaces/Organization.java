@@ -1,125 +1,131 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
-
 import java.util.List;
 
-public interface Organization<OI extends OrganizationIDDetails,PO extends PostalAddress,CP extends ContactPoint,C extends CertificationDetails
-        ,P extends Place, O extends Organization,OF extends Offer,OS extends OrganizationStatusHistory> {
+public interface Organization<
+    OI extends OrganizationIDDetails,
+    PO extends PostalAddress,
+    CP extends ContactPoint,
+    C extends CertificationDetails,
+    P extends Place,
+    O extends Organization,
+    OF extends Offer,
+    OS extends OrganizationStatusHistory> {
 
-    List<OI> getAdditionalOrganizationID();
+  List<OI> getAdditionalOrganizationID();
 
-    void setAdditionalOrganizationID(List<OI> value);
+  void setAdditionalOrganizationID(List<OI> value);
 
-    String getAdditionalOrganizationIdentificationTypeValue();
+  String getAdditionalOrganizationIdentificationTypeValue();
 
-    void setAdditionalOrganizationIdentificationTypeValue(String value);
+  void setAdditionalOrganizationIdentificationTypeValue(String value);
 
-    List<PO> getAddress();
+  List<PO> getAddress();
 
-    void setAddress(List<PO> value);
+  void setAddress(List<PO> value);
 
-    List<CP> getAfterHoursContact();
+  List<CP> getAfterHoursContact();
 
-    void setAfterHoursContact(List<CP> value);
+  void setAfterHoursContact(List<CP> value);
 
-    C getCertification();
+  C getCertification();
 
-    void setCertification(C value);
+  void setCertification(C value);
 
-    List<CP> getContactPoint();
+  List<CP> getContactPoint();
 
-    void setContactPoint(List<CP> value);
+  void setContactPoint(List<CP> value);
 
-    String getDepartment();
+  String getDepartment();
 
-    void setDepartment(String value);
+  void setDepartment(String value);
 
-    GLNTypeCode getGlnType();
+  GLNTypeCode getGlnType();
 
-    void setGlnType(GLNTypeCode value);
+  void setGlnType(GLNTypeCode value);
 
-    String getGlobalLocationNumber();
+  String getGlobalLocationNumber();
 
-    void setGlobalLocationNumber(String value);
+  void setGlobalLocationNumber(String value);
 
-    List<P> getHasPrimaryLocation();
+  List<P> getHasPrimaryLocation();
 
-    void setHasPrimaryLocation(List<P> value);
+  void setHasPrimaryLocation(List<P> value);
 
-    P getLesseeOf();
+  P getLesseeOf();
 
-    void setLesseeOf(P value);
+  void setLesseeOf(P value);
 
-    P getLessorFor();
+  P getLessorFor();
 
-    void setLessorFor(P value);
+  void setLessorFor(P value);
 
-    List<P> getLocation();
+  List<P> getLocation();
 
-    void setLocation(List<P> value);
+  void setLocation(List<P> value);
 
-    List<OF> getMakesOffer();
+  List<OF> getMakesOffer();
 
-    void setMakesOffer(List<OF> value);
+  void setMakesOffer(List<OF> value);
 
-    O getManagedBy();
+  O getManagedBy();
 
-    void setManagedBy(O value);
+  void setManagedBy(O value);
 
-    List<O> getManages();
+  List<O> getManages();
 
-    void setManages(List<O> value);
+  void setManages(List<O> value);
 
-    P getOccupies();
+  P getOccupies();
 
-    void setOccupies(P value);
+  void setOccupies(P value);
 
-    OS getOrganizationHistory();
+  OS getOrganizationHistory();
 
-    void setOrganizationHistory(OS value);
+  void setOrganizationHistory(OS value);
 
-    String getOrganizationName();
+  String getOrganizationName();
 
-    void setOrganizationName(String value);
+  void setOrganizationName(String value);
 
-    OrganizationRoleType getOrganizationRole();
+  OrganizationRoleType getOrganizationRole();
 
-    void setOrganizationRole(OrganizationRoleType value);
+  void setOrganizationRole(OrganizationRoleType value);
 
-    O getOwnedBy();
+  O getOwnedBy();
 
-    void setOwnedBy(O value);
+  void setOwnedBy(O value);
 
-    List<O> getOwns();
+  List<O> getOwns();
 
-    void setOwns(List<O> value);
+  void setOwns(List<O> value);
 
-    O getParentOrganization();
+  O getParentOrganization();
 
-    void setParentOrganization(O value);
+  void setParentOrganization(O value);
 
-    String getPartyGLN();
+  String getPartyGLN();
 
-    void setPartyGLN(String value);
+  void setPartyGLN(String value);
 
-    O getReplacedByOrganization();
+  O getReplacedByOrganization();
 
-    void setReplacedByOrganization(O value);
+  void setReplacedByOrganization(O value);
 
-    O getReplacedOrganization();
+  O getReplacedOrganization();
 
-    void setReplacedOrganization(O value);
+  void setReplacedOrganization(O value);
 
-    P getResponsibleForLocation();
+  P getResponsibleForLocation();
 
-    void setResponsibleForLocation(P value);
+  void setResponsibleForLocation(P value);
 
-    O getSubOrganization();
+  O getSubOrganization();
 
-    void setSubOrganization(O value);
+  void setSubOrganization(O value);
 
-    P getUsesManagedLocation();
+  P getUsesManagedLocation();
 
-    void setUsesManagedLocation(P value);
+  void setUsesManagedLocation(P value);
 }

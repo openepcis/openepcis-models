@@ -1,59 +1,59 @@
 package io.openepcis.model.interfaces;
 
 public interface PostalAddress<C extends Country> {
-    C getAddressCountry();
+  C getAddressCountry();
 
-    void setAddressCountry(C country);
+  void setAddressCountry(C country);
 
-    String getAddressLocality();
+  String getAddressLocality();
 
-    void setAddressLocality(String value);
+  void setAddressLocality(String value);
 
-    String getAddressRegion();
+  String getAddressRegion();
 
-    void setAddressRegion(String value);
+  void setAddressRegion(String value);
 
-    String getAddressSuburb();
+  String getAddressSuburb();
 
-    void setAddressSuburb(String value);
+  void setAddressSuburb(String value);
 
-    String getCountyCode();
+  String getCountyCode();
 
-    void setCountyCode(String value);
+  void setCountyCode(String value);
 
-    String getCrossStreet();
+  String getCrossStreet();
 
-    void setCrossStreet(String value);
+  void setCrossStreet(String value);
 
-    String getOrganizationName();
+  String getOrganizationName();
 
-    void setOrganizationName(String value);
+  void setOrganizationName(String value);
 
-    String getPostOfficeBoxNumber();
+  String getPostOfficeBoxNumber();
 
-    void setPostOfficeBoxNumber(String value);
+  void setPostOfficeBoxNumber(String value);
 
-    String getPostalCode();
+  String getPostalCode();
 
-    void setPostalCode(String value);
+  void setPostalCode(String value);
 
-    String getPostalName();
+  String getPostalName();
 
-    void setPostalName(String value);
+  void setPostalName(String value);
 
-    String getStreetAddress();
+  String getStreetAddress();
 
-    void setStreetAddress(String value);
+  void setStreetAddress(String value);
 
-    String getStreetAddressLine2();
+  String getStreetAddressLine2();
 
-    void setStreetAddressLine2(String value);
+  void setStreetAddressLine2(String value);
 
-    String getStreetAddressLine3();
+  String getStreetAddressLine3();
 
-    void setStreetAddressLine3(String value);
+  void setStreetAddressLine3(String value);
 
-    String getStreetAddressLine4();
+  String getStreetAddressLine4();
 
-    void setStreetAddressLine4(String value);
+  void setStreetAddressLine4(String value);
 }

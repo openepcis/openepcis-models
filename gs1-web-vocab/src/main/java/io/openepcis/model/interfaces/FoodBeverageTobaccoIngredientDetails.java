@@ -3,15 +3,15 @@ package io.openepcis.model.interfaces;
 import java.math.BigInteger;
 
 public interface FoodBeverageTobaccoIngredientDetails {
-    float getIngredientContentPercentage();
+  float getIngredientContentPercentage();
 
-    void setIngredientContentPercentage(float value);
+  void setIngredientContentPercentage(float value);
 
-    String getIngredientName();
+  String getIngredientName();
 
-    void setIngredientName(String value);
+  void setIngredientName(String value);
 
-    BigInteger getIngredientSequence();
+  BigInteger getIngredientSequence();
 
-    void setIngredientSequence(BigInteger value);
+  void setIngredientSequence(BigInteger value);
 }

@@ -1,15 +1,15 @@
 package io.openepcis.model.interfaces;
 
 public interface GeoShape {
-    String getCircle();
+  String getCircle();
 
-    void setCircle(String value);
+  void setCircle(String value);
 
-    String getLine();
+  String getLine();
 
-    void setLine(String value);
+  void setLine(String value);
 
-    String getPolygon();
+  String getPolygon();
 
-    void setPolygon(String value);
+  void setPolygon(String value);
 }

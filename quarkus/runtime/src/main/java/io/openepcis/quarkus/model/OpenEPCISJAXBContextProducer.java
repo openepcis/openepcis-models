@@ -21,41 +21,36 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
-import org.eclipse.persistence.jaxb.JAXBContextProperties;
-
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
+import org.eclipse.persistence.jaxb.JAXBContextProperties;
 
 @ApplicationScoped
 public class OpenEPCISJAXBContextProducer {
 
-  /**
-   * use static jaxbContext to support generated classes for GraalVM Quarkus native builds
-   */
+  /** use static jaxbContext to support generated classes for GraalVM Quarkus native builds */
   private static final JAXBContext jaxbContext = createContext();
 
   private static final AtomicReference<JAXBException> jaxbException = new AtomicReference<>();
 
-  public static final String CONTEXT_PATH = "io.openepcis.model.epcis:io.openepcis.model.epcis.modifier:io.openepcis.model.dto:io.openepcis.model.rest:io.openepcis.core.mocel";
+  public static final String CONTEXT_PATH =
+      "io.openepcis.model.epcis:io.openepcis.model.epcis.modifier:io.openepcis.model.dto:io.openepcis.model.rest:io.openepcis.core.mocel";
 
   private static JAXBContext createContext() {
     try {
       return org.eclipse.persistence.jaxb.JAXBContextFactory.createContext(
-              CONTEXT_PATH,
-              OpenEPCISJAXBContextProducer.class.getClassLoader(),
-              new HashMap<>() {
-                {
-                  put(
-                          JAXBContextProperties.NAMESPACE_PREFIX_MAPPER,
-                          new EPCISNamespacePrefixMapper());
-                }
-              });
+          CONTEXT_PATH,
+          OpenEPCISJAXBContextProducer.class.getClassLoader(),
+          new HashMap<>() {
+            {
+              put(JAXBContextProperties.NAMESPACE_PREFIX_MAPPER, new EPCISNamespacePrefixMapper());
+            }
+          });
     } catch (JAXBException e) {
       jaxbException.set(e);
     }
     return null;
   }
-
 
   @Produces
   @Singleton
@@ -65,5 +60,4 @@ public class OpenEPCISJAXBContextProducer {
     }
     return OpenEPCISJAXBContextProducer.jaxbContext;
   }
-
 }

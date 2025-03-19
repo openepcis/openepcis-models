@@ -1,11 +1,11 @@
 package io.openepcis.model.interfaces;
 
 public interface Country {
-    String getCountryCode();
+  String getCountryCode();
 
-    void setCountryCode(String value);
+  void setCountryCode(String value);
 
-    String getCountrySubdivisionCode();
+  String getCountrySubdivisionCode();
 
-    void setCountrySubdivisionCode(String value);
+  void setCountrySubdivisionCode(String value);
 }

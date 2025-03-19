@@ -4,536 +4,480 @@
 // Any modifications to this file will be lost upon recompilation of the source schema.
 //
 
-
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.*;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
-
 /**
- * This object contains factory methods for each
- * Java content interface and Java element interface
+ * This object contains factory methods for each Java content interface and Java element interface
  * generated in the io.openepcis.model.gs1webvocab package.
- * <p>An ObjectFactory allows you to programmatically
- * construct new instances of the Java representation
- * for XML content. The Java representation of XML
- * content can consist of schema derived interfaces
- * and classes representing the binding of schema
- * type definitions, element declarations and model
- * groups.  Factory methods for each of these are
- * provided in this class.
  *
+ * <p>An ObjectFactory allows you to programmatically construct new instances of the Java
+ * representation for XML content. The Java representation of XML content can consist of schema
+ * derived interfaces and classes representing the binding of schema type definitions, element
+ * declarations and model groups. Factory methods for each of these are provided in this class.
  */
 @XmlRegistry
 public class ObjectFactory {
 
+  /**
+   * Create a new ObjectFactory that can be used to create new instances of schema derived classes
+   * for package: io.openepcis.model.gs1webvocab
+   */
+  public ObjectFactory() {}
 
-    /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: io.openepcis.model.gs1webvocab
-     *
-     */
-    public ObjectFactory() {
-    }
+  /**
+   * Create an instance of {@link AdditionalProductClassificationDetailsXMLImpl }
+   *
+   * @return the new instance of {@link AdditionalProductClassificationDetailsXMLImpl }
+   */
+  public AdditionalProductClassificationDetailsXMLImpl
+      createAdditionalProductClassificationDetailsXMLImpl() {
+    return new AdditionalProductClassificationDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link AdditionalProductClassificationDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link AdditionalProductClassificationDetailsXMLImpl }
-     */
-    public AdditionalProductClassificationDetailsXMLImpl createAdditionalProductClassificationDetailsXMLImpl() {
-        return new AdditionalProductClassificationDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link AdditiveDetailsXMLImpl }
+   *
+   * @return the new instance of {@link AdditiveDetailsXMLImpl }
+   */
+  public AdditiveDetailsXMLImpl createAdditiveDetailsXMLImpl() {
+    return new AdditiveDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link AdditiveDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link AdditiveDetailsXMLImpl }
-     */
-    public AdditiveDetailsXMLImpl createAdditiveDetailsXMLImpl() {
-        return new AdditiveDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link AllergenDetailsXMLImpl }
+   *
+   * @return the new instance of {@link AllergenDetailsXMLImpl }
+   */
+  public AllergenDetailsXMLImpl createAllergenDetailsXMLImpl() {
+    return new AllergenDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link AllergenDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link AllergenDetailsXMLImpl }
-     */
-    public AllergenDetailsXMLImpl createAllergenDetailsXMLImpl() {
-        return new AllergenDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link AuthenticityDetailsXMLImpl }
+   *
+   * @return the new instance of {@link AuthenticityDetailsXMLImpl }
+   */
+  public AuthenticityDetailsXMLImpl createAuthenticityDetailsXMLImpl() {
+    return new AuthenticityDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link AuthenticityDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link AuthenticityDetailsXMLImpl }
-     */
-    public AuthenticityDetailsXMLImpl createAuthenticityDetailsXMLImpl() {
-        return new AuthenticityDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link AwardPrizeDetailsXMLImpl }
+   *
+   * @return the new instance of {@link AwardPrizeDetailsXMLImpl }
+   */
+  public AwardPrizeDetailsXMLImpl createAwardPrizeDetailsXMLImpl() {
+    return new AwardPrizeDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link AwardPrizeDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link AwardPrizeDetailsXMLImpl }
-     */
-    public AwardPrizeDetailsXMLImpl createAwardPrizeDetailsXMLImpl() {
-        return new AwardPrizeDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link BeverageXMLImpl }
+   *
+   * @return the new instance of {@link BeverageXMLImpl }
+   */
+  public BeverageXMLImpl createBeverage() {
+    return new BeverageXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link BeverageXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link BeverageXMLImpl }
-     */
-    public BeverageXMLImpl createBeverage() {
-        return new BeverageXMLImpl();
-    }
+  /**
+   * Create an instance of {@link BrandXMLImpl }
+   *
+   * @return the new instance of {@link BrandXMLImpl }
+   */
+  public BrandXMLImpl createBrandXMLImpl() {
+    return new BrandXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link BrandXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link BrandXMLImpl }
-     */
-    public BrandXMLImpl createBrandXMLImpl() {
-        return new BrandXMLImpl();
-    }
+  /**
+   * Create an instance of {@link CertificationDetailsXMLImpl }
+   *
+   * @return the new instance of {@link CertificationDetailsXMLImpl }
+   */
+  public CertificationDetailsXMLImpl createCertificationDetailsXMLImpl() {
+    return new CertificationDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link CertificationDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link CertificationDetailsXMLImpl }
-     */
-    public CertificationDetailsXMLImpl createCertificationDetailsXMLImpl() {
-        return new CertificationDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link ClothingXMLImpl }
+   *
+   * @return the new instance of {@link ClothingXMLImpl }
+   */
+  public ClothingXMLImpl createClothingXMLImpl() {
+    return new ClothingXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link ClothingXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ClothingXMLImpl }
-     */
-    public ClothingXMLImpl createClothingXMLImpl() {
-        return new ClothingXMLImpl();
-    }
+  /**
+   * Create an instance of {@link ColourCodeDetailsXMLImpl }
+   *
+   * @return the new instance of {@link ColourCodeDetailsXMLImpl }
+   */
+  public ColourCodeDetailsXMLImpl createColourCodeDetailsXMLImpl() {
+    return new ColourCodeDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link ColourCodeDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ColourCodeDetailsXMLImpl }
-     */
-    public ColourCodeDetailsXMLImpl createColourCodeDetailsXMLImpl() {
-        return new ColourCodeDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link ContactPointXMLImpl }
+   *
+   * @return the new instance of {@link ContactPointXMLImpl }
+   */
+  public ContactPointXMLImpl createContactPointXMLImpl() {
+    return new ContactPointXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link ContactPointXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ContactPointXMLImpl }
-     */
-    public ContactPointXMLImpl createContactPointXMLImpl() {
-        return new ContactPointXMLImpl();
-    }
+  /**
+   * Create an instance of {@link CountryXMLImpl }
+   *
+   * @return the new instance of {@link CountryXMLImpl }
+   */
+  public CountryXMLImpl createCountryXMLImpl() {
+    return new CountryXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link CountryXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link CountryXMLImpl }
-     */
-    public CountryXMLImpl createCountryXMLImpl() {
-        return new CountryXMLImpl();
-    }
+  /**
+   * Create an instance of {@link DietTypeCodeDetailsXMLImpl }
+   *
+   * @return the new instance of {@link DietTypeCodeDetailsXMLImpl }
+   */
+  public DietTypeCodeDetailsXMLImpl createDietTypeCodeDetailsXMLImpl() {
+    return new DietTypeCodeDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link DietTypeCodeDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link DietTypeCodeDetailsXMLImpl }
-     */
-    public DietTypeCodeDetailsXMLImpl createDietTypeCodeDetailsXMLImpl() {
-        return new DietTypeCodeDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link DiscountXMLImpl }
+   *
+   * @return the new instance of {@link DiscountXMLImpl }
+   */
+  public DiscountXMLImpl createDiscount() {
+    return new DiscountXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link DiscountXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link DiscountXMLImpl }
-     */
-    public DiscountXMLImpl createDiscount() {
-        return new DiscountXMLImpl();
-    }
+  /**
+   * Create an instance of {@link FoodAndBeveragePreparationInformationXMLImpl }
+   *
+   * @return the new instance of {@link FoodAndBeveragePreparationInformationXMLImpl }
+   */
+  public FoodAndBeveragePreparationInformationXMLImpl
+      createFoodAndBeveragePreparationInformationXMLImpl() {
+    return new FoodAndBeveragePreparationInformationXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link FoodAndBeveragePreparationInformationXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link FoodAndBeveragePreparationInformationXMLImpl }
-     */
-    public FoodAndBeveragePreparationInformationXMLImpl createFoodAndBeveragePreparationInformationXMLImpl() {
-        return new FoodAndBeveragePreparationInformationXMLImpl();
-    }
+  /**
+   * Create an instance of {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
+   *
+   * @return the new instance of {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
+   */
+  public FoodBeverageTobaccoIngredientDetailsXMLImpl
+      createFoodBeverageTobaccoIngredientDetailsXMLImpl() {
+    return new FoodBeverageTobaccoIngredientDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
-     */
-    public FoodBeverageTobaccoIngredientDetailsXMLImpl createFoodBeverageTobaccoIngredientDetailsXMLImpl() {
-        return new FoodBeverageTobaccoIngredientDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link FoodBeverageTobaccoProductXMLImpl }
+   *
+   * @return the new instance of {@link FoodBeverageTobaccoProductXMLImpl }
+   */
+  public FoodBeverageTobaccoProductXMLImpl createFoodBeverageTobaccoProductXMLImpl() {
+    return new FoodBeverageTobaccoProductXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link FoodBeverageTobaccoProductXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link FoodBeverageTobaccoProductXMLImpl }
-     */
-    public FoodBeverageTobaccoProductXMLImpl createFoodBeverageTobaccoProductXMLImpl() {
-        return new FoodBeverageTobaccoProductXMLImpl();
-    }
+  /**
+   * Create an instance of {@link FootwearXMLImpl }
+   *
+   * @return the new instance of {@link FootwearXMLImpl }
+   */
+  public FootwearXMLImpl createFootwear() {
+    return new FootwearXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link FootwearXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link FootwearXMLImpl }
-     */
-    public FootwearXMLImpl createFootwear() {
-        return new FootwearXMLImpl();
-    }
+  /**
+   * Create an instance of {@link FruitsVegetablesXMLImpl }
+   *
+   * @return the new instance of {@link FruitsVegetablesXMLImpl }
+   */
+  public FruitsVegetablesXMLImpl createFruitsVegetablesXMLImpl() {
+    return new FruitsVegetablesXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link FruitsVegetablesXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link FruitsVegetablesXMLImpl }
-     */
-    public FruitsVegetablesXMLImpl createFruitsVegetablesXMLImpl() {
-        return new FruitsVegetablesXMLImpl();
-    }
+  /**
+   * Create an instance of {@link GeoCoordinatesXMLImpl }
+   *
+   * @return the new instance of {@link GeoCoordinatesXMLImpl }
+   */
+  public GeoCoordinatesXMLImpl createGeoCoordinatesXMLImpl() {
+    return new GeoCoordinatesXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link GeoCoordinatesXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link GeoCoordinatesXMLImpl }
-     */
-    public GeoCoordinatesXMLImpl createGeoCoordinatesXMLImpl() {
-        return new GeoCoordinatesXMLImpl();
-    }
+  /**
+   * Create an instance of {@link GeoShapeXMLImpl }
+   *
+   * @return the new instance of {@link GeoShapeXMLImpl }
+   */
+  public GeoShapeXMLImpl createGeoShape() {
+    return new GeoShapeXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link GeoShapeXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link GeoShapeXMLImpl }
-     */
-    public GeoShapeXMLImpl createGeoShape() {
-        return new GeoShapeXMLImpl();
-    }
+  /**
+   * Create an instance of {@link LocationIDDetailsXMLImpl }
+   *
+   * @return the new instance of {@link LocationIDDetailsXMLImpl }
+   */
+  public LocationIDDetailsXMLImpl createLocationIDDetailsXMLImpl() {
+    return new LocationIDDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link LocationIDDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link LocationIDDetailsXMLImpl }
-     */
-    public LocationIDDetailsXMLImpl createLocationIDDetailsXMLImpl() {
-        return new LocationIDDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link LocationStatusHistoryXMLImpl }
+   *
+   * @return the new instance of {@link LocationStatusHistoryXMLImpl }
+   */
+  public LocationStatusHistoryXMLImpl createLocationStatusHistoryXMLImpl() {
+    return new LocationStatusHistoryXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link LocationStatusHistoryXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link LocationStatusHistoryXMLImpl }
-     */
-    public LocationStatusHistoryXMLImpl createLocationStatusHistoryXMLImpl() {
-        return new LocationStatusHistoryXMLImpl();
-    }
+  /**
+   * Create an instance of {@link MeatPoultryXMLImpl }
+   *
+   * @return the new instance of {@link MeatPoultryXMLImpl }
+   */
+  public MeatPoultryXMLImpl createMeatPoultryXMLImpl() {
+    return new MeatPoultryXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link MeatPoultryXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link MeatPoultryXMLImpl }
-     */
-    public MeatPoultryXMLImpl createMeatPoultryXMLImpl() {
-        return new MeatPoultryXMLImpl();
-    }
+  /**
+   * Create an instance of {@link MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl }
+   *
+   * @return the new instance of {@link MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl }
+   */
+  public MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
+      createMilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl() {
+    return new MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl }
-     */
-    public MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl createMilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl() {
-        return new MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl();
-    }
+  /**
+   * Create an instance of {@link NutritionMeasurementTypeXMLImpl }
+   *
+   * @return the new instance of {@link NutritionMeasurementTypeXMLImpl }
+   */
+  public NutritionMeasurementTypeXMLImpl createNutritionMeasurementTypeXMLImpl() {
+    return new NutritionMeasurementTypeXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link NutritionMeasurementTypeXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link NutritionMeasurementTypeXMLImpl }
-     */
-    public NutritionMeasurementTypeXMLImpl createNutritionMeasurementTypeXMLImpl() {
-        return new NutritionMeasurementTypeXMLImpl();
-    }
+  /**
+   * Create an instance of {@link OfferXMLImpl }
+   *
+   * @return the new instance of {@link OfferXMLImpl }
+   */
+  public OfferXMLImpl createOffer() {
+    return new OfferXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link OfferXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link OfferXMLImpl }
-     */
-    public OfferXMLImpl createOffer() {
-        return new OfferXMLImpl();
-    }
+  /**
+   * Create an instance of {@link OrganicClaimDetailsXMLImpl }
+   *
+   * @return the new instance of {@link OrganicClaimDetailsXMLImpl }
+   */
+  public OrganicClaimDetailsXMLImpl createOrganicClaimDetailsXMLImpl() {
+    return new OrganicClaimDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link OrganicClaimDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link OrganicClaimDetailsXMLImpl }
-     */
-    public OrganicClaimDetailsXMLImpl createOrganicClaimDetailsXMLImpl() {
-        return new OrganicClaimDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link OrganizationXMLImpl }
+   *
+   * @return the new instance of {@link OrganizationXMLImpl }
+   */
+  public OrganizationXMLImpl createOrganizationXMLImpl() {
+    return new OrganizationXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link OrganizationXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link OrganizationXMLImpl }
-     */
-    public OrganizationXMLImpl createOrganizationXMLImpl() {
-        return new OrganizationXMLImpl();
-    }
+  /**
+   * Create an instance of {@link OrganizationIDDetailsXMLImpl }
+   *
+   * @return the new instance of {@link OrganizationIDDetailsXMLImpl }
+   */
+  public OrganizationIDDetailsXMLImpl createOrganizationIDDetailsXMLImpl() {
+    return new OrganizationIDDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link OrganizationIDDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link OrganizationIDDetailsXMLImpl }
-     */
-    public OrganizationIDDetailsXMLImpl createOrganizationIDDetailsXMLImpl() {
-        return new OrganizationIDDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link OrganizationStatusHistoryXMLImpl }
+   *
+   * @return the new instance of {@link OrganizationStatusHistoryXMLImpl }
+   */
+  public OrganizationStatusHistoryXMLImpl createOrganizationStatusHistoryXMLImpl() {
+    return new OrganizationStatusHistoryXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link OrganizationStatusHistoryXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link OrganizationStatusHistoryXMLImpl }
-     */
-    public OrganizationStatusHistoryXMLImpl createOrganizationStatusHistoryXMLImpl() {
-        return new OrganizationStatusHistoryXMLImpl();
-    }
+  /**
+   * Create an instance of {@link PackagingDetailsXMLImpl }
+   *
+   * @return the new instance of {@link PackagingDetailsXMLImpl }
+   */
+  public PackagingDetailsXMLImpl createPackagingDetailsXMLImpl() {
+    return new PackagingDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link PackagingDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link PackagingDetailsXMLImpl }
-     */
-    public PackagingDetailsXMLImpl createPackagingDetailsXMLImpl() {
-        return new PackagingDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link PackagingMaterialDetailsXMLImpl }
+   *
+   * @return the new instance of {@link PackagingMaterialDetailsXMLImpl }
+   */
+  public PackagingMaterialDetailsXMLImpl createPackagingMaterialDetailsXMLImpl() {
+    return new PackagingMaterialDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link PackagingMaterialDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link PackagingMaterialDetailsXMLImpl }
-     */
-    public PackagingMaterialDetailsXMLImpl createPackagingMaterialDetailsXMLImpl() {
-        return new PackagingMaterialDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link PlaceXMLImpl }
+   *
+   * @return the new instance of {@link PlaceXMLImpl }
+   */
+  public PlaceXMLImpl createPlace() {
+    return new PlaceXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link PlaceXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link PlaceXMLImpl }
-     */
-    public PlaceXMLImpl createPlace() {
-        return new PlaceXMLImpl();
-    }
+  /**
+   * Create an instance of {@link PostalAddressXMLImpl }
+   *
+   * @return the new instance of {@link PostalAddressXMLImpl }
+   */
+  public PostalAddressXMLImpl createPostalAddressXMLImpl() {
+    return new PostalAddressXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link PostalAddressXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link PostalAddressXMLImpl }
-     */
-    public PostalAddressXMLImpl createPostalAddressXMLImpl() {
-        return new PostalAddressXMLImpl();
-    }
+  /**
+   * Create an instance of {@link PriceSpecificationXMLImpl }
+   *
+   * @return the new instance of {@link PriceSpecificationXMLImpl }
+   */
+  public PriceSpecificationXMLImpl createPriceSpecificationXMLImpl() {
+    return new PriceSpecificationXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link PriceSpecificationXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link PriceSpecificationXMLImpl }
-     */
-    public PriceSpecificationXMLImpl createPriceSpecificationXMLImpl() {
-        return new PriceSpecificationXMLImpl();
-    }
+  /**
+   * Create an instance of {@link ProductXMLImpl }
+   *
+   * @return the new instance of {@link ProductXMLImpl }
+   */
+  public ProductXMLImpl createProduct() {
+    return new ProductXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link ProductXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ProductXMLImpl }
-     */
-    public ProductXMLImpl createProduct() {
-        return new ProductXMLImpl();
-    }
+  /**
+   * Create an instance of {@link ProductYieldDetailsXMLImpl }
+   *
+   * @return the new instance of {@link ProductYieldDetailsXMLImpl }
+   */
+  public ProductYieldDetailsXMLImpl createProductYieldDetailsXMLImpl() {
+    return new ProductYieldDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link ProductYieldDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ProductYieldDetailsXMLImpl }
-     */
-    public ProductYieldDetailsXMLImpl createProductYieldDetailsXMLImpl() {
-        return new ProductYieldDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link QuantitativeValueXMLImpl }
+   *
+   * @return the new instance of {@link QuantitativeValueXMLImpl }
+   */
+  public QuantitativeValueXMLImpl createQuantitativeValueXMLImpl() {
+    return new QuantitativeValueXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link QuantitativeValueXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link QuantitativeValueXMLImpl }
-     */
-    public QuantitativeValueXMLImpl createQuantitativeValueXMLImpl() {
-        return new QuantitativeValueXMLImpl();
-    }
+  /**
+   * Create an instance of {@link ReferencedFileDetailsXMLImpl }
+   *
+   * @return the new instance of {@link ReferencedFileDetailsXMLImpl }
+   */
+  public ReferencedFileDetailsXMLImpl createReferencedFileDetailsXMLImpl() {
+    return new ReferencedFileDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link ReferencedFileDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ReferencedFileDetailsXMLImpl }
-     */
-    public ReferencedFileDetailsXMLImpl createReferencedFileDetailsXMLImpl() {
-        return new ReferencedFileDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link ReturnablePackageDepositDetailsXMLImpl }
+   *
+   * @return the new instance of {@link ReturnablePackageDepositDetailsXMLImpl }
+   */
+  public ReturnablePackageDepositDetailsXMLImpl createReturnablePackageDepositDetailsXMLImpl() {
+    return new ReturnablePackageDepositDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link ReturnablePackageDepositDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ReturnablePackageDepositDetailsXMLImpl }
-     */
-    public ReturnablePackageDepositDetailsXMLImpl createReturnablePackageDepositDetailsXMLImpl() {
-        return new ReturnablePackageDepositDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link SeafoodXMLImpl }
+   *
+   * @return the new instance of {@link SeafoodXMLImpl }
+   */
+  public SeafoodXMLImpl createSeafoodXMLImpl() {
+    return new SeafoodXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link SeafoodXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link SeafoodXMLImpl }
-     */
-    public SeafoodXMLImpl createSeafoodXMLImpl() {
-        return new SeafoodXMLImpl();
-    }
+  /**
+   * Create an instance of {@link SizeCodeDetailsXMLImpl }
+   *
+   * @return the new instance of {@link SizeCodeDetailsXMLImpl }
+   */
+  public SizeCodeDetailsXMLImpl createSizeCodeDetailsXMLImpl() {
+    return new SizeCodeDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link SizeCodeDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link SizeCodeDetailsXMLImpl }
-     */
-    public SizeCodeDetailsXMLImpl createSizeCodeDetailsXMLImpl() {
-        return new SizeCodeDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link SizeDetailsXMLImpl }
+   *
+   * @return the new instance of {@link SizeDetailsXMLImpl }
+   */
+  public SizeDetailsXMLImpl createSizeDetailsXMLImpl() {
+    return new SizeDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link SizeDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link SizeDetailsXMLImpl }
-     */
-    public SizeDetailsXMLImpl createSizeDetailsXMLImpl() {
-        return new SizeDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link TargetMarketDetailsXMLImpl }
+   *
+   * @return the new instance of {@link TargetMarketDetailsXMLImpl }
+   */
+  public TargetMarketDetailsXMLImpl createTargetMarketDetailsXMLImpl() {
+    return new TargetMarketDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link TargetMarketDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link TargetMarketDetailsXMLImpl }
-     */
-    public TargetMarketDetailsXMLImpl createTargetMarketDetailsXMLImpl() {
-        return new TargetMarketDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link TextileMaterialDetailsXMLImpl }
+   *
+   * @return the new instance of {@link TextileMaterialDetailsXMLImpl }
+   */
+  public TextileMaterialDetailsXMLImpl createTextileMaterialDetailsXMLImpl() {
+    return new TextileMaterialDetailsXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link TextileMaterialDetailsXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link TextileMaterialDetailsXMLImpl }
-     */
-    public TextileMaterialDetailsXMLImpl createTextileMaterialDetailsXMLImpl() {
-        return new TextileMaterialDetailsXMLImpl();
-    }
+  /**
+   * Create an instance of {@link TypeCodeXMLImpl }
+   *
+   * @return the new instance of {@link TypeCodeXMLImpl }
+   */
+  public TypeCodeXMLImpl createTypeCode() {
+    return new TypeCodeXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link TypeCodeXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link TypeCodeXMLImpl }
-     */
-    public TypeCodeXMLImpl createTypeCode() {
-        return new TypeCodeXMLImpl();
-    }
+  /**
+   * Create an instance of {@link WarrantyPromiseXMLImpl }
+   *
+   * @return the new instance of {@link WarrantyPromiseXMLImpl }
+   */
+  public WarrantyPromiseXMLImpl createWarrantyPromiseXMLImpl() {
+    return new WarrantyPromiseXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link WarrantyPromiseXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link WarrantyPromiseXMLImpl }
-     */
-    public WarrantyPromiseXMLImpl createWarrantyPromiseXMLImpl() {
-        return new WarrantyPromiseXMLImpl();
-    }
+  /**
+   * Create an instance of {@link WearableProductXMLImpl }
+   *
+   * @return the new instance of {@link WearableProductXMLImpl }
+   */
+  public WearableProductXMLImpl createWearableProductXMLImpl() {
+    return new WearableProductXMLImpl();
+  }
 
-    /**
-     * Create an instance of {@link WearableProductXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link WearableProductXMLImpl }
-     */
-    public WearableProductXMLImpl createWearableProductXMLImpl() {
-        return new WearableProductXMLImpl();
-    }
-
-    /**
-     * Create an instance of {@link ThingXMLImpl }
-     *
-     * @return
-     *     the new instance of {@link ThingXMLImpl }
-     */
-    public ThingXMLImpl createThing() {
-        return new ThingXMLImpl();
-    }
-
+  /**
+   * Create an instance of {@link ThingXMLImpl }
+   *
+   * @return the new instance of {@link ThingXMLImpl }
+   */
+  public ThingXMLImpl createThing() {
+    return new ThingXMLImpl();
+  }
 }

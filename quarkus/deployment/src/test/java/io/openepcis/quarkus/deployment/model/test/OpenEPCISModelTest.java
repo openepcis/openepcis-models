@@ -15,6 +15,8 @@
  */
 package io.openepcis.quarkus.deployment.model.test;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import io.openepcis.quarkus.model.OpenEPCISJAXBContextProducer;
 import io.quarkus.test.QuarkusUnitTest;
 import jakarta.inject.Inject;
@@ -24,28 +26,21 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 class OpenEPCISModelTest {
 
-    @RegisterExtension
-    static final QuarkusUnitTest TEST = new QuarkusUnitTest()
-            .setArchiveProducer(
-                    () -> ShrinkWrap.create(JavaArchive.class));
+  @RegisterExtension
+  static final QuarkusUnitTest TEST =
+      new QuarkusUnitTest().setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class));
 
-    @Inject
-    OpenEPCISJAXBContextProducer openEPCISJAXBContext;
+  @Inject OpenEPCISJAXBContextProducer openEPCISJAXBContext;
 
-    @Inject
-    JAXBContext jaxbContext;
+  @Inject JAXBContext jaxbContext;
 
-
-    @Test
-    void testJAXBContextInjection() throws Exception {
-        assertNotNull(openEPCISJAXBContext);
-        assertNotNull(jaxbContext);
-        assertNotNull(jaxbContext.createMarshaller());
-        assertNotNull(jaxbContext.createUnmarshaller());
-    }
-
+  @Test
+  void testJAXBContextInjection() throws Exception {
+    assertNotNull(openEPCISJAXBContext);
+    assertNotNull(jaxbContext);
+    assertNotNull(jaxbContext.createMarshaller());
+    assertNotNull(jaxbContext.createUnmarshaller());
+  }
 }

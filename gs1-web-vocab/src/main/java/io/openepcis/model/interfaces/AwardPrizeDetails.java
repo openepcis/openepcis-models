@@ -1,30 +1,29 @@
 package io.openepcis.model.interfaces;
 
-import java.time.LocalDate;
 import java.time.Year;
 
 public interface AwardPrizeDetails<C extends Country> {
-    String getAwardPrizeCode();
+  String getAwardPrizeCode();
 
-    void setAwardPrizeCode(String value);
+  void setAwardPrizeCode(String value);
 
-    C getAwardPrizeCountryCode();
+  C getAwardPrizeCountryCode();
 
-    void setAwardPrizeCountryCode(C value);
+  void setAwardPrizeCountryCode(C value);
 
-    String getAwardPrizeDescription();
+  String getAwardPrizeDescription();
 
-    void setAwardPrizeDescription(String value);
+  void setAwardPrizeDescription(String value);
 
-    String getAwardPrizeJury();
+  String getAwardPrizeJury();
 
-    void setAwardPrizeJury(String value);
+  void setAwardPrizeJury(String value);
 
-    String getAwardPrizeName();
+  String getAwardPrizeName();
 
-    void setAwardPrizeName(String value);
+  void setAwardPrizeName(String value);
 
-    Year getAwardPrizeYear();
+  Year getAwardPrizeYear();
 
-    void setAwardPrizeYear(Year value);
+  void setAwardPrizeYear(Year value);
 }

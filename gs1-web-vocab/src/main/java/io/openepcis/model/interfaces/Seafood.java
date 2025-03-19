@@ -3,19 +3,19 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.FreshOrSeawaterFarmedCode;
 
 public interface Seafood<QV extends QuantitativeValue> {
-    String getCatchZone();
+  String getCatchZone();
 
-    void setCatchZone(String value);
+  void setCatchZone(String value);
 
-    String getFishType();
+  String getFishType();
 
-    void setFishType(String value);
+  void setFishType(String value);
 
-    FreshOrSeawaterFarmedCode getFreshOrSeawaterFarmed();
+  FreshOrSeawaterFarmedCode getFreshOrSeawaterFarmed();
 
-    void setFreshOrSeawaterFarmed(FreshOrSeawaterFarmedCode value);
+  void setFreshOrSeawaterFarmed(FreshOrSeawaterFarmedCode value);
 
-    QV getMinimumFishContent();
+  QV getMinimumFishContent();
 
-    void setMinimumFishContent(QV value);
+  void setMinimumFishContent(QV value);
 }

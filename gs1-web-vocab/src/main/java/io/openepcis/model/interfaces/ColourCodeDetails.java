@@ -3,11 +3,11 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.ColourCodeListCode;
 
 public interface ColourCodeDetails {
-    ColourCodeListCode getColourCodeList();
+  ColourCodeListCode getColourCodeList();
 
-    void setColourCodeList(ColourCodeListCode value);
+  void setColourCodeList(ColourCodeListCode value);
 
-    String getColourCodeValue();
+  String getColourCodeValue();
 
-    void setColourCodeValue(String value);
+  void setColourCodeValue(String value);
 }

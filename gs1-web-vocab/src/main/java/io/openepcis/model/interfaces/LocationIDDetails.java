@@ -3,19 +3,19 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.LocationIDType;
 
 public interface LocationIDDetails {
-    String getLocationID();
+  String getLocationID();
 
-    void setLocationID(String value);
+  void setLocationID(String value);
 
-    String getLocationIDQualifier();
+  String getLocationIDQualifier();
 
-    void setLocationIDQualifier(String value);
+  void setLocationIDQualifier(String value);
 
-    LocationIDType getLocationIDType();
+  LocationIDType getLocationIDType();
 
-    void setLocationIDType(LocationIDType value);
+  void setLocationIDType(LocationIDType value);
 
-    String getLocationIDURI();
+  String getLocationIDURI();
 
-    void setLocationIDURI(String value);
+  void setLocationIDURI(String value);
 }

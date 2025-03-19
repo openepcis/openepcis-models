@@ -1,13 +1,11 @@
 package io.openepcis.model.interfaces;
 
-import io.openepcis.model.gs1webvocab.PriceSpecificationXMLImpl;
+public interface ReturnablePackageDepositDetails<P extends PriceSpecification, C extends Country> {
+  P getReturnablePackageDepositAmount();
 
-public interface ReturnablePackageDepositDetails<P extends PriceSpecification,C extends Country> {
-    P getReturnablePackageDepositAmount();
+  void setReturnablePackageDepositAmount(P value);
 
-    void setReturnablePackageDepositAmount(P value);
+  C getReturnablePackageDepositRegion();
 
-    C getReturnablePackageDepositRegion();
-
-    void setReturnablePackageDepositRegion(C value);
+  void setReturnablePackageDepositRegion(C value);
 }

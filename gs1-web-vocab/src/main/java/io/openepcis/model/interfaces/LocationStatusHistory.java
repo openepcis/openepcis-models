@@ -1,15 +1,14 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.StatusType;
-
 import java.time.LocalDateTime;
 
 public interface LocationStatusHistory {
-    StatusType getLocationStatus();
+  StatusType getLocationStatus();
 
-    void setLocationStatus(StatusType value);
+  void setLocationStatus(StatusType value);
 
-    LocalDateTime getStatusTimestamp();
+  LocalDateTime getStatusTimestamp();
 
-    void setStatusTimestamp(LocalDateTime value);
+  void setStatusTimestamp(LocalDateTime value);
 }

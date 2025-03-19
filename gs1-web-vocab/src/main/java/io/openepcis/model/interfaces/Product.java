@@ -1,389 +1,402 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
-
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface Product<AP extends AdditionalProductClassificationDetails,AD extends AdditiveDetails,
-        RF extends ReferencedFileDetails,AU extends AuthenticityDetails,AW extends AwardPrizeDetails,B extends Brand,O extends Organization,
-        CD extends CertificationDetails,CC extends ColourCodeDetails,C extends Country, P extends Product,QV extends QuantitativeValue,
-        WP extends WarrantyPromise,OC extends OrganicClaimDetails, PD extends PackagingDetails, SC extends SizeCodeDetails,TM extends TargetMarketDetails> {
-    List<AP> getAdditionalProductClassification();
+public interface Product<
+    AP extends AdditionalProductClassificationDetails,
+    AD extends AdditiveDetails,
+    RF extends ReferencedFileDetails,
+    AU extends AuthenticityDetails,
+    AW extends AwardPrizeDetails,
+    B extends Brand,
+    O extends Organization,
+    CD extends CertificationDetails,
+    CC extends ColourCodeDetails,
+    C extends Country,
+    P extends Product,
+    QV extends QuantitativeValue,
+    WP extends WarrantyPromise,
+    OC extends OrganicClaimDetails,
+    PD extends PackagingDetails,
+    SC extends SizeCodeDetails,
+    TM extends TargetMarketDetails> {
+  List<AP> getAdditionalProductClassification();
 
-    void setAdditionalProductClassification(List<AP> value);
+  void setAdditionalProductClassification(List<AP> value);
 
-    String getAdditionalProductDescription();
+  String getAdditionalProductDescription();
 
-    void setAdditionalProductDescription(String value);
+  void setAdditionalProductDescription(String value);
 
-    List<AD> getAdditive();
+  List<AD> getAdditive();
 
-    void setAdditive(List<AD> value);
+  void setAdditive(List<AD> value);
 
-    RF getAudioFile();
+  RF getAudioFile();
 
-    void setAudioFile(RF value);
+  void setAudioFile(RF value);
 
-    AU getAuthenticity();
+  AU getAuthenticity();
 
-    void setAuthenticity(AU value);
+  void setAuthenticity(AU value);
 
-    List<AW> getAwardPrize();
+  List<AW> getAwardPrize();
 
-    void setAwardPrize(List<AW> value);
+  void setAwardPrize(List<AW> value);
 
-    LocalDate getBestBeforeDate();
+  LocalDate getBestBeforeDate();
 
-    void setBestBeforeDate(LocalDate value);
+  void setBestBeforeDate(LocalDate value);
 
-    B getBrand();
+  B getBrand();
 
-    void setBrand(B value);
+  void setBrand(B value);
 
-    O getBrandOwner();
+  O getBrandOwner();
 
-    void setBrandOwner(O value);
+  void setBrandOwner(O value);
 
-    List<CD> getCertification();
+  List<CD> getCertification();
 
-    void setCertification(List<CD> value);
+  void setCertification(List<CD> value);
 
-    List<CC> getColourCode();
+  List<CC> getColourCode();
 
-    void setColourCode(List<CC> value);
+  void setColourCode(List<CC> value);
 
-    String getColourDescription();
+  String getColourDescription();
 
-    void setColourDescription(String value);
+  void setColourDescription(String value);
 
-    RF getConsumerHandlingStorage();
+  RF getConsumerHandlingStorage();
 
-    void setConsumerHandlingStorage(RF value);
+  void setConsumerHandlingStorage(RF value);
 
-    String getConsumerPackageDisclaimer();
+  String getConsumerPackageDisclaimer();
 
-    void setConsumerPackageDisclaimer(String value);
+  void setConsumerPackageDisclaimer(String value);
 
-    String getConsumerProductVariant();
+  String getConsumerProductVariant();
 
-    void setConsumerProductVariant(String value);
+  void setConsumerProductVariant(String value);
 
-    String getConsumerSafetyInformation();
+  String getConsumerSafetyInformation();
 
-    void setConsumerSafetyInformation(String value);
+  void setConsumerSafetyInformation(String value);
 
-    ConsumerSalesConditionsCode getConsumerSalesCondition();
+  ConsumerSalesConditionsCode getConsumerSalesCondition();
 
-    void setConsumerSalesCondition(ConsumerSalesConditionsCode value);
+  void setConsumerSalesCondition(ConsumerSalesConditionsCode value);
 
-    String getConsumerStorageInstructions();
+  String getConsumerStorageInstructions();
 
-    void setConsumerStorageInstructions(String value);
+  void setConsumerStorageInstructions(String value);
 
-    String getConsumerUsageInstructions();
+  String getConsumerUsageInstructions();
 
-    void setConsumerUsageInstructions(String value);
+  void setConsumerUsageInstructions(String value);
 
-    C getCountryOfAssembly();
+  C getCountryOfAssembly();
 
-    void setCountryOfAssembly(C value);
+  void setCountryOfAssembly(C value);
 
-    C getCountryOfLastProcessing();
+  C getCountryOfLastProcessing();
 
-    void setCountryOfLastProcessing(C value);
+  void setCountryOfLastProcessing(C value);
 
-    C getCountryOfOrigin();
+  C getCountryOfOrigin();
 
-    void setCountryOfOrigin(C value);
+  void setCountryOfOrigin(C value);
 
-    String getCountryOfOriginStatement();
+  String getCountryOfOriginStatement();
 
-    void setCountryOfOriginStatement(String value);
+  void setCountryOfOriginStatement(String value);
 
-    O getCustomerSupportCentre();
+  O getCustomerSupportCentre();
 
-    void setCustomerSupportCentre(O value);
+  void setCustomerSupportCentre(O value);
 
-    List<P> getDependentProprietaryProduct();
+  List<P> getDependentProprietaryProduct();
 
-    void setDependentProprietaryProduct(List<P> value);
+  void setDependentProprietaryProduct(List<P> value);
 
-    String getDescriptiveSize();
+  String getDescriptiveSize();
 
-    void setDescriptiveSize(String value);
+  void setDescriptiveSize(String value);
 
-    LocalDate getDueDate();
+  LocalDate getDueDate();
 
-    void setDueDate(LocalDate value);
+  void setDueDate(LocalDate value);
 
-    List<P> getEquivalentProduct();
+  List<P> getEquivalentProduct();
 
-    void setEquivalentProduct(List<P> value);
+  void setEquivalentProduct(List<P> value);
 
-    LocalDate getExpirationDate();
+  LocalDate getExpirationDate();
 
-    void setExpirationDate(LocalDate value);
+  void setExpirationDate(LocalDate value);
 
-    LocalDate getExpirationDateTime();
+  LocalDate getExpirationDateTime();
 
-    void setExpirationDateTime(LocalDate value);
+  void setExpirationDateTime(LocalDate value);
 
-    LocalDate getFirstFreezeDate();
+  LocalDate getFirstFreezeDate();
 
-    void setFirstFreezeDate(LocalDate value);
+  void setFirstFreezeDate(LocalDate value);
 
-    String getFunctionalName();
+  String getFunctionalName();
 
-    void setFunctionalName(String value);
+  void setFunctionalName(String value);
 
-    String getGpcCategoryCode();
+  String getGpcCategoryCode();
 
-    void setGpcCategoryCode(String value);
+  void setGpcCategoryCode(String value);
 
-    String getGpcCategoryDescription();
+  String getGpcCategoryDescription();
 
-    void setGpcCategoryDescription(String value);
+  void setGpcCategoryDescription(String value);
 
-    QV getGrossArea();
+  QV getGrossArea();
 
-    void setGrossArea(QV value);
+  void setGrossArea(QV value);
 
-    QV getGrossVolume();
+  QV getGrossVolume();
 
-    void setGrossVolume(QV value);
+  void setGrossVolume(QV value);
 
-    QV getGrossWeight();
+  QV getGrossWeight();
 
-    void setGrossWeight(QV value);
+  void setGrossWeight(QV value);
 
-    GrowingMethodCode getGrowingMethod();
+  GrowingMethodCode getGrowingMethod();
 
-    void setGrowingMethod(GrowingMethodCode value);
+  void setGrowingMethod(GrowingMethodCode value);
 
-    String getGtin();
+  String getGtin();
 
-    void setGtin(String value);
+  void setGtin(String value);
 
-    LocalDate getHarvestDate();
+  LocalDate getHarvestDate();
 
-    void setHarvestDate(LocalDate value);
+  void setHarvestDate(LocalDate value);
 
-    LocalDate getHarvestDateEnd();
+  LocalDate getHarvestDateEnd();
 
-    void setHarvestDateEnd(LocalDate value);
+  void setHarvestDateEnd(LocalDate value);
 
-    LocalDate getHarvestDateStart();
+  LocalDate getHarvestDateStart();
 
-    void setHarvestDateStart(LocalDate value);
+  void setHarvestDateStart(LocalDate value);
 
-    String getHasBatchLotNumber();
+  String getHasBatchLotNumber();
 
-    void setHasBatchLotNumber(String value);
+  void setHasBatchLotNumber(String value);
 
-    String getHasSerialNumber();
+  String getHasSerialNumber();
 
-    void setHasSerialNumber(String value);
+  void setHasSerialNumber(String value);
 
-    String getHasThirdPartyControlledSerialNumber();
+  String getHasThirdPartyControlledSerialNumber();
 
-    void setHasThirdPartyControlledSerialNumber(String value);
+  void setHasThirdPartyControlledSerialNumber(String value);
 
-    String getHealthClaimDescription();
+  String getHealthClaimDescription();
 
-    void setHealthClaimDescription(String value);
+  void setHealthClaimDescription(String value);
 
-    RF getImage();
+  RF getImage();
 
-    void setImage(RF value);
+  void setImage(RF value);
 
-    QV getInPackageDepth();
+  QV getInPackageDepth();
 
-    void setInPackageDepth(QV value);
+  void setInPackageDepth(QV value);
 
-    QV getInPackageDiameter();
+  QV getInPackageDiameter();
 
-    void setInPackageDiameter(QV value);
+  void setInPackageDiameter(QV value);
 
-    QV getInPackageHeight();
+  QV getInPackageHeight();
 
-    void setInPackageHeight(QV value);
+  void setInPackageHeight(QV value);
 
-    QV getInPackageWidth();
+  QV getInPackageWidth();
 
-    void setInPackageWidth(QV value);
+  void setInPackageWidth(QV value);
 
-    String getIncludedAccessories();
+  String getIncludedAccessories();
 
-    void setIncludedAccessories(String value);
+  void setIncludedAccessories(String value);
 
-    RF getInstructionsForUse();
+  RF getInstructionsForUse();
 
-    void setInstructionsForUse(RF value);
+  void setInstructionsForUse(RF value);
 
-    boolean getIsProductRecalled();
+  boolean getIsProductRecalled();
 
-    void setIsProductRecalled(boolean value);
+  void setIsProductRecalled(boolean value);
 
-    String getJws();
+  String getJws();
 
-    void setJws(String value);
+  void setJws(String value);
 
-    O getManufacturer();
+  O getManufacturer();
 
-    void setManufacturer(O value);
+  void setManufacturer(O value);
 
-    WP getManufacturersWarranty();
+  WP getManufacturersWarranty();
 
-    void setManufacturersWarranty(WP value);
+  void setManufacturersWarranty(WP value);
 
-    O getManufacturingPlant();
+  O getManufacturingPlant();
 
-    void setManufacturingPlant(O value);
+  void setManufacturingPlant(O value);
 
-    QV getMassPerUnitArea();
+  QV getMassPerUnitArea();
 
-    void setMassPerUnitArea(QV value);
+  void setMassPerUnitArea(QV value);
 
-    QV getNetArea();
+  QV getNetArea();
 
-    void setNetArea(QV value);
+  void setNetArea(QV value);
 
-    QV getNetContent();
+  QV getNetContent();
 
-    void setNetContent(QV value);
+  void setNetContent(QV value);
 
-    QV getNetWeight();
+  QV getNetWeight();
 
-    void setNetWeight(QV value);
+  void setNetWeight(QV value);
 
-    List<OC> getOrganicClaim();
+  List<OC> getOrganicClaim();
 
-    void setOrganicClaim(List<OC> value);
+  void setOrganicClaim(List<OC> value);
 
-    QV getOutOfPackageDepth();
+  QV getOutOfPackageDepth();
 
-    void setOutOfPackageDepth(QV value);
+  void setOutOfPackageDepth(QV value);
 
-    QV getOutOfPackageDiameter();
+  QV getOutOfPackageDiameter();
 
-    void setOutOfPackageDiameter(QV value);
+  void setOutOfPackageDiameter(QV value);
 
-    QV getOutOfPackageHeight();
+  QV getOutOfPackageHeight();
 
-    void setOutOfPackageHeight(QV value);
+  void setOutOfPackageHeight(QV value);
 
-    QV getOutOfPackageWidth();
+  QV getOutOfPackageWidth();
 
-    void setOutOfPackageWidth(QV value);
+  void setOutOfPackageWidth(QV value);
 
-    PD getPackaging();
+  PD getPackaging();
 
-    void setPackaging(PD value);
+  void setPackaging(PD value);
 
-    LocalDate getPackagingDate();
+  LocalDate getPackagingDate();
 
-    void setPackagingDate(LocalDate value);
+  void setPackagingDate(LocalDate value);
 
-    PackagingMarkedLabelAccreditationCode getPackagingMarkedLabelAccreditation();
+  PackagingMarkedLabelAccreditationCode getPackagingMarkedLabelAccreditation();
 
-    void setPackagingMarkedLabelAccreditation(PackagingMarkedLabelAccreditationCode value);
+  void setPackagingMarkedLabelAccreditation(PackagingMarkedLabelAccreditationCode value);
 
-    P getPrimaryAlternateProduct();
+  P getPrimaryAlternateProduct();
 
-    void setPrimaryAlternateProduct(P value);
+  void setPrimaryAlternateProduct(P value);
 
-    String getProductDescription();
+  String getProductDescription();
 
-    void setProductDescription(String value);
+  void setProductDescription(String value);
 
-    String getProductFeatureBenefit();
+  String getProductFeatureBenefit();
 
-    void setProductFeatureBenefit(String value);
+  void setProductFeatureBenefit(String value);
 
-    String getProductFormDescription();
+  String getProductFormDescription();
 
-    void setProductFormDescription(String value);
+  void setProductFormDescription(String value);
 
-    String getProductID();
+  String getProductID();
 
-    void setProductID(String value);
+  void setProductID(String value);
 
-    String getProductMarketingMessage();
+  String getProductMarketingMessage();
 
-    void setProductMarketingMessage(String value);
+  void setProductMarketingMessage(String value);
 
-    String getProductName();
+  String getProductName();
 
-    void setProductName(String value);
+  void setProductName(String value);
 
-    String getProductRange();
+  String getProductRange();
 
-    void setProductRange(String value);
+  void setProductRange(String value);
 
-    String getProductSustainabilityInfo();
+  String getProductSustainabilityInfo();
 
-    void setProductSustainabilityInfo(String value);
+  void setProductSustainabilityInfo(String value);
 
-    LocalDate getProductionDate();
+  LocalDate getProductionDate();
 
-    void setProductionDate(LocalDate value);
+  void setProductionDate(LocalDate value);
 
-    LocalDate getProductionDateTime();
+  LocalDate getProductionDateTime();
 
-    void setProductionDateTime(LocalDate value);
+  void setProductionDateTime(LocalDate value);
 
-    String getProductionVariantDescription();
+  String getProductionVariantDescription();
 
-    void setProductionVariantDescription(String value);
+  void setProductionVariantDescription(String value);
 
-    LocalDateTime getProductionVariantEffectiveDateTime();
+  LocalDateTime getProductionVariantEffectiveDateTime();
 
-    void setProductionVariantEffectiveDateTime(LocalDateTime value);
+  void setProductionVariantEffectiveDateTime(LocalDateTime value);
 
-    String getProvenanceStatement();
+  String getProvenanceStatement();
 
-    void setProvenanceStatement(String value);
+  void setProvenanceStatement(String value);
 
-    List<RF> getReferencedFile();
+  List<RF> getReferencedFile();
 
-    void setReferencedFile(List<RF> value);
+  void setReferencedFile(List<RF> value);
 
-    String getRegulatedProductName();
+  String getRegulatedProductName();
 
-    void setRegulatedProductName(String value);
+  void setRegulatedProductName(String value);
 
-    P getReplacedByProduct();
+  P getReplacedByProduct();
 
-    void setReplacedByProduct(P value);
+  void setReplacedByProduct(P value);
 
-    P getReplacedProduct();
+  P getReplacedProduct();
 
-    void setReplacedProduct(P value);
+  void setReplacedProduct(P value);
 
-    LocalDate getSellByDate();
+  LocalDate getSellByDate();
 
-    void setSellByDate(LocalDate value);
+  void setSellByDate(LocalDate value);
 
-    SC getSizeCode();
+  SC getSizeCode();
 
-    void setSizeCode(SC value);
+  void setSizeCode(SC value);
 
-    BigInteger getSupplierSpecifiedMinimumConsumerStorageDays();
+  BigInteger getSupplierSpecifiedMinimumConsumerStorageDays();
 
-    void setSupplierSpecifiedMinimumConsumerStorageDays(BigInteger value);
+  void setSupplierSpecifiedMinimumConsumerStorageDays(BigInteger value);
 
-    List<TM> getTargetMarket();
+  List<TM> getTargetMarket();
 
-    void setTargetMarket(List<TM> value);
+  void setTargetMarket(List<TM> value);
 
-    String getVariantDescription();
+  String getVariantDescription();
 
-    void setVariantDescription(String value);
+  void setVariantDescription(String value);
 
-    String getWarningCopyDescription();
+  String getWarningCopyDescription();
 
-    void setWarningCopyDescription(String value);
+  void setWarningCopyDescription(String value);
 }

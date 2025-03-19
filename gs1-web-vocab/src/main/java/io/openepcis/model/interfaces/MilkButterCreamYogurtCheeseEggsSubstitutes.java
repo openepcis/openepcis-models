@@ -5,31 +5,31 @@ import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 import io.openepcis.model.gs1webvocab.SharpnessOfCheeseCode;
 
 public interface MilkButterCreamYogurtCheeseEggsSubstitutes {
-    CheeseFirmnessCode getCheeseFirmness();
+  CheeseFirmnessCode getCheeseFirmness();
 
-    void setCheeseFirmness(CheeseFirmnessCode value);
+  void setCheeseFirmness(CheeseFirmnessCode value);
 
-    String getCheeseMaturationPeriodDescription();
+  String getCheeseMaturationPeriodDescription();
 
-    void setCheeseMaturationPeriodDescription(String value);
+  void setCheeseMaturationPeriodDescription(String value);
 
-    float getFatInMilkContent();
+  float getFatInMilkContent();
 
-    void setFatInMilkContent(float value);
+  void setFatInMilkContent(float value);
 
-    float getFatpercentageInDryMatter();
+  float getFatpercentageInDryMatter();
 
-    void setFatpercentageInDryMatter(float value);
+  void setFatpercentageInDryMatter(float value);
 
-    NonbinaryLogicCode getIsHomogenised();
+  NonbinaryLogicCode getIsHomogenised();
 
-    void setIsHomogenised(NonbinaryLogicCode value);
+  void setIsHomogenised(NonbinaryLogicCode value);
 
-    NonbinaryLogicCode getIsRindEdible();
+  NonbinaryLogicCode getIsRindEdible();
 
-    void setIsRindEdible(NonbinaryLogicCode value);
+  void setIsRindEdible(NonbinaryLogicCode value);
 
-    SharpnessOfCheeseCode getSharpnessOfCheese();
+  SharpnessOfCheeseCode getSharpnessOfCheese();
 
-    void setSharpnessOfCheese(SharpnessOfCheeseCode value);
+  void setSharpnessOfCheese(SharpnessOfCheeseCode value);
 }

@@ -3,11 +3,11 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.DietTypeCode;
 
 public interface DietTypeCodeDetails {
-    DietTypeCode getDietType();
+  DietTypeCode getDietType();
 
-    void setDietType(DietTypeCode value);
+  void setDietType(DietTypeCode value);
 
-    String getDietTypeSubcode();
+  String getDietTypeSubcode();
 
-    void setDietTypeSubcode(String value);
+  void setDietTypeSubcode(String value);
 }

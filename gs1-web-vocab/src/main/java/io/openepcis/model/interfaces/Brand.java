@@ -1,11 +1,11 @@
 package io.openepcis.model.interfaces;
 
 public interface Brand {
-    String getBrandName();
+  String getBrandName();
 
-    void setBrandName(String value);
+  void setBrandName(String value);
 
-    String getSubBrandName();
+  String getSubBrandName();
 
-    void setSubBrandName(String value);
+  void setSubBrandName(String value);
 }

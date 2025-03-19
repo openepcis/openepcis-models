@@ -1,11 +1,11 @@
 package io.openepcis.model.interfaces;
 
 public interface SizeCodeDetails {
-    String getSizeCodeListCode();
+  String getSizeCodeListCode();
 
-    void setSizeCodeListCode(String value);
+  void setSizeCodeListCode(String value);
 
-    String getSizeCodeValue();
+  String getSizeCodeValue();
 
-    void setSizeCodeValue(String value);
+  void setSizeCodeValue(String value);
 }

@@ -1,15 +1,15 @@
 package io.openepcis.model.interfaces;
 
 public interface AdditionalProductClassificationDetails {
-    String getAdditionalProductClassificationCode();
+  String getAdditionalProductClassificationCode();
 
-    void setAdditionalProductClassificationCode(String value);
+  void setAdditionalProductClassificationCode(String value);
 
-    String getAdditionalProductClassificationCodeDescription();
+  String getAdditionalProductClassificationCodeDescription();
 
-    void setAdditionalProductClassificationCodeDescription(String value);
+  void setAdditionalProductClassificationCodeDescription(String value);
 
-    String getAdditionalProductClassificationValue();
+  String getAdditionalProductClassificationValue();
 
-    void setAdditionalProductClassificationValue(String value);
+  void setAdditionalProductClassificationValue(String value);
 }

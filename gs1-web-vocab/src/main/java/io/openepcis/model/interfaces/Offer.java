@@ -1,73 +1,78 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
-public interface Offer<P extends Place,Q extends QuantitativeValue,PR extends Product,D extends Discount
-        ,R extends ReferencedFileDetails,PS extends PriceSpecification,W extends WarrantyPromise,O extends Organization>{
-    PaymentMethod getAcceptedPaymentMethod();
+public interface Offer<
+    P extends Place,
+    Q extends QuantitativeValue,
+    PR extends Product,
+    D extends Discount,
+    R extends ReferencedFileDetails,
+    PS extends PriceSpecification,
+    W extends WarrantyPromise,
+    O extends Organization> {
+  PaymentMethod getAcceptedPaymentMethod();
 
-    void setAcceptedPaymentMethod(PaymentMethod value);
+  void setAcceptedPaymentMethod(PaymentMethod value);
 
-    LocalDateTime getAvailabilityEnds();
+  LocalDateTime getAvailabilityEnds();
 
-    void setAvailabilityEnds(LocalDateTime value);
+  void setAvailabilityEnds(LocalDateTime value);
 
-    LocalDateTime getAvailabilityStarts();
+  LocalDateTime getAvailabilityStarts();
 
-    void setAvailabilityStarts(LocalDateTime value);
+  void setAvailabilityStarts(LocalDateTime value);
 
-    P getAvailableAtOrFrom();
+  P getAvailableAtOrFrom();
 
-    void setAvailableAtOrFrom(P value);
+  void setAvailableAtOrFrom(P value);
 
-    Q getEligibleQuantity();
+  Q getEligibleQuantity();
 
-    void setEligibleQuantity(Q value);
+  void setEligibleQuantity(Q value);
 
-    Q getEligibleQuantityMaximum();
+  Q getEligibleQuantityMaximum();
 
-    void setEligibleQuantityMaximum(Q value);
+  void setEligibleQuantityMaximum(Q value);
 
-    Q getEligibleQuantityMinimum();
+  Q getEligibleQuantityMinimum();
 
-    void setEligibleQuantityMinimum(Q value);
+  void setEligibleQuantityMinimum(Q value);
 
-    PR getItemOffered();
+  PR getItemOffered();
 
-    void setItemOffered(PR value);
+  void setItemOffered(PR value);
 
-    String getOfferDescription();
+  String getOfferDescription();
 
-    void setOfferDescription(String value);
+  void setOfferDescription(String value);
 
-    D getOfferDiscount();
+  D getOfferDiscount();
 
-    void setOfferDiscount(D value);
+  void setOfferDiscount(D value);
 
-    R getOfferRedemptionURL();
+  R getOfferRedemptionURL();
 
-    void setOfferRedemptionURL(R value);
+  void setOfferRedemptionURL(R value);
 
-    String getPaymentTerms();
+  String getPaymentTerms();
 
-    void setPaymentTerms(String value);
+  void setPaymentTerms(String value);
 
-    PS getPriceSpecification();
+  PS getPriceSpecification();
 
-    void setPriceSpecification(PS value);
+  void setPriceSpecification(PS value);
 
-    O getSeeker();
+  O getSeeker();
 
-    void setSeeker(O value);
+  void setSeeker(O value);
 
-    O getSeller();
+  O getSeller();
 
-    void setSeller(O value);
+  void setSeller(O value);
 
-    W getWarranty();
+  W getWarranty();
 
-    void setWarranty(W value);
+  void setWarranty(W value);
 }

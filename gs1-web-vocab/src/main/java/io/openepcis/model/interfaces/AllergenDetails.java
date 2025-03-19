@@ -4,11 +4,11 @@ import io.openepcis.model.gs1webvocab.AllergenTypeCode;
 import io.openepcis.model.gs1webvocab.LevelOfContainmentCode;
 
 public interface AllergenDetails {
-    LevelOfContainmentCode getAllergenLevelOfContainmentCode();
+  LevelOfContainmentCode getAllergenLevelOfContainmentCode();
 
-    void setAllergenLevelOfContainmentCode(LevelOfContainmentCode value);
+  void setAllergenLevelOfContainmentCode(LevelOfContainmentCode value);
 
-    AllergenTypeCode getAllergenType();
+  AllergenTypeCode getAllergenType();
 
-    void setAllergenType(AllergenTypeCode value);
+  void setAllergenType(AllergenTypeCode value);
 }

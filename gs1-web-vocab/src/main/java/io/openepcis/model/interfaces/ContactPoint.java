@@ -1,31 +1,31 @@
 package io.openepcis.model.interfaces;
 
 public interface ContactPoint {
-    String getAvailableLanguage();
+  String getAvailableLanguage();
 
-    void setAvailableLanguage(String value);
+  void setAvailableLanguage(String value);
 
-    String getContactTitle();
+  String getContactTitle();
 
-    void setContactTitle(String value);
+  void setContactTitle(String value);
 
-    String getContactType();
+  String getContactType();
 
-    void setContactType(String value);
+  void setContactType(String value);
 
-    String getEmail();
+  String getEmail();
 
-    void setEmail(String value);
+  void setEmail(String value);
 
-    String getFaxNumber();
+  String getFaxNumber();
 
-    void setFaxNumber(String value);
+  void setFaxNumber(String value);
 
-    String getResponsibility();
+  String getResponsibility();
 
-    void setResponsibility(String value);
+  void setResponsibility(String value);
 
-    String getTelephone();
+  String getTelephone();
 
-    void setTelephone(String value);
+  void setTelephone(String value);
 }

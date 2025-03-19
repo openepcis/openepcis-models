@@ -1,23 +1,22 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
-
 import java.util.List;
 
 public interface Clothing<TM extends TextileMaterialDetails> {
-    String getClothingCut();
+  String getClothingCut();
 
-    void setClothingCut(String value);
+  void setClothingCut(String value);
 
-    String getCollarType();
+  String getCollarType();
 
-    void setCollarType(String value);
+  void setCollarType(String value);
 
-    NonbinaryLogicCode getIsMaternity();
+  NonbinaryLogicCode getIsMaternity();
 
-    void setIsMaternity(NonbinaryLogicCode value);
+  void setIsMaternity(NonbinaryLogicCode value);
 
-    List<TM> getTextileMaterial();
+  List<TM> getTextileMaterial();
 
-    void setTextileMaterial(List<TM> value);
+  void setTextileMaterial(List<TM> value);
 }

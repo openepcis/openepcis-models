@@ -1,40 +1,39 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.ReferencedFileTypeCode;
-
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 public interface ReferencedFileDetails<QV extends QuantitativeValue> {
-    String getFileLanguageCode();
+  String getFileLanguageCode();
 
-    void setFileLanguageCode(String value);
+  void setFileLanguageCode(String value);
 
-    BigInteger getFilePixelHeight();
+  BigInteger getFilePixelHeight();
 
-    void setFilePixelHeight(BigInteger value);
+  void setFilePixelHeight(BigInteger value);
 
-    BigInteger getFilePixelWidth();
+  BigInteger getFilePixelWidth();
 
-    void setFilePixelWidth(BigInteger value);
+  void setFilePixelWidth(BigInteger value);
 
-    LocalDateTime getReferencedFileEffectiveEndDateTime();
+  LocalDateTime getReferencedFileEffectiveEndDateTime();
 
-    void setReferencedFileEffectiveEndDateTime(LocalDateTime value);
+  void setReferencedFileEffectiveEndDateTime(LocalDateTime value);
 
-    LocalDateTime getReferencedFileEffectiveStartDateTime();
+  LocalDateTime getReferencedFileEffectiveStartDateTime();
 
-    void setReferencedFileEffectiveStartDateTime(LocalDateTime value);
+  void setReferencedFileEffectiveStartDateTime(LocalDateTime value);
 
-    QV getReferencedFileSize();
+  QV getReferencedFileSize();
 
-    void setReferencedFileSize(QV value);
+  void setReferencedFileSize(QV value);
 
-    ReferencedFileTypeCode getReferencedFileType();
+  ReferencedFileTypeCode getReferencedFileType();
 
-    void setReferencedFileType(ReferencedFileTypeCode value);
+  void setReferencedFileType(ReferencedFileTypeCode value);
 
-    String getReferencedFileURL();
+  String getReferencedFileURL();
 
-    void setReferencedFileURL(String value);
+  void setReferencedFileURL(String value);
 }

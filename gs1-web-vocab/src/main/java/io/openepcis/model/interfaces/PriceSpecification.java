@@ -3,51 +3,51 @@ package io.openepcis.model.interfaces;
 import java.time.LocalDateTime;
 
 public interface PriceSpecification<Q extends QuantitativeValue> {
-    float getDutyFeeTaxAmount();
+  float getDutyFeeTaxAmount();
 
-    void setDutyFeeTaxAmount(float value);
+  void setDutyFeeTaxAmount(float value);
 
-    String getDutyFeeTaxDescription();
+  String getDutyFeeTaxDescription();
 
-    void setDutyFeeTaxDescription(String value);
+  void setDutyFeeTaxDescription(String value);
 
-    float getDutyFeeTaxRate();
+  float getDutyFeeTaxRate();
 
-    void setDutyFeeTaxRate(float value);
+  void setDutyFeeTaxRate(float value);
 
-    Q getEligibleQuantity();
+  Q getEligibleQuantity();
 
-    void setEligibleQuantity(Q value);
+  void setEligibleQuantity(Q value);
 
-    Q getEligibleQuantityMaximum();
+  Q getEligibleQuantityMaximum();
 
-    void setEligibleQuantityMaximum(Q value);
+  void setEligibleQuantityMaximum(Q value);
 
-    Q getEligibleQuantityMinimum();
+  Q getEligibleQuantityMinimum();
 
-    void setEligibleQuantityMinimum(Q value);
+  void setEligibleQuantityMinimum(Q value);
 
-    float getMaxPrice();
+  float getMaxPrice();
 
-    void setMaxPrice(float value);
+  void setMaxPrice(float value);
 
-    float getMinPrice();
+  float getMinPrice();
 
-    void setMinPrice(float value);
+  void setMinPrice(float value);
 
-    float getPrice();
+  float getPrice();
 
-    void setPrice(float value);
+  void setPrice(float value);
 
-    String getPriceCurrency();
+  String getPriceCurrency();
 
-    void setPriceCurrency(String value);
+  void setPriceCurrency(String value);
 
-    LocalDateTime getValidFrom();
+  LocalDateTime getValidFrom();
 
-    void setValidFrom(LocalDateTime value);
+  void setValidFrom(LocalDateTime value);
 
-    LocalDateTime getValidThrough();
+  LocalDateTime getValidThrough();
 
-    void setValidThrough(LocalDateTime value);
+  void setValidThrough(LocalDateTime value);
 }

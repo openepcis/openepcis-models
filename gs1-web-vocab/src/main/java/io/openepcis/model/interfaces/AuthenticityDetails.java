@@ -3,23 +3,23 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.SecurityMarking;
 
 public interface AuthenticityDetails {
-    String getAuthenticitySecurityFeatureInstructions();
+  String getAuthenticitySecurityFeatureInstructions();
 
-    void setAuthenticitySecurityFeatureInstructions(String value);
+  void setAuthenticitySecurityFeatureInstructions(String value);
 
-    String getAuthenticitySecurityFeatureInstructionsURL();
+  String getAuthenticitySecurityFeatureInstructionsURL();
 
-    void setAuthenticitySecurityFeatureInstructionsURL(String value);
+  void setAuthenticitySecurityFeatureInstructionsURL(String value);
 
-    String getAuthenticitySecurityFeatureRegularExpression();
+  String getAuthenticitySecurityFeatureRegularExpression();
 
-    void setAuthenticitySecurityFeatureRegularExpression(String value);
+  void setAuthenticitySecurityFeatureRegularExpression(String value);
 
-    SecurityMarking getAuthenticitySecurityFeatureType();
+  SecurityMarking getAuthenticitySecurityFeatureType();
 
-    void setAuthenticitySecurityFeatureType(SecurityMarking value);
+  void setAuthenticitySecurityFeatureType(SecurityMarking value);
 
-    String getAuthenticitySecurityFeatureValue();
+  String getAuthenticitySecurityFeatureValue();
 
-    void setAuthenticitySecurityFeatureValue(String value);
+  void setAuthenticitySecurityFeatureValue(String value);
 }

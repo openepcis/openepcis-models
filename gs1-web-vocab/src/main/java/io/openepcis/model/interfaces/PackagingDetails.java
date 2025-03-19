@@ -1,39 +1,39 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
-
 import java.util.List;
 
-public interface PackagingDetails<RPD extends ReturnablePackageDepositDetails, PM extends PackagingMaterialDetails> {
-    List<RPD> getHasReturnablePackageDeposit();
+public interface PackagingDetails<
+    RPD extends ReturnablePackageDepositDetails, PM extends PackagingMaterialDetails> {
+  List<RPD> getHasReturnablePackageDeposit();
 
-    void setHasReturnablePackageDeposit(List<RPD> value);
+  void setHasReturnablePackageDeposit(List<RPD> value);
 
-    PackagingFeatureCode getPackagingFeature();
+  PackagingFeatureCode getPackagingFeature();
 
-    void setPackagingFeature(PackagingFeatureCode value);
+  void setPackagingFeature(PackagingFeatureCode value);
 
-    PackagingFunctionCode getPackagingFunction();
+  PackagingFunctionCode getPackagingFunction();
 
-    void setPackagingFunction(PackagingFunctionCode value);
+  void setPackagingFunction(PackagingFunctionCode value);
 
-    List<PM> getPackagingMaterial();
+  List<PM> getPackagingMaterial();
 
-    void setPackagingMaterial(List<PM> value);
+  void setPackagingMaterial(List<PM> value);
 
-    PackagingRecyclingProcessTypeCode getPackagingRecyclingProcessType();
+  PackagingRecyclingProcessTypeCode getPackagingRecyclingProcessType();
 
-    void setPackagingRecyclingProcessType(PackagingRecyclingProcessTypeCode value);
+  void setPackagingRecyclingProcessType(PackagingRecyclingProcessTypeCode value);
 
-    PackagingRecyclingSchemeCode getPackagingRecyclingScheme();
+  PackagingRecyclingSchemeCode getPackagingRecyclingScheme();
 
-    void setPackagingRecyclingScheme(PackagingRecyclingSchemeCode value);
+  void setPackagingRecyclingScheme(PackagingRecyclingSchemeCode value);
 
-    PackagingShapeCode getPackagingShape();
+  PackagingShapeCode getPackagingShape();
 
-    void setPackagingShape(PackagingShapeCode value);
+  void setPackagingShape(PackagingShapeCode value);
 
-    String getPackagingType();
+  String getPackagingType();
 
-    void setPackagingType(String value);
+  void setPackagingType(String value);
 }

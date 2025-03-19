@@ -5,19 +5,19 @@ import io.openepcis.model.gs1webvocab.SizeSystemCode;
 import io.openepcis.model.gs1webvocab.SizeTypeCode;
 
 public interface SizeDetails<QV extends QuantitativeValue> {
-    QV getSizeDimension();
+  QV getSizeDimension();
 
-    void setSizeDimension(QV value);
+  void setSizeDimension(QV value);
 
-    SizeGroupCode getSizeGroup();
+  SizeGroupCode getSizeGroup();
 
-    void setSizeGroup(SizeGroupCode value);
+  void setSizeGroup(SizeGroupCode value);
 
-    SizeSystemCode getSizeSystem();
+  SizeSystemCode getSizeSystem();
 
-    void setSizeSystem(SizeSystemCode value);
+  void setSizeSystem(SizeSystemCode value);
 
-    SizeTypeCode getSizeType();
+  SizeTypeCode getSizeType();
 
-    void setSizeType(SizeTypeCode value);
+  void setSizeType(SizeTypeCode value);
 }

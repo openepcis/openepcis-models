@@ -1,19 +1,19 @@
 package io.openepcis.model.interfaces;
 
 public interface GeoCoordinates {
-    String getCoordinateReferenceSystem();
+  String getCoordinateReferenceSystem();
 
-    void setCoordinateReferenceSystem(String value);
+  void setCoordinateReferenceSystem(String value);
 
-    String getElevation();
+  String getElevation();
 
-    void setElevation(String value);
+  void setElevation(String value);
 
-    String getLatitude();
+  String getLatitude();
 
-    void setLatitude(String value);
+  void setLatitude(String value);
 
-    String getLongitude();
+  String getLongitude();
 
-    void setLongitude(String value);
+  void setLongitude(String value);
 }
