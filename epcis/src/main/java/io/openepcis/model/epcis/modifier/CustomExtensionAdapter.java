@@ -54,27 +54,45 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
       }
 
       if (value instanceof Map mapValue) {
-        elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
+        elements.add(
+            new JAXBElement<>(
+                createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
       } else if (value instanceof List listValue) {
         for (Object item : listValue) {
           if (item instanceof Map mapValue) {
-            elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
+            elements.add(
+                new JAXBElement<>(
+                    createQName(localPart, namespaceURI, prefix),
+                    MapWrapper.class,
+                    marshal(mapValue)));
           } else {
-            elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), String.class, item.toString()));
+            elements.add(
+                new JAXBElement<>(
+                    createQName(localPart, namespaceURI, prefix), String.class, item.toString()));
           }
         }
       } else if (value instanceof String stringValue) {
-          elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), String.class, stringValue));
+        elements.add(
+            new JAXBElement<>(
+                createQName(localPart, namespaceURI, prefix), String.class, stringValue));
       } else if (value instanceof Double doubleValue) {
-          elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), Double.class, doubleValue));
+        elements.add(
+            new JAXBElement<>(
+                createQName(localPart, namespaceURI, prefix), Double.class, doubleValue));
       } else if (value instanceof Integer integerValue) {
-          elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), Integer.class, integerValue));
+        elements.add(
+            new JAXBElement<>(
+                createQName(localPart, namespaceURI, prefix), Integer.class, integerValue));
       } else if (value instanceof Boolean booleanValue) {
-          elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), Boolean.class, booleanValue));
+        elements.add(
+            new JAXBElement<>(
+                createQName(localPart, namespaceURI, prefix), Boolean.class, booleanValue));
       } else {
-          // Handle untyped or unexpected values
-          String valueString = value.toString(); // Ensure conversion to String
-          elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), String.class, valueString));
+        // Handle untyped or unexpected values
+        String valueString = value.toString(); // Ensure conversion to String
+        elements.add(
+            new JAXBElement<>(
+                createQName(localPart, namespaceURI, prefix), String.class, valueString));
       }
     }
     wrapper.elements = elements;
@@ -111,4 +129,3 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
     return (index > 0) ? qName.substring(0, index) : null;
   }
 }
-

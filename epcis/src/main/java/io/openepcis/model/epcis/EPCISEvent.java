@@ -15,6 +15,10 @@
  */
 package io.openepcis.model.epcis;
 
+import static com.fasterxml.jackson.annotation.JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE;
+import static com.fasterxml.jackson.annotation.JsonFormat.Feature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS;
+import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
+
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -28,20 +32,15 @@ import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.util.*;
+import javax.xml.parsers.ParserConfigurationException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.Serializable;
-import java.time.OffsetDateTime;
-import java.util.*;
-
-import static com.fasterxml.jackson.annotation.JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE;
-import static com.fasterxml.jackson.annotation.JsonFormat.Feature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS;
-import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = true, property = "type")
 @JsonSubTypes({
@@ -60,9 +59,7 @@ import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
 @Builder
 public class EPCISEvent implements Serializable, OpenEPCISSupport {
 
-  @XmlTransient
-  @JsonIgnore
-  private String type;
+  @XmlTransient @JsonIgnore private String type;
 
   private String eventID;
 
@@ -189,31 +186,37 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
   public void setUserExtensions(String key, Object value) {
     userExtensions.put(key, value);
 
-    //Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present add namespacesURI that are later used for XML marshalling
+    // Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present
+    // add namespacesURI that are later used for XML marshalling
     DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
   }
 
-  //Getter method for the @context field to either set to null if only default namespaces are present else return all namespaces
+  // Getter method for the @context field to either set to null if only default namespaces are
+  // present else return all namespaces
   public List<Object> getContextInfo() {
-    //Check if the XML-> JSON conversion has custom namespaces apart from default namespaces
-    final Map<String, String> eventNamespaces = DefaultJsonSchemaNamespaceURIResolver.getContext().getEventNamespaces();
+    // Check if the XML-> JSON conversion has custom namespaces apart from default namespaces
+    final Map<String, String> eventNamespaces =
+        DefaultJsonSchemaNamespaceURIResolver.getContext().getEventNamespaces();
 
     // Add the namespaces from the contextInfo to the eventNamespaces
-    if(CollectionUtils.isNotEmpty(contextInfo)){
+    if (CollectionUtils.isNotEmpty(contextInfo)) {
       contextInfo.stream()
-              .filter(Objects::nonNull)
-              .filter(obj -> obj instanceof Map<?, ?>)
-              .map(obj -> (Map<?, ?>) obj)
-              .flatMap(map -> map.entrySet().stream())
-              .forEach(entry -> eventNamespaces.put(entry.getValue().toString(), entry.getKey().toString()));
+          .filter(Objects::nonNull)
+          .filter(obj -> obj instanceof Map<?, ?>)
+          .map(obj -> (Map<?, ?>) obj)
+          .flatMap(map -> map.entrySet().stream())
+          .forEach(
+              entry -> eventNamespaces.put(entry.getValue().toString(), entry.getKey().toString()));
     }
 
     // Check if the eventNamespaces contains any custom namespaces or just EPCIS default namespaces
-    final boolean hasCustomNamespace = eventNamespaces.values().stream().anyMatch(value -> !EPCIS_DEFAULT_NAMESPACES.containsKey(value));
+    final boolean hasCustomNamespace =
+        eventNamespaces.values().stream()
+            .anyMatch(value -> !EPCIS_DEFAULT_NAMESPACES.containsKey(value));
 
     // If hasCustomNamespace then return all the namespaces
     // If does not have additional namespaces then do not include the default namespace in json
-    return hasCustomNamespace ?  contextInfo : null;
+    return hasCustomNamespace ? contextInfo : null;
   }
 
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
@@ -346,10 +349,13 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
     }
   }
 
-  //Method to check if provided context contains the empty HashMap if so skip them
-  private boolean isEmptyContext(final List<Object> context){
-    if (Objects.nonNull(context)){
-      return context.stream().filter(obj -> obj instanceof HashMap<?, ?>).map(obj -> (HashMap<?, ?>) obj).anyMatch(HashMap::isEmpty);
+  // Method to check if provided context contains the empty HashMap if so skip them
+  private boolean isEmptyContext(final List<Object> context) {
+    if (Objects.nonNull(context)) {
+      return context.stream()
+          .filter(obj -> obj instanceof HashMap<?, ?>)
+          .map(obj -> (HashMap<?, ?>) obj)
+          .anyMatch(HashMap::isEmpty);
     }
     return true;
   }

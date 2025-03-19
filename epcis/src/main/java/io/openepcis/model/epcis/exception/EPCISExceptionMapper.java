@@ -15,12 +15,12 @@
  */
 package io.openepcis.model.epcis.exception;
 
+import static io.openepcis.model.epcis.exception.ExceptionMessages.*;
+
 import io.openepcis.model.rest.ProblemResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
-
-import static io.openepcis.model.epcis.exception.ExceptionMessages.*;
 
 @Slf4j
 public class EPCISExceptionMapper {
@@ -122,27 +122,28 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-          final EPCISException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final EPCISException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
     responseBody.title("REST Exception");
     responseBody.setStatus(exception.getStatus());
     responseBody.setDetail(exception.getMessage());
-    return RestResponse.status(RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
+    return RestResponse.status(
+        RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
   }
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(
-          final QueryTooLargeException exception) {
+      final QueryTooLargeException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
     responseBody.title(SEARCH_RESULT_SIZE_TOO_LARGE_NARROW_DOWN_THE_SEARCH_CRITERIA);
     responseBody.setStatus(exception.getStatus());
     responseBody.setDetail(exception.getMessage());
-    return RestResponse.status(RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
+    return RestResponse.status(
+        RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
   }
 
   @ServerExceptionMapper
@@ -194,7 +195,7 @@ public class EPCISExceptionMapper {
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(
-          final UnsupportedQueryParameterException exception) {
+      final UnsupportedQueryParameterException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -205,7 +206,8 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(final PersistenceException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(
+      final PersistenceException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(RestResponse.Status.INTERNAL_SERVER_ERROR.toString());
@@ -214,5 +216,4 @@ public class EPCISExceptionMapper {
     responseBody.setDetail(exception.getMessage());
     return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR, responseBody);
   }
-
 }

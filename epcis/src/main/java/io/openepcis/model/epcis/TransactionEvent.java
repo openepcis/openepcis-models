@@ -155,7 +155,7 @@ public class TransactionEvent extends EPCISEvent implements XmlSupportExtension 
         contextInfo,
         certificationInfo,
         null,
-            openEPCISExtension);
+        openEPCISExtension);
     this.action = action;
     this.quantityList = quantityList;
     this.epcList = epcList;

@@ -20,15 +20,15 @@ import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
-import lombok.NoArgsConstructor;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Object>> implements ContextualSerializer {
+public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Object>>
+    implements ContextualSerializer {
   private String context = "";
 
   public CustomExtensionsSerializer(final String context) {
@@ -36,7 +36,8 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
   }
 
   @Override
-  public JsonSerializer<?> createContextual(final SerializerProvider serializerProvider, final BeanProperty beanProperty) {
+  public JsonSerializer<?> createContextual(
+      final SerializerProvider serializerProvider, final BeanProperty beanProperty) {
     UserExtensions extensions = beanProperty.getAnnotation(UserExtensions.class);
     if (extensions != null) {
       return new CustomExtensionsSerializer(extensions.extension());
@@ -45,17 +46,24 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
   }
 
   @Override
-  public void serialize(final Map<String, Object> value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException {
+  public void serialize(
+      final Map<String, Object> value,
+      final JsonGenerator gen,
+      final SerializerProvider serializers)
+      throws IOException {
     if (this.context.equals("userExtensions")) {
       recursiveSerializer(value, gen);
-    } else if (this.context.equals("ilmd") || this.context.equals("extension") || this.context.equals("certificationInfo")) {
+    } else if (this.context.equals("ilmd")
+        || this.context.equals("extension")
+        || this.context.equals("certificationInfo")) {
       gen.writeStartObject();
       recursiveSerializer(value, gen);
       gen.writeEndObject();
     }
   }
 
-  private void recursiveSerializer(final Map<String, Object> value, final JsonGenerator gen) throws IOException {
+  private void recursiveSerializer(final Map<String, Object> value, final JsonGenerator gen)
+      throws IOException {
     for (Map.Entry<String, Object> extension : value.entrySet()) {
       if (extension.getValue() instanceof Map) {
         // If instance is MAP then call the recursive method
@@ -67,7 +75,8 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
         // If instance is String directly add it to the JSON
         gen.writeStringField(extension.getKey(), stringValue);
       } else if (extension.getValue() instanceof ArrayList) {
-        // If instance is ArrayList then loop over it and add it to the JSON after calling recursive method
+        // If instance is ArrayList then loop over it and add it to the JSON after calling recursive
+        // method
         gen.writeFieldName(extension.getKey());
         gen.writeStartArray();
         for (Object dupItems : (ArrayList<Object>) extension.getValue()) {
@@ -100,4 +109,3 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
     }
   }
 }
-

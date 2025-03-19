@@ -178,7 +178,7 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
         contextInfo,
         certificationInfo,
         null,
-            openEPCISExtension);
+        openEPCISExtension);
     this.action = action;
     this.quantityList = quantityList;
     this.epcList = epcList;
@@ -213,19 +213,19 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
             }
           });
     }
-// Check if Persistent Disposition has value if so convert to CBV formatted value.
+    // Check if Persistent Disposition has value if so convert to CBV formatted value.
     if (persistentDisposition != null) {
       // If Set elements are present then add it to List
       if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
         final List<String> setList = new ArrayList<>();
         persistentDisposition
-                .getSet()
-                .forEach(
-                        set ->
-                                setList.add(
-                                        set.contains("http") || set.contains(":")
-                                                ? set
-                                                : ConverterUtil.toCbvVocabulary(set, "persistentDisposition", "URN")));
+            .getSet()
+            .forEach(
+                set ->
+                    setList.add(
+                        set.contains("http") || set.contains(":")
+                            ? set
+                            : ConverterUtil.toCbvVocabulary(set, "persistentDisposition", "URN")));
         persistentDisposition.setSet(setList);
       }
 
@@ -233,14 +233,14 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
       if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
         final List<String> unsetList = new ArrayList<>();
         persistentDisposition
-                .getUnset()
-                .forEach(
-                        unset ->
-                                unsetList.add(
-                                        unset.contains("http") || unset.contains(":")
-                                                ? unset
-                                                : ConverterUtil.toCbvVocabulary(
-                                                unset, "persistentDisposition", "URN")));
+            .getUnset()
+            .forEach(
+                unset ->
+                    unsetList.add(
+                        unset.contains("http") || unset.contains(":")
+                            ? unset
+                            : ConverterUtil.toCbvVocabulary(
+                                unset, "persistentDisposition", "URN")));
         persistentDisposition.setUnset(unsetList);
       }
     }
@@ -268,8 +268,8 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
       if (persistentDisposition.getSet() != null && !persistentDisposition.getSet().isEmpty()) {
         final List<String> setList = new ArrayList<>();
         persistentDisposition
-                .getSet()
-                .forEach(set -> setList.add(ConverterUtil.toBareStringVocabulary(set)));
+            .getSet()
+            .forEach(set -> setList.add(ConverterUtil.toBareStringVocabulary(set)));
         persistentDisposition.setSet(setList);
       }
 
@@ -277,8 +277,8 @@ public class ObjectEvent extends EPCISEvent implements XmlSupportExtension {
       if (persistentDisposition.getUnset() != null && !persistentDisposition.getUnset().isEmpty()) {
         final List<String> unsetList = new ArrayList<>();
         persistentDisposition
-                .getUnset()
-                .forEach(unset -> unsetList.add(ConverterUtil.toBareStringVocabulary(unset)));
+            .getUnset()
+            .forEach(unset -> unsetList.add(ConverterUtil.toBareStringVocabulary(unset)));
         persistentDisposition.setUnset(unsetList);
       }
     }

@@ -15,17 +15,19 @@
  */
 package io.openepcis.model.epcis.util;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.commons.lang3.StringUtils;
 
 public class DefaultJsonSchemaNamespaceURIResolver {
-  private static final DefaultJsonSchemaNamespaceURIResolver INSTANCE = new DefaultJsonSchemaNamespaceURIResolver();
-  private final ThreadLocal<Map<String, String>> documentNamespaces = ThreadLocal.withInitial(ConcurrentHashMap::new);
-  private final ThreadLocal<Map<String, String>> eventNamespaces = ThreadLocal.withInitial(ConcurrentHashMap::new);
+  private static final DefaultJsonSchemaNamespaceURIResolver INSTANCE =
+      new DefaultJsonSchemaNamespaceURIResolver();
+  private final ThreadLocal<Map<String, String>> documentNamespaces =
+      ThreadLocal.withInitial(ConcurrentHashMap::new);
+  private final ThreadLocal<Map<String, String>> eventNamespaces =
+      ThreadLocal.withInitial(ConcurrentHashMap::new);
 
   private DefaultJsonSchemaNamespaceURIResolver() {}
 
@@ -34,7 +36,8 @@ public class DefaultJsonSchemaNamespaceURIResolver {
   }
 
   // Add all the Namespaces that are defined at the EPCIS document level.
-  public synchronized void populateDocumentNamespaces(final String namespaceURI, final String prefix) {
+  public synchronized void populateDocumentNamespaces(
+      final String namespaceURI, final String prefix) {
     if (isNonEmpty(namespaceURI) && isNonEmpty(prefix)) {
       documentNamespaces.get().putIfAbsent(namespaceURI, prefix);
     }
@@ -58,12 +61,13 @@ public class DefaultJsonSchemaNamespaceURIResolver {
     eventNamespaces.get().clear();
   }
 
-  // Finds the namespace URI associated with a given prefix. Searches both document and event namespaces.
+  // Finds the namespace URI associated with a given prefix. Searches both document and event
+  // namespaces.
   public synchronized Optional<String> findNamespaceByPrefix(final String prefix) {
     return getAllNamespaces().entrySet().stream()
-            .filter(entry -> entry.getValue().equals(prefix))
-            .map(Map.Entry::getKey)
-            .findFirst();
+        .filter(entry -> entry.getValue().equals(prefix))
+        .map(Map.Entry::getKey)
+        .findFirst();
   }
 
   // Retrieves a copy of the document-level namespaces.

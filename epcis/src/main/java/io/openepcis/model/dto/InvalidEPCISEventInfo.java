@@ -59,8 +59,7 @@ public class InvalidEPCISEventInfo {
     this.setSequenceInEPCISDoc(sequenceInEPCISDoc);
   }
 
-  public InvalidEPCISEventInfo(
-          String type, String title, Integer status, String detail) {
+  public InvalidEPCISEventInfo(String type, String title, Integer status, String detail) {
     this.setType(type);
     this.setTitle(title);
     this.setStatus(status);

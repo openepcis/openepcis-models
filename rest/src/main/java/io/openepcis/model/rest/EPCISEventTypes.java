@@ -18,7 +18,6 @@ package io.openepcis.model.rest;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.openepcis.constants.EPCIS;
-
 import java.util.stream.Stream;
 
 /** The five types of EPCIS events. */

@@ -16,7 +16,6 @@
 package io.openepcis.model.epcis.modifier;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
-
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,13 +23,13 @@ import java.time.temporal.ChronoUnit;
 
 public class CustomInstantAdapter extends XmlAdapter<String, OffsetDateTime> {
 
-    @Override
-    public String marshal(OffsetDateTime v) {
-        return v.truncatedTo(ChronoUnit.MILLIS).format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
-    }
+  @Override
+  public String marshal(OffsetDateTime v) {
+    return v.truncatedTo(ChronoUnit.MILLIS).format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
+  }
 
-    @Override
-    public OffsetDateTime unmarshal(String v) {
-        return ZonedDateTime.parse(v, DateTimeFormatter.ISO_ZONED_DATE_TIME).toOffsetDateTime();
-    }
+  @Override
+  public OffsetDateTime unmarshal(String v) {
+    return ZonedDateTime.parse(v, DateTimeFormatter.ISO_ZONED_DATE_TIME).toOffsetDateTime();
+  }
 }

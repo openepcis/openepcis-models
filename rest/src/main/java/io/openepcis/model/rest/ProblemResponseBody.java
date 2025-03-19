@@ -27,10 +27,11 @@ import lombok.NoArgsConstructor;
 import org.jboss.resteasy.reactive.RestResponse;
 
 /** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */
-@XmlRootElement(name ="EPCISException", namespace = "urn:epcglobal:epcis:xsd:2")
+@XmlRootElement(name = "EPCISException", namespace = "urn:epcglobal:epcis:xsd:2")
 @NoArgsConstructor
 @XmlType(
-    name = "EPCISException", namespace = "urn:epcglobal:epcis:xsd:2",
+    name = "EPCISException",
+    namespace = "urn:epcglobal:epcis:xsd:2",
     factoryClass = ObjectFactory.class,
     factoryMethod = "createProblemResponseBody")
 public class ProblemResponseBody {
@@ -192,7 +193,8 @@ public class ProblemResponseBody {
     return o.toString().replace("\n", "\n    ");
   }
 
-  public static final <T extends WebApplicationException> ProblemResponseBody fromException(final T exception) {
+  public static final <T extends WebApplicationException> ProblemResponseBody fromException(
+      final T exception) {
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.setTitle(exception.getResponse().getStatusInfo().getReasonPhrase());
@@ -205,17 +207,18 @@ public class ProblemResponseBody {
     return fromException(exception, RestResponse.Status.INTERNAL_SERVER_ERROR);
   }
 
-  public static final ProblemResponseBody fromException(Throwable exception, RestResponse.Status status) {
+  public static final ProblemResponseBody fromException(
+      Throwable exception, RestResponse.Status status) {
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.setTitle(status.getReasonPhrase());
     responseBody.setStatus(status.getStatusCode());
     if (RestResponse.Status.INTERNAL_SERVER_ERROR.equals(status)) {
-      responseBody.setDetail(RESTExceptionMessages.SERVER_SIDE_ERROR_OCCURRED+exception.getMessage());
+      responseBody.setDetail(
+          RESTExceptionMessages.SERVER_SIDE_ERROR_OCCURRED + exception.getMessage());
     } else {
       responseBody.setDetail(exception.getMessage());
     }
     return responseBody;
   }
-
 }

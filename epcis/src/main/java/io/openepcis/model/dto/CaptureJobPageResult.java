@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@XmlRootElement(name="EPCISCaptureJobList", namespace = "urn:epcglobal:epcis:xsd:2")
+@XmlRootElement(name = "EPCISCaptureJobList", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlType(
     propOrder = {"captureJobs"},
     name = "EPCISCaptureJobList",
@@ -39,7 +39,8 @@ import lombok.NoArgsConstructor;
 @XmlSeeAlso(CaptureJob.class)
 public class CaptureJobPageResult extends PaginationSupport {
 
-  @XmlElement(namespace = "", name = "EPCISCaptureJob") private List<CaptureJob> captureJobs;
+  @XmlElement(namespace = "", name = "EPCISCaptureJob")
+  private List<CaptureJob> captureJobs;
 
   public CaptureJobPageResult(
       final String rel,

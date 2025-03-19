@@ -16,7 +16,7 @@
 package io.openepcis.model.epcis.extension;
 
 public interface EventHashID {
-    String getHash();
+  String getHash();
 
-    void setHash(String hash);
+  void setHash(String hash);
 }

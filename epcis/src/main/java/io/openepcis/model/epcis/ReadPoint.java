@@ -56,7 +56,8 @@ public class ReadPoint implements Serializable {
   @JsonIgnore
   private Map<String, Object> extension;
 
-  @JsonIgnore @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
+  @JsonIgnore @XmlTransient @Builder.Default
+  private Map<String, Object> userExtensions = new HashMap<>();
 
   @XmlAnyElement(lax = true)
   @JsonIgnore
@@ -67,7 +68,8 @@ public class ReadPoint implements Serializable {
   public void setUserExtensions(String key, Object value) {
     userExtensions.put(key, value);
 
-    //Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present add namespacesURI that are later used for XML marshalling
+    // Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present
+    // add namespacesURI that are later used for XML marshalling
     DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
   }
 

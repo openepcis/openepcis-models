@@ -15,22 +15,19 @@
  */
 package io.openepcis.model.dto;
 
+import java.util.HashMap;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.HashMap;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tracer {
-    private String traceId;
-    private String spanId;
-    private String defaultGroup;
-    @Deprecated
-    private HashMap<String,Set<String>> subscribedUserGroups;
-    @Deprecated
-    private Set<String> userId;
+  private String traceId;
+  private String spanId;
+  private String defaultGroup;
+  @Deprecated private HashMap<String, Set<String>> subscribedUserGroups;
+  @Deprecated private Set<String> userId;
 }

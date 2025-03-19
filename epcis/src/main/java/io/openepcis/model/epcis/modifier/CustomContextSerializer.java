@@ -15,6 +15,8 @@
  */
 package io.openepcis.model.epcis.modifier;
 
+import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
+
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -23,8 +25,6 @@ import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import static io.openepcis.constants.EPCIS.EPCIS_DEFAULT_NAMESPACES;
 
 public class CustomContextSerializer extends JsonSerializer<List<Object>> {
 
@@ -39,21 +39,28 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       throws IOException {
     try {
       // NOTE: This fix is made temporarily until namespaceResolver is improved
-      if (contextValue.contains("bareevent")){
-          jsonGenerator.writeStartArray();
-          jsonGenerator.writeString(CommonConstants.EPCIS_DEFAULT_NAMESPACE);
-          contextValue.stream().filter(Map.class::isInstance).forEach(map->{
-            for (final Map.Entry<String, String> entry : ((Map<String,String>) map).entrySet()) {
-              try {
-                jsonGenerator.writeStartObject();
-                jsonGenerator.writeStringField(entry.getKey(), entry.getValue());
-                jsonGenerator.writeEndObject();
-              } catch (IOException e) {
-                throw new RuntimeException("Exception occurred during the writing of context elements: " + e.getMessage(), e);
-              }
-            }
-          });
-          jsonGenerator.writeEndArray();
+      if (contextValue.contains("bareevent")) {
+        jsonGenerator.writeStartArray();
+        jsonGenerator.writeString(CommonConstants.EPCIS_DEFAULT_NAMESPACE);
+        contextValue.stream()
+            .filter(Map.class::isInstance)
+            .forEach(
+                map -> {
+                  for (final Map.Entry<String, String> entry :
+                      ((Map<String, String>) map).entrySet()) {
+                    try {
+                      jsonGenerator.writeStartObject();
+                      jsonGenerator.writeStringField(entry.getKey(), entry.getValue());
+                      jsonGenerator.writeEndObject();
+                    } catch (IOException e) {
+                      throw new RuntimeException(
+                          "Exception occurred during the writing of context elements: "
+                              + e.getMessage(),
+                          e);
+                    }
+                  }
+                });
+        jsonGenerator.writeEndArray();
       } else {
         jsonGenerator.writeStartArray();
 
@@ -61,7 +68,7 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
 
         for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
 
-          //Filter and do not add the Default namespaces such as cbvmda to event @context
+          // Filter and do not add the Default namespaces such as cbvmda to event @context
           if (!EPCIS_DEFAULT_NAMESPACES.containsValue(entry.getKey())) {
             jsonGenerator.writeStartObject();
             jsonGenerator.writeStringField(entry.getValue(), entry.getKey());

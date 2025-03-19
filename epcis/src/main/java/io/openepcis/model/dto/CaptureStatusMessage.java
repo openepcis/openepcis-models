@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
 import lombok.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -29,7 +28,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CaptureStatusMessage extends Tracer{
+public class CaptureStatusMessage extends Tracer {
 
   public enum Type {
     CAPTURED,
@@ -41,22 +40,22 @@ public class CaptureStatusMessage extends Tracer{
   Type type;
   protected int value;
   protected List<InvalidEPCISEventInfo> errors = new ArrayList<>();
-  private Map<String,Object> metadata;
+  private Map<String, Object> metadata;
 
-
-  public static CaptureStatusMessage eventCapturedCount(int count,Map<String,Object> metadata) {
-    return new CaptureStatusMessage(Type.CAPTURED, count, Collections.emptyList(),metadata);
+  public static CaptureStatusMessage eventCapturedCount(int count, Map<String, Object> metadata) {
+    return new CaptureStatusMessage(Type.CAPTURED, count, Collections.emptyList(), metadata);
   }
 
-  public static CaptureStatusMessage valid(int count,Map<String,Object> metadata) {
-    return new CaptureStatusMessage(Type.VALID, count, Collections.emptyList(),metadata);
+  public static CaptureStatusMessage valid(int count, Map<String, Object> metadata) {
+    return new CaptureStatusMessage(Type.VALID, count, Collections.emptyList(), metadata);
   }
 
-  public static CaptureStatusMessage invalid(int count, List<InvalidEPCISEventInfo> errors,Map<String,Object> metadata) {
-    return new CaptureStatusMessage(Type.INVALID, count, errors,metadata);
+  public static CaptureStatusMessage invalid(
+      int count, List<InvalidEPCISEventInfo> errors, Map<String, Object> metadata) {
+    return new CaptureStatusMessage(Type.INVALID, count, errors, metadata);
   }
 
-  public static CaptureStatusMessage processed(int count,Map<String,Object> metadata) {
-    return new CaptureStatusMessage(Type.PROCESSED, count, Collections.emptyList(),metadata);
+  public static CaptureStatusMessage processed(int count, Map<String, Object> metadata) {
+    return new CaptureStatusMessage(Type.PROCESSED, count, Collections.emptyList(), metadata);
   }
 }

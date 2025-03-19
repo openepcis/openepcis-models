@@ -70,9 +70,11 @@ public class SensorMetadata implements Serializable {
 
   @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
 
-  @JsonIgnore @XmlTransient @Builder.Default private Map<String, Object> userExtensions = new HashMap<>();
+  @JsonIgnore @XmlTransient @Builder.Default
+  private Map<String, Object> userExtensions = new HashMap<>();
 
-  @XmlAnyAttribute @JsonIgnore @Builder.Default private Map<QName, Object> anyAttributes = new HashMap<>();
+  @XmlAnyAttribute @JsonIgnore @Builder.Default
+  private Map<QName, Object> anyAttributes = new HashMap<>();
 
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {

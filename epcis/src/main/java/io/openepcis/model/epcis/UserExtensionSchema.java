@@ -28,6 +28,7 @@ import lombok.*;
 public class UserExtensionSchema {
   /** A unique identifier associated with each schema document. */
   private String id;
+
   /**
    * The namespace URI may be an HTTP URL whose authority portion is a domain name owned by the
    * vendor/user, a URN having a URN namespace identifier issued to the vendor/user by IANA, an OID
@@ -36,24 +37,31 @@ public class UserExtensionSchema {
    * the Schema file.
    */
   private String namespace;
+
   /**
    * S3 Keys are unique identifiers for objects/files saved in S3. In this case it’s same as the
    * path of the JSON Schema document saved in the openepcis S3 bucket.
    */
   private String jsonSchemaS3Key;
+
   /**
    * This field is populated when a URL-based schema is defined using POST
    * /userExtension/jsonSchema/url . During this operation, the schema is not saved in S3.
    */
   private String jsonSchemaUrl;
+
   /** This field holds the value of the default prefix associated with the schema namespace. */
   private String defaultPrefix;
+
   /** Stores the time a schema was registered in OffsetDateTime format */
   private OffsetDateTime createdAt;
+
   /** Stores the time a schema was updated in OffsetDateTime format */
   private OffsetDateTime updatedAt;
+
   /** Stores the userID of user registering the schema in UUID format */
   private String createdBy;
+
   /** Stores the userID of user updating the schema in UUID format */
   private String updatedBy;
 }

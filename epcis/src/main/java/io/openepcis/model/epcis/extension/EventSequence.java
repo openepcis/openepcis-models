@@ -16,7 +16,7 @@
 package io.openepcis.model.epcis.extension;
 
 public interface EventSequence {
-    Integer getSequenceInEPCISDoc();
+  Integer getSequenceInEPCISDoc();
 
-    void setSequenceInEPCISDoc(Integer sequenceInEPCISDoc);
+  void setSequenceInEPCISDoc(Integer sequenceInEPCISDoc);
 }

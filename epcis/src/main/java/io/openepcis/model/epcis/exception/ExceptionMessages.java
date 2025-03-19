@@ -180,8 +180,7 @@ public class ExceptionMessages extends RESTExceptionMessages {
   public static final String SIGNATURE_TOKEN_MUST_BE_256BITS_LONG =
       "The signatureToken provided must be at least 256 bits long";
 
-  public static final String UNSUPPORTED_QUERY_PARAMETER =
-          "Unsupported query parameter: %s";
+  public static final String UNSUPPORTED_QUERY_PARAMETER = "Unsupported query parameter: %s";
 
   private ExceptionMessages() {
     // Bunch of constants so there should be no need to create object of this class

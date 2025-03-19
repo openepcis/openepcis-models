@@ -84,6 +84,6 @@ public class DocumentIdentification {
   @XmlSchemaType(name = "dateTime")
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
   @JsonSerialize(using = OffsetDateTimeSerializer.class)
-  @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE,  WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
+  @JsonFormat(without = {ADJUST_DATES_TO_CONTEXT_TIME_ZONE, WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS})
   protected OffsetDateTime creationDateAndTime;
 }

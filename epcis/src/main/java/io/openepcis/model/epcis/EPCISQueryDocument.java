@@ -27,17 +27,16 @@ import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
 import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.apache.commons.collections4.CollectionUtils;
-
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -83,7 +82,8 @@ public class EPCISQueryDocument {
     this.type = CommonConstants.EPCIS_QUERY_DOC;
     this.schemaVersion = CommonConstants.SCHEMA_VERSION;
     this.creationDate = OffsetDateTime.now();
-    this.context = getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
+    this.context =
+        getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
 
     // Populating the namespaces directly from context during xml query
     CommonExtensionModifier.populateNamespaces(context);
@@ -104,10 +104,10 @@ public class EPCISQueryDocument {
             .flatMap(map -> map.entrySet().stream())
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a));
 
-    //Avoid adding the empty map into the context
-    if(!contextInfoMap.isEmpty()) {
+    // Avoid adding the empty map into the context
+    if (!contextInfoMap.isEmpty()) {
       contextInfoMap.entrySet().stream()
-              .forEach(entry -> contextInfoList.add(Map.of(entry.getKey(), entry.getValue())));
+          .forEach(entry -> contextInfoList.add(Map.of(entry.getKey(), entry.getValue())));
     }
 
     epcisEvents.forEach(epcisEvent -> epcisEvent.setContextInfo(null));
@@ -115,8 +115,8 @@ public class EPCISQueryDocument {
   }
 
   private HashMap<String, Object> convertContextInfoToMap(EPCISEvent epcisEvent) {
-    //If context is null or empty then return the empty HashMap to avoid  exception.
-    if(epcisEvent.getContextInfo() == null || epcisEvent.getContextInfo().isEmpty()){
+    // If context is null or empty then return the empty HashMap to avoid  exception.
+    if (epcisEvent.getContextInfo() == null || epcisEvent.getContextInfo().isEmpty()) {
       return new HashMap<>();
     }
 

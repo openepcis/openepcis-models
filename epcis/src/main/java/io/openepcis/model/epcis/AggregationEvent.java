@@ -156,7 +156,7 @@ public class AggregationEvent extends EPCISEvent implements XmlSupportExtension 
         contextInfo,
         certificationInfo,
         null,
-            openEPCISExtension);
+        openEPCISExtension);
     this.action = action;
     this.childQuantityList = childQuantityList;
     this.parentID = parentID;
