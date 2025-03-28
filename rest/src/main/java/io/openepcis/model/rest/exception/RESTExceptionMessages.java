@@ -24,5 +24,5 @@ public class RESTExceptionMessages {
     public static final String ERROR_IN_DATA_FORMAT = "Error in data format.";
     public static final String VALIDATION_FAILED = "Validation failed";
     public static final String RESOURCE_ALREADY_EXISTS = "Resource already exists";
-
+    public static final String BAD_REQUEST = "Bad request";
 }
