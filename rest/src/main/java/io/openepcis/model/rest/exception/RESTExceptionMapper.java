@@ -150,15 +150,4 @@ public class RESTExceptionMapper {
     return RestResponse.status(RestResponse.Status.CONFLICT, responseBody);
   }
 
-  @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(BadRequestException exception) {
-    log.error(exception.getMessage(), exception);
-    final ProblemResponseBody responseBody = new ProblemResponseBody();
-    responseBody.setType(exception.getClass().getSimpleName());
-    responseBody.title(BAD_REQUEST);
-    responseBody.setStatus(400);
-    responseBody.setDetail(exception.getMessage());
-    return RestResponse.status(RestResponse.Status.BAD_REQUEST, responseBody);
-  }
-
 }
