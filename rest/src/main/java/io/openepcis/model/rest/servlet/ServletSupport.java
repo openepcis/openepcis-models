@@ -22,7 +22,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.ws.rs.NotAcceptableException;
 import jakarta.ws.rs.NotSupportedException;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.HttpHeaders;
@@ -116,8 +115,7 @@ public class ServletSupport {
         accept.get().contains(media) || accept.get().equals(MediaType.WILDCARD);
     if (!accepted) {
       writeException(
-          new NotAcceptableException(
-              "The accept header value did not match the value in @Produces"),
+          new NotSupportedException("The accept header value did not match the value in @Produces"),
           accept.get(),
           resp);
     }
