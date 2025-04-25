@@ -16,7 +16,7 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.*;
-import io.openepcis.epc.translator.util.ConverterUtil;
+import io.openepcis.identifiers.converter.util.ConverterUtil;
 import io.openepcis.model.epcis.extension.OpenEPCISExtension;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;

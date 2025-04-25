@@ -92,7 +92,7 @@
             </dependency>
             <dependency>
                 <groupId>io.openepcis</groupId>
-                <artifactId>openepcis-epc-digitallink-translator</artifactId>
+                <artifactId>openepcis-digital-link-converter-core</artifactId>
                 <version>${project.parent.version}</version>
                 <scope>compile</scope>
             </dependency>
