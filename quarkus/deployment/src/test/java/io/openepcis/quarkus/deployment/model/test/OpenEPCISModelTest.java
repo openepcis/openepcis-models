@@ -18,19 +18,14 @@ package io.openepcis.quarkus.deployment.model.test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import io.openepcis.quarkus.model.OpenEPCISJAXBContextProducer;
-import io.quarkus.test.QuarkusUnitTest;
+import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.xml.bind.JAXBContext;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 
+@QuarkusTest
 class OpenEPCISModelTest {
 
-  @RegisterExtension
-  static final QuarkusUnitTest TEST =
-      new QuarkusUnitTest().setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class));
 
   @Inject OpenEPCISJAXBContextProducer openEPCISJAXBContext;
 
