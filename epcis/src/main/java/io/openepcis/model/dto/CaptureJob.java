@@ -49,4 +49,17 @@ public class CaptureJob extends CaptureData {
         captureErrorBehaviour,
         new ArrayList<>());
   }
+
+  public static CaptureJob of(CaptureJob captureJob) {
+    final CaptureJob c = new CaptureJob();
+    c.captureID = captureJob.getCaptureID();
+    c.createdAt = captureJob.getCreatedAt();
+    c.finishedAt = captureJob.getFinishedAt();
+    c.running = captureJob.isRunning();
+    c.captureErrorBehaviour = captureJob.getCaptureErrorBehaviour();
+    c.success = captureJob.isSuccess();
+    c.errors = captureJob.getErrors();
+    return c;
+  }
+
 }
