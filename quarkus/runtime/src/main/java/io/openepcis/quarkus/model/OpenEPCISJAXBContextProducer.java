@@ -34,7 +34,7 @@ public class OpenEPCISJAXBContextProducer {
   private static final AtomicReference<JAXBException> jaxbException = new AtomicReference<>();
 
   public static final String CONTEXT_PATH =
-      "io.openepcis.model.epcis:io.openepcis.model.epcis.modifier:io.openepcis.model.dto:io.openepcis.model.rest:io.openepcis.core.mocel";
+      "io.openepcis.model.epcis:io.openepcis.model.epcis.modifier:io.openepcis.model.dto:io.openepcis.model.rest:io.openepcis.core.model";
 
   private static JAXBContext createContext() {
     try {

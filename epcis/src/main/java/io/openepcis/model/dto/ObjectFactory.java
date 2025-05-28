@@ -37,4 +37,8 @@ public final class ObjectFactory {
   public static InvalidEPCISEventInfo createInvalidEPCISEventInfo() {
     return new InvalidEPCISEventInfo();
   }
+
+  public static TopLevelResource createTopLevelResource() {
+    return new TopLevelResource();
+  }
 }

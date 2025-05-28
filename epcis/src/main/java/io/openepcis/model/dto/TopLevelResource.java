@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.xml.bind.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -26,10 +28,12 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @EqualsAndHashCode(callSuper = false)
+@XmlRootElement(name = "Collection")
 @NoArgsConstructor
 public class TopLevelResource {
 
   @JsonProperty("@context")
+  @XmlTransient
   private List<Object> contextInfo;
 
   @JsonProperty("type")
@@ -38,9 +42,15 @@ public class TopLevelResource {
   @JsonProperty("member")
   private List<String> member = new ArrayList<>();
 
-  public TopLevelResource(List<String> member, List<Object> context) {
+  public TopLevelResource(String type, List<String> member, List<Object> context) {
+    this.type = type;
     this.member = member;
-    this.type = "collection";
     this.contextInfo = context;
+
+  }
+
+  @Deprecated(forRemoval = true, since = "0.9.4")
+  public TopLevelResource(List<String> member, List<Object> context) {
+    this("collection", member, context);
   }
 }
