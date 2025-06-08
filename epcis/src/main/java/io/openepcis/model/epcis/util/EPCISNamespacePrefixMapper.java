@@ -15,18 +15,35 @@
  */
 package io.openepcis.model.epcis.util;
 
+import java.security.KeyStore;
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import io.openepcis.constants.EPCIS;
+import jakarta.xml.bind.annotation.XmlNs;
 import org.eclipse.persistence.oxm.NamespacePrefixMapper;
 
 public class EPCISNamespacePrefixMapper extends NamespacePrefixMapper {
 
   public static final Map<String, String> EPCIS_NAMESPACE_MAP =
+          EPCIS.EPCIS_DEFAULT_NAMESPACES.entrySet().stream()
+                  // skip own and rdfs
+            .filter(e -> !"owl".equals(e.getKey()) && !"rdfs".equals(e.getKey()))
+          .collect(Collectors.toMap(e -> e.getValue().toString(), Map.Entry::getKey));
+
+          /*
       Map.of(
           "http://www.w3.org/2001/XMLSchema-instance", "xsi",
           "urn:epcglobal:epcis:xsd:2", "epcis",
           "urn:epcglobal:epcis-query:xsd:2", "epcisq",
-          "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "sbdh");
+          "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "sbdh"
+              );
+*/
+
+
+
 
   private Map<String, String> namespaceMap;
 

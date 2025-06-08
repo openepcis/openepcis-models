@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.epcis.modifier;
 
+import io.openepcis.constants.EPCIS;
 import io.openepcis.model.epcis.MapWrapper;
 import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.JAXBElement;
@@ -47,9 +48,12 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
       String namespaceURI = null;
 
       if (prefix != null) {
-        Optional<String> namespace = namespaceResolver.findNamespaceByPrefix(prefix);
-        if (namespace.isPresent()) {
-          namespaceURI = namespace.get();
+        namespaceURI = EPCIS.EPCIS_DEFAULT_NAMESPACES.get(prefix).toString();
+        if (namespaceURI == null) {
+          Optional<String> namespace = namespaceResolver.findNamespaceByPrefix(prefix);
+          if (namespace.isPresent()) {
+            namespaceURI = namespace.get();
+          }
         }
       }
 
