@@ -1,6 +1,9 @@
 package io.openepcis.model.interfaces;
 
-import io.openepcis.model.gs1webvocab.*;
+import io.openepcis.model.gs1webvocab.GLNTypeCode;
+import io.openepcis.model.gs1webvocab.OrganizationRoleType;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public interface Organization<
@@ -37,9 +40,9 @@ public interface Organization<
 
   void setContactPoint(List<CP> value);
 
-  String getDepartment();
+  LinkedHashMap<String, String> getDepartment();
 
-  void setDepartment(String value);
+  void setDepartment(LinkedHashMap<String, String> value);
 
   GLNTypeCode getGlnType();
 
@@ -85,9 +88,9 @@ public interface Organization<
 
   void setOrganizationHistory(OS value);
 
-  String getOrganizationName();
+  LinkedHashMap<String, String> getOrganizationName();
 
-  void setOrganizationName(String value);
+  void setOrganizationName(LinkedHashMap<String, String> value);
 
   OrganizationRoleType getOrganizationRole();
 

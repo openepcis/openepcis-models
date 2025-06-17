@@ -1,125 +1,128 @@
 package io.openepcis.model.interfaces;
 
-import io.openepcis.model.gs1webvocab.*;
+import io.openepcis.model.gs1webvocab.GLNTypeCode;
+import io.openepcis.model.gs1webvocab.LocationRoleType;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public interface Place<
-    L extends LocationIDDetails,
-    PO extends PostalAddress,
-    C extends ContactPoint,
-    P extends Place,
-    CD extends CertificationDetails,
-    O extends Organization,
-    LO extends LocationStatusHistory> {
-  List<L> getAdditionalLocationID();
+        L extends LocationIDDetails,
+        PO extends PostalAddress,
+        C extends ContactPoint,
+        P extends Place,
+        CD extends CertificationDetails,
+        O extends Organization,
+        LO extends LocationStatusHistory> {
+    List<L> getAdditionalLocationID();
 
-  void setAdditionalLocationID(List<L> value);
+    void setAdditionalLocationID(List<L> value);
 
-  PO getAddress();
+    PO getAddress();
 
-  void setAddress(PO value);
+    void setAddress(PO value);
 
-  C getAfterHoursContact();
+    C getAfterHoursContact();
 
-  void setAfterHoursContact(C value);
+    void setAfterHoursContact(C value);
 
-  P getBaseLocation();
+    P getBaseLocation();
 
-  void setBaseLocation(P value);
+    void setBaseLocation(P value);
 
-  CD getCertification();
+    CD getCertification();
 
-  void setCertification(CD value);
+    void setCertification(CD value);
 
-  C getContactPoint();
+    C getContactPoint();
 
-  void setContactPoint(C value);
+    void setContactPoint(C value);
 
-  P getContainedInPlace();
+    P getContainedInPlace();
 
-  void setContainedInPlace(P value);
+    void setContainedInPlace(P value);
 
-  P getContainsPlace();
+    P getContainsPlace();
 
-  void setContainsPlace(P value);
+    void setContainsPlace(P value);
 
-  String getDigitalAddress();
+    String getDigitalAddress();
 
-  void setDigitalAddress(String value);
+    void setDigitalAddress(String value);
 
-  String getDigitalLocationName();
+    LinkedHashMap<String, String> getDigitalLocationName();
 
-  void setDigitalLocationName(String value);
+    void setDigitalLocationName(LinkedHashMap<String, String> value);
 
-  P getGeo();
+    P getGeo();
 
-  void setGeo(P value);
+    void setGeo(P value);
 
-  GLNTypeCode getGlnType();
+    GLNTypeCode getGlnType();
 
-  void setGlnType(GLNTypeCode value);
+    void setGlnType(GLNTypeCode value);
 
-  String getGlobalLocationNumber();
+    String getGlobalLocationNumber();
 
-  void setGlobalLocationNumber(String value);
+    void setGlobalLocationNumber(String value);
 
-  O getLeasedFrom();
+    O getLeasedFrom();
 
-  void setLeasedFrom(O value);
+    void setLeasedFrom(O value);
 
-  O getLeasedTo();
+    O getLeasedTo();
 
-  void setLeasedTo(O value);
+    void setLeasedTo(O value);
 
-  String getLocationGLN();
+    String getLocationGLN();
 
-  void setLocationGLN(String value);
+    void setLocationGLN(String value);
 
-  LO getLocationHistory();
+    LO getLocationHistory();
 
-  void setLocationHistory(LO value);
+    void setLocationHistory(LO value);
 
-  LocationRoleType getLocationRole();
+    LocationRoleType getLocationRole();
 
-  void setLocationRole(LocationRoleType value);
+    void setLocationRole(LocationRoleType value);
 
-  O getManagedBy();
+    O getManagedBy();
 
-  void setManagedBy(O value);
+    void setManagedBy(O value);
 
-  O getManagedFor();
+    O getManagedFor();
 
-  void setManagedFor(O value);
+    void setManagedFor(O value);
 
-  O getOccupiedBy();
+    O getOccupiedBy();
 
-  void setOccupiedBy(O value);
+    void setOccupiedBy(O value);
 
-  O getOwnedBy();
+    O getOwnedBy();
 
-  void setOwnedBy(O value);
+    void setOwnedBy(O value);
 
-  String getPhysicalLocationName();
+    LinkedHashMap<String, String> getPhysicalLocationName();
 
-  void setPhysicalLocationName(String value);
+    void setPhysicalLocationName(LinkedHashMap<String, String> value);
 
-  O getPrimaryLocationOf();
+    O getPrimaryLocationOf();
 
-  void setPrimaryLocationOf(O value);
+    void setPrimaryLocationOf(O value);
 
-  O getRelatedOrganization();
+    O getRelatedOrganization();
 
-  void setRelatedOrganization(O value);
+    void setRelatedOrganization(O value);
 
-  P getReplacedByPlace();
+    P getReplacedByPlace();
 
-  void setReplacedByPlace(P value);
+    void setReplacedByPlace(P value);
 
-  P getReplacedPlace();
+    P getReplacedPlace();
 
-  void setReplacedPlace(P value);
+    void setReplacedPlace(P value);
 
-  O getResponsibleOrganization();
+    O getResponsibleOrganization();
 
-  void setResponsibleOrganization(O value);
+    void setResponsibleOrganization(O value);
 }

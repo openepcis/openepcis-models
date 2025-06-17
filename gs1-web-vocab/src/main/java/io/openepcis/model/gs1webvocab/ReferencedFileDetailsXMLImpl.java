@@ -9,6 +9,7 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.ReferencedFileDetails;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 

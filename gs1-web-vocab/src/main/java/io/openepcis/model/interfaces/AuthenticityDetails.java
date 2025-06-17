@@ -2,10 +2,12 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.SecurityMarking;
 
-public interface AuthenticityDetails {
-  String getAuthenticitySecurityFeatureInstructions();
+import java.util.LinkedHashMap;
 
-  void setAuthenticitySecurityFeatureInstructions(String value);
+public interface AuthenticityDetails {
+  LinkedHashMap<String, String> getAuthenticitySecurityFeatureInstructions();
+
+  void setAuthenticitySecurityFeatureInstructions(LinkedHashMap<String, String> value);
 
   String getAuthenticitySecurityFeatureInstructionsURL();
 

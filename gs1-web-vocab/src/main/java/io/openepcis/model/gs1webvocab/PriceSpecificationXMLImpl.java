@@ -9,7 +9,9 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.PriceSpecification;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 
 /**
  * A structured value representing a monetary amount, consisting of a value and currency code.
@@ -63,7 +65,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
   protected float dutyFeeTaxAmount;
 
   @XmlElement(required = true)
-  protected String dutyFeeTaxDescription;
+  protected LinkedHashMap<String, String> dutyFeeTaxDescription;
 
   protected float dutyFeeTaxRate;
 
@@ -111,7 +113,10 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
    * @return possible object is {@link String }
    */
   @Override
-  public String getDutyFeeTaxDescription() {
+  public LinkedHashMap<String, String> getDutyFeeTaxDescription() {
+    if (dutyFeeTaxDescription == null) {
+      dutyFeeTaxDescription = new LinkedHashMap<>();
+    }
     return dutyFeeTaxDescription;
   }
 
@@ -121,7 +126,7 @@ public class PriceSpecificationXMLImpl implements PriceSpecification<Quantitativ
    * @param value allowed object is {@link String }
    */
   @Override
-  public void setDutyFeeTaxDescription(String value) {
+  public void setDutyFeeTaxDescription(LinkedHashMap<String, String> value) {
     this.dutyFeeTaxDescription = value;
   }
 

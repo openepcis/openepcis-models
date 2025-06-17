@@ -3,20 +3,22 @@ package io.openepcis.model.interfaces;
 import io.openepcis.model.gs1webvocab.AnatomicalFormCode;
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 
+import java.util.LinkedHashMap;
+
 public interface MeatPoultry<QV extends QuantitativeValue> {
-  AnatomicalFormCode getAnatomicalForm();
+    AnatomicalFormCode getAnatomicalForm();
 
-  void setAnatomicalForm(AnatomicalFormCode value);
+    void setAnatomicalForm(AnatomicalFormCode value);
 
-  NonbinaryLogicCode getBonelessClaim();
+    NonbinaryLogicCode getBonelessClaim();
 
-  void setBonelessClaim(NonbinaryLogicCode value);
+    void setBonelessClaim(NonbinaryLogicCode value);
 
-  String getMeatPoultryType();
+    LinkedHashMap<String, String> getMeatPoultryType();
 
-  void setMeatPoultryType(String value);
+    void setMeatPoultryType(LinkedHashMap<String, String> value);
 
-  QV getMinimumMeatPoultryContent();
+    QV getMinimumMeatPoultryContent();
 
-  void setMinimumMeatPoultryContent(QV value);
+    void setMinimumMeatPoultryContent(QV value);
 }

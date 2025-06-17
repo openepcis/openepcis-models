@@ -8,6 +8,8 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Clothing;
 import jakarta.xml.bind.annotation.*;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -34,101 +36,106 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "Clothing",
-    propOrder = {"clothingCut", "collarType", "isMaternity", "textileMaterial"})
-public class ClothingXMLImpl extends WearableProductXMLImpl
-    implements Clothing<TextileMaterialDetailsXMLImpl> {
+        name = "Clothing",
+        propOrder = {"clothingCut", "collarType", "isMaternity", "textileMaterial"})
+public class ClothingXMLImpl extends WearableProductXMLImpl implements Clothing<TextileMaterialDetailsXMLImpl> {
 
-  @XmlElement(required = true)
-  protected String clothingCut;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> clothingCut;
 
-  @XmlElement(required = true)
-  protected String collarType;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> collarType;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode isMaternity;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode isMaternity;
 
-  @XmlElement(required = true)
-  protected List<TextileMaterialDetailsXMLImpl> textileMaterial;
+    @XmlElement(required = true)
+    protected List<TextileMaterialDetailsXMLImpl> textileMaterial;
 
-  /**
-   * Gets the value of the clothingCut property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getClothingCut() {
-    return clothingCut;
-  }
+    /**
+     * Gets the value of the clothingCut property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getClothingCut() {
+        if (clothingCut == null) {
+            clothingCut = new LinkedHashMap<>();
+        }
+        return clothingCut;
+    }
 
-  /**
-   * Sets the value of the clothingCut property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setClothingCut(String value) {
-    this.clothingCut = value;
-  }
+    /**
+     * Sets the value of the clothingCut property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setClothingCut(LinkedHashMap<String, String> value) {
+        this.clothingCut = value;
+    }
 
-  /**
-   * Gets the value of the collarType property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getCollarType() {
-    return collarType;
-  }
+    /**
+     * Gets the value of the collarType property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getCollarType() {
+        if (collarType == null) {
+            collarType = new LinkedHashMap<>();
+        }
+        return collarType;
+    }
 
-  /**
-   * Sets the value of the collarType property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setCollarType(String value) {
-    this.collarType = value;
-  }
+    /**
+     * Sets the value of the collarType property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setCollarType(LinkedHashMap<String, String> value) {
+        this.collarType = value;
+    }
 
-  /**
-   * Gets the value of the isMaternity property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIsMaternity() {
-    return isMaternity;
-  }
+    /**
+     * Gets the value of the isMaternity property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIsMaternity() {
+        return isMaternity;
+    }
 
-  /**
-   * Sets the value of the isMaternity property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIsMaternity(NonbinaryLogicCode value) {
-    this.isMaternity = value;
-  }
+    /**
+     * Sets the value of the isMaternity property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIsMaternity(NonbinaryLogicCode value) {
+        this.isMaternity = value;
+    }
 
-  /**
-   * Gets the value of the textileMaterial property.
-   *
-   * @return possible object is {@link TextileMaterialDetailsXMLImpl }
-   */
-  @Override
-  public List<TextileMaterialDetailsXMLImpl> getTextileMaterial() {
-    return textileMaterial;
-  }
+    /**
+     * Gets the value of the textileMaterial property.
+     *
+     * @return possible object is {@link TextileMaterialDetailsXMLImpl }
+     */
+    @Override
+    public List<TextileMaterialDetailsXMLImpl> getTextileMaterial() {
+        return textileMaterial;
+    }
 
-  /**
-   * Sets the value of the textileMaterial property.
-   *
-   * @param value allowed object is {@link TextileMaterialDetailsXMLImpl }
-   */
-  @Override
-  public void setTextileMaterial(List<TextileMaterialDetailsXMLImpl> value) {
-    this.textileMaterial = value;
-  }
+    /**
+     * Sets the value of the textileMaterial property.
+     *
+     * @param value allowed object is {@link TextileMaterialDetailsXMLImpl }
+     */
+    @Override
+    public void setTextileMaterial(List<TextileMaterialDetailsXMLImpl> value) {
+        this.textileMaterial = value;
+    }
 }

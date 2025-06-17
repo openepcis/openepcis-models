@@ -8,7 +8,9 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Discount;
 import jakarta.xml.bind.annotation.*;
+
 import java.math.BigInteger;
+import java.util.LinkedHashMap;
 
 /**
  * Provides information on a discount applicable to an offer for example 2 percent.
@@ -59,697 +61,711 @@ import java.math.BigInteger;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "Discount",
-    propOrder = {
-      "discountRepeatsPerMultipleMinimum",
-      "discountType",
-      "eligibleTradeChannel",
-      "exactDiscountAmount",
-      "exactDiscountPercentage",
-      "exclusionDescription",
-      "isOnlyAvailableThroughRetailer",
-      "isOnlyWithMailingListSignup",
-      "isOnlyWithPaymentCard",
-      "isOnlyWithRetailerLoyaltyCard",
-      "isOnlyWithRetailerPaymentCard",
-      "isPromoterExclusiveOffer",
-      "maximumDiscountAmount",
-      "maximumDiscountPercentage",
-      "maximumQualifyingItems",
-      "maximumQualifyingSpend",
-      "minimumDiscountAmount",
-      "minimumDiscountPercentage",
-      "minimumQualifyingItems",
-      "minimumQualifyingSpend",
-      "offerRedemptionType",
-      "offerRestrictionDescription",
-      "qualifyingBrandName",
-      "qualifyingGPCs",
-      "qualifyingProductCategoryDescription",
-      "qualifyingProductClassificationCode",
-      "qualifyingProductGTINs",
-      "qualifyingSubBrandName",
-      "selectedProductsOnly"
-    })
-public class DiscountXMLImpl
-    implements Discount<PriceSpecificationXMLImpl, AdditionalProductClassificationDetailsXMLImpl> {
-
-  protected boolean discountRepeatsPerMultipleMinimum;
-
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected DiscountTypeCode discountType;
-
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected TradeChannelCode eligibleTradeChannel;
-
-  @XmlElement(required = true)
-  protected PriceSpecificationXMLImpl exactDiscountAmount;
-
-  protected float exactDiscountPercentage;
-
-  @XmlElement(required = true)
-  protected String exclusionDescription;
-
-  protected boolean isOnlyAvailableThroughRetailer;
-  protected boolean isOnlyWithMailingListSignup;
-
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected PaymentMethod isOnlyWithPaymentCard;
-
-  protected boolean isOnlyWithRetailerLoyaltyCard;
-  protected boolean isOnlyWithRetailerPaymentCard;
-  protected boolean isPromoterExclusiveOffer;
-
-  @XmlElement(required = true)
-  protected PriceSpecificationXMLImpl maximumDiscountAmount;
-
-  protected float maximumDiscountPercentage;
-
-  @XmlElement(required = true)
-  protected BigInteger maximumQualifyingItems;
-
-  @XmlElement(required = true)
-  protected PriceSpecificationXMLImpl maximumQualifyingSpend;
-
-  @XmlElement(required = true)
-  protected PriceSpecificationXMLImpl minimumDiscountAmount;
-
-  protected float minimumDiscountPercentage;
-
-  @XmlElement(required = true)
-  protected BigInteger minimumQualifyingItems;
-
-  @XmlElement(required = true)
-  protected PriceSpecificationXMLImpl minimumQualifyingSpend;
-
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected OfferRedemptionTypeCode offerRedemptionType;
-
-  @XmlElement(required = true)
-  protected String offerRestrictionDescription;
-
-  @XmlElement(required = true)
-  protected String qualifyingBrandName;
-
-  @XmlElement(required = true)
-  protected String qualifyingGPCs;
-
-  @XmlElement(required = true)
-  protected String qualifyingProductCategoryDescription;
-
-  @XmlElement(required = true)
-  protected AdditionalProductClassificationDetailsXMLImpl qualifyingProductClassificationCode;
-
-  @XmlElement(required = true)
-  protected String qualifyingProductGTINs;
-
-  @XmlElement(required = true)
-  protected String qualifyingSubBrandName;
-
-  protected boolean selectedProductsOnly;
-
-  /**
-   * Gets the value of the discountRepeatsPerMultipleMinimum property.
-   *
-   * @return possible object is {@link boolean }
-   */
-  @Override
-  public boolean getDiscountRepeatsPerMultipleMinimum() {
-    return discountRepeatsPerMultipleMinimum;
-  }
-
-  /**
-   * Sets the value of the discountRepeatsPerMultipleMinimum property.
-   *
-   * @param value allowed object is {@link boolean }
-   */
-  @Override
-  public void setDiscountRepeatsPerMultipleMinimum(boolean value) {
-    this.discountRepeatsPerMultipleMinimum = value;
-  }
-
-  /**
-   * Gets the value of the discountType property.
-   *
-   * @return possible object is {@link DiscountTypeCode }
-   */
-  @Override
-  public DiscountTypeCode getDiscountType() {
-    return discountType;
-  }
-
-  /**
-   * Sets the value of the discountType property.
-   *
-   * @param value allowed object is {@link DiscountTypeCode }
-   */
-  @Override
-  public void setDiscountType(DiscountTypeCode value) {
-    this.discountType = value;
-  }
-
-  /**
-   * Gets the value of the eligibleTradeChannel property.
-   *
-   * @return possible object is {@link TradeChannelCode }
-   */
-  @Override
-  public TradeChannelCode getEligibleTradeChannel() {
-    return eligibleTradeChannel;
-  }
-
-  /**
-   * Sets the value of the eligibleTradeChannel property.
-   *
-   * @param value allowed object is {@link TradeChannelCode }
-   */
-  @Override
-  public void setEligibleTradeChannel(TradeChannelCode value) {
-    this.eligibleTradeChannel = value;
-  }
-
-  /**
-   * Gets the value of the exactDiscountAmount property.
-   *
-   * @return possible object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public PriceSpecificationXMLImpl getExactDiscountAmount() {
-    return exactDiscountAmount;
-  }
-
-  /**
-   * Sets the value of the exactDiscountAmount property.
-   *
-   * @param value allowed object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public void setExactDiscountAmount(PriceSpecificationXMLImpl value) {
-    this.exactDiscountAmount = value;
-  }
-
-  /**
-   * Gets the value of the exactDiscountPercentage property.
-   *
-   * @return possible object is {@link float }
-   */
-  @Override
-  public float getExactDiscountPercentage() {
-    return exactDiscountPercentage;
-  }
-
-  /**
-   * Sets the value of the exactDiscountPercentage property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setExactDiscountPercentage(float value) {
-    this.exactDiscountPercentage = value;
-  }
-
-  /**
-   * Gets the value of the exclusionDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getExclusionDescription() {
-    return exclusionDescription;
-  }
-
-  /**
-   * Sets the value of the exclusionDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setExclusionDescription(String value) {
-    this.exclusionDescription = value;
-  }
-
-  /**
-   * Gets the value of the isOnlyAvailableThroughRetailer property.
-   *
-   * @return possible object is {@link boolean }
-   */
-  @Override
-  public boolean getIsOnlyAvailableThroughRetailer() {
-    return isOnlyAvailableThroughRetailer;
-  }
-
-  /**
-   * Sets the value of the isOnlyAvailableThroughRetailer property.
-   *
-   * @param value allowed object is {@link boolean }
-   */
-  @Override
-  public void setIsOnlyAvailableThroughRetailer(boolean value) {
-    this.isOnlyAvailableThroughRetailer = value;
-  }
-
-  /**
-   * Gets the value of the isOnlyWithMailingListSignup property.
-   *
-   * @return possible object is {@link boolean }
-   */
-  @Override
-  public boolean getIsOnlyWithMailingListSignup() {
-    return isOnlyWithMailingListSignup;
-  }
-
-  /**
-   * Sets the value of the isOnlyWithMailingListSignup property.
-   *
-   * @param value allowed object is {@link boolean }
-   */
-  @Override
-  public void setIsOnlyWithMailingListSignup(boolean value) {
-    this.isOnlyWithMailingListSignup = value;
-  }
-
-  /**
-   * Gets the value of the isOnlyWithPaymentCard property.
-   *
-   * @return possible object is {@link PaymentMethod }
-   */
-  @Override
-  public PaymentMethod getIsOnlyWithPaymentCard() {
-    return isOnlyWithPaymentCard;
-  }
-
-  /**
-   * Sets the value of the isOnlyWithPaymentCard property.
-   *
-   * @param value allowed object is {@link PaymentMethod }
-   */
-  @Override
-  public void setIsOnlyWithPaymentCard(PaymentMethod value) {
-    this.isOnlyWithPaymentCard = value;
-  }
-
-  /**
-   * Gets the value of the isOnlyWithRetailerLoyaltyCard property.
-   *
-   * @return possible object is {@link boolean }
-   */
-  @Override
-  public boolean getIsOnlyWithRetailerLoyaltyCard() {
-    return isOnlyWithRetailerLoyaltyCard;
-  }
-
-  /**
-   * Sets the value of the isOnlyWithRetailerLoyaltyCard property.
-   *
-   * @param value allowed object is {@link boolean }
-   */
-  @Override
-  public void setIsOnlyWithRetailerLoyaltyCard(boolean value) {
-    this.isOnlyWithRetailerLoyaltyCard = value;
-  }
-
-  /**
-   * Gets the value of the isOnlyWithRetailerPaymentCard property.
-   *
-   * @return possible object is {@link boolean }
-   */
-  @Override
-  public boolean getIsOnlyWithRetailerPaymentCard() {
-    return isOnlyWithRetailerPaymentCard;
-  }
-
-  /**
-   * Sets the value of the isOnlyWithRetailerPaymentCard property.
-   *
-   * @param value allowed object is {@link boolean }
-   */
-  @Override
-  public void setIsOnlyWithRetailerPaymentCard(boolean value) {
-    this.isOnlyWithRetailerPaymentCard = value;
-  }
-
-  /**
-   * Gets the value of the isPromoterExclusiveOffer property.
-   *
-   * @return possible object is {@link boolean }
-   */
-  @Override
-  public boolean getIsPromoterExclusiveOffer() {
-    return isPromoterExclusiveOffer;
-  }
-
-  /**
-   * Sets the value of the isPromoterExclusiveOffer property.
-   *
-   * @param value allowed object is {@link boolean }
-   */
-  @Override
-  public void setIsPromoterExclusiveOffer(boolean value) {
-    this.isPromoterExclusiveOffer = value;
-  }
-
-  /**
-   * Gets the value of the maximumDiscountAmount property.
-   *
-   * @return possible object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public PriceSpecificationXMLImpl getMaximumDiscountAmount() {
-    return maximumDiscountAmount;
-  }
-
-  /**
-   * Sets the value of the maximumDiscountAmount property.
-   *
-   * @param value allowed object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public void setMaximumDiscountAmount(PriceSpecificationXMLImpl value) {
-    this.maximumDiscountAmount = value;
-  }
-
-  /**
-   * Gets the value of the maximumDiscountPercentage property.
-   *
-   * @return possible object is {@link float }
-   */
-  @Override
-  public float getMaximumDiscountPercentage() {
-    return maximumDiscountPercentage;
-  }
-
-  /**
-   * Sets the value of the maximumDiscountPercentage property.
-   *
-   * @param value allowed object is {@link float }
-   */
-  @Override
-  public void setMaximumDiscountPercentage(float value) {
-    this.maximumDiscountPercentage = value;
-  }
-
-  /**
-   * Gets the value of the maximumQualifyingItems property.
-   *
-   * @return possible object is {@link BigInteger }
-   */
-  @Override
-  public BigInteger getMaximumQualifyingItems() {
-    return maximumQualifyingItems;
-  }
-
-  /**
-   * Sets the value of the maximumQualifyingItems property.
-   *
-   * @param value allowed object is {@link BigInteger }
-   */
-  @Override
-  public void setMaximumQualifyingItems(BigInteger value) {
-    this.maximumQualifyingItems = value;
-  }
-
-  /**
-   * Gets the value of the maximumQualifyingSpend property.
-   *
-   * @return possible object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public PriceSpecificationXMLImpl getMaximumQualifyingSpend() {
-    return maximumQualifyingSpend;
-  }
-
-  /**
-   * Sets the value of the maximumQualifyingSpend property.
-   *
-   * @param value allowed object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public void setMaximumQualifyingSpend(PriceSpecificationXMLImpl value) {
-    this.maximumQualifyingSpend = value;
-  }
-
-  /**
-   * Gets the value of the minimumDiscountAmount property.
-   *
-   * @return possible object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public PriceSpecificationXMLImpl getMinimumDiscountAmount() {
-    return minimumDiscountAmount;
-  }
-
-  /**
-   * Sets the value of the minimumDiscountAmount property.
-   *
-   * @param value allowed object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public void setMinimumDiscountAmount(PriceSpecificationXMLImpl value) {
-    this.minimumDiscountAmount = value;
-  }
-
-  /**
-   * Gets the value of the minimumDiscountPercentage property.
-   *
-   * @return possible object is {@link float }
-   */
-  @Override
-  public float getMinimumDiscountPercentage() {
-    return minimumDiscountPercentage;
-  }
-
-  /**
-   * Sets the value of the minimumDiscountPercentage property.
-   *
-   * @param value allowed object is {@link float }
-   */
-  @Override
-  public void setMinimumDiscountPercentage(float value) {
-    this.minimumDiscountPercentage = value;
-  }
-
-  /**
-   * Gets the value of the minimumQualifyingItems property.
-   *
-   * @return possible object is {@link BigInteger }
-   */
-  @Override
-  public BigInteger getMinimumQualifyingItems() {
-    return minimumQualifyingItems;
-  }
-
-  /**
-   * Sets the value of the minimumQualifyingItems property.
-   *
-   * @param value allowed object is {@link BigInteger }
-   */
-  @Override
-  public void setMinimumQualifyingItems(BigInteger value) {
-    this.minimumQualifyingItems = value;
-  }
-
-  /**
-   * Gets the value of the minimumQualifyingSpend property.
-   *
-   * @return possible object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public PriceSpecificationXMLImpl getMinimumQualifyingSpend() {
-    return minimumQualifyingSpend;
-  }
-
-  /**
-   * Sets the value of the minimumQualifyingSpend property.
-   *
-   * @param value allowed object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public void setMinimumQualifyingSpend(PriceSpecificationXMLImpl value) {
-    this.minimumQualifyingSpend = value;
-  }
-
-  /**
-   * Gets the value of the offerRedemptionType property.
-   *
-   * @return possible object is {@link OfferRedemptionTypeCode }
-   */
-  @Override
-  public OfferRedemptionTypeCode getOfferRedemptionType() {
-    return offerRedemptionType;
-  }
-
-  /**
-   * Sets the value of the offerRedemptionType property.
-   *
-   * @param value allowed object is {@link OfferRedemptionTypeCode }
-   */
-  @Override
-  public void setOfferRedemptionType(OfferRedemptionTypeCode value) {
-    this.offerRedemptionType = value;
-  }
-
-  /**
-   * Gets the value of the offerRestrictionDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getOfferRestrictionDescription() {
-    return offerRestrictionDescription;
-  }
-
-  /**
-   * Sets the value of the offerRestrictionDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setOfferRestrictionDescription(String value) {
-    this.offerRestrictionDescription = value;
-  }
-
-  /**
-   * Gets the value of the qualifyingBrandName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getQualifyingBrandName() {
-    return qualifyingBrandName;
-  }
-
-  /**
-   * Sets the value of the qualifyingBrandName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setQualifyingBrandName(String value) {
-    this.qualifyingBrandName = value;
-  }
-
-  /**
-   * Gets the value of the qualifyingGPCs property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getQualifyingGPCs() {
-    return qualifyingGPCs;
-  }
-
-  /**
-   * Sets the value of the qualifyingGPCs property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setQualifyingGPCs(String value) {
-    this.qualifyingGPCs = value;
-  }
-
-  /**
-   * Gets the value of the qualifyingProductCategoryDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getQualifyingProductCategoryDescription() {
-    return qualifyingProductCategoryDescription;
-  }
-
-  /**
-   * Sets the value of the qualifyingProductCategoryDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setQualifyingProductCategoryDescription(String value) {
-    this.qualifyingProductCategoryDescription = value;
-  }
-
-  /**
-   * Gets the value of the qualifyingProductClassificationCode property.
-   *
-   * @return possible object is {@link AdditionalProductClassificationDetailsXMLImpl }
-   */
-  @Override
-  public AdditionalProductClassificationDetailsXMLImpl getQualifyingProductClassificationCode() {
-    return qualifyingProductClassificationCode;
-  }
-
-  /**
-   * Sets the value of the qualifyingProductClassificationCode property.
-   *
-   * @param value allowed object is {@link AdditionalProductClassificationDetailsXMLImpl }
-   */
-  @Override
-  public void setQualifyingProductClassificationCode(
-      AdditionalProductClassificationDetailsXMLImpl value) {
-    this.qualifyingProductClassificationCode = value;
-  }
-
-  /**
-   * Gets the value of the qualifyingProductGTINs property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getQualifyingProductGTINs() {
-    return qualifyingProductGTINs;
-  }
-
-  /**
-   * Sets the value of the qualifyingProductGTINs property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setQualifyingProductGTINs(String value) {
-    this.qualifyingProductGTINs = value;
-  }
-
-  /**
-   * Gets the value of the qualifyingSubBrandName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getQualifyingSubBrandName() {
-    return qualifyingSubBrandName;
-  }
-
-  /**
-   * Sets the value of the qualifyingSubBrandName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setQualifyingSubBrandName(String value) {
-    this.qualifyingSubBrandName = value;
-  }
-
-  /**
-   * Gets the value of the selectedProductsOnly property.
-   *
-   * @return possible object is {@link boolean }
-   */
-  @Override
-  public boolean getSelectedProductsOnly() {
-    return selectedProductsOnly;
-  }
-
-  /**
-   * Sets the value of the selectedProductsOnly property.
-   *
-   * @param value allowed object is {@link boolean }
-   */
-  @Override
-  public void setSelectedProductsOnly(boolean value) {
-    this.selectedProductsOnly = value;
-  }
+        name = "Discount",
+        propOrder = {
+                "discountRepeatsPerMultipleMinimum",
+                "discountType",
+                "eligibleTradeChannel",
+                "exactDiscountAmount",
+                "exactDiscountPercentage",
+                "exclusionDescription",
+                "isOnlyAvailableThroughRetailer",
+                "isOnlyWithMailingListSignup",
+                "isOnlyWithPaymentCard",
+                "isOnlyWithRetailerLoyaltyCard",
+                "isOnlyWithRetailerPaymentCard",
+                "isPromoterExclusiveOffer",
+                "maximumDiscountAmount",
+                "maximumDiscountPercentage",
+                "maximumQualifyingItems",
+                "maximumQualifyingSpend",
+                "minimumDiscountAmount",
+                "minimumDiscountPercentage",
+                "minimumQualifyingItems",
+                "minimumQualifyingSpend",
+                "offerRedemptionType",
+                "offerRestrictionDescription",
+                "qualifyingBrandName",
+                "qualifyingGPCs",
+                "qualifyingProductCategoryDescription",
+                "qualifyingProductClassificationCode",
+                "qualifyingProductGTINs",
+                "qualifyingSubBrandName",
+                "selectedProductsOnly"
+        })
+public class DiscountXMLImpl implements Discount<PriceSpecificationXMLImpl, AdditionalProductClassificationDetailsXMLImpl> {
+
+    protected boolean discountRepeatsPerMultipleMinimum;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected DiscountTypeCode discountType;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected TradeChannelCode eligibleTradeChannel;
+
+    @XmlElement(required = true)
+    protected PriceSpecificationXMLImpl exactDiscountAmount;
+
+    protected float exactDiscountPercentage;
+
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> exclusionDescription;
+
+    protected boolean isOnlyAvailableThroughRetailer;
+    protected boolean isOnlyWithMailingListSignup;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected PaymentMethod isOnlyWithPaymentCard;
+
+    protected boolean isOnlyWithRetailerLoyaltyCard;
+    protected boolean isOnlyWithRetailerPaymentCard;
+    protected boolean isPromoterExclusiveOffer;
+
+    @XmlElement(required = true)
+    protected PriceSpecificationXMLImpl maximumDiscountAmount;
+
+    protected float maximumDiscountPercentage;
+
+    @XmlElement(required = true)
+    protected BigInteger maximumQualifyingItems;
+
+    @XmlElement(required = true)
+    protected PriceSpecificationXMLImpl maximumQualifyingSpend;
+
+    @XmlElement(required = true)
+    protected PriceSpecificationXMLImpl minimumDiscountAmount;
+
+    protected float minimumDiscountPercentage;
+
+    @XmlElement(required = true)
+    protected BigInteger minimumQualifyingItems;
+
+    @XmlElement(required = true)
+    protected PriceSpecificationXMLImpl minimumQualifyingSpend;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected OfferRedemptionTypeCode offerRedemptionType;
+
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> offerRestrictionDescription;
+
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> qualifyingBrandName;
+
+    @XmlElement(required = true)
+    protected String qualifyingGPCs;
+
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> qualifyingProductCategoryDescription;
+
+    @XmlElement(required = true)
+    protected AdditionalProductClassificationDetailsXMLImpl qualifyingProductClassificationCode;
+
+    @XmlElement(required = true)
+    protected String qualifyingProductGTINs;
+
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> qualifyingSubBrandName;
+
+    protected boolean selectedProductsOnly;
+
+    /**
+     * Gets the value of the discountRepeatsPerMultipleMinimum property.
+     *
+     * @return possible object is {@link boolean }
+     */
+    @Override
+    public boolean getDiscountRepeatsPerMultipleMinimum() {
+        return discountRepeatsPerMultipleMinimum;
+    }
+
+    /**
+     * Sets the value of the discountRepeatsPerMultipleMinimum property.
+     *
+     * @param value allowed object is {@link boolean }
+     */
+    @Override
+    public void setDiscountRepeatsPerMultipleMinimum(boolean value) {
+        this.discountRepeatsPerMultipleMinimum = value;
+    }
+
+    /**
+     * Gets the value of the discountType property.
+     *
+     * @return possible object is {@link DiscountTypeCode }
+     */
+    @Override
+    public DiscountTypeCode getDiscountType() {
+        return discountType;
+    }
+
+    /**
+     * Sets the value of the discountType property.
+     *
+     * @param value allowed object is {@link DiscountTypeCode }
+     */
+    @Override
+    public void setDiscountType(DiscountTypeCode value) {
+        this.discountType = value;
+    }
+
+    /**
+     * Gets the value of the eligibleTradeChannel property.
+     *
+     * @return possible object is {@link TradeChannelCode }
+     */
+    @Override
+    public TradeChannelCode getEligibleTradeChannel() {
+        return eligibleTradeChannel;
+    }
+
+    /**
+     * Sets the value of the eligibleTradeChannel property.
+     *
+     * @param value allowed object is {@link TradeChannelCode }
+     */
+    @Override
+    public void setEligibleTradeChannel(TradeChannelCode value) {
+        this.eligibleTradeChannel = value;
+    }
+
+    /**
+     * Gets the value of the exactDiscountAmount property.
+     *
+     * @return possible object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public PriceSpecificationXMLImpl getExactDiscountAmount() {
+        return exactDiscountAmount;
+    }
+
+    /**
+     * Sets the value of the exactDiscountAmount property.
+     *
+     * @param value allowed object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public void setExactDiscountAmount(PriceSpecificationXMLImpl value) {
+        this.exactDiscountAmount = value;
+    }
+
+    /**
+     * Gets the value of the exactDiscountPercentage property.
+     *
+     * @return possible object is {@link float }
+     */
+    @Override
+    public float getExactDiscountPercentage() {
+        return exactDiscountPercentage;
+    }
+
+    /**
+     * Sets the value of the exactDiscountPercentage property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setExactDiscountPercentage(float value) {
+        this.exactDiscountPercentage = value;
+    }
+
+    /**
+     * Gets the value of the exclusionDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getExclusionDescription() {
+        if (exclusionDescription == null) {
+            exclusionDescription = new LinkedHashMap<>();
+        }
+        return exclusionDescription;
+    }
+
+    /**
+     * Sets the value of the exclusionDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setExclusionDescription(LinkedHashMap<String, String> value) {
+        this.exclusionDescription = value;
+    }
+
+    /**
+     * Gets the value of the isOnlyAvailableThroughRetailer property.
+     *
+     * @return possible object is {@link boolean }
+     */
+    @Override
+    public boolean getIsOnlyAvailableThroughRetailer() {
+        return isOnlyAvailableThroughRetailer;
+    }
+
+    /**
+     * Sets the value of the isOnlyAvailableThroughRetailer property.
+     *
+     * @param value allowed object is {@link boolean }
+     */
+    @Override
+    public void setIsOnlyAvailableThroughRetailer(boolean value) {
+        this.isOnlyAvailableThroughRetailer = value;
+    }
+
+    /**
+     * Gets the value of the isOnlyWithMailingListSignup property.
+     *
+     * @return possible object is {@link boolean }
+     */
+    @Override
+    public boolean getIsOnlyWithMailingListSignup() {
+        return isOnlyWithMailingListSignup;
+    }
+
+    /**
+     * Sets the value of the isOnlyWithMailingListSignup property.
+     *
+     * @param value allowed object is {@link boolean }
+     */
+    @Override
+    public void setIsOnlyWithMailingListSignup(boolean value) {
+        this.isOnlyWithMailingListSignup = value;
+    }
+
+    /**
+     * Gets the value of the isOnlyWithPaymentCard property.
+     *
+     * @return possible object is {@link PaymentMethod }
+     */
+    @Override
+    public PaymentMethod getIsOnlyWithPaymentCard() {
+        return isOnlyWithPaymentCard;
+    }
+
+    /**
+     * Sets the value of the isOnlyWithPaymentCard property.
+     *
+     * @param value allowed object is {@link PaymentMethod }
+     */
+    @Override
+    public void setIsOnlyWithPaymentCard(PaymentMethod value) {
+        this.isOnlyWithPaymentCard = value;
+    }
+
+    /**
+     * Gets the value of the isOnlyWithRetailerLoyaltyCard property.
+     *
+     * @return possible object is {@link boolean }
+     */
+    @Override
+    public boolean getIsOnlyWithRetailerLoyaltyCard() {
+        return isOnlyWithRetailerLoyaltyCard;
+    }
+
+    /**
+     * Sets the value of the isOnlyWithRetailerLoyaltyCard property.
+     *
+     * @param value allowed object is {@link boolean }
+     */
+    @Override
+    public void setIsOnlyWithRetailerLoyaltyCard(boolean value) {
+        this.isOnlyWithRetailerLoyaltyCard = value;
+    }
+
+    /**
+     * Gets the value of the isOnlyWithRetailerPaymentCard property.
+     *
+     * @return possible object is {@link boolean }
+     */
+    @Override
+    public boolean getIsOnlyWithRetailerPaymentCard() {
+        return isOnlyWithRetailerPaymentCard;
+    }
+
+    /**
+     * Sets the value of the isOnlyWithRetailerPaymentCard property.
+     *
+     * @param value allowed object is {@link boolean }
+     */
+    @Override
+    public void setIsOnlyWithRetailerPaymentCard(boolean value) {
+        this.isOnlyWithRetailerPaymentCard = value;
+    }
+
+    /**
+     * Gets the value of the isPromoterExclusiveOffer property.
+     *
+     * @return possible object is {@link boolean }
+     */
+    @Override
+    public boolean getIsPromoterExclusiveOffer() {
+        return isPromoterExclusiveOffer;
+    }
+
+    /**
+     * Sets the value of the isPromoterExclusiveOffer property.
+     *
+     * @param value allowed object is {@link boolean }
+     */
+    @Override
+    public void setIsPromoterExclusiveOffer(boolean value) {
+        this.isPromoterExclusiveOffer = value;
+    }
+
+    /**
+     * Gets the value of the maximumDiscountAmount property.
+     *
+     * @return possible object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public PriceSpecificationXMLImpl getMaximumDiscountAmount() {
+        return maximumDiscountAmount;
+    }
+
+    /**
+     * Sets the value of the maximumDiscountAmount property.
+     *
+     * @param value allowed object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public void setMaximumDiscountAmount(PriceSpecificationXMLImpl value) {
+        this.maximumDiscountAmount = value;
+    }
+
+    /**
+     * Gets the value of the maximumDiscountPercentage property.
+     *
+     * @return possible object is {@link float }
+     */
+    @Override
+    public float getMaximumDiscountPercentage() {
+        return maximumDiscountPercentage;
+    }
+
+    /**
+     * Sets the value of the maximumDiscountPercentage property.
+     *
+     * @param value allowed object is {@link float }
+     */
+    @Override
+    public void setMaximumDiscountPercentage(float value) {
+        this.maximumDiscountPercentage = value;
+    }
+
+    /**
+     * Gets the value of the maximumQualifyingItems property.
+     *
+     * @return possible object is {@link BigInteger }
+     */
+    @Override
+    public BigInteger getMaximumQualifyingItems() {
+        return maximumQualifyingItems;
+    }
+
+    /**
+     * Sets the value of the maximumQualifyingItems property.
+     *
+     * @param value allowed object is {@link BigInteger }
+     */
+    @Override
+    public void setMaximumQualifyingItems(BigInteger value) {
+        this.maximumQualifyingItems = value;
+    }
+
+    /**
+     * Gets the value of the maximumQualifyingSpend property.
+     *
+     * @return possible object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public PriceSpecificationXMLImpl getMaximumQualifyingSpend() {
+        return maximumQualifyingSpend;
+    }
+
+    /**
+     * Sets the value of the maximumQualifyingSpend property.
+     *
+     * @param value allowed object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public void setMaximumQualifyingSpend(PriceSpecificationXMLImpl value) {
+        this.maximumQualifyingSpend = value;
+    }
+
+    /**
+     * Gets the value of the minimumDiscountAmount property.
+     *
+     * @return possible object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public PriceSpecificationXMLImpl getMinimumDiscountAmount() {
+        return minimumDiscountAmount;
+    }
+
+    /**
+     * Sets the value of the minimumDiscountAmount property.
+     *
+     * @param value allowed object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public void setMinimumDiscountAmount(PriceSpecificationXMLImpl value) {
+        this.minimumDiscountAmount = value;
+    }
+
+    /**
+     * Gets the value of the minimumDiscountPercentage property.
+     *
+     * @return possible object is {@link float }
+     */
+    @Override
+    public float getMinimumDiscountPercentage() {
+        return minimumDiscountPercentage;
+    }
+
+    /**
+     * Sets the value of the minimumDiscountPercentage property.
+     *
+     * @param value allowed object is {@link float }
+     */
+    @Override
+    public void setMinimumDiscountPercentage(float value) {
+        this.minimumDiscountPercentage = value;
+    }
+
+    /**
+     * Gets the value of the minimumQualifyingItems property.
+     *
+     * @return possible object is {@link BigInteger }
+     */
+    @Override
+    public BigInteger getMinimumQualifyingItems() {
+        return minimumQualifyingItems;
+    }
+
+    /**
+     * Sets the value of the minimumQualifyingItems property.
+     *
+     * @param value allowed object is {@link BigInteger }
+     */
+    @Override
+    public void setMinimumQualifyingItems(BigInteger value) {
+        this.minimumQualifyingItems = value;
+    }
+
+    /**
+     * Gets the value of the minimumQualifyingSpend property.
+     *
+     * @return possible object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public PriceSpecificationXMLImpl getMinimumQualifyingSpend() {
+        return minimumQualifyingSpend;
+    }
+
+    /**
+     * Sets the value of the minimumQualifyingSpend property.
+     *
+     * @param value allowed object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public void setMinimumQualifyingSpend(PriceSpecificationXMLImpl value) {
+        this.minimumQualifyingSpend = value;
+    }
+
+    /**
+     * Gets the value of the offerRedemptionType property.
+     *
+     * @return possible object is {@link OfferRedemptionTypeCode }
+     */
+    @Override
+    public OfferRedemptionTypeCode getOfferRedemptionType() {
+        return offerRedemptionType;
+    }
+
+    /**
+     * Sets the value of the offerRedemptionType property.
+     *
+     * @param value allowed object is {@link OfferRedemptionTypeCode }
+     */
+    @Override
+    public void setOfferRedemptionType(OfferRedemptionTypeCode value) {
+        this.offerRedemptionType = value;
+    }
+
+    /**
+     * Gets the value of the offerRestrictionDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getOfferRestrictionDescription() {
+        if (offerRestrictionDescription == null) {
+            offerRestrictionDescription = new LinkedHashMap<>();
+        }
+        return offerRestrictionDescription;
+    }
+
+    /**
+     * Sets the value of the offerRestrictionDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setOfferRestrictionDescription(LinkedHashMap<String, String> value) {
+        this.offerRestrictionDescription = value;
+    }
+
+    /**
+     * Gets the value of the qualifyingBrandName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getQualifyingBrandName() {
+        if (qualifyingBrandName == null) {
+            qualifyingBrandName = new LinkedHashMap<>();
+        }
+        return qualifyingBrandName;
+    }
+
+    /**
+     * Sets the value of the qualifyingBrandName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setQualifyingBrandName(LinkedHashMap<String, String> value) {
+        this.qualifyingBrandName = value;
+    }
+
+    /**
+     * Gets the value of the qualifyingGPCs property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getQualifyingGPCs() {
+        return qualifyingGPCs;
+    }
+
+    /**
+     * Sets the value of the qualifyingGPCs property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setQualifyingGPCs(String value) {
+        this.qualifyingGPCs = value;
+    }
+
+    /**
+     * Gets the value of the qualifyingProductCategoryDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getQualifyingProductCategoryDescription() {
+        if (qualifyingProductCategoryDescription == null) {
+            qualifyingProductCategoryDescription = new LinkedHashMap<>();
+        }
+        return qualifyingProductCategoryDescription;
+    }
+
+    /**
+     * Sets the value of the qualifyingProductCategoryDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setQualifyingProductCategoryDescription(LinkedHashMap<String, String> value) {
+        this.qualifyingProductCategoryDescription = value;
+    }
+
+    /**
+     * Gets the value of the qualifyingProductClassificationCode property.
+     *
+     * @return possible object is {@link AdditionalProductClassificationDetailsXMLImpl }
+     */
+    @Override
+    public AdditionalProductClassificationDetailsXMLImpl getQualifyingProductClassificationCode() {
+        return qualifyingProductClassificationCode;
+    }
+
+    /**
+     * Sets the value of the qualifyingProductClassificationCode property.
+     *
+     * @param value allowed object is {@link AdditionalProductClassificationDetailsXMLImpl }
+     */
+    @Override
+    public void setQualifyingProductClassificationCode(
+            AdditionalProductClassificationDetailsXMLImpl value) {
+        this.qualifyingProductClassificationCode = value;
+    }
+
+    /**
+     * Gets the value of the qualifyingProductGTINs property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getQualifyingProductGTINs() {
+        return qualifyingProductGTINs;
+    }
+
+    /**
+     * Sets the value of the qualifyingProductGTINs property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setQualifyingProductGTINs(String value) {
+        this.qualifyingProductGTINs = value;
+    }
+
+    /**
+     * Gets the value of the qualifyingSubBrandName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getQualifyingSubBrandName() {
+        if (qualifyingSubBrandName == null) {
+            qualifyingSubBrandName = new LinkedHashMap<>();
+        }
+        return qualifyingSubBrandName;
+    }
+
+    /**
+     * Sets the value of the qualifyingSubBrandName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setQualifyingSubBrandName(LinkedHashMap<String, String> value) {
+        this.qualifyingSubBrandName = value;
+    }
+
+    /**
+     * Gets the value of the selectedProductsOnly property.
+     *
+     * @return possible object is {@link boolean }
+     */
+    @Override
+    public boolean getSelectedProductsOnly() {
+        return selectedProductsOnly;
+    }
+
+    /**
+     * Sets the value of the selectedProductsOnly property.
+     *
+     * @param value allowed object is {@link boolean }
+     */
+    @Override
+    public void setSelectedProductsOnly(boolean value) {
+        this.selectedProductsOnly = value;
+    }
 }

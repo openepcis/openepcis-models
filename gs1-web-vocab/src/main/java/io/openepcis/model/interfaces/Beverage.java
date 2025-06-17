@@ -2,36 +2,38 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 
+import java.util.LinkedHashMap;
+
 public interface Beverage {
-  String getAlcoholicBeverageSubregion();
+    LinkedHashMap<String, String> getAlcoholicBeverageSubregion();
 
-  void setAlcoholicBeverageSubregion(String value);
+    void setAlcoholicBeverageSubregion(LinkedHashMap<String, String> value);
 
-  String getBeverageVintage();
+    String getBeverageVintage();
 
-  void setBeverageVintage(String value);
+    void setBeverageVintage(String value);
 
-  NonbinaryLogicCode getIsCarbonated();
+    NonbinaryLogicCode getIsCarbonated();
 
-  void setIsCarbonated(NonbinaryLogicCode value);
+    void setIsCarbonated(NonbinaryLogicCode value);
 
-  NonbinaryLogicCode getIsDecaffeinated();
+    NonbinaryLogicCode getIsDecaffeinated();
 
-  void setIsDecaffeinated(NonbinaryLogicCode value);
+    void setIsDecaffeinated(NonbinaryLogicCode value);
 
-  NonbinaryLogicCode getIsFromConcentrate();
+    NonbinaryLogicCode getIsFromConcentrate();
 
-  void setIsFromConcentrate(NonbinaryLogicCode value);
+    void setIsFromConcentrate(NonbinaryLogicCode value);
 
-  NonbinaryLogicCode getIsVintage();
+    NonbinaryLogicCode getIsVintage();
 
-  void setIsVintage(NonbinaryLogicCode value);
+    void setIsVintage(NonbinaryLogicCode value);
 
-  float getPercentageOfAlcoholByVolume();
+    float getPercentageOfAlcoholByVolume();
 
-  void setPercentageOfAlcoholByVolume(float value);
+    void setPercentageOfAlcoholByVolume(float value);
 
-  String getVintner();
+    LinkedHashMap<String, String> getVintner();
 
-  void setVintner(String value);
+    void setVintner(LinkedHashMap<String, String> value);
 }

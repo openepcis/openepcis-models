@@ -9,6 +9,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.MilkButterCreamYogurtCheeseEggsSubstitutes;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+
 /**
  * Milk butter cream yogurts cheese eggs and any substitutes for these products.
  *
@@ -55,7 +57,7 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
   protected CheeseFirmnessCode cheeseFirmness;
 
   @XmlElement(required = true)
-  protected String cheeseMaturationPeriodDescription;
+  protected LinkedHashMap<String, String> cheeseMaturationPeriodDescription;
 
   protected float fatInMilkContent;
   protected float fatpercentageInDryMatter;
@@ -98,7 +100,10 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
    * @return possible object is {@link String }
    */
   @Override
-  public String getCheeseMaturationPeriodDescription() {
+  public LinkedHashMap<String, String> getCheeseMaturationPeriodDescription() {
+    if (cheeseMaturationPeriodDescription == null) {
+      cheeseMaturationPeriodDescription = new LinkedHashMap<>();
+    }
     return cheeseMaturationPeriodDescription;
   }
 
@@ -108,7 +113,7 @@ public class MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl
    * @param value allowed object is {@link String }
    */
   @Override
-  public void setCheeseMaturationPeriodDescription(String value) {
+  public void setCheeseMaturationPeriodDescription(LinkedHashMap<String, String> value) {
     this.cheeseMaturationPeriodDescription = value;
   }
 
