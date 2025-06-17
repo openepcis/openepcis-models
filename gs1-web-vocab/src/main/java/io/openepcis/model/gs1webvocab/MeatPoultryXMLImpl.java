@@ -9,6 +9,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.MeatPoultry;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+
 /**
  * Meat and poultry products.
  *
@@ -35,8 +37,7 @@ import jakarta.xml.bind.annotation.*;
 @XmlType(
     name = "MeatPoultry",
     propOrder = {"anatomicalForm", "bonelessClaim", "meatPoultryType", "minimumMeatPoultryContent"})
-public class MeatPoultryXMLImpl extends FoodBeverageTobaccoProductXMLImpl
-    implements MeatPoultry<QuantitativeValueXMLImpl> {
+public class MeatPoultryXMLImpl extends FoodBeverageTobaccoProductXMLImpl implements MeatPoultry<QuantitativeValueXMLImpl> {
 
   @XmlElement(required = true)
   @XmlSchemaType(name = "string")
@@ -47,7 +48,7 @@ public class MeatPoultryXMLImpl extends FoodBeverageTobaccoProductXMLImpl
   protected NonbinaryLogicCode bonelessClaim;
 
   @XmlElement(required = true)
-  protected String meatPoultryType;
+  protected LinkedHashMap<String, String> meatPoultryType;
 
   @XmlElement(required = true)
   protected QuantitativeValueXMLImpl minimumMeatPoultryContent;
@@ -98,7 +99,10 @@ public class MeatPoultryXMLImpl extends FoodBeverageTobaccoProductXMLImpl
    * @return possible object is {@link String }
    */
   @Override
-  public String getMeatPoultryType() {
+  public LinkedHashMap<String, String> getMeatPoultryType() {
+    if (meatPoultryType == null) {
+      meatPoultryType = new LinkedHashMap<>();
+    }
     return meatPoultryType;
   }
 
@@ -108,7 +112,7 @@ public class MeatPoultryXMLImpl extends FoodBeverageTobaccoProductXMLImpl
    * @param value allowed object is {@link String }
    */
   @Override
-  public void setMeatPoultryType(String value) {
+  public void setMeatPoultryType(LinkedHashMap<String, String> value) {
     this.meatPoultryType = value;
   }
 

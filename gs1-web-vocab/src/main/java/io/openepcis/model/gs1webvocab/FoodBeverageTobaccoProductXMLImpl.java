@@ -6,8 +6,10 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import io.openepcis.model.interfaces.*;
+import io.openepcis.model.interfaces.FoodBeverageTobaccoProduct;
 import jakarta.xml.bind.annotation.*;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -107,95 +109,95 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "FoodBeverageTobaccoProduct",
-    propOrder = {
-      "allergenSpecificationAgency",
-      "allergenSpecificationName",
-      "allergenStatement",
-      "biotinPerNutrientBasis",
-      "calciumPerNutrientBasis",
-      "carbohydratesPerNutrientBasis",
-      "chloridePerNutrientBasis",
-      "cholesterolPerNutrientBasis",
-      "chromiumPerNutrientBasis",
-      "copperPerNutrientBasis",
-      "dietCode",
-      "dietTypeDescription",
-      "drainedWeight",
-      "energyFromFatPerNutrientBasis",
-      "energyPerNutrientBasis",
-      "fatPerNutrientBasis",
-      "fibrePerNutrientBasis",
-      "fluoridePerNutrientBasis",
-      "folicAcidPerNutrientBasis",
-      "foodBeverageRefrigerationClaim",
-      "foodBeverageTargetUse",
-      "geneticallyModifiedDeclaration",
-      "hasAllergen",
-      "ingredient",
-      "ingredientOfConcern",
-      "ingredientStatement",
-      "iodinePerNutrientBasis",
-      "ironPerNutrientBasis",
-      "irradiatedCode",
-      "isInstant",
-      "isSliced",
-      "juiceContentPercent",
-      "magnesiumPerNutrientBasis",
-      "manganesePerNutrientBasis",
-      "molybdenumPerNutrientBasis",
-      "monounsaturatedFatPerNutrientBasis",
-      "niacinPerNutrientBasis",
-      "numberOfServingsPerPackage",
-      "numberOfServingsPerPackageMeasurementPrecision",
-      "numberOfServingsRangeDescription",
-      "nutrientBasisQuantity",
-      "nutrientBasisQuantityType",
-      "nutrientMeasurementPrecision",
-      "nutritionalClaim",
-      "nutritionalClaimStatement",
-      "packagingMarkedDietAllergenType",
-      "packagingMarkedFreeFrom",
-      "pantothenicAcidPerNutrientBasis",
-      "phosphorusPerNutrientBasis",
-      "polyolsPerNutrientBasis",
-      "polyunsaturatedFatPerNutrientBasis",
-      "potassiumPerNutrientBasis",
-      "preparationInformation",
-      "preservationTechnique",
-      "proteinPerNutrientBasis",
-      "reheatingClaim",
-      "riboflavinPerNutrientBasis",
-      "saltPerNutrientBasis",
-      "saturatedFatPerNutrientBasis",
-      "seleniumPerNutrientBasis",
-      "servingSize",
-      "servingSizeDescription",
-      "servingSuggestion",
-      "sodiumPerNutrientBasis",
-      "sourceAnimal",
-      "starchPerNutrientBasis",
-      "sugarsPerNutrientBasis",
-      "thiaminPerNutrientBasis",
-      "transFatPerNutrientBasis",
-      "vitaminAPerNutrientBasis",
-      "vitaminB12PerNutrientBasis",
-      "vitaminB6PerNutrientBasis",
-      "vitaminCPerNutrientBasis",
-      "vitaminDPerNutrientBasis",
-      "vitaminEPerNutrientBasis",
-      "vitaminKPerNutrientBasis",
-      "zincPerNutrientBasis"
-    })
+        name = "FoodBeverageTobaccoProduct",
+        propOrder = {
+                "allergenSpecificationAgency",
+                "allergenSpecificationName",
+                "allergenStatement",
+                "biotinPerNutrientBasis",
+                "calciumPerNutrientBasis",
+                "carbohydratesPerNutrientBasis",
+                "chloridePerNutrientBasis",
+                "cholesterolPerNutrientBasis",
+                "chromiumPerNutrientBasis",
+                "copperPerNutrientBasis",
+                "dietCode",
+                "dietTypeDescription",
+                "drainedWeight",
+                "energyFromFatPerNutrientBasis",
+                "energyPerNutrientBasis",
+                "fatPerNutrientBasis",
+                "fibrePerNutrientBasis",
+                "fluoridePerNutrientBasis",
+                "folicAcidPerNutrientBasis",
+                "foodBeverageRefrigerationClaim",
+                "foodBeverageTargetUse",
+                "geneticallyModifiedDeclaration",
+                "hasAllergen",
+                "ingredient",
+                "ingredientOfConcern",
+                "ingredientStatement",
+                "iodinePerNutrientBasis",
+                "ironPerNutrientBasis",
+                "irradiatedCode",
+                "isInstant",
+                "isSliced",
+                "juiceContentPercent",
+                "magnesiumPerNutrientBasis",
+                "manganesePerNutrientBasis",
+                "molybdenumPerNutrientBasis",
+                "monounsaturatedFatPerNutrientBasis",
+                "niacinPerNutrientBasis",
+                "numberOfServingsPerPackage",
+                "numberOfServingsPerPackageMeasurementPrecision",
+                "numberOfServingsRangeDescription",
+                "nutrientBasisQuantity",
+                "nutrientBasisQuantityType",
+                "nutrientMeasurementPrecision",
+                "nutritionalClaim",
+                "nutritionalClaimStatement",
+                "packagingMarkedDietAllergenType",
+                "packagingMarkedFreeFrom",
+                "pantothenicAcidPerNutrientBasis",
+                "phosphorusPerNutrientBasis",
+                "polyolsPerNutrientBasis",
+                "polyunsaturatedFatPerNutrientBasis",
+                "potassiumPerNutrientBasis",
+                "preparationInformation",
+                "preservationTechnique",
+                "proteinPerNutrientBasis",
+                "reheatingClaim",
+                "riboflavinPerNutrientBasis",
+                "saltPerNutrientBasis",
+                "saturatedFatPerNutrientBasis",
+                "seleniumPerNutrientBasis",
+                "servingSize",
+                "servingSizeDescription",
+                "servingSuggestion",
+                "sodiumPerNutrientBasis",
+                "sourceAnimal",
+                "starchPerNutrientBasis",
+                "sugarsPerNutrientBasis",
+                "thiaminPerNutrientBasis",
+                "transFatPerNutrientBasis",
+                "vitaminAPerNutrientBasis",
+                "vitaminB12PerNutrientBasis",
+                "vitaminB6PerNutrientBasis",
+                "vitaminCPerNutrientBasis",
+                "vitaminDPerNutrientBasis",
+                "vitaminEPerNutrientBasis",
+                "vitaminKPerNutrientBasis",
+                "zincPerNutrientBasis"
+        })
 @XmlSeeAlso({
-  BeverageXMLImpl.class,
-  FruitsVegetablesXMLImpl.class,
-  MeatPoultryXMLImpl.class,
-  MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl.class,
-  SeafoodXMLImpl.class
+        BeverageXMLImpl.class,
+        FruitsVegetablesXMLImpl.class,
+        MeatPoultryXMLImpl.class,
+        MilkButterCreamYogurtCheeseEggsSubstitutesXMLImpl.class,
+        SeafoodXMLImpl.class
 })
 public class FoodBeverageTobaccoProductXMLImpl extends ProductXMLImpl
-    implements FoodBeverageTobaccoProduct<
+        implements FoodBeverageTobaccoProduct<
         NutritionMeasurementTypeXMLImpl,
         FoodAndBeveragePreparationInformationXMLImpl,
         AllergenDetailsXMLImpl,
@@ -203,1787 +205,1814 @@ public class FoodBeverageTobaccoProductXMLImpl extends ProductXMLImpl
         QuantitativeValueXMLImpl,
         DietTypeCodeDetailsXMLImpl> {
 
-  @XmlElement(required = true)
-  protected String allergenSpecificationAgency;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> allergenSpecificationAgency;
 
-  @XmlElement(required = true)
-  protected String allergenSpecificationName;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> allergenSpecificationName;
 
-  @XmlElement(required = true)
-  protected String allergenStatement;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> allergenStatement;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl biotinPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl biotinPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl calciumPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl calciumPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl carbohydratesPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl carbohydratesPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl chloridePerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl chloridePerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl cholesterolPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl cholesterolPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl chromiumPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl chromiumPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl copperPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl copperPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected List<DietTypeCodeDetailsXMLImpl> dietCode;
+    @XmlElement(required = true)
+    protected List<DietTypeCodeDetailsXMLImpl> dietCode;
 
-  @XmlElement(required = true)
-  protected String dietTypeDescription;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> dietTypeDescription;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl drainedWeight;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl drainedWeight;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl energyFromFatPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl energyFromFatPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl energyPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl energyPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl fatPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl fatPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl fibrePerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl fibrePerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl fluoridePerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl fluoridePerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl folicAcidPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl folicAcidPerNutrientBasis;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected FoodBeverageRefrigerationClaimCode foodBeverageRefrigerationClaim;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected FoodBeverageRefrigerationClaimCode foodBeverageRefrigerationClaim;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected FoodBeverageTargetUseCode foodBeverageTargetUse;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected FoodBeverageTargetUseCode foodBeverageTargetUse;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected LevelOfContainmentCode geneticallyModifiedDeclaration;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected LevelOfContainmentCode geneticallyModifiedDeclaration;
 
-  @XmlElement(required = true)
-  protected List<AllergenDetailsXMLImpl> hasAllergen;
+    @XmlElement(required = true)
+    protected List<AllergenDetailsXMLImpl> hasAllergen;
 
-  @XmlElement(required = true)
-  protected List<FoodBeverageTobaccoIngredientDetailsXMLImpl> ingredient;
+    @XmlElement(required = true)
+    protected List<FoodBeverageTobaccoIngredientDetailsXMLImpl> ingredient;
 
-  @XmlElement(required = true)
-  protected String ingredientOfConcern;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> ingredientOfConcern;
 
-  @XmlElement(required = true)
-  protected String ingredientStatement;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> ingredientStatement;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl iodinePerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl iodinePerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl ironPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl ironPerNutrientBasis;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode irradiatedCode;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode irradiatedCode;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode isInstant;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode isInstant;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode isSliced;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode isSliced;
 
-  protected float juiceContentPercent;
+    protected float juiceContentPercent;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl magnesiumPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl magnesiumPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl manganesePerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl manganesePerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl molybdenumPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl molybdenumPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl monounsaturatedFatPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl monounsaturatedFatPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl niacinPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl niacinPerNutrientBasis;
 
-  protected float numberOfServingsPerPackage;
+    protected float numberOfServingsPerPackage;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected MeasurementPrecisionCode numberOfServingsPerPackageMeasurementPrecision;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected MeasurementPrecisionCode numberOfServingsPerPackageMeasurementPrecision;
 
-  @XmlElement(required = true)
-  protected String numberOfServingsRangeDescription;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> numberOfServingsRangeDescription;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl nutrientBasisQuantity;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl nutrientBasisQuantity;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NutrientBasisQuantityCode nutrientBasisQuantityType;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NutrientBasisQuantityCode nutrientBasisQuantityType;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected MeasurementPrecisionCode nutrientMeasurementPrecision;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected MeasurementPrecisionCode nutrientMeasurementPrecision;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NutritionalClaimTypeCode nutritionalClaim;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NutritionalClaimTypeCode nutritionalClaim;
 
-  @XmlElement(required = true)
-  protected String nutritionalClaimStatement;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> nutritionalClaimStatement;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected PackagingMarkedDietAllergenCode packagingMarkedDietAllergenType;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected PackagingMarkedDietAllergenCode packagingMarkedDietAllergenType;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected PackagingMarkedFreeFromCode packagingMarkedFreeFrom;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected PackagingMarkedFreeFromCode packagingMarkedFreeFrom;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl pantothenicAcidPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl pantothenicAcidPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl phosphorusPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl phosphorusPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl polyolsPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl polyolsPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl polyunsaturatedFatPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl polyunsaturatedFatPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl potassiumPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl potassiumPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected FoodAndBeveragePreparationInformationXMLImpl preparationInformation;
+    @XmlElement(required = true)
+    protected FoodAndBeveragePreparationInformationXMLImpl preparationInformation;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected PreservationTechniqueCode preservationTechnique;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected PreservationTechniqueCode preservationTechnique;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl proteinPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl proteinPerNutrientBasis;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode reheatingClaim;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode reheatingClaim;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl riboflavinPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl riboflavinPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl saltPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl saltPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl saturatedFatPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl saturatedFatPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl seleniumPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl seleniumPerNutrientBasis;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl servingSize;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl servingSize;
 
-  @XmlElement(required = true)
-  protected String servingSizeDescription;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> servingSizeDescription;
 
-  @XmlElement(required = true)
-  protected String servingSuggestion;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> servingSuggestion;
 
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl sodiumPerNutrientBasis;
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl sodiumPerNutrientBasis;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected SourceAnimalCode sourceAnimal;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl starchPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl sugarsPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl thiaminPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl transFatPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl vitaminAPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl vitaminB12PerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl vitaminB6PerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl vitaminCPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl vitaminDPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl vitaminEPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl vitaminKPerNutrientBasis;
-
-  @XmlElement(required = true)
-  protected NutritionMeasurementTypeXMLImpl zincPerNutrientBasis;
-
-  /**
-   * Gets the value of the allergenSpecificationAgency property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAllergenSpecificationAgency() {
-    return allergenSpecificationAgency;
-  }
-
-  /**
-   * Sets the value of the allergenSpecificationAgency property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAllergenSpecificationAgency(String value) {
-    this.allergenSpecificationAgency = value;
-  }
-
-  /**
-   * Gets the value of the allergenSpecificationName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAllergenSpecificationName() {
-    return allergenSpecificationName;
-  }
-
-  /**
-   * Sets the value of the allergenSpecificationName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAllergenSpecificationName(String value) {
-    this.allergenSpecificationName = value;
-  }
-
-  /**
-   * Gets the value of the allergenStatement property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAllergenStatement() {
-    return allergenStatement;
-  }
-
-  /**
-   * Sets the value of the allergenStatement property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAllergenStatement(String value) {
-    this.allergenStatement = value;
-  }
-
-  /**
-   * Gets the value of the biotinPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getBiotinPerNutrientBasis() {
-    return biotinPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the biotinPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setBiotinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.biotinPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the calciumPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getCalciumPerNutrientBasis() {
-    return calciumPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the calciumPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setCalciumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.calciumPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the carbohydratesPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getCarbohydratesPerNutrientBasis() {
-    return carbohydratesPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the carbohydratesPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setCarbohydratesPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.carbohydratesPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the chloridePerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getChloridePerNutrientBasis() {
-    return chloridePerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the chloridePerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setChloridePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.chloridePerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the cholesterolPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getCholesterolPerNutrientBasis() {
-    return cholesterolPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the cholesterolPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setCholesterolPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.cholesterolPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the chromiumPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getChromiumPerNutrientBasis() {
-    return chromiumPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the chromiumPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setChromiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.chromiumPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the copperPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getCopperPerNutrientBasis() {
-    return copperPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the copperPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setCopperPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.copperPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the dietCode property.
-   *
-   * @return possible object is {@link DietTypeCodeDetailsXMLImpl }
-   */
-  @Override
-  public List<DietTypeCodeDetailsXMLImpl> getDietCode() {
-    return dietCode;
-  }
-
-  /**
-   * Sets the value of the dietCode property.
-   *
-   * @param value allowed object is {@link DietTypeCodeDetailsXMLImpl }
-   */
-  @Override
-  public void setDietCode(List<DietTypeCodeDetailsXMLImpl> value) {
-    this.dietCode = value;
-  }
-
-  /**
-   * Gets the value of the dietTypeDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getDietTypeDescription() {
-    return dietTypeDescription;
-  }
-
-  /**
-   * Sets the value of the dietTypeDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setDietTypeDescription(String value) {
-    this.dietTypeDescription = value;
-  }
-
-  /**
-   * Gets the value of the drainedWeight property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getDrainedWeight() {
-    return drainedWeight;
-  }
-
-  /**
-   * Sets the value of the drainedWeight property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setDrainedWeight(QuantitativeValueXMLImpl value) {
-    this.drainedWeight = value;
-  }
-
-  /**
-   * Gets the value of the energyFromFatPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getEnergyFromFatPerNutrientBasis() {
-    return energyFromFatPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the energyFromFatPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setEnergyFromFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.energyFromFatPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the energyPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getEnergyPerNutrientBasis() {
-    return energyPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the energyPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setEnergyPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.energyPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the fatPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getFatPerNutrientBasis() {
-    return fatPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the fatPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.fatPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the fibrePerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getFibrePerNutrientBasis() {
-    return fibrePerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the fibrePerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setFibrePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.fibrePerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the fluoridePerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getFluoridePerNutrientBasis() {
-    return fluoridePerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the fluoridePerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setFluoridePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.fluoridePerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the folicAcidPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getFolicAcidPerNutrientBasis() {
-    return folicAcidPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the folicAcidPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setFolicAcidPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.folicAcidPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the foodBeverageRefrigerationClaim property.
-   *
-   * @return possible object is {@link FoodBeverageRefrigerationClaimCode }
-   */
-  @Override
-  public FoodBeverageRefrigerationClaimCode getFoodBeverageRefrigerationClaim() {
-    return foodBeverageRefrigerationClaim;
-  }
-
-  /**
-   * Sets the value of the foodBeverageRefrigerationClaim property.
-   *
-   * @param value allowed object is {@link FoodBeverageRefrigerationClaimCode }
-   */
-  @Override
-  public void setFoodBeverageRefrigerationClaim(FoodBeverageRefrigerationClaimCode value) {
-    this.foodBeverageRefrigerationClaim = value;
-  }
-
-  /**
-   * Gets the value of the foodBeverageTargetUse property.
-   *
-   * @return possible object is {@link FoodBeverageTargetUseCode }
-   */
-  @Override
-  public FoodBeverageTargetUseCode getFoodBeverageTargetUse() {
-    return foodBeverageTargetUse;
-  }
-
-  /**
-   * Sets the value of the foodBeverageTargetUse property.
-   *
-   * @param value allowed object is {@link FoodBeverageTargetUseCode }
-   */
-  @Override
-  public void setFoodBeverageTargetUse(FoodBeverageTargetUseCode value) {
-    this.foodBeverageTargetUse = value;
-  }
-
-  /**
-   * Gets the value of the geneticallyModifiedDeclaration property.
-   *
-   * @return possible object is {@link LevelOfContainmentCode }
-   */
-  @Override
-  public LevelOfContainmentCode getGeneticallyModifiedDeclaration() {
-    return geneticallyModifiedDeclaration;
-  }
-
-  /**
-   * Sets the value of the geneticallyModifiedDeclaration property.
-   *
-   * @param value allowed object is {@link LevelOfContainmentCode }
-   */
-  @Override
-  public void setGeneticallyModifiedDeclaration(LevelOfContainmentCode value) {
-    this.geneticallyModifiedDeclaration = value;
-  }
-
-  /**
-   * Gets the value of the hasAllergen property.
-   *
-   * @return possible object is {@link AllergenDetailsXMLImpl }
-   */
-  @Override
-  public List<AllergenDetailsXMLImpl> getHasAllergen() {
-    return hasAllergen;
-  }
-
-  /**
-   * Sets the value of the hasAllergen property.
-   *
-   * @param value allowed object is {@link AllergenDetailsXMLImpl }
-   */
-  @Override
-  public void setHasAllergen(List<AllergenDetailsXMLImpl> value) {
-    this.hasAllergen = value;
-  }
-
-  /**
-   * Gets the value of the ingredient property.
-   *
-   * @return possible object is {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
-   */
-  @Override
-  public List<FoodBeverageTobaccoIngredientDetailsXMLImpl> getIngredient() {
-    return ingredient;
-  }
-
-  /**
-   * Sets the value of the ingredient property.
-   *
-   * @param value allowed object is {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
-   */
-  @Override
-  public void setIngredient(List<FoodBeverageTobaccoIngredientDetailsXMLImpl> value) {
-    this.ingredient = value;
-  }
-
-  /**
-   * Gets the value of the ingredientOfConcern property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getIngredientOfConcern() {
-    return ingredientOfConcern;
-  }
-
-  /**
-   * Sets the value of the ingredientOfConcern property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setIngredientOfConcern(String value) {
-    this.ingredientOfConcern = value;
-  }
-
-  /**
-   * Gets the value of the ingredientStatement property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getIngredientStatement() {
-    return ingredientStatement;
-  }
-
-  /**
-   * Sets the value of the ingredientStatement property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setIngredientStatement(String value) {
-    this.ingredientStatement = value;
-  }
-
-  /**
-   * Gets the value of the iodinePerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getIodinePerNutrientBasis() {
-    return iodinePerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the iodinePerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setIodinePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.iodinePerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the ironPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getIronPerNutrientBasis() {
-    return ironPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the ironPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setIronPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.ironPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the irradiatedCode property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIrradiatedCode() {
-    return irradiatedCode;
-  }
-
-  /**
-   * Sets the value of the irradiatedCode property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIrradiatedCode(NonbinaryLogicCode value) {
-    this.irradiatedCode = value;
-  }
-
-  /**
-   * Gets the value of the isInstant property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIsInstant() {
-    return isInstant;
-  }
-
-  /**
-   * Sets the value of the isInstant property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIsInstant(NonbinaryLogicCode value) {
-    this.isInstant = value;
-  }
-
-  /**
-   * Gets the value of the isSliced property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIsSliced() {
-    return isSliced;
-  }
-
-  /**
-   * Sets the value of the isSliced property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIsSliced(NonbinaryLogicCode value) {
-    this.isSliced = value;
-  }
-
-  /**
-   * Gets the value of the juiceContentPercent property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public float getJuiceContentPercent() {
-    return juiceContentPercent;
-  }
-
-  /**
-   * Sets the value of the juiceContentPercent property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setJuiceContentPercent(float value) {
-    this.juiceContentPercent = value;
-  }
-
-  /**
-   * Gets the value of the magnesiumPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getMagnesiumPerNutrientBasis() {
-    return magnesiumPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the magnesiumPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setMagnesiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.magnesiumPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the manganesePerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getManganesePerNutrientBasis() {
-    return manganesePerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the manganesePerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setManganesePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.manganesePerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the molybdenumPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getMolybdenumPerNutrientBasis() {
-    return molybdenumPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the molybdenumPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setMolybdenumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.molybdenumPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the monounsaturatedFatPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getMonounsaturatedFatPerNutrientBasis() {
-    return monounsaturatedFatPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the monounsaturatedFatPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setMonounsaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.monounsaturatedFatPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the niacinPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getNiacinPerNutrientBasis() {
-    return niacinPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the niacinPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setNiacinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.niacinPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the numberOfServingsPerPackage property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public float getNumberOfServingsPerPackage() {
-    return numberOfServingsPerPackage;
-  }
-
-  /**
-   * Sets the value of the numberOfServingsPerPackage property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setNumberOfServingsPerPackage(float value) {
-    this.numberOfServingsPerPackage = value;
-  }
-
-  /**
-   * Gets the value of the numberOfServingsPerPackageMeasurementPrecision property.
-   *
-   * @return possible object is {@link MeasurementPrecisionCode }
-   */
-  @Override
-  public MeasurementPrecisionCode getNumberOfServingsPerPackageMeasurementPrecision() {
-    return numberOfServingsPerPackageMeasurementPrecision;
-  }
-
-  /**
-   * Sets the value of the numberOfServingsPerPackageMeasurementPrecision property.
-   *
-   * @param value allowed object is {@link MeasurementPrecisionCode }
-   */
-  @Override
-  public void setNumberOfServingsPerPackageMeasurementPrecision(MeasurementPrecisionCode value) {
-    this.numberOfServingsPerPackageMeasurementPrecision = value;
-  }
-
-  /**
-   * Gets the value of the numberOfServingsRangeDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getNumberOfServingsRangeDescription() {
-    return numberOfServingsRangeDescription;
-  }
-
-  /**
-   * Sets the value of the numberOfServingsRangeDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setNumberOfServingsRangeDescription(String value) {
-    this.numberOfServingsRangeDescription = value;
-  }
-
-  /**
-   * Gets the value of the nutrientBasisQuantity property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getNutrientBasisQuantity() {
-    return nutrientBasisQuantity;
-  }
-
-  /**
-   * Sets the value of the nutrientBasisQuantity property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setNutrientBasisQuantity(QuantitativeValueXMLImpl value) {
-    this.nutrientBasisQuantity = value;
-  }
-
-  /**
-   * Gets the value of the nutrientBasisQuantityType property.
-   *
-   * @return possible object is {@link NutrientBasisQuantityCode }
-   */
-  @Override
-  public NutrientBasisQuantityCode getNutrientBasisQuantityType() {
-    return nutrientBasisQuantityType;
-  }
-
-  /**
-   * Sets the value of the nutrientBasisQuantityType property.
-   *
-   * @param value allowed object is {@link NutrientBasisQuantityCode }
-   */
-  @Override
-  public void setNutrientBasisQuantityType(NutrientBasisQuantityCode value) {
-    this.nutrientBasisQuantityType = value;
-  }
-
-  /**
-   * Gets the value of the nutrientMeasurementPrecision property.
-   *
-   * @return possible object is {@link MeasurementPrecisionCode }
-   */
-  @Override
-  public MeasurementPrecisionCode getNutrientMeasurementPrecision() {
-    return nutrientMeasurementPrecision;
-  }
-
-  /**
-   * Sets the value of the nutrientMeasurementPrecision property.
-   *
-   * @param value allowed object is {@link MeasurementPrecisionCode }
-   */
-  @Override
-  public void setNutrientMeasurementPrecision(MeasurementPrecisionCode value) {
-    this.nutrientMeasurementPrecision = value;
-  }
-
-  /**
-   * Gets the value of the nutritionalClaim property.
-   *
-   * @return possible object is {@link NutritionalClaimTypeCode }
-   */
-  @Override
-  public NutritionalClaimTypeCode getNutritionalClaim() {
-    return nutritionalClaim;
-  }
-
-  /**
-   * Sets the value of the nutritionalClaim property.
-   *
-   * @param value allowed object is {@link NutritionalClaimTypeCode }
-   */
-  @Override
-  public void setNutritionalClaim(NutritionalClaimTypeCode value) {
-    this.nutritionalClaim = value;
-  }
-
-  /**
-   * Gets the value of the nutritionalClaimStatement property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getNutritionalClaimStatement() {
-    return nutritionalClaimStatement;
-  }
-
-  /**
-   * Sets the value of the nutritionalClaimStatement property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setNutritionalClaimStatement(String value) {
-    this.nutritionalClaimStatement = value;
-  }
-
-  /**
-   * Gets the value of the packagingMarkedDietAllergenType property.
-   *
-   * @return possible object is {@link PackagingMarkedDietAllergenCode }
-   */
-  @Override
-  public PackagingMarkedDietAllergenCode getPackagingMarkedDietAllergenType() {
-    return packagingMarkedDietAllergenType;
-  }
-
-  /**
-   * Sets the value of the packagingMarkedDietAllergenType property.
-   *
-   * @param value allowed object is {@link PackagingMarkedDietAllergenCode }
-   */
-  @Override
-  public void setPackagingMarkedDietAllergenType(PackagingMarkedDietAllergenCode value) {
-    this.packagingMarkedDietAllergenType = value;
-  }
-
-  /**
-   * Gets the value of the packagingMarkedFreeFrom property.
-   *
-   * @return possible object is {@link PackagingMarkedFreeFromCode }
-   */
-  @Override
-  public PackagingMarkedFreeFromCode getPackagingMarkedFreeFrom() {
-    return packagingMarkedFreeFrom;
-  }
-
-  /**
-   * Sets the value of the packagingMarkedFreeFrom property.
-   *
-   * @param value allowed object is {@link PackagingMarkedFreeFromCode }
-   */
-  @Override
-  public void setPackagingMarkedFreeFrom(PackagingMarkedFreeFromCode value) {
-    this.packagingMarkedFreeFrom = value;
-  }
-
-  /**
-   * Gets the value of the pantothenicAcidPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getPantothenicAcidPerNutrientBasis() {
-    return pantothenicAcidPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the pantothenicAcidPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setPantothenicAcidPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.pantothenicAcidPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the phosphorusPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getPhosphorusPerNutrientBasis() {
-    return phosphorusPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the phosphorusPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setPhosphorusPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.phosphorusPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the polyolsPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getPolyolsPerNutrientBasis() {
-    return polyolsPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the polyolsPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setPolyolsPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.polyolsPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the polyunsaturatedFatPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getPolyunsaturatedFatPerNutrientBasis() {
-    return polyunsaturatedFatPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the polyunsaturatedFatPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setPolyunsaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.polyunsaturatedFatPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the potassiumPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getPotassiumPerNutrientBasis() {
-    return potassiumPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the potassiumPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setPotassiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.potassiumPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the preparationInformation property.
-   *
-   * @return possible object is {@link FoodAndBeveragePreparationInformationXMLImpl }
-   */
-  @Override
-  public FoodAndBeveragePreparationInformationXMLImpl getPreparationInformation() {
-    return preparationInformation;
-  }
-
-  /**
-   * Sets the value of the preparationInformation property.
-   *
-   * @param value allowed object is {@link FoodAndBeveragePreparationInformationXMLImpl }
-   */
-  @Override
-  public void setPreparationInformation(FoodAndBeveragePreparationInformationXMLImpl value) {
-    this.preparationInformation = value;
-  }
-
-  /**
-   * Gets the value of the preservationTechnique property.
-   *
-   * @return possible object is {@link PreservationTechniqueCode }
-   */
-  @Override
-  public PreservationTechniqueCode getPreservationTechnique() {
-    return preservationTechnique;
-  }
-
-  /**
-   * Sets the value of the preservationTechnique property.
-   *
-   * @param value allowed object is {@link PreservationTechniqueCode }
-   */
-  @Override
-  public void setPreservationTechnique(PreservationTechniqueCode value) {
-    this.preservationTechnique = value;
-  }
-
-  /**
-   * Gets the value of the proteinPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getProteinPerNutrientBasis() {
-    return proteinPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the proteinPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setProteinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.proteinPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the reheatingClaim property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getReheatingClaim() {
-    return reheatingClaim;
-  }
-
-  /**
-   * Sets the value of the reheatingClaim property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setReheatingClaim(NonbinaryLogicCode value) {
-    this.reheatingClaim = value;
-  }
-
-  /**
-   * Gets the value of the riboflavinPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getRiboflavinPerNutrientBasis() {
-    return riboflavinPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the riboflavinPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setRiboflavinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.riboflavinPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the saltPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getSaltPerNutrientBasis() {
-    return saltPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the saltPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setSaltPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.saltPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the saturatedFatPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getSaturatedFatPerNutrientBasis() {
-    return saturatedFatPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the saturatedFatPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setSaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.saturatedFatPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the seleniumPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getSeleniumPerNutrientBasis() {
-    return seleniumPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the seleniumPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setSeleniumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.seleniumPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the servingSize property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getServingSize() {
-    return servingSize;
-  }
-
-  /**
-   * Sets the value of the servingSize property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setServingSize(QuantitativeValueXMLImpl value) {
-    this.servingSize = value;
-  }
-
-  /**
-   * Gets the value of the servingSizeDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getServingSizeDescription() {
-    return servingSizeDescription;
-  }
-
-  /**
-   * Sets the value of the servingSizeDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setServingSizeDescription(String value) {
-    this.servingSizeDescription = value;
-  }
-
-  /**
-   * Gets the value of the servingSuggestion property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getServingSuggestion() {
-    return servingSuggestion;
-  }
-
-  /**
-   * Sets the value of the servingSuggestion property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setServingSuggestion(String value) {
-    this.servingSuggestion = value;
-  }
-
-  /**
-   * Gets the value of the sodiumPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getSodiumPerNutrientBasis() {
-    return sodiumPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the sodiumPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setSodiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.sodiumPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the sourceAnimal property.
-   *
-   * @return possible object is {@link SourceAnimalCode }
-   */
-  @Override
-  public SourceAnimalCode getSourceAnimal() {
-    return sourceAnimal;
-  }
-
-  /**
-   * Sets the value of the sourceAnimal property.
-   *
-   * @param value allowed object is {@link SourceAnimalCode }
-   */
-  @Override
-  public void setSourceAnimal(SourceAnimalCode value) {
-    this.sourceAnimal = value;
-  }
-
-  /**
-   * Gets the value of the starchPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getStarchPerNutrientBasis() {
-    return starchPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the starchPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setStarchPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.starchPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the sugarsPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getSugarsPerNutrientBasis() {
-    return sugarsPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the sugarsPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setSugarsPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.sugarsPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the thiaminPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getThiaminPerNutrientBasis() {
-    return thiaminPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the thiaminPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setThiaminPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.thiaminPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the transFatPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getTransFatPerNutrientBasis() {
-    return transFatPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the transFatPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setTransFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.transFatPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the vitaminAPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getVitaminAPerNutrientBasis() {
-    return vitaminAPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the vitaminAPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setVitaminAPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.vitaminAPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the vitaminB12PerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getVitaminB12PerNutrientBasis() {
-    return vitaminB12PerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the vitaminB12PerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setVitaminB12PerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.vitaminB12PerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the vitaminB6PerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getVitaminB6PerNutrientBasis() {
-    return vitaminB6PerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the vitaminB6PerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setVitaminB6PerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.vitaminB6PerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the vitaminCPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getVitaminCPerNutrientBasis() {
-    return vitaminCPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the vitaminCPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setVitaminCPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.vitaminCPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the vitaminDPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getVitaminDPerNutrientBasis() {
-    return vitaminDPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the vitaminDPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setVitaminDPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.vitaminDPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the vitaminEPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getVitaminEPerNutrientBasis() {
-    return vitaminEPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the vitaminEPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setVitaminEPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.vitaminEPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the vitaminKPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getVitaminKPerNutrientBasis() {
-    return vitaminKPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the vitaminKPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setVitaminKPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.vitaminKPerNutrientBasis = value;
-  }
-
-  /**
-   * Gets the value of the zincPerNutrientBasis property.
-   *
-   * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public NutritionMeasurementTypeXMLImpl getZincPerNutrientBasis() {
-    return zincPerNutrientBasis;
-  }
-
-  /**
-   * Sets the value of the zincPerNutrientBasis property.
-   *
-   * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
-   */
-  @Override
-  public void setZincPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
-    this.zincPerNutrientBasis = value;
-  }
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected SourceAnimalCode sourceAnimal;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl starchPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl sugarsPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl thiaminPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl transFatPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl vitaminAPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl vitaminB12PerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl vitaminB6PerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl vitaminCPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl vitaminDPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl vitaminEPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl vitaminKPerNutrientBasis;
+
+    @XmlElement(required = true)
+    protected NutritionMeasurementTypeXMLImpl zincPerNutrientBasis;
+
+    /**
+     * Gets the value of the allergenSpecificationAgency property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getAllergenSpecificationAgency() {
+        if (allergenSpecificationAgency == null) {
+            allergenSpecificationAgency = new LinkedHashMap<>();
+        }
+        return allergenSpecificationAgency;
+    }
+
+    /**
+     * Sets the value of the allergenSpecificationAgency property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAllergenSpecificationAgency(LinkedHashMap<String, String> value) {
+        this.allergenSpecificationAgency = value;
+    }
+
+    /**
+     * Gets the value of the allergenSpecificationName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getAllergenSpecificationName() {
+        if (allergenSpecificationName == null) {
+            allergenSpecificationName = new LinkedHashMap<>();
+        }
+        return allergenSpecificationName;
+    }
+
+    /**
+     * Sets the value of the allergenSpecificationName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAllergenSpecificationName(LinkedHashMap<String, String> value) {
+        this.allergenSpecificationName = value;
+    }
+
+    /**
+     * Gets the value of the allergenStatement property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getAllergenStatement() {
+        if (allergenStatement == null) {
+            allergenStatement = new LinkedHashMap<>();
+        }
+        return allergenStatement;
+    }
+
+    /**
+     * Sets the value of the allergenStatement property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAllergenStatement(LinkedHashMap<String, String> value) {
+        this.allergenStatement = value;
+    }
+
+    /**
+     * Gets the value of the biotinPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getBiotinPerNutrientBasis() {
+        return biotinPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the biotinPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setBiotinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.biotinPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the calciumPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getCalciumPerNutrientBasis() {
+        return calciumPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the calciumPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setCalciumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.calciumPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the carbohydratesPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getCarbohydratesPerNutrientBasis() {
+        return carbohydratesPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the carbohydratesPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setCarbohydratesPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.carbohydratesPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the chloridePerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getChloridePerNutrientBasis() {
+        return chloridePerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the chloridePerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setChloridePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.chloridePerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the cholesterolPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getCholesterolPerNutrientBasis() {
+        return cholesterolPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the cholesterolPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setCholesterolPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.cholesterolPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the chromiumPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getChromiumPerNutrientBasis() {
+        return chromiumPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the chromiumPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setChromiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.chromiumPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the copperPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getCopperPerNutrientBasis() {
+        return copperPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the copperPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setCopperPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.copperPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the dietCode property.
+     *
+     * @return possible object is {@link DietTypeCodeDetailsXMLImpl }
+     */
+    @Override
+    public List<DietTypeCodeDetailsXMLImpl> getDietCode() {
+        return dietCode;
+    }
+
+    /**
+     * Sets the value of the dietCode property.
+     *
+     * @param value allowed object is {@link DietTypeCodeDetailsXMLImpl }
+     */
+    @Override
+    public void setDietCode(List<DietTypeCodeDetailsXMLImpl> value) {
+        this.dietCode = value;
+    }
+
+    /**
+     * Gets the value of the dietTypeDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getDietTypeDescription() {
+        if (dietTypeDescription == null) {
+            dietTypeDescription = new LinkedHashMap<>();
+        }
+        return dietTypeDescription;
+    }
+
+    /**
+     * Sets the value of the dietTypeDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setDietTypeDescription(LinkedHashMap<String, String> value) {
+        this.dietTypeDescription = value;
+    }
+
+    /**
+     * Gets the value of the drainedWeight property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getDrainedWeight() {
+        return drainedWeight;
+    }
+
+    /**
+     * Sets the value of the drainedWeight property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setDrainedWeight(QuantitativeValueXMLImpl value) {
+        this.drainedWeight = value;
+    }
+
+    /**
+     * Gets the value of the energyFromFatPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getEnergyFromFatPerNutrientBasis() {
+        return energyFromFatPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the energyFromFatPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setEnergyFromFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.energyFromFatPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the energyPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getEnergyPerNutrientBasis() {
+        return energyPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the energyPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setEnergyPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.energyPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the fatPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getFatPerNutrientBasis() {
+        return fatPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the fatPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.fatPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the fibrePerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getFibrePerNutrientBasis() {
+        return fibrePerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the fibrePerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setFibrePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.fibrePerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the fluoridePerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getFluoridePerNutrientBasis() {
+        return fluoridePerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the fluoridePerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setFluoridePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.fluoridePerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the folicAcidPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getFolicAcidPerNutrientBasis() {
+        return folicAcidPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the folicAcidPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setFolicAcidPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.folicAcidPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the foodBeverageRefrigerationClaim property.
+     *
+     * @return possible object is {@link FoodBeverageRefrigerationClaimCode }
+     */
+    @Override
+    public FoodBeverageRefrigerationClaimCode getFoodBeverageRefrigerationClaim() {
+        return foodBeverageRefrigerationClaim;
+    }
+
+    /**
+     * Sets the value of the foodBeverageRefrigerationClaim property.
+     *
+     * @param value allowed object is {@link FoodBeverageRefrigerationClaimCode }
+     */
+    @Override
+    public void setFoodBeverageRefrigerationClaim(FoodBeverageRefrigerationClaimCode value) {
+        this.foodBeverageRefrigerationClaim = value;
+    }
+
+    /**
+     * Gets the value of the foodBeverageTargetUse property.
+     *
+     * @return possible object is {@link FoodBeverageTargetUseCode }
+     */
+    @Override
+    public FoodBeverageTargetUseCode getFoodBeverageTargetUse() {
+        return foodBeverageTargetUse;
+    }
+
+    /**
+     * Sets the value of the foodBeverageTargetUse property.
+     *
+     * @param value allowed object is {@link FoodBeverageTargetUseCode }
+     */
+    @Override
+    public void setFoodBeverageTargetUse(FoodBeverageTargetUseCode value) {
+        this.foodBeverageTargetUse = value;
+    }
+
+    /**
+     * Gets the value of the geneticallyModifiedDeclaration property.
+     *
+     * @return possible object is {@link LevelOfContainmentCode }
+     */
+    @Override
+    public LevelOfContainmentCode getGeneticallyModifiedDeclaration() {
+        return geneticallyModifiedDeclaration;
+    }
+
+    /**
+     * Sets the value of the geneticallyModifiedDeclaration property.
+     *
+     * @param value allowed object is {@link LevelOfContainmentCode }
+     */
+    @Override
+    public void setGeneticallyModifiedDeclaration(LevelOfContainmentCode value) {
+        this.geneticallyModifiedDeclaration = value;
+    }
+
+    /**
+     * Gets the value of the hasAllergen property.
+     *
+     * @return possible object is {@link AllergenDetailsXMLImpl }
+     */
+    @Override
+    public List<AllergenDetailsXMLImpl> getHasAllergen() {
+        return hasAllergen;
+    }
+
+    /**
+     * Sets the value of the hasAllergen property.
+     *
+     * @param value allowed object is {@link AllergenDetailsXMLImpl }
+     */
+    @Override
+    public void setHasAllergen(List<AllergenDetailsXMLImpl> value) {
+        this.hasAllergen = value;
+    }
+
+    /**
+     * Gets the value of the ingredient property.
+     *
+     * @return possible object is {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
+     */
+    @Override
+    public List<FoodBeverageTobaccoIngredientDetailsXMLImpl> getIngredient() {
+        return ingredient;
+    }
+
+    /**
+     * Sets the value of the ingredient property.
+     *
+     * @param value allowed object is {@link FoodBeverageTobaccoIngredientDetailsXMLImpl }
+     */
+    @Override
+    public void setIngredient(List<FoodBeverageTobaccoIngredientDetailsXMLImpl> value) {
+        this.ingredient = value;
+    }
+
+    /**
+     * Gets the value of the ingredientOfConcern property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getIngredientOfConcern() {
+        if (ingredientOfConcern == null) {
+            ingredientOfConcern = new LinkedHashMap<>();
+        }
+        return ingredientOfConcern;
+    }
+
+    /**
+     * Sets the value of the ingredientOfConcern property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setIngredientOfConcern(LinkedHashMap<String, String> value) {
+        this.ingredientOfConcern = value;
+    }
+
+    /**
+     * Gets the value of the ingredientStatement property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getIngredientStatement() {
+        if (ingredientStatement == null) {
+            ingredientStatement = new LinkedHashMap<>();
+        }
+        return ingredientStatement;
+    }
+
+    /**
+     * Sets the value of the ingredientStatement property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setIngredientStatement(LinkedHashMap<String, String> value) {
+        this.ingredientStatement = value;
+    }
+
+    /**
+     * Gets the value of the iodinePerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getIodinePerNutrientBasis() {
+        return iodinePerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the iodinePerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setIodinePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.iodinePerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the ironPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getIronPerNutrientBasis() {
+        return ironPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the ironPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setIronPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.ironPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the irradiatedCode property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIrradiatedCode() {
+        return irradiatedCode;
+    }
+
+    /**
+     * Sets the value of the irradiatedCode property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIrradiatedCode(NonbinaryLogicCode value) {
+        this.irradiatedCode = value;
+    }
+
+    /**
+     * Gets the value of the isInstant property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIsInstant() {
+        return isInstant;
+    }
+
+    /**
+     * Sets the value of the isInstant property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIsInstant(NonbinaryLogicCode value) {
+        this.isInstant = value;
+    }
+
+    /**
+     * Gets the value of the isSliced property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIsSliced() {
+        return isSliced;
+    }
+
+    /**
+     * Sets the value of the isSliced property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIsSliced(NonbinaryLogicCode value) {
+        this.isSliced = value;
+    }
+
+    /**
+     * Gets the value of the juiceContentPercent property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public float getJuiceContentPercent() {
+        return juiceContentPercent;
+    }
+
+    /**
+     * Sets the value of the juiceContentPercent property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setJuiceContentPercent(float value) {
+        this.juiceContentPercent = value;
+    }
+
+    /**
+     * Gets the value of the magnesiumPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getMagnesiumPerNutrientBasis() {
+        return magnesiumPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the magnesiumPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setMagnesiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.magnesiumPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the manganesePerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getManganesePerNutrientBasis() {
+        return manganesePerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the manganesePerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setManganesePerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.manganesePerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the molybdenumPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getMolybdenumPerNutrientBasis() {
+        return molybdenumPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the molybdenumPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setMolybdenumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.molybdenumPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the monounsaturatedFatPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getMonounsaturatedFatPerNutrientBasis() {
+        return monounsaturatedFatPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the monounsaturatedFatPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setMonounsaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.monounsaturatedFatPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the niacinPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getNiacinPerNutrientBasis() {
+        return niacinPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the niacinPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setNiacinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.niacinPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the numberOfServingsPerPackage property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public float getNumberOfServingsPerPackage() {
+        return numberOfServingsPerPackage;
+    }
+
+    /**
+     * Sets the value of the numberOfServingsPerPackage property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setNumberOfServingsPerPackage(float value) {
+        this.numberOfServingsPerPackage = value;
+    }
+
+    /**
+     * Gets the value of the numberOfServingsPerPackageMeasurementPrecision property.
+     *
+     * @return possible object is {@link MeasurementPrecisionCode }
+     */
+    @Override
+    public MeasurementPrecisionCode getNumberOfServingsPerPackageMeasurementPrecision() {
+        return numberOfServingsPerPackageMeasurementPrecision;
+    }
+
+    /**
+     * Sets the value of the numberOfServingsPerPackageMeasurementPrecision property.
+     *
+     * @param value allowed object is {@link MeasurementPrecisionCode }
+     */
+    @Override
+    public void setNumberOfServingsPerPackageMeasurementPrecision(MeasurementPrecisionCode value) {
+        this.numberOfServingsPerPackageMeasurementPrecision = value;
+    }
+
+    /**
+     * Gets the value of the numberOfServingsRangeDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getNumberOfServingsRangeDescription() {
+        return numberOfServingsRangeDescription;
+    }
+
+    /**
+     * Sets the value of the numberOfServingsRangeDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setNumberOfServingsRangeDescription(LinkedHashMap<String, String> value) {
+        this.numberOfServingsRangeDescription = value;
+    }
+
+    /**
+     * Gets the value of the nutrientBasisQuantity property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getNutrientBasisQuantity() {
+        return nutrientBasisQuantity;
+    }
+
+    /**
+     * Sets the value of the nutrientBasisQuantity property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setNutrientBasisQuantity(QuantitativeValueXMLImpl value) {
+        this.nutrientBasisQuantity = value;
+    }
+
+    /**
+     * Gets the value of the nutrientBasisQuantityType property.
+     *
+     * @return possible object is {@link NutrientBasisQuantityCode }
+     */
+    @Override
+    public NutrientBasisQuantityCode getNutrientBasisQuantityType() {
+        return nutrientBasisQuantityType;
+    }
+
+    /**
+     * Sets the value of the nutrientBasisQuantityType property.
+     *
+     * @param value allowed object is {@link NutrientBasisQuantityCode }
+     */
+    @Override
+    public void setNutrientBasisQuantityType(NutrientBasisQuantityCode value) {
+        this.nutrientBasisQuantityType = value;
+    }
+
+    /**
+     * Gets the value of the nutrientMeasurementPrecision property.
+     *
+     * @return possible object is {@link MeasurementPrecisionCode }
+     */
+    @Override
+    public MeasurementPrecisionCode getNutrientMeasurementPrecision() {
+        return nutrientMeasurementPrecision;
+    }
+
+    /**
+     * Sets the value of the nutrientMeasurementPrecision property.
+     *
+     * @param value allowed object is {@link MeasurementPrecisionCode }
+     */
+    @Override
+    public void setNutrientMeasurementPrecision(MeasurementPrecisionCode value) {
+        this.nutrientMeasurementPrecision = value;
+    }
+
+    /**
+     * Gets the value of the nutritionalClaim property.
+     *
+     * @return possible object is {@link NutritionalClaimTypeCode }
+     */
+    @Override
+    public NutritionalClaimTypeCode getNutritionalClaim() {
+        return nutritionalClaim;
+    }
+
+    /**
+     * Sets the value of the nutritionalClaim property.
+     *
+     * @param value allowed object is {@link NutritionalClaimTypeCode }
+     */
+    @Override
+    public void setNutritionalClaim(NutritionalClaimTypeCode value) {
+        this.nutritionalClaim = value;
+    }
+
+    /**
+     * Gets the value of the nutritionalClaimStatement property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getNutritionalClaimStatement() {
+        if (nutritionalClaimStatement == null) {
+            nutritionalClaimStatement = new LinkedHashMap<>();
+        }
+        return nutritionalClaimStatement;
+    }
+
+    /**
+     * Sets the value of the nutritionalClaimStatement property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setNutritionalClaimStatement(LinkedHashMap<String, String> value) {
+        this.nutritionalClaimStatement = value;
+    }
+
+    /**
+     * Gets the value of the packagingMarkedDietAllergenType property.
+     *
+     * @return possible object is {@link PackagingMarkedDietAllergenCode }
+     */
+    @Override
+    public PackagingMarkedDietAllergenCode getPackagingMarkedDietAllergenType() {
+        return packagingMarkedDietAllergenType;
+    }
+
+    /**
+     * Sets the value of the packagingMarkedDietAllergenType property.
+     *
+     * @param value allowed object is {@link PackagingMarkedDietAllergenCode }
+     */
+    @Override
+    public void setPackagingMarkedDietAllergenType(PackagingMarkedDietAllergenCode value) {
+        this.packagingMarkedDietAllergenType = value;
+    }
+
+    /**
+     * Gets the value of the packagingMarkedFreeFrom property.
+     *
+     * @return possible object is {@link PackagingMarkedFreeFromCode }
+     */
+    @Override
+    public PackagingMarkedFreeFromCode getPackagingMarkedFreeFrom() {
+        return packagingMarkedFreeFrom;
+    }
+
+    /**
+     * Sets the value of the packagingMarkedFreeFrom property.
+     *
+     * @param value allowed object is {@link PackagingMarkedFreeFromCode }
+     */
+    @Override
+    public void setPackagingMarkedFreeFrom(PackagingMarkedFreeFromCode value) {
+        this.packagingMarkedFreeFrom = value;
+    }
+
+    /**
+     * Gets the value of the pantothenicAcidPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getPantothenicAcidPerNutrientBasis() {
+        return pantothenicAcidPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the pantothenicAcidPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setPantothenicAcidPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.pantothenicAcidPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the phosphorusPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getPhosphorusPerNutrientBasis() {
+        return phosphorusPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the phosphorusPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setPhosphorusPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.phosphorusPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the polyolsPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getPolyolsPerNutrientBasis() {
+        return polyolsPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the polyolsPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setPolyolsPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.polyolsPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the polyunsaturatedFatPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getPolyunsaturatedFatPerNutrientBasis() {
+        return polyunsaturatedFatPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the polyunsaturatedFatPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setPolyunsaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.polyunsaturatedFatPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the potassiumPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getPotassiumPerNutrientBasis() {
+        return potassiumPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the potassiumPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setPotassiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.potassiumPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the preparationInformation property.
+     *
+     * @return possible object is {@link FoodAndBeveragePreparationInformationXMLImpl }
+     */
+    @Override
+    public FoodAndBeveragePreparationInformationXMLImpl getPreparationInformation() {
+        return preparationInformation;
+    }
+
+    /**
+     * Sets the value of the preparationInformation property.
+     *
+     * @param value allowed object is {@link FoodAndBeveragePreparationInformationXMLImpl }
+     */
+    @Override
+    public void setPreparationInformation(FoodAndBeveragePreparationInformationXMLImpl value) {
+        this.preparationInformation = value;
+    }
+
+    /**
+     * Gets the value of the preservationTechnique property.
+     *
+     * @return possible object is {@link PreservationTechniqueCode }
+     */
+    @Override
+    public PreservationTechniqueCode getPreservationTechnique() {
+        return preservationTechnique;
+    }
+
+    /**
+     * Sets the value of the preservationTechnique property.
+     *
+     * @param value allowed object is {@link PreservationTechniqueCode }
+     */
+    @Override
+    public void setPreservationTechnique(PreservationTechniqueCode value) {
+        this.preservationTechnique = value;
+    }
+
+    /**
+     * Gets the value of the proteinPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getProteinPerNutrientBasis() {
+        return proteinPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the proteinPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setProteinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.proteinPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the reheatingClaim property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getReheatingClaim() {
+        return reheatingClaim;
+    }
+
+    /**
+     * Sets the value of the reheatingClaim property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setReheatingClaim(NonbinaryLogicCode value) {
+        this.reheatingClaim = value;
+    }
+
+    /**
+     * Gets the value of the riboflavinPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getRiboflavinPerNutrientBasis() {
+        return riboflavinPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the riboflavinPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setRiboflavinPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.riboflavinPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the saltPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getSaltPerNutrientBasis() {
+        return saltPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the saltPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setSaltPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.saltPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the saturatedFatPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getSaturatedFatPerNutrientBasis() {
+        return saturatedFatPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the saturatedFatPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setSaturatedFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.saturatedFatPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the seleniumPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getSeleniumPerNutrientBasis() {
+        return seleniumPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the seleniumPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setSeleniumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.seleniumPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the servingSize property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getServingSize() {
+        return servingSize;
+    }
+
+    /**
+     * Sets the value of the servingSize property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setServingSize(QuantitativeValueXMLImpl value) {
+        this.servingSize = value;
+    }
+
+    /**
+     * Gets the value of the servingSizeDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getServingSizeDescription() {
+        if (servingSizeDescription == null) {
+            servingSizeDescription = new LinkedHashMap<>();
+        }
+        return servingSizeDescription;
+    }
+
+    /**
+     * Sets the value of the servingSizeDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setServingSizeDescription(LinkedHashMap<String, String> value) {
+        this.servingSizeDescription = value;
+    }
+
+    /**
+     * Gets the value of the servingSuggestion property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getServingSuggestion() {
+        if (servingSuggestion == null) {
+            servingSuggestion = new LinkedHashMap<>();
+        }
+        return servingSuggestion;
+    }
+
+    /**
+     * Sets the value of the servingSuggestion property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setServingSuggestion(LinkedHashMap<String, String> value) {
+        this.servingSuggestion = value;
+    }
+
+    /**
+     * Gets the value of the sodiumPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getSodiumPerNutrientBasis() {
+        return sodiumPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the sodiumPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setSodiumPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.sodiumPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the sourceAnimal property.
+     *
+     * @return possible object is {@link SourceAnimalCode }
+     */
+    @Override
+    public SourceAnimalCode getSourceAnimal() {
+        return sourceAnimal;
+    }
+
+    /**
+     * Sets the value of the sourceAnimal property.
+     *
+     * @param value allowed object is {@link SourceAnimalCode }
+     */
+    @Override
+    public void setSourceAnimal(SourceAnimalCode value) {
+        this.sourceAnimal = value;
+    }
+
+    /**
+     * Gets the value of the starchPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getStarchPerNutrientBasis() {
+        return starchPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the starchPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setStarchPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.starchPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the sugarsPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getSugarsPerNutrientBasis() {
+        return sugarsPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the sugarsPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setSugarsPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.sugarsPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the thiaminPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getThiaminPerNutrientBasis() {
+        return thiaminPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the thiaminPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setThiaminPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.thiaminPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the transFatPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getTransFatPerNutrientBasis() {
+        return transFatPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the transFatPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setTransFatPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.transFatPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the vitaminAPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getVitaminAPerNutrientBasis() {
+        return vitaminAPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the vitaminAPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setVitaminAPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.vitaminAPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the vitaminB12PerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getVitaminB12PerNutrientBasis() {
+        return vitaminB12PerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the vitaminB12PerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setVitaminB12PerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.vitaminB12PerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the vitaminB6PerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getVitaminB6PerNutrientBasis() {
+        return vitaminB6PerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the vitaminB6PerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setVitaminB6PerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.vitaminB6PerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the vitaminCPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getVitaminCPerNutrientBasis() {
+        return vitaminCPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the vitaminCPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setVitaminCPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.vitaminCPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the vitaminDPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getVitaminDPerNutrientBasis() {
+        return vitaminDPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the vitaminDPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setVitaminDPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.vitaminDPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the vitaminEPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getVitaminEPerNutrientBasis() {
+        return vitaminEPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the vitaminEPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setVitaminEPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.vitaminEPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the vitaminKPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getVitaminKPerNutrientBasis() {
+        return vitaminKPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the vitaminKPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setVitaminKPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.vitaminKPerNutrientBasis = value;
+    }
+
+    /**
+     * Gets the value of the zincPerNutrientBasis property.
+     *
+     * @return possible object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public NutritionMeasurementTypeXMLImpl getZincPerNutrientBasis() {
+        return zincPerNutrientBasis;
+    }
+
+    /**
+     * Sets the value of the zincPerNutrientBasis property.
+     *
+     * @param value allowed object is {@link NutritionMeasurementTypeXMLImpl }
+     */
+    @Override
+    public void setZincPerNutrientBasis(NutritionMeasurementTypeXMLImpl value) {
+        this.zincPerNutrientBasis = value;
+    }
 }

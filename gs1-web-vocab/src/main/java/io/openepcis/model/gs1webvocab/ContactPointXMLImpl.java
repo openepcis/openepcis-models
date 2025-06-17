@@ -12,6 +12,8 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
+import java.util.LinkedHashMap;
+
 /**
  * Information on an individual or department acting as point of contact for an organiation.
  *
@@ -39,176 +41,185 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "ContactPoint",
-    propOrder = {
-      "availableLanguage",
-      "contactTitle",
-      "contactType",
-      "email",
-      "faxNumber",
-      "responsibility",
-      "telephone"
-    })
+        name = "ContactPoint",
+        propOrder = {
+                "availableLanguage",
+                "contactTitle",
+                "contactType",
+                "email",
+                "faxNumber",
+                "responsibility",
+                "telephone"
+        })
 public class ContactPointXMLImpl implements ContactPoint {
 
-  @XmlElement(required = true)
-  protected String availableLanguage;
+    @XmlElement(required = true)
+    protected String availableLanguage;
 
-  @XmlElement(required = true)
-  protected String contactTitle;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> contactTitle;
 
-  @XmlElement(required = true)
-  protected String contactType;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> contactType;
 
-  @XmlElement(required = true)
-  protected String email;
+    @XmlElement(required = true)
+    protected String email;
 
-  @XmlElement(required = true)
-  protected String faxNumber;
+    @XmlElement(required = true)
+    protected String faxNumber;
 
-  @XmlElement(required = true)
-  protected String responsibility;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> responsibility;
 
-  @XmlElement(required = true)
-  protected String telephone;
+    @XmlElement(required = true)
+    protected String telephone;
 
-  /**
-   * Gets the value of the availableLanguage property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAvailableLanguage() {
-    return availableLanguage;
-  }
+    /**
+     * Gets the value of the availableLanguage property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getAvailableLanguage() {
+        return availableLanguage;
+    }
 
-  /**
-   * Sets the value of the availableLanguage property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAvailableLanguage(String value) {
-    this.availableLanguage = value;
-  }
+    /**
+     * Sets the value of the availableLanguage property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAvailableLanguage(String value) {
+        this.availableLanguage = value;
+    }
 
-  /**
-   * Gets the value of the contactTitle property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getContactTitle() {
-    return contactTitle;
-  }
+    /**
+     * Gets the value of the contactTitle property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getContactTitle() {
+        if (contactTitle == null) {
+            contactTitle = new LinkedHashMap<>();
+        }
+        return contactTitle;
+    }
 
-  /**
-   * Sets the value of the contactTitle property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setContactTitle(String value) {
-    this.contactTitle = value;
-  }
+    /**
+     * Sets the value of the contactTitle property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setContactTitle(LinkedHashMap<String, String> value) {
+        this.contactTitle = value;
+    }
 
-  /**
-   * Gets the value of the contactType property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getContactType() {
-    return contactType;
-  }
+    /**
+     * Gets the value of the contactType property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getContactType() {
+        if (contactType == null) {
+            contactType = new LinkedHashMap<>();
+        }
+        return contactType;
+    }
 
-  /**
-   * Sets the value of the contactType property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setContactType(String value) {
-    this.contactType = value;
-  }
+    /**
+     * Sets the value of the contactType property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setContactType(LinkedHashMap<String, String> value) {
+        this.contactType = value;
+    }
 
-  /**
-   * Gets the value of the email property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getEmail() {
-    return email;
-  }
+    /**
+     * Gets the value of the email property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getEmail() {
+        return email;
+    }
 
-  /**
-   * Sets the value of the email property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setEmail(String value) {
-    this.email = value;
-  }
+    /**
+     * Sets the value of the email property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setEmail(String value) {
+        this.email = value;
+    }
 
-  /**
-   * Gets the value of the faxNumber property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getFaxNumber() {
-    return faxNumber;
-  }
+    /**
+     * Gets the value of the faxNumber property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getFaxNumber() {
+        return faxNumber;
+    }
 
-  /**
-   * Sets the value of the faxNumber property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setFaxNumber(String value) {
-    this.faxNumber = value;
-  }
+    /**
+     * Sets the value of the faxNumber property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setFaxNumber(String value) {
+        this.faxNumber = value;
+    }
 
-  /**
-   * Gets the value of the responsibility property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getResponsibility() {
-    return responsibility;
-  }
+    /**
+     * Gets the value of the responsibility property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getResponsibility() {
+        if (responsibility == null) {
+            responsibility = new LinkedHashMap<>();
+        }
+        return responsibility;
+    }
 
-  /**
-   * Sets the value of the responsibility property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setResponsibility(String value) {
-    this.responsibility = value;
-  }
+    /**
+     * Sets the value of the responsibility property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setResponsibility(LinkedHashMap<String, String> value) {
+        this.responsibility = value;
+    }
 
-  /**
-   * Gets the value of the telephone property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getTelephone() {
-    return telephone;
-  }
+    /**
+     * Gets the value of the telephone property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getTelephone() {
+        return telephone;
+    }
 
-  /**
-   * Sets the value of the telephone property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setTelephone(String value) {
-    this.telephone = value;
-  }
+    /**
+     * Sets the value of the telephone property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setTelephone(String value) {
+        this.telephone = value;
+    }
 }

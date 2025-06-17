@@ -9,6 +9,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.DietTypeCodeDetails;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+
 /**
  * A set of diet type code details (diet type code and diet type sub code) for the product.
  *
@@ -40,7 +42,7 @@ public class DietTypeCodeDetailsXMLImpl implements DietTypeCodeDetails {
   protected DietTypeCode dietType;
 
   @XmlElement(required = true)
-  protected String dietTypeSubcode;
+  protected LinkedHashMap<String, String> dietTypeSubcode;
 
   /**
    * Gets the value of the dietType property.
@@ -65,20 +67,23 @@ public class DietTypeCodeDetailsXMLImpl implements DietTypeCodeDetails {
   /**
    * Gets the value of the dietTypeSubcode property.
    *
-   * @return possible object is {@link String }
+   * @return possible object is {@link LinkedHashMap }
    */
   @Override
-  public String getDietTypeSubcode() {
+  public LinkedHashMap<String, String> getDietTypeSubcode() {
+    if (dietTypeSubcode == null) {
+      dietTypeSubcode = new LinkedHashMap<>();
+    }
     return dietTypeSubcode;
   }
 
   /**
    * Sets the value of the dietTypeSubcode property.
    *
-   * @param value allowed object is {@link String }
+   * @param value allowed object is {@link LinkedHashMap }
    */
   @Override
-  public void setDietTypeSubcode(String value) {
+  public void setDietTypeSubcode(LinkedHashMap<String, String> value) {
     this.dietTypeSubcode = value;
   }
 }

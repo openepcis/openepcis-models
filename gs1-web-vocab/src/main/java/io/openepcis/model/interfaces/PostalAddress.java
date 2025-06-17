@@ -1,59 +1,61 @@
 package io.openepcis.model.interfaces;
 
+import java.util.LinkedHashMap;
+
 public interface PostalAddress<C extends Country> {
-  C getAddressCountry();
+    C getAddressCountry();
 
-  void setAddressCountry(C country);
+    void setAddressCountry(C country);
 
-  String getAddressLocality();
+    LinkedHashMap<String, String> getAddressLocality();
 
-  void setAddressLocality(String value);
+    void setAddressLocality(LinkedHashMap<String, String> value);
 
-  String getAddressRegion();
+    LinkedHashMap<String, String> getAddressRegion();
 
-  void setAddressRegion(String value);
+    void setAddressRegion(LinkedHashMap<String, String> value);
 
-  String getAddressSuburb();
+    LinkedHashMap<String, String> getAddressSuburb();
 
-  void setAddressSuburb(String value);
+    void setAddressSuburb(LinkedHashMap<String, String> value);
 
-  String getCountyCode();
+    String getCountyCode();
 
-  void setCountyCode(String value);
+    void setCountyCode(String value);
 
-  String getCrossStreet();
+    LinkedHashMap<String, String> getCrossStreet();
 
-  void setCrossStreet(String value);
+    void setCrossStreet(LinkedHashMap<String, String> value);
 
-  String getOrganizationName();
+    LinkedHashMap<String, String> getOrganizationName();
 
-  void setOrganizationName(String value);
+    void setOrganizationName(LinkedHashMap<String, String> value);
 
-  String getPostOfficeBoxNumber();
+    String getPostOfficeBoxNumber();
 
-  void setPostOfficeBoxNumber(String value);
+    void setPostOfficeBoxNumber(String value);
 
-  String getPostalCode();
+    String getPostalCode();
 
-  void setPostalCode(String value);
+    void setPostalCode(String value);
 
-  String getPostalName();
+    LinkedHashMap<String, String> getPostalName();
 
-  void setPostalName(String value);
+    void setPostalName(LinkedHashMap<String, String> value);
 
-  String getStreetAddress();
+    LinkedHashMap<String, String> getStreetAddress();
 
-  void setStreetAddress(String value);
+    void setStreetAddress(LinkedHashMap<String, String> value);
 
-  String getStreetAddressLine2();
+    LinkedHashMap<String, String> getStreetAddressLine2();
 
-  void setStreetAddressLine2(String value);
+    void setStreetAddressLine2(LinkedHashMap<String, String> value);
 
-  String getStreetAddressLine3();
+    LinkedHashMap<String, String> getStreetAddressLine3();
 
-  void setStreetAddressLine3(String value);
+    void setStreetAddressLine3(LinkedHashMap<String, String> value);
 
-  String getStreetAddressLine4();
+    LinkedHashMap<String, String> getStreetAddressLine4();
 
-  void setStreetAddressLine4(String value);
+    void setStreetAddressLine4(LinkedHashMap<String, String> value);
 }

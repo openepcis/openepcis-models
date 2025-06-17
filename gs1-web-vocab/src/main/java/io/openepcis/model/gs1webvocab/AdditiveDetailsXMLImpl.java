@@ -9,12 +9,15 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.AdditiveDetails;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+
+
 /**
  * A set of details about one of the additives within the product.
  *
- * <p>Java class for AdditiveDetails complex type.
+ * <p>Java class for AdditiveDetails complex type</p>.
  *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.</p>
  *
  * <pre>{@code
  * <complexType name="AdditiveDetails">
@@ -22,63 +25,103 @@ import jakarta.xml.bind.annotation.*;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="additiveLevelOfContainment" type="{}LevelOfContainmentCode"/>
- *         <element name="additiveName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="additiveName" type="{}LangString" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
+ *       <attribute name="id" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
  *     </restriction>
  *   </complexContent>
  * </complexType>
  * }</pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "AdditiveDetails",
-    propOrder = {"additiveLevelOfContainment", "additiveName"})
+@XmlType(name = "AdditiveDetails", propOrder = {
+        "additiveLevelOfContainment",
+        "additiveName"
+})
 public class AdditiveDetailsXMLImpl implements AdditiveDetails {
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected LevelOfContainmentCode additiveLevelOfContainment;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected LevelOfContainmentCode additiveLevelOfContainment;
+    protected LinkedHashMap<String, String> additiveName;
+    @XmlAttribute(name = "id")
+    @XmlSchemaType(name = "anyURI")
+    protected String id;
 
-  @XmlElement(required = true)
-  protected String additiveName;
+    /**
+     * Gets the value of the additiveLevelOfContainment property.
+     *
+     * @return possible object is
+     * {@link LevelOfContainmentCode }
+     */
+    public LevelOfContainmentCode getAdditiveLevelOfContainment() {
+        return additiveLevelOfContainment;
+    }
 
-  /**
-   * Gets the value of the additiveLevelOfContainment property.
-   *
-   * @return possible object is {@link LevelOfContainmentCode }
-   */
-  @Override
-  public LevelOfContainmentCode getAdditiveLevelOfContainment() {
-    return additiveLevelOfContainment;
-  }
+    /**
+     * Sets the value of the additiveLevelOfContainment property.
+     *
+     * @param value allowed object is
+     *              {@link LevelOfContainmentCode }
+     */
+    public void setAdditiveLevelOfContainment(LevelOfContainmentCode value) {
+        this.additiveLevelOfContainment = value;
+    }
 
-  /**
-   * Sets the value of the additiveLevelOfContainment property.
-   *
-   * @param value allowed object is {@link LevelOfContainmentCode }
-   */
-  @Override
-  public void setAdditiveLevelOfContainment(LevelOfContainmentCode value) {
-    this.additiveLevelOfContainment = value;
-  }
+    /**
+     * Gets the value of the additiveName property.
+     *
+     * <p>This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the additiveName property.</p>
+     *
+     * <p>
+     * For example, to add a new item, do as follows:
+     * </p>
+     * <pre>
+     * getAdditiveName().add(newItem);
+     * </pre>
+     *
+     *
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link LinkedHashMap<String, String> }
+     * </p>
+     *
+     * @return The value of the additiveName property.
+     */
+    public LinkedHashMap<String, String> getAdditiveName() {
+        if (additiveName == null) {
+            additiveName = new LinkedHashMap<>();
+        }
+        return this.additiveName;
+    }
 
-  /**
-   * Gets the value of the additiveName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAdditiveName() {
-    return additiveName;
-  }
+    @Override
+    public void setAdditiveName(LinkedHashMap<String, String> value) {
+        this.additiveName = value;
+    }
 
-  /**
-   * Sets the value of the additiveName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAdditiveName(String value) {
-    this.additiveName = value;
-  }
+    /**
+     * Gets the value of the id property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
+
 }
+

@@ -1,19 +1,21 @@
 package io.openepcis.model.interfaces;
 
+import java.util.LinkedHashMap;
+
 public interface TextileMaterialDetails<QV extends QuantitativeValue> {
-  String getTextileMaterialDescription();
+    LinkedHashMap<String, String> getTextileMaterialDescription();
 
-  void setTextileMaterialDescription(String value);
+    void setTextileMaterialDescription(LinkedHashMap<String, String> value);
 
-  float getTextileMaterialPercentage();
+    float getTextileMaterialPercentage();
 
-  void setTextileMaterialPercentage(float value);
+    void setTextileMaterialPercentage(float value);
 
-  String getTextileMaterialThreadCount();
+    LinkedHashMap<String, String> getTextileMaterialThreadCount();
 
-  void setTextileMaterialThreadCount(String value);
+    void setTextileMaterialThreadCount(LinkedHashMap<String, String> value);
 
-  QV getTextileMaterialWeight();
+    QV getTextileMaterialWeight();
 
-  void setTextileMaterialWeight(QV value);
+    void setTextileMaterialWeight(QV value);
 }

@@ -12,6 +12,8 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
+import java.util.LinkedHashMap;
+
 /**
  * An assurance that the product is reliable and that repairs or replacement will be done free of
  * charge within a given time limit and under certain conditions in the event of a defect.
@@ -35,53 +37,56 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "WarrantyPromise",
-    propOrder = {"durationOfWarranty", "warrantyScopeDescription"})
+        name = "WarrantyPromise",
+        propOrder = {"durationOfWarranty", "warrantyScopeDescription"})
 public class WarrantyPromiseXMLImpl implements WarrantyPromise<QuantitativeValueXMLImpl> {
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl durationOfWarranty;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl durationOfWarranty;
 
-  @XmlElement(required = true)
-  protected String warrantyScopeDescription;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> warrantyScopeDescription;
 
-  /**
-   * Gets the value of the durationOfWarranty property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getDurationOfWarranty() {
-    return durationOfWarranty;
-  }
+    /**
+     * Gets the value of the durationOfWarranty property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getDurationOfWarranty() {
+        return durationOfWarranty;
+    }
 
-  /**
-   * Sets the value of the durationOfWarranty property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setDurationOfWarranty(QuantitativeValueXMLImpl value) {
-    this.durationOfWarranty = value;
-  }
+    /**
+     * Sets the value of the durationOfWarranty property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setDurationOfWarranty(QuantitativeValueXMLImpl value) {
+        this.durationOfWarranty = value;
+    }
 
-  /**
-   * Gets the value of the warrantyScopeDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getWarrantyScopeDescription() {
-    return warrantyScopeDescription;
-  }
+    /**
+     * Gets the value of the warrantyScopeDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getWarrantyScopeDescription() {
+        if (warrantyScopeDescription == null) {
+            warrantyScopeDescription = new LinkedHashMap<>();
+        }
+        return warrantyScopeDescription;
+    }
 
-  /**
-   * Sets the value of the warrantyScopeDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setWarrantyScopeDescription(String value) {
-    this.warrantyScopeDescription = value;
-  }
+    /**
+     * Sets the value of the warrantyScopeDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setWarrantyScopeDescription(LinkedHashMap<String, String> value) {
+        this.warrantyScopeDescription = value;
+    }
 }

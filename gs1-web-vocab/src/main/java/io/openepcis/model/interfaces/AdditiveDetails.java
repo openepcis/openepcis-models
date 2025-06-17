@@ -2,12 +2,14 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.LevelOfContainmentCode;
 
-public interface AdditiveDetails {
-  LevelOfContainmentCode getAdditiveLevelOfContainment();
+import java.util.LinkedHashMap;
 
-  void setAdditiveLevelOfContainment(LevelOfContainmentCode value);
+public interface AdditiveDetails{
+    LevelOfContainmentCode getAdditiveLevelOfContainment();
 
-  String getAdditiveName();
+    void setAdditiveLevelOfContainment(LevelOfContainmentCode value);
 
-  void setAdditiveName(String value);
+    LinkedHashMap<String, String> getAdditiveName();
+
+    void setAdditiveName(LinkedHashMap<String, String> value);
 }
