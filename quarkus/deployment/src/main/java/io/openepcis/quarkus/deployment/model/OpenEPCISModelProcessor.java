@@ -16,7 +16,6 @@
 package io.openepcis.quarkus.deployment.model;
 
 import io.openepcis.quarkus.model.OpenEPCISJAXBContextProducer;
-import io.openepcis.quarkus.model.ObjectMapperProducer;
 import io.openepcis.quarkus.model.OpenEPCISModelHealthCheck;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
 import io.quarkus.deployment.annotations.BuildStep;
@@ -46,11 +45,6 @@ public class OpenEPCISModelProcessor {
   @BuildStep()
   AdditionalBeanBuildItem buildOpenEPCISJAXBContext() {
     return AdditionalBeanBuildItem.unremovableOf(OpenEPCISJAXBContextProducer.class);
-  }
-
-  @BuildStep()
-  AdditionalBeanBuildItem buildObjectMapperProducer() {
-    return AdditionalBeanBuildItem.unremovableOf(ObjectMapperProducer.class);
   }
 
   @BuildStep
