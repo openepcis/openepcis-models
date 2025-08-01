@@ -1,31 +1,33 @@
 package io.openepcis.model.interfaces;
 
+import java.util.LinkedHashMap;
+
 public interface ContactPoint {
-  String getAvailableLanguage();
+    String getAvailableLanguage();
 
-  void setAvailableLanguage(String value);
+    void setAvailableLanguage(String value);
 
-  String getContactTitle();
+    LinkedHashMap<String, String> getContactTitle();
 
-  void setContactTitle(String value);
+    void setContactTitle(LinkedHashMap<String, String> value);
 
-  String getContactType();
+    LinkedHashMap<String, String> getContactType();
 
-  void setContactType(String value);
+    void setContactType(LinkedHashMap<String, String> value);
 
-  String getEmail();
+    String getEmail();
 
-  void setEmail(String value);
+    void setEmail(String value);
 
-  String getFaxNumber();
+    String getFaxNumber();
 
-  void setFaxNumber(String value);
+    void setFaxNumber(String value);
 
-  String getResponsibility();
+    LinkedHashMap<String, String> getResponsibility();
 
-  void setResponsibility(String value);
+    void setResponsibility(LinkedHashMap<String, String> value);
 
-  String getTelephone();
+    String getTelephone();
 
-  void setTelephone(String value);
+    void setTelephone(String value);
 }

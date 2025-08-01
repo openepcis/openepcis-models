@@ -1,11 +1,13 @@
 package io.openepcis.model.interfaces;
 
+import java.util.LinkedHashMap;
+
 public interface Brand {
-  String getBrandName();
+    LinkedHashMap<String, String> getBrandName();
 
-  void setBrandName(String value);
+    void setBrandName(LinkedHashMap<String, String> value);
 
-  String getSubBrandName();
+    LinkedHashMap<String, String> getSubBrandName();
 
-  void setSubBrandName(String value);
+    void setSubBrandName(LinkedHashMap<String, String> value);
 }

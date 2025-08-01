@@ -4,14 +4,16 @@ import io.openepcis.model.gs1webvocab.CheeseFirmnessCode;
 import io.openepcis.model.gs1webvocab.NonbinaryLogicCode;
 import io.openepcis.model.gs1webvocab.SharpnessOfCheeseCode;
 
+import java.util.LinkedHashMap;
+
 public interface MilkButterCreamYogurtCheeseEggsSubstitutes {
   CheeseFirmnessCode getCheeseFirmness();
 
   void setCheeseFirmness(CheeseFirmnessCode value);
 
-  String getCheeseMaturationPeriodDescription();
+  LinkedHashMap<String, String> getCheeseMaturationPeriodDescription();
 
-  void setCheeseMaturationPeriodDescription(String value);
+  void setCheeseMaturationPeriodDescription(LinkedHashMap<String, String> value);
 
   float getFatInMilkContent();
 

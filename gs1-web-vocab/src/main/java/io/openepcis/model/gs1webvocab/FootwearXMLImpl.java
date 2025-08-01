@@ -8,6 +8,7 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Footwear;
 import jakarta.xml.bind.annotation.*;
+
 import java.util.List;
 
 /**

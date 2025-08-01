@@ -1,62 +1,64 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.CertificationStatus;
+
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 
 public interface CertificationDetails<O extends Organization> {
-  String getCertificationAgency();
+    LinkedHashMap<String, String> getCertificationAgency();
 
-  void setCertificationAgency(String value);
+    void setCertificationAgency(LinkedHashMap<String, String> value);
 
-  O getCertificationAgencyURL();
+    O getCertificationAgencyURL();
 
-  void setCertificationAgencyURL(O value);
+    void setCertificationAgencyURL(O value);
 
-  LocalDate getCertificationAuditDate();
+    LocalDate getCertificationAuditDate();
 
-  void setCertificationAuditDate(LocalDate value);
+    void setCertificationAuditDate(LocalDate value);
 
-  LocalDate getCertificationEndDate();
+    LocalDate getCertificationEndDate();
 
-  void setCertificationEndDate(LocalDate value);
+    void setCertificationEndDate(LocalDate value);
 
-  String getCertificationIdentification();
+    String getCertificationIdentification();
 
-  void setCertificationIdentification(String value);
+    void setCertificationIdentification(String value);
 
-  String getCertificationStandard();
+    LinkedHashMap<String, String> getCertificationStandard();
 
-  void setCertificationStandard(String value);
+    void setCertificationStandard(LinkedHashMap<String, String> value);
 
-  LocalDate getCertificationStartDate();
+    LocalDate getCertificationStartDate();
 
-  void setCertificationStartDate(LocalDate value);
+    void setCertificationStartDate(LocalDate value);
 
-  String getCertificationStatement();
+    LinkedHashMap<String, String> getCertificationStatement();
 
-  void setCertificationStatement(String value);
+    void setCertificationStatement(LinkedHashMap<String, String> value);
 
-  CertificationStatus getCertificationStatus();
+    CertificationStatus getCertificationStatus();
 
-  void setCertificationStatus(CertificationStatus value);
+    void setCertificationStatus(CertificationStatus value);
 
-  String getCertificationSubject();
+    String getCertificationSubject();
 
-  void setCertificationSubject(String value);
+    void setCertificationSubject(String value);
 
-  String getCertificationType();
+    String getCertificationType();
 
-  void setCertificationType(String value);
+    void setCertificationType(String value);
 
-  String getCertificationURI();
+    String getCertificationURI();
 
-  void setCertificationURI(String value);
+    void setCertificationURI(String value);
 
-  String getCertificationValue();
+    LinkedHashMap<String, String> getCertificationValue();
 
-  void setCertificationValue(String value);
+    void setCertificationValue(LinkedHashMap<String, String> value);
 
-  LocalDate getInitialCertificationDate();
+    LocalDate getInitialCertificationDate();
 
-  void setInitialCertificationDate(LocalDate value);
+    void setInitialCertificationDate(LocalDate value);
 }

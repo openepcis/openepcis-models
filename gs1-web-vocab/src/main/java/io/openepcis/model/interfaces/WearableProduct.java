@@ -1,63 +1,65 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
+
 import java.time.Year;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public interface WearableProduct<SD extends SizeDetails> {
-  ConsumerLifestageCode getConsumerLifestage();
+    ConsumerLifestageCode getConsumerLifestage();
 
-  void setConsumerLifestage(ConsumerLifestageCode value);
+    void setConsumerLifestage(ConsumerLifestageCode value);
 
-  NonbinaryLogicCode getIsPatterned();
+    NonbinaryLogicCode getIsPatterned();
 
-  void setIsPatterned(NonbinaryLogicCode value);
+    void setIsPatterned(NonbinaryLogicCode value);
 
-  NonbinaryLogicCode getIsThermal();
+    NonbinaryLogicCode getIsThermal();
 
-  void setIsThermal(NonbinaryLogicCode value);
+    void setIsThermal(NonbinaryLogicCode value);
 
-  NonbinaryLogicCode getIsWaterproof();
+    NonbinaryLogicCode getIsWaterproof();
 
-  void setIsWaterproof(NonbinaryLogicCode value);
+    void setIsWaterproof(NonbinaryLogicCode value);
 
-  NonbinaryLogicCode getIsWearableItemDisposable();
+    NonbinaryLogicCode getIsWearableItemDisposable();
 
-  void setIsWearableItemDisposable(NonbinaryLogicCode value);
+    void setIsWearableItemDisposable(NonbinaryLogicCode value);
 
-  Year getSeasonCalendarYear();
+    Year getSeasonCalendarYear();
 
-  void setSeasonCalendarYear(Year value);
+    void setSeasonCalendarYear(Year value);
 
-  String getSeasonName();
+    LinkedHashMap<String, String> getSeasonName();
 
-  void setSeasonName(String value);
+    void setSeasonName(LinkedHashMap<String, String> value);
 
-  SeasonParameterCode getSeasonParameter();
+    SeasonParameterCode getSeasonParameter();
 
-  void setSeasonParameter(SeasonParameterCode value);
+    void setSeasonParameter(SeasonParameterCode value);
 
-  List<SD> getSize();
+    List<SD> getSize();
 
-  void setSize(List<SD> value);
+    void setSize(List<SD> value);
 
-  SportingActivityTypeCode getSportingActivityType();
+    SportingActivityTypeCode getSportingActivityType();
 
-  void setSportingActivityType(SportingActivityTypeCode value);
+    void setSportingActivityType(SportingActivityTypeCode value);
 
-  String getStyleDescription();
+    LinkedHashMap<String, String> getStyleDescription();
 
-  void setStyleDescription(String value);
+    void setStyleDescription(LinkedHashMap<String, String> value);
 
-  String getTargetConsumerAge();
+    String getTargetConsumerAge();
 
-  void setTargetConsumerAge(String value);
+    void setTargetConsumerAge(String value);
 
-  TargetConsumerGenderCode getTargetConsumerGender();
+    TargetConsumerGenderCode getTargetConsumerGender();
 
-  void setTargetConsumerGender(TargetConsumerGenderCode value);
+    void setTargetConsumerGender(TargetConsumerGenderCode value);
 
-  String getTextileMaterialContent();
+    LinkedHashMap<String, String> getTextileMaterialContent();
 
-  void setTextileMaterialContent(String value);
+    void setTextileMaterialContent(LinkedHashMap<String, String> value);
 }

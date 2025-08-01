@@ -9,7 +9,9 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.Offer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 
 /**
  * An offer to transfer some rights to an item or to provide a service,for example, an offer to sell
@@ -49,27 +51,27 @@ import java.time.LocalDateTime;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "Offer",
-    propOrder = {
-      "acceptedPaymentMethod",
-      "availabilityEnds",
-      "availabilityStarts",
-      "availableAtOrFrom",
-      "eligibleQuantity",
-      "eligibleQuantityMaximum",
-      "eligibleQuantityMinimum",
-      "itemOffered",
-      "offerDescription",
-      "offerDiscount",
-      "offerRedemptionURL",
-      "paymentTerms",
-      "priceSpecification",
-      "seeker",
-      "seller",
-      "warranty"
-    })
+        name = "Offer",
+        propOrder = {
+                "acceptedPaymentMethod",
+                "availabilityEnds",
+                "availabilityStarts",
+                "availableAtOrFrom",
+                "eligibleQuantity",
+                "eligibleQuantityMaximum",
+                "eligibleQuantityMinimum",
+                "itemOffered",
+                "offerDescription",
+                "offerDiscount",
+                "offerRedemptionURL",
+                "paymentTerms",
+                "priceSpecification",
+                "seeker",
+                "seller",
+                "warranty"
+        })
 public class OfferXMLImpl
-    implements Offer<
+        implements Offer<
         PlaceXMLImpl,
         QuantitativeValueXMLImpl,
         ProductXMLImpl,
@@ -79,376 +81,379 @@ public class OfferXMLImpl
         WarrantyPromiseXMLImpl,
         OrganizationXMLImpl> {
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected PaymentMethod acceptedPaymentMethod;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected PaymentMethod acceptedPaymentMethod;
 
-  @XmlElement(required = true, type = String.class)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "dateTime")
-  protected LocalDateTime availabilityEnds;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1.class)
+    @XmlSchemaType(name = "dateTime")
+    protected LocalDateTime availabilityEnds;
 
-  @XmlElement(required = true, type = String.class)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "dateTime")
-  protected LocalDateTime availabilityStarts;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1.class)
+    @XmlSchemaType(name = "dateTime")
+    protected LocalDateTime availabilityStarts;
 
-  @XmlElement(required = true)
-  protected PlaceXMLImpl availableAtOrFrom;
+    @XmlElement(required = true)
+    protected PlaceXMLImpl availableAtOrFrom;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl eligibleQuantity;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl eligibleQuantity;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl eligibleQuantityMaximum;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl eligibleQuantityMaximum;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl eligibleQuantityMinimum;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl eligibleQuantityMinimum;
 
-  @XmlElement(required = true)
-  protected ProductXMLImpl itemOffered;
+    @XmlElement(required = true)
+    protected ProductXMLImpl itemOffered;
 
-  @XmlElement(required = true)
-  protected String offerDescription;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> offerDescription;
 
-  @XmlElement(required = true)
-  protected DiscountXMLImpl offerDiscountXMLImpl;
+    @XmlElement(required = true)
+    protected DiscountXMLImpl offerDiscountXMLImpl;
 
-  @XmlElement(required = true)
-  protected ReferencedFileDetailsXMLImpl offerRedemptionURL;
+    @XmlElement(required = true)
+    protected ReferencedFileDetailsXMLImpl offerRedemptionURL;
 
-  @XmlElement(required = true)
-  protected String paymentTerms;
+    @XmlElement(required = true)
+    protected String paymentTerms;
 
-  @XmlElement(required = true)
-  protected PriceSpecificationXMLImpl priceSpecificationXMLImpl;
+    @XmlElement(required = true)
+    protected PriceSpecificationXMLImpl priceSpecificationXMLImpl;
 
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl seeker;
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl seeker;
 
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl seller;
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl seller;
 
-  @XmlElement(required = true)
-  protected WarrantyPromiseXMLImpl warranty;
+    @XmlElement(required = true)
+    protected WarrantyPromiseXMLImpl warranty;
 
-  /**
-   * Gets the value of the acceptedPaymentMethod property.
-   *
-   * @return possible object is {@link PaymentMethod }
-   */
-  @Override
-  public PaymentMethod getAcceptedPaymentMethod() {
-    return acceptedPaymentMethod;
-  }
+    /**
+     * Gets the value of the acceptedPaymentMethod property.
+     *
+     * @return possible object is {@link PaymentMethod }
+     */
+    @Override
+    public PaymentMethod getAcceptedPaymentMethod() {
+        return acceptedPaymentMethod;
+    }
 
-  /**
-   * Sets the value of the acceptedPaymentMethod property.
-   *
-   * @param value allowed object is {@link PaymentMethod }
-   */
-  @Override
-  public void setAcceptedPaymentMethod(PaymentMethod value) {
-    this.acceptedPaymentMethod = value;
-  }
+    /**
+     * Sets the value of the acceptedPaymentMethod property.
+     *
+     * @param value allowed object is {@link PaymentMethod }
+     */
+    @Override
+    public void setAcceptedPaymentMethod(PaymentMethod value) {
+        this.acceptedPaymentMethod = value;
+    }
 
-  /**
-   * Gets the value of the availabilityEnds property.
-   *
-   * @return possible object is {@link LocalDateTime }
-   */
-  @Override
-  public LocalDateTime getAvailabilityEnds() {
-    return availabilityEnds;
-  }
+    /**
+     * Gets the value of the availabilityEnds property.
+     *
+     * @return possible object is {@link LocalDateTime }
+     */
+    @Override
+    public LocalDateTime getAvailabilityEnds() {
+        return availabilityEnds;
+    }
 
-  /**
-   * Sets the value of the availabilityEnds property.
-   *
-   * @param value allowed object is {@link LocalDateTime }
-   */
-  @Override
-  public void setAvailabilityEnds(LocalDateTime value) {
-    this.availabilityEnds = value;
-  }
+    /**
+     * Sets the value of the availabilityEnds property.
+     *
+     * @param value allowed object is {@link LocalDateTime }
+     */
+    @Override
+    public void setAvailabilityEnds(LocalDateTime value) {
+        this.availabilityEnds = value;
+    }
 
-  /**
-   * Gets the value of the availabilityStarts property.
-   *
-   * @return possible object is {@link LocalDateTime }
-   */
-  @Override
-  public LocalDateTime getAvailabilityStarts() {
-    return availabilityStarts;
-  }
+    /**
+     * Gets the value of the availabilityStarts property.
+     *
+     * @return possible object is {@link LocalDateTime }
+     */
+    @Override
+    public LocalDateTime getAvailabilityStarts() {
+        return availabilityStarts;
+    }
 
-  /**
-   * Sets the value of the availabilityStarts property.
-   *
-   * @param value allowed object is {@link LocalDateTime }
-   */
-  @Override
-  public void setAvailabilityStarts(LocalDateTime value) {
-    this.availabilityStarts = value;
-  }
+    /**
+     * Sets the value of the availabilityStarts property.
+     *
+     * @param value allowed object is {@link LocalDateTime }
+     */
+    @Override
+    public void setAvailabilityStarts(LocalDateTime value) {
+        this.availabilityStarts = value;
+    }
 
-  /**
-   * Gets the value of the availableAtOrFrom property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public PlaceXMLImpl getAvailableAtOrFrom() {
-    return availableAtOrFrom;
-  }
+    /**
+     * Gets the value of the availableAtOrFrom property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public PlaceXMLImpl getAvailableAtOrFrom() {
+        return availableAtOrFrom;
+    }
 
-  /**
-   * Sets the value of the availableAtOrFrom property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setAvailableAtOrFrom(PlaceXMLImpl value) {
-    this.availableAtOrFrom = value;
-  }
+    /**
+     * Sets the value of the availableAtOrFrom property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setAvailableAtOrFrom(PlaceXMLImpl value) {
+        this.availableAtOrFrom = value;
+    }
 
-  /**
-   * Gets the value of the eligibleQuantity property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getEligibleQuantity() {
-    return eligibleQuantity;
-  }
+    /**
+     * Gets the value of the eligibleQuantity property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getEligibleQuantity() {
+        return eligibleQuantity;
+    }
 
-  /**
-   * Sets the value of the eligibleQuantity property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setEligibleQuantity(QuantitativeValueXMLImpl value) {
-    this.eligibleQuantity = value;
-  }
+    /**
+     * Sets the value of the eligibleQuantity property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setEligibleQuantity(QuantitativeValueXMLImpl value) {
+        this.eligibleQuantity = value;
+    }
 
-  /**
-   * Gets the value of the eligibleQuantityMaximum property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getEligibleQuantityMaximum() {
-    return eligibleQuantityMaximum;
-  }
+    /**
+     * Gets the value of the eligibleQuantityMaximum property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getEligibleQuantityMaximum() {
+        return eligibleQuantityMaximum;
+    }
 
-  /**
-   * Sets the value of the eligibleQuantityMaximum property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setEligibleQuantityMaximum(QuantitativeValueXMLImpl value) {
-    this.eligibleQuantityMaximum = value;
-  }
+    /**
+     * Sets the value of the eligibleQuantityMaximum property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setEligibleQuantityMaximum(QuantitativeValueXMLImpl value) {
+        this.eligibleQuantityMaximum = value;
+    }
 
-  /**
-   * Gets the value of the eligibleQuantityMinimum property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getEligibleQuantityMinimum() {
-    return eligibleQuantityMinimum;
-  }
+    /**
+     * Gets the value of the eligibleQuantityMinimum property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getEligibleQuantityMinimum() {
+        return eligibleQuantityMinimum;
+    }
 
-  /**
-   * Sets the value of the eligibleQuantityMinimum property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setEligibleQuantityMinimum(QuantitativeValueXMLImpl value) {
-    this.eligibleQuantityMinimum = value;
-  }
+    /**
+     * Sets the value of the eligibleQuantityMinimum property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setEligibleQuantityMinimum(QuantitativeValueXMLImpl value) {
+        this.eligibleQuantityMinimum = value;
+    }
 
-  /**
-   * Gets the value of the itemOffered property.
-   *
-   * @return possible object is {@link ProductXMLImpl }
-   */
-  @Override
-  public ProductXMLImpl getItemOffered() {
-    return itemOffered;
-  }
+    /**
+     * Gets the value of the itemOffered property.
+     *
+     * @return possible object is {@link ProductXMLImpl }
+     */
+    @Override
+    public ProductXMLImpl getItemOffered() {
+        return itemOffered;
+    }
 
-  /**
-   * Sets the value of the itemOffered property.
-   *
-   * @param value allowed object is {@link ProductXMLImpl }
-   */
-  @Override
-  public void setItemOffered(ProductXMLImpl value) {
-    this.itemOffered = value;
-  }
+    /**
+     * Sets the value of the itemOffered property.
+     *
+     * @param value allowed object is {@link ProductXMLImpl }
+     */
+    @Override
+    public void setItemOffered(ProductXMLImpl value) {
+        this.itemOffered = value;
+    }
 
-  /**
-   * Gets the value of the offerDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getOfferDescription() {
-    return offerDescription;
-  }
+    /**
+     * Gets the value of the offerDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getOfferDescription() {
+        if (offerDescription == null) {
+            offerDescription = new LinkedHashMap<>();
+        }
+        return offerDescription;
+    }
 
-  /**
-   * Sets the value of the offerDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setOfferDescription(String value) {
-    this.offerDescription = value;
-  }
+    /**
+     * Sets the value of the offerDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setOfferDescription(LinkedHashMap<String, String> value) {
+        this.offerDescription = value;
+    }
 
-  /**
-   * Gets the value of the offerDiscount property.
-   *
-   * @return possible object is {@link DiscountXMLImpl }
-   */
-  @Override
-  public DiscountXMLImpl getOfferDiscount() {
-    return offerDiscountXMLImpl;
-  }
+    /**
+     * Gets the value of the offerDiscount property.
+     *
+     * @return possible object is {@link DiscountXMLImpl }
+     */
+    @Override
+    public DiscountXMLImpl getOfferDiscount() {
+        return offerDiscountXMLImpl;
+    }
 
-  /**
-   * Sets the value of the offerDiscount property.
-   *
-   * @param value allowed object is {@link DiscountXMLImpl }
-   */
-  @Override
-  public void setOfferDiscount(DiscountXMLImpl value) {
-    this.offerDiscountXMLImpl = value;
-  }
+    /**
+     * Sets the value of the offerDiscount property.
+     *
+     * @param value allowed object is {@link DiscountXMLImpl }
+     */
+    @Override
+    public void setOfferDiscount(DiscountXMLImpl value) {
+        this.offerDiscountXMLImpl = value;
+    }
 
-  /**
-   * Gets the value of the offerRedemptionURL property.
-   *
-   * @return possible object is {@link ReferencedFileDetailsXMLImpl }
-   */
-  @Override
-  public ReferencedFileDetailsXMLImpl getOfferRedemptionURL() {
-    return offerRedemptionURL;
-  }
+    /**
+     * Gets the value of the offerRedemptionURL property.
+     *
+     * @return possible object is {@link ReferencedFileDetailsXMLImpl }
+     */
+    @Override
+    public ReferencedFileDetailsXMLImpl getOfferRedemptionURL() {
+        return offerRedemptionURL;
+    }
 
-  /**
-   * Sets the value of the offerRedemptionURL property.
-   *
-   * @param value allowed object is {@link ReferencedFileDetailsXMLImpl }
-   */
-  @Override
-  public void setOfferRedemptionURL(ReferencedFileDetailsXMLImpl value) {
-    this.offerRedemptionURL = value;
-  }
+    /**
+     * Sets the value of the offerRedemptionURL property.
+     *
+     * @param value allowed object is {@link ReferencedFileDetailsXMLImpl }
+     */
+    @Override
+    public void setOfferRedemptionURL(ReferencedFileDetailsXMLImpl value) {
+        this.offerRedemptionURL = value;
+    }
 
-  /**
-   * Gets the value of the paymentTerms property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getPaymentTerms() {
-    return paymentTerms;
-  }
+    /**
+     * Gets the value of the paymentTerms property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getPaymentTerms() {
+        return paymentTerms;
+    }
 
-  /**
-   * Sets the value of the paymentTerms property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPaymentTerms(String value) {
-    this.paymentTerms = value;
-  }
+    /**
+     * Sets the value of the paymentTerms property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setPaymentTerms(String value) {
+        this.paymentTerms = value;
+    }
 
-  /**
-   * Gets the value of the priceSpecification property.
-   *
-   * @return possible object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public PriceSpecificationXMLImpl getPriceSpecification() {
-    return priceSpecificationXMLImpl;
-  }
+    /**
+     * Gets the value of the priceSpecification property.
+     *
+     * @return possible object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public PriceSpecificationXMLImpl getPriceSpecification() {
+        return priceSpecificationXMLImpl;
+    }
 
-  /**
-   * Sets the value of the priceSpecification property.
-   *
-   * @param value allowed object is {@link PriceSpecificationXMLImpl }
-   */
-  @Override
-  public void setPriceSpecification(PriceSpecificationXMLImpl value) {
-    this.priceSpecificationXMLImpl = value;
-  }
+    /**
+     * Sets the value of the priceSpecification property.
+     *
+     * @param value allowed object is {@link PriceSpecificationXMLImpl }
+     */
+    @Override
+    public void setPriceSpecification(PriceSpecificationXMLImpl value) {
+        this.priceSpecificationXMLImpl = value;
+    }
 
-  /**
-   * Gets the value of the seeker property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getSeeker() {
-    return seeker;
-  }
+    /**
+     * Gets the value of the seeker property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getSeeker() {
+        return seeker;
+    }
 
-  /**
-   * Sets the value of the seeker property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setSeeker(OrganizationXMLImpl value) {
-    this.seeker = value;
-  }
+    /**
+     * Sets the value of the seeker property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setSeeker(OrganizationXMLImpl value) {
+        this.seeker = value;
+    }
 
-  /**
-   * Gets the value of the seller property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getSeller() {
-    return seller;
-  }
+    /**
+     * Gets the value of the seller property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getSeller() {
+        return seller;
+    }
 
-  /**
-   * Sets the value of the seller property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setSeller(OrganizationXMLImpl value) {
-    this.seller = value;
-  }
+    /**
+     * Sets the value of the seller property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setSeller(OrganizationXMLImpl value) {
+        this.seller = value;
+    }
 
-  /**
-   * Gets the value of the warranty property.
-   *
-   * @return possible object is {@link WarrantyPromiseXMLImpl }
-   */
-  @Override
-  public WarrantyPromiseXMLImpl getWarranty() {
-    return warranty;
-  }
+    /**
+     * Gets the value of the warranty property.
+     *
+     * @return possible object is {@link WarrantyPromiseXMLImpl }
+     */
+    @Override
+    public WarrantyPromiseXMLImpl getWarranty() {
+        return warranty;
+    }
 
-  /**
-   * Sets the value of the warranty property.
-   *
-   * @param value allowed object is {@link WarrantyPromiseXMLImpl }
-   */
-  @Override
-  public void setWarranty(WarrantyPromiseXMLImpl value) {
-    this.warranty = value;
-  }
+    /**
+     * Sets the value of the warranty property.
+     *
+     * @param value allowed object is {@link WarrantyPromiseXMLImpl }
+     */
+    @Override
+    public void setWarranty(WarrantyPromiseXMLImpl value) {
+        this.warranty = value;
+    }
 }

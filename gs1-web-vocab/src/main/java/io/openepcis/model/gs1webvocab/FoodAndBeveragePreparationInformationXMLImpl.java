@@ -8,6 +8,8 @@ package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.FoodAndBeveragePreparationInformation;
 import jakarta.xml.bind.annotation.*;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -39,203 +41,207 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "FoodAndBeveragePreparationInformation",
-    propOrder = {
-      "convenienceLevelPercent",
-      "manufacturerPreparationCode",
-      "maximumOptimumConsumptionTemperature",
-      "minimumOptimumConsumptionTemperature",
-      "preparationCode",
-      "preparationConsumptionPrecautions",
-      "preparationInstructions",
-      "yield"
-    })
-public class FoodAndBeveragePreparationInformationXMLImpl
-    implements FoodAndBeveragePreparationInformation<
-        ProductYieldDetailsXMLImpl, QuantitativeValueXMLImpl> {
+        name = "FoodAndBeveragePreparationInformation",
+        propOrder = {
+                "convenienceLevelPercent",
+                "manufacturerPreparationCode",
+                "maximumOptimumConsumptionTemperature",
+                "minimumOptimumConsumptionTemperature",
+                "preparationCode",
+                "preparationConsumptionPrecautions",
+                "preparationInstructions",
+                "yield"
+        })
+public class FoodAndBeveragePreparationInformationXMLImpl implements FoodAndBeveragePreparationInformation<ProductYieldDetailsXMLImpl, QuantitativeValueXMLImpl> {
 
-  protected float convenienceLevelPercent;
+    protected float convenienceLevelPercent;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected PreparationTypeCode manufacturerPreparationCode;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected PreparationTypeCode manufacturerPreparationCode;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl maximumOptimumConsumptionTemperature;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl maximumOptimumConsumptionTemperature;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl minimumOptimumConsumptionTemperature;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl minimumOptimumConsumptionTemperature;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected PreparationTypeCode preparationCode;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected PreparationTypeCode preparationCode;
 
-  @XmlElement(required = true)
-  protected String preparationConsumptionPrecautions;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> preparationConsumptionPrecautions;
 
-  @XmlElement(required = true)
-  protected String preparationInstructions;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> preparationInstructions;
 
-  @XmlElement(required = true)
-  protected List<ProductYieldDetailsXMLImpl> yield;
+    @XmlElement(required = true)
+    protected List<ProductYieldDetailsXMLImpl> yield;
 
-  /**
-   * Gets the value of the convenienceLevelPercent property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public float getConvenienceLevelPercent() {
-    return convenienceLevelPercent;
-  }
+    /**
+     * Gets the value of the convenienceLevelPercent property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public float getConvenienceLevelPercent() {
+        return convenienceLevelPercent;
+    }
 
-  /**
-   * Sets the value of the convenienceLevelPercent property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setConvenienceLevelPercent(float value) {
-    this.convenienceLevelPercent = value;
-  }
+    /**
+     * Sets the value of the convenienceLevelPercent property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setConvenienceLevelPercent(float value) {
+        this.convenienceLevelPercent = value;
+    }
 
-  /**
-   * Gets the value of the manufacturerPreparationCode property.
-   *
-   * @return possible object is {@link PreparationTypeCode }
-   */
-  @Override
-  public PreparationTypeCode getManufacturerPreparationCode() {
-    return manufacturerPreparationCode;
-  }
+    /**
+     * Gets the value of the manufacturerPreparationCode property.
+     *
+     * @return possible object is {@link PreparationTypeCode }
+     */
+    @Override
+    public PreparationTypeCode getManufacturerPreparationCode() {
+        return manufacturerPreparationCode;
+    }
 
-  /**
-   * Sets the value of the manufacturerPreparationCode property.
-   *
-   * @param value allowed object is {@link PreparationTypeCode }
-   */
-  @Override
-  public void setManufacturerPreparationCode(PreparationTypeCode value) {
-    this.manufacturerPreparationCode = value;
-  }
+    /**
+     * Sets the value of the manufacturerPreparationCode property.
+     *
+     * @param value allowed object is {@link PreparationTypeCode }
+     */
+    @Override
+    public void setManufacturerPreparationCode(PreparationTypeCode value) {
+        this.manufacturerPreparationCode = value;
+    }
 
-  /**
-   * Gets the value of the maximumOptimumConsumptionTemperature property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getMaximumOptimumConsumptionTemperature() {
-    return maximumOptimumConsumptionTemperature;
-  }
+    /**
+     * Gets the value of the maximumOptimumConsumptionTemperature property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getMaximumOptimumConsumptionTemperature() {
+        return maximumOptimumConsumptionTemperature;
+    }
 
-  /**
-   * Sets the value of the maximumOptimumConsumptionTemperature property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setMaximumOptimumConsumptionTemperature(QuantitativeValueXMLImpl value) {
-    this.maximumOptimumConsumptionTemperature = value;
-  }
+    /**
+     * Sets the value of the maximumOptimumConsumptionTemperature property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setMaximumOptimumConsumptionTemperature(QuantitativeValueXMLImpl value) {
+        this.maximumOptimumConsumptionTemperature = value;
+    }
 
-  /**
-   * Gets the value of the minimumOptimumConsumptionTemperature property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getMinimumOptimumConsumptionTemperature() {
-    return minimumOptimumConsumptionTemperature;
-  }
+    /**
+     * Gets the value of the minimumOptimumConsumptionTemperature property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getMinimumOptimumConsumptionTemperature() {
+        return minimumOptimumConsumptionTemperature;
+    }
 
-  /**
-   * Sets the value of the minimumOptimumConsumptionTemperature property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setMinimumOptimumConsumptionTemperature(QuantitativeValueXMLImpl value) {
-    this.minimumOptimumConsumptionTemperature = value;
-  }
+    /**
+     * Sets the value of the minimumOptimumConsumptionTemperature property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setMinimumOptimumConsumptionTemperature(QuantitativeValueXMLImpl value) {
+        this.minimumOptimumConsumptionTemperature = value;
+    }
 
-  /**
-   * Gets the value of the preparationCode property.
-   *
-   * @return possible object is {@link PreparationTypeCode }
-   */
-  @Override
-  public PreparationTypeCode getPreparationCode() {
-    return preparationCode;
-  }
+    /**
+     * Gets the value of the preparationCode property.
+     *
+     * @return possible object is {@link PreparationTypeCode }
+     */
+    @Override
+    public PreparationTypeCode getPreparationCode() {
+        return preparationCode;
+    }
 
-  /**
-   * Sets the value of the preparationCode property.
-   *
-   * @param value allowed object is {@link PreparationTypeCode }
-   */
-  @Override
-  public void setPreparationCode(PreparationTypeCode value) {
-    this.preparationCode = value;
-  }
+    /**
+     * Sets the value of the preparationCode property.
+     *
+     * @param value allowed object is {@link PreparationTypeCode }
+     */
+    @Override
+    public void setPreparationCode(PreparationTypeCode value) {
+        this.preparationCode = value;
+    }
 
-  /**
-   * Gets the value of the preparationConsumptionPrecautions property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getPreparationConsumptionPrecautions() {
-    return preparationConsumptionPrecautions;
-  }
+    /**
+     * Gets the value of the preparationConsumptionPrecautions property.
+     *
+     * @return possible object is {@link LinkedHashMap }
+     */
+    @Override
+    public LinkedHashMap<String, String> getPreparationConsumptionPrecautions() {
+        if (preparationConsumptionPrecautions == null) {
+            preparationConsumptionPrecautions = new LinkedHashMap<>();
+        }
+        return preparationConsumptionPrecautions;
+    }
 
-  /**
-   * Sets the value of the preparationConsumptionPrecautions property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPreparationConsumptionPrecautions(String value) {
-    this.preparationConsumptionPrecautions = value;
-  }
+    /**
+     * Sets the value of the preparationConsumptionPrecautions property.
+     *
+     * @param value allowed object is {@link LinkedHashMap }
+     */
+    @Override
+    public void setPreparationConsumptionPrecautions(LinkedHashMap<String, String> value) {
+        this.preparationConsumptionPrecautions = value;
+    }
 
-  /**
-   * Gets the value of the preparationInstructions property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getPreparationInstructions() {
-    return preparationInstructions;
-  }
+    /**
+     * Gets the value of the preparationInstructions property.
+     *
+     * @return possible object is {@link LinkedHashMap }
+     */
+    @Override
+    public LinkedHashMap<String, String> getPreparationInstructions() {
+        if (preparationInstructions == null) {
+            preparationInstructions = new LinkedHashMap<>();
+        }
+        return preparationInstructions;
+    }
 
-  /**
-   * Sets the value of the preparationInstructions property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPreparationInstructions(String value) {
-    this.preparationInstructions = value;
-  }
+    /**
+     * Sets the value of the preparationInstructions property.
+     *
+     * @param value allowed object is {@link LinkedHashMap }
+     */
+    @Override
+    public void setPreparationInstructions(LinkedHashMap<String, String> value) {
+        this.preparationInstructions = value;
+    }
 
-  /**
-   * Gets the value of the yield property.
-   *
-   * @return possible object is {@link ProductYieldDetailsXMLImpl }
-   */
-  @Override
-  public List<ProductYieldDetailsXMLImpl> getYield() {
-    return yield;
-  }
+    /**
+     * Gets the value of the yield property.
+     *
+     * @return possible object is {@link ProductYieldDetailsXMLImpl }
+     */
+    @Override
+    public List<ProductYieldDetailsXMLImpl> getYield() {
+        return yield;
+    }
 
-  /**
-   * Sets the value of the yield property.
-   *
-   * @param value allowed object is {@link ProductYieldDetailsXMLImpl }
-   */
-  @Override
-  public void setYield(List<ProductYieldDetailsXMLImpl> value) {
-    this.yield = value;
-  }
+    /**
+     * Sets the value of the yield property.
+     *
+     * @param value allowed object is {@link ProductYieldDetailsXMLImpl }
+     */
+    @Override
+    public void setYield(List<ProductYieldDetailsXMLImpl> value) {
+        this.yield = value;
+    }
 }

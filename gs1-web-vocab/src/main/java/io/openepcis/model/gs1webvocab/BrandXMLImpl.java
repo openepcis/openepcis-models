@@ -12,6 +12,8 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
+import java.util.LinkedHashMap;
+
 /**
  * Information on brands and sub-brands for a product.
  *
@@ -34,53 +36,59 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "Brand",
-    propOrder = {"brandName", "subBrandName"})
+        name = "Brand",
+        propOrder = {"brandName", "subBrandName"})
 public class BrandXMLImpl implements Brand {
 
-  @XmlElement(required = true)
-  protected String brandName;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> brandName;
 
-  @XmlElement(required = true)
-  protected String subBrandName;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> subBrandName;
 
-  /**
-   * Gets the value of the brandName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getBrandName() {
-    return brandName;
-  }
+    /**
+     * Gets the value of the brandName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getBrandName() {
+        if (brandName == null) {
+            brandName = new LinkedHashMap<>();
+        }
+        return brandName;
+    }
 
-  /**
-   * Sets the value of the brandName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setBrandName(String value) {
-    this.brandName = value;
-  }
+    /**
+     * Sets the value of the brandName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setBrandName(LinkedHashMap<String, String> value) {
+        this.brandName = value;
+    }
 
-  /**
-   * Gets the value of the subBrandName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getSubBrandName() {
-    return subBrandName;
-  }
+    /**
+     * Gets the value of the subBrandName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getSubBrandName() {
+        if (subBrandName == null) {
+            subBrandName = new LinkedHashMap<>();
+        }
+        return subBrandName;
+    }
 
-  /**
-   * Sets the value of the subBrandName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setSubBrandName(String value) {
-    this.subBrandName = value;
-  }
+    /**
+     * Sets the value of the subBrandName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setSubBrandName(LinkedHashMap<String, String> value) {
+        this.subBrandName = value;
+    }
 }
