@@ -7,8 +7,11 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Organization;
-import jakarta.xml.bind.annotation.*;
-
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlSchemaType;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -113,7 +116,7 @@ public class OrganizationXMLImpl
     protected String additionalOrganizationIdentificationTypeValue;
 
     @XmlElement(required = true)
-    protected List<PostalAddressXMLImpl> address;
+    protected PostalAddressXMLImpl address;
 
     @XmlElement(required = true)
     protected List<ContactPointXMLImpl> afterHoursContact;
@@ -241,7 +244,7 @@ public class OrganizationXMLImpl
      * @return possible object is {@link PostalAddressXMLImpl }
      */
     @Override
-    public List<PostalAddressXMLImpl> getAddress() {
+    public PostalAddressXMLImpl getAddress() {
         return address;
     }
 
@@ -251,7 +254,7 @@ public class OrganizationXMLImpl
      * @param value allowed object is {@link PostalAddressXMLImpl }
      */
     @Override
-    public void setAddress(List<PostalAddressXMLImpl> value) {
+    public void setAddress(PostalAddressXMLImpl value) {
         this.address = value;
     }
 

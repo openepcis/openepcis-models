@@ -2,7 +2,6 @@ package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.GLNTypeCode;
 import io.openepcis.model.gs1webvocab.OrganizationRoleType;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -24,9 +23,9 @@ public interface Organization<
 
   void setAdditionalOrganizationIdentificationTypeValue(String value);
 
-  List<PO> getAddress();
+  PO getAddress();
 
-  void setAddress(List<PO> value);
+  void setAddress(PO value);
 
   List<CP> getAfterHoursContact();
 
