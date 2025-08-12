@@ -9,6 +9,7 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.TargetMarketDetails;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDateTime;
 
 /**

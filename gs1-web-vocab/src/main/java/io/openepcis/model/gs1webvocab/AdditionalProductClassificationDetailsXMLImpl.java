@@ -6,19 +6,19 @@
 
 package io.openepcis.model.gs1webvocab;
 
+
 import io.openepcis.model.interfaces.AdditionalProductClassificationDetails;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
+
+import java.util.LinkedHashMap;
+
 
 /**
- * A product classification for the product other than the Global Product Classification(GPC brick
- * value).
+ * A product classification for the product other than the Global Product Classification(GPC brick value).
  *
- * <p>Java class for AdditionalProductClassificationDetails complex type.
+ * <p>Java class for AdditionalProductClassificationDetails complex type</p>.
  *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.</p>
  *
  * <pre>{@code
  * <complexType name="AdditionalProductClassificationDetails">
@@ -26,91 +26,126 @@ import jakarta.xml.bind.annotation.XmlType;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="additionalProductClassificationCode" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="additionalProductClassificationCodeDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="additionalProductClassificationCodeDescription" type="{}LangString" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="additionalProductClassificationValue" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       </sequence>
+ *       <attribute name="id" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
  *     </restriction>
  *   </complexContent>
  * </complexType>
  * }</pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "AdditionalProductClassificationDetails",
-    propOrder = {
-      "additionalProductClassificationCode",
-      "additionalProductClassificationCodeDescription",
-      "additionalProductClassificationValue"
-    })
-public class AdditionalProductClassificationDetailsXMLImpl
-    implements AdditionalProductClassificationDetails {
+@XmlType(name = "AdditionalProductClassificationDetails", propOrder = {
+        "additionalProductClassificationCode",
+        "additionalProductClassificationCodeDescription",
+        "additionalProductClassificationValue"
+})
+public class AdditionalProductClassificationDetailsXMLImpl implements AdditionalProductClassificationDetails {
 
-  @XmlElement(required = true)
-  protected String additionalProductClassificationCode;
+    @XmlElement(required = true)
+    protected String additionalProductClassificationCode;
+    protected LinkedHashMap<String, String> additionalProductClassificationCodeDescription;
+    @XmlElement(required = true)
+    protected String additionalProductClassificationValue;
+    @XmlAttribute(name = "id")
+    @XmlSchemaType(name = "anyURI")
+    protected String id;
 
-  @XmlElement(required = true)
-  protected String additionalProductClassificationCodeDescription;
+    /**
+     * Gets the value of the additionalProductClassificationCode property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
+    public String getAdditionalProductClassificationCode() {
+        return additionalProductClassificationCode;
+    }
 
-  @XmlElement(required = true)
-  protected String additionalProductClassificationValue;
+    /**
+     * Sets the value of the additionalProductClassificationCode property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
+    public void setAdditionalProductClassificationCode(String value) {
+        this.additionalProductClassificationCode = value;
+    }
 
-  /**
-   * Gets the value of the additionalProductClassificationCode property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAdditionalProductClassificationCode() {
-    return additionalProductClassificationCode;
-  }
+    /**
+     * Gets the value of the additionalProductClassificationCodeDescription property.
+     *
+     * <p>This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the additionalProductClassificationCodeDescription property.</p>
+     *
+     * <p>
+     * For example, to add a new item, do as follows:
+     * </p>
+     * <pre>
+     * getAdditionalProductClassificationCodeDescription().add(newItem);
+     * </pre>
+     *
+     *
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link LinkedHashMap }
+     * </p>
+     *
+     * @return The value of the additionalProductClassificationCodeDescription property.
+     */
+    public LinkedHashMap<String, String> getAdditionalProductClassificationCodeDescription() {
+        if (additionalProductClassificationCodeDescription == null) {
+            additionalProductClassificationCodeDescription = new LinkedHashMap<>();
+        }
+        return this.additionalProductClassificationCodeDescription;
+    }
 
-  /**
-   * Sets the value of the additionalProductClassificationCode property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAdditionalProductClassificationCode(String value) {
-    this.additionalProductClassificationCode = value;
-  }
+    @Override
+    public void setAdditionalProductClassificationCodeDescription(LinkedHashMap<String, String> value) {
+        this.additionalProductClassificationCodeDescription = value;
+    }
 
-  /**
-   * Gets the value of the additionalProductClassificationCodeDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAdditionalProductClassificationCodeDescription() {
-    return additionalProductClassificationCodeDescription;
-  }
+    /**
+     * Gets the value of the additionalProductClassificationValue property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
+    public String getAdditionalProductClassificationValue() {
+        return additionalProductClassificationValue;
+    }
 
-  /**
-   * Sets the value of the additionalProductClassificationCodeDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAdditionalProductClassificationCodeDescription(String value) {
-    this.additionalProductClassificationCodeDescription = value;
-  }
+    /**
+     * Sets the value of the additionalProductClassificationValue property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
+    public void setAdditionalProductClassificationValue(String value) {
+        this.additionalProductClassificationValue = value;
+    }
 
-  /**
-   * Gets the value of the additionalProductClassificationValue property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAdditionalProductClassificationValue() {
-    return additionalProductClassificationValue;
-  }
+    /**
+     * Gets the value of the id property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
+    public String getId() {
+        return id;
+    }
 
-  /**
-   * Sets the value of the additionalProductClassificationValue property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAdditionalProductClassificationValue(String value) {
-    this.additionalProductClassificationValue = value;
-  }
+    /**
+     * Sets the value of the id property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
+
 }
+

@@ -7,7 +7,12 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Organization;
-import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlSchemaType;
+import jakarta.xml.bind.annotation.XmlType;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -61,40 +66,40 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "Organization",
-    propOrder = {
-      "additionalOrganizationID",
-      "additionalOrganizationIdentificationTypeValue",
-      "address",
-      "afterHoursContact",
-      "certification",
-      "contactPoint",
-      "department",
-      "glnType",
-      "globalLocationNumber",
-      "hasPrimaryLocation",
-      "lesseeOf",
-      "lessorFor",
-      "location",
-      "makesOffer",
-      "managedBy",
-      "manages",
-      "occupies",
-      "organizationHistory",
-      "organizationName",
-      "organizationRole",
-      "ownedBy",
-      "owns",
-      "parentOrganization",
-      "partyGLN",
-      "replacedByOrganization",
-      "replacedOrganization",
-      "responsibleForLocation",
-      "subOrganization",
-      "usesManagedLocation"
-    })
+        name = "Organization",
+        propOrder = {
+                "additionalOrganizationID",
+                "additionalOrganizationIdentificationTypeValue",
+                "address",
+                "afterHoursContact",
+                "certification",
+                "contactPoint",
+                "department",
+                "glnType",
+                "globalLocationNumber",
+                "hasPrimaryLocation",
+                "lesseeOf",
+                "lessorFor",
+                "location",
+                "makesOffer",
+                "managedBy",
+                "manages",
+                "occupies",
+                "organizationHistory",
+                "organizationName",
+                "organizationRole",
+                "ownedBy",
+                "owns",
+                "parentOrganization",
+                "partyGLN",
+                "replacedByOrganization",
+                "replacedOrganization",
+                "responsibleForLocation",
+                "subOrganization",
+                "usesManagedLocation"
+        })
 public class OrganizationXMLImpl
-    implements Organization<
+        implements Organization<
         OrganizationIDDetailsXMLImpl,
         PostalAddressXMLImpl,
         ContactPointXMLImpl,
@@ -104,672 +109,678 @@ public class OrganizationXMLImpl
         OfferXMLImpl,
         OrganizationStatusHistoryXMLImpl> {
 
-  @XmlElement(required = true)
-  protected List<OrganizationIDDetailsXMLImpl> additionalOrganizationID;
+    @XmlElement(required = true)
+    protected List<OrganizationIDDetailsXMLImpl> additionalOrganizationID;
 
-  @XmlElement(required = true)
-  protected String additionalOrganizationIdentificationTypeValue;
+    @XmlElement(required = true)
+    protected String additionalOrganizationIdentificationTypeValue;
 
-  @XmlElement(required = true)
-  protected List<PostalAddressXMLImpl> address;
+    @XmlElement(required = true)
+    protected PostalAddressXMLImpl address;
 
-  @XmlElement(required = true)
-  protected List<ContactPointXMLImpl> afterHoursContact;
+    @XmlElement(required = true)
+    protected List<ContactPointXMLImpl> afterHoursContact;
 
-  @XmlElement(required = true)
-  protected CertificationDetailsXMLImpl certification;
+    @XmlElement(required = true)
+    protected CertificationDetailsXMLImpl certification;
 
-  @XmlElement(required = true)
-  protected List<ContactPointXMLImpl> contactPoint;
+    @XmlElement(required = true)
+    protected List<ContactPointXMLImpl> contactPoint;
 
-  @XmlElement(required = true)
-  protected String department;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> department;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected GLNTypeCode glnType;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected GLNTypeCode glnType;
 
-  @XmlElement(required = true)
-  protected String globalLocationNumber;
+    @XmlElement(required = true)
+    protected String globalLocationNumber;
 
-  @XmlElement(required = true)
-  protected List<PlaceXMLImpl> hasPrimaryLocation;
+    @XmlElement(required = true)
+    protected List<PlaceXMLImpl> hasPrimaryLocation;
 
-  @XmlElement(required = true)
-  protected PlaceXMLImpl lesseeOf;
-
-  @XmlElement(required = true)
-  protected PlaceXMLImpl lessorFor;
-
-  @XmlElement(required = true)
-  protected List<PlaceXMLImpl> location;
-
-  @XmlElement(required = true)
-  protected List<OfferXMLImpl> makesOffer;
-
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl managedBy;
-
-  @XmlElement(required = true)
-  protected List<OrganizationXMLImpl> manages;
-
-  @XmlElement(required = true)
-  protected PlaceXMLImpl occupies;
-
-  @XmlElement(required = true)
-  protected OrganizationStatusHistoryXMLImpl organizationHistory;
-
-  @XmlElement(required = true)
-  protected String organizationName;
-
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected OrganizationRoleType organizationRole;
-
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl ownedBy;
-
-  @XmlElement(required = true)
-  protected List<OrganizationXMLImpl> owns;
-
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl parentOrganizationXMLImpl;
-
-  @XmlElement(required = true)
-  protected String partyGLN;
-
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl replacedByOrganizationXMLImpl;
-
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl replacedOrganizationXMLImpl;
-
-  @XmlElement(required = true)
-  protected PlaceXMLImpl responsibleForLocation;
-
-  @XmlElement(required = true)
-  protected OrganizationXMLImpl subOrganizationXMLImpl;
-
-  @XmlElement(required = true)
-  protected PlaceXMLImpl usesManagedLocation;
-
-  /**
-   * Gets the value of the additionalOrganizationID property.
-   *
-   * @return possible object is {@link OrganizationIDDetailsXMLImpl }
-   */
-  @Override
-  public List<OrganizationIDDetailsXMLImpl> getAdditionalOrganizationID() {
-    return additionalOrganizationID;
-  }
-
-  /**
-   * Sets the value of the additionalOrganizationID property.
-   *
-   * @param value allowed object is {@link OrganizationIDDetailsXMLImpl }
-   */
-  @Override
-  public void setAdditionalOrganizationID(List<OrganizationIDDetailsXMLImpl> value) {
-    this.additionalOrganizationID = value;
-  }
-
-  /**
-   * Gets the value of the additionalOrganizationIdentificationTypeValue property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAdditionalOrganizationIdentificationTypeValue() {
-    return additionalOrganizationIdentificationTypeValue;
-  }
-
-  /**
-   * Sets the value of the additionalOrganizationIdentificationTypeValue property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAdditionalOrganizationIdentificationTypeValue(String value) {
-    this.additionalOrganizationIdentificationTypeValue = value;
-  }
-
-  /**
-   * Gets the value of the address property.
-   *
-   * @return possible object is {@link PostalAddressXMLImpl }
-   */
-  @Override
-  public List<PostalAddressXMLImpl> getAddress() {
-    return address;
-  }
-
-  /**
-   * Sets the value of the address property.
-   *
-   * @param value allowed object is {@link PostalAddressXMLImpl }
-   */
-  @Override
-  public void setAddress(List<PostalAddressXMLImpl> value) {
-    this.address = value;
-  }
-
-  /**
-   * Gets the value of the afterHoursContact property.
-   *
-   * @return possible object is {@link ContactPointXMLImpl }
-   */
-  @Override
-  public List<ContactPointXMLImpl> getAfterHoursContact() {
-    return afterHoursContact;
-  }
-
-  /**
-   * Sets the value of the afterHoursContact property.
-   *
-   * @param value allowed object is {@link ContactPointXMLImpl }
-   */
-  @Override
-  public void setAfterHoursContact(List<ContactPointXMLImpl> value) {
-    this.afterHoursContact = value;
-  }
-
-  /**
-   * Gets the value of the certification property.
-   *
-   * @return possible object is {@link CertificationDetailsXMLImpl }
-   */
-  @Override
-  public CertificationDetailsXMLImpl getCertification() {
-    return certification;
-  }
-
-  /**
-   * Sets the value of the certification property.
-   *
-   * @param value allowed object is {@link CertificationDetailsXMLImpl }
-   */
-  @Override
-  public void setCertification(CertificationDetailsXMLImpl value) {
-    this.certification = value;
-  }
-
-  /**
-   * Gets the value of the contactPoint property.
-   *
-   * @return possible object is {@link ContactPointXMLImpl }
-   */
-  @Override
-  public List<ContactPointXMLImpl> getContactPoint() {
-    return contactPoint;
-  }
-
-  /**
-   * Sets the value of the contactPoint property.
-   *
-   * @param value allowed object is {@link ContactPointXMLImpl }
-   */
-  @Override
-  public void setContactPoint(List<ContactPointXMLImpl> value) {
-    this.contactPoint = value;
-  }
-
-  /**
-   * Gets the value of the department property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getDepartment() {
-    return department;
-  }
-
-  /**
-   * Sets the value of the department property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setDepartment(String value) {
-    this.department = value;
-  }
-
-  /**
-   * Gets the value of the glnType property.
-   *
-   * @return possible object is {@link GLNTypeCode }
-   */
-  @Override
-  public GLNTypeCode getGlnType() {
-    return glnType;
-  }
-
-  /**
-   * Sets the value of the glnType property.
-   *
-   * @param value allowed object is {@link GLNTypeCode }
-   */
-  @Override
-  public void setGlnType(GLNTypeCode value) {
-    this.glnType = value;
-  }
-
-  /**
-   * Gets the value of the globalLocationNumber property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getGlobalLocationNumber() {
-    return globalLocationNumber;
-  }
-
-  /**
-   * Sets the value of the globalLocationNumber property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setGlobalLocationNumber(String value) {
-    this.globalLocationNumber = value;
-  }
-
-  /**
-   * Gets the value of the hasPrimaryLocation property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public List<PlaceXMLImpl> getHasPrimaryLocation() {
-    return hasPrimaryLocation;
-  }
-
-  /**
-   * Sets the value of the hasPrimaryLocation property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setHasPrimaryLocation(List<PlaceXMLImpl> value) {
-    this.hasPrimaryLocation = value;
-  }
-
-  /**
-   * Gets the value of the lesseeOf property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public PlaceXMLImpl getLesseeOf() {
-    return lesseeOf;
-  }
-
-  /**
-   * Sets the value of the lesseeOf property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setLesseeOf(PlaceXMLImpl value) {
-    this.lesseeOf = value;
-  }
-
-  /**
-   * Gets the value of the lessorFor property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public PlaceXMLImpl getLessorFor() {
-    return lessorFor;
-  }
-
-  /**
-   * Sets the value of the lessorFor property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setLessorFor(PlaceXMLImpl value) {
-    this.lessorFor = value;
-  }
-
-  /**
-   * Gets the value of the location property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public List<PlaceXMLImpl> getLocation() {
-    return location;
-  }
-
-  /**
-   * Sets the value of the location property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setLocation(List<PlaceXMLImpl> value) {
-    this.location = value;
-  }
-
-  /**
-   * Gets the value of the makesOffer property.
-   *
-   * @return possible object is {@link OfferXMLImpl }
-   */
-  @Override
-  public List<OfferXMLImpl> getMakesOffer() {
-    return makesOffer;
-  }
-
-  /**
-   * Sets the value of the makesOffer property.
-   *
-   * @param value allowed object is {@link OfferXMLImpl }
-   */
-  @Override
-  public void setMakesOffer(List<OfferXMLImpl> value) {
-    this.makesOffer = value;
-  }
-
-  /**
-   * Gets the value of the managedBy property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getManagedBy() {
-    return managedBy;
-  }
-
-  /**
-   * Sets the value of the managedBy property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setManagedBy(OrganizationXMLImpl value) {
-    this.managedBy = value;
-  }
-
-  /**
-   * Gets the value of the manages property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public List<OrganizationXMLImpl> getManages() {
-    return manages;
-  }
-
-  /**
-   * Sets the value of the manages property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setManages(List<OrganizationXMLImpl> value) {
-    this.manages = value;
-  }
-
-  /**
-   * Gets the value of the occupies property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public PlaceXMLImpl getOccupies() {
-    return occupies;
-  }
-
-  /**
-   * Sets the value of the occupies property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setOccupies(PlaceXMLImpl value) {
-    this.occupies = value;
-  }
-
-  /**
-   * Gets the value of the organizationHistory property.
-   *
-   * @return possible object is {@link OrganizationStatusHistoryXMLImpl }
-   */
-  @Override
-  public OrganizationStatusHistoryXMLImpl getOrganizationHistory() {
-    return organizationHistory;
-  }
-
-  /**
-   * Sets the value of the organizationHistory property.
-   *
-   * @param value allowed object is {@link OrganizationStatusHistoryXMLImpl }
-   */
-  @Override
-  public void setOrganizationHistory(OrganizationStatusHistoryXMLImpl value) {
-    this.organizationHistory = value;
-  }
-
-  /**
-   * Gets the value of the organizationName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getOrganizationName() {
-    return organizationName;
-  }
-
-  /**
-   * Sets the value of the organizationName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setOrganizationName(String value) {
-    this.organizationName = value;
-  }
-
-  /**
-   * Gets the value of the organizationRole property.
-   *
-   * @return possible object is {@link OrganizationRoleType }
-   */
-  @Override
-  public OrganizationRoleType getOrganizationRole() {
-    return organizationRole;
-  }
-
-  /**
-   * Sets the value of the organizationRole property.
-   *
-   * @param value allowed object is {@link OrganizationRoleType }
-   */
-  @Override
-  public void setOrganizationRole(OrganizationRoleType value) {
-    this.organizationRole = value;
-  }
-
-  /**
-   * Gets the value of the ownedBy property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getOwnedBy() {
-    return ownedBy;
-  }
-
-  /**
-   * Sets the value of the ownedBy property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setOwnedBy(OrganizationXMLImpl value) {
-    this.ownedBy = value;
-  }
-
-  /**
-   * Gets the value of the owns property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public List<OrganizationXMLImpl> getOwns() {
-    return owns;
-  }
-
-  /**
-   * Sets the value of the owns property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setOwns(List<OrganizationXMLImpl> value) {
-    this.owns = value;
-  }
-
-  /**
-   * Gets the value of the parentOrganization property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getParentOrganization() {
-    return parentOrganizationXMLImpl;
-  }
-
-  /**
-   * Sets the value of the parentOrganization property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setParentOrganization(OrganizationXMLImpl value) {
-    this.parentOrganizationXMLImpl = value;
-  }
-
-  /**
-   * Gets the value of the partyGLN property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getPartyGLN() {
-    return partyGLN;
-  }
-
-  /**
-   * Sets the value of the partyGLN property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPartyGLN(String value) {
-    this.partyGLN = value;
-  }
-
-  /**
-   * Gets the value of the replacedByOrganization property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getReplacedByOrganization() {
-    return replacedByOrganizationXMLImpl;
-  }
-
-  /**
-   * Sets the value of the replacedByOrganization property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setReplacedByOrganization(OrganizationXMLImpl value) {
-    this.replacedByOrganizationXMLImpl = value;
-  }
-
-  /**
-   * Gets the value of the replacedOrganization property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getReplacedOrganization() {
-    return replacedOrganizationXMLImpl;
-  }
-
-  /**
-   * Sets the value of the replacedOrganization property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setReplacedOrganization(OrganizationXMLImpl value) {
-    this.replacedOrganizationXMLImpl = value;
-  }
-
-  /**
-   * Gets the value of the responsibleForLocation property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public PlaceXMLImpl getResponsibleForLocation() {
-    return responsibleForLocation;
-  }
-
-  /**
-   * Sets the value of the responsibleForLocation property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setResponsibleForLocation(PlaceXMLImpl value) {
-    this.responsibleForLocation = value;
-  }
-
-  /**
-   * Gets the value of the subOrganization property.
-   *
-   * @return possible object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public OrganizationXMLImpl getSubOrganization() {
-    return subOrganizationXMLImpl;
-  }
-
-  /**
-   * Sets the value of the subOrganization property.
-   *
-   * @param value allowed object is {@link OrganizationXMLImpl }
-   */
-  @Override
-  public void setSubOrganization(OrganizationXMLImpl value) {
-    this.subOrganizationXMLImpl = value;
-  }
-
-  /**
-   * Gets the value of the usesManagedLocation property.
-   *
-   * @return possible object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public PlaceXMLImpl getUsesManagedLocation() {
-    return usesManagedLocation;
-  }
-
-  /**
-   * Sets the value of the usesManagedLocation property.
-   *
-   * @param value allowed object is {@link PlaceXMLImpl }
-   */
-  @Override
-  public void setUsesManagedLocation(PlaceXMLImpl value) {
-    this.usesManagedLocation = value;
-  }
+    @XmlElement(required = true)
+    protected PlaceXMLImpl lesseeOf;
+
+    @XmlElement(required = true)
+    protected PlaceXMLImpl lessorFor;
+
+    @XmlElement(required = true)
+    protected List<PlaceXMLImpl> location;
+
+    @XmlElement(required = true)
+    protected List<OfferXMLImpl> makesOffer;
+
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl managedBy;
+
+    @XmlElement(required = true)
+    protected List<OrganizationXMLImpl> manages;
+
+    @XmlElement(required = true)
+    protected PlaceXMLImpl occupies;
+
+    @XmlElement(required = true)
+    protected OrganizationStatusHistoryXMLImpl organizationHistory;
+
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> organizationName;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected OrganizationRoleType organizationRole;
+
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl ownedBy;
+
+    @XmlElement(required = true)
+    protected List<OrganizationXMLImpl> owns;
+
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl parentOrganizationXMLImpl;
+
+    @XmlElement(required = true)
+    protected String partyGLN;
+
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl replacedByOrganizationXMLImpl;
+
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl replacedOrganizationXMLImpl;
+
+    @XmlElement(required = true)
+    protected PlaceXMLImpl responsibleForLocation;
+
+    @XmlElement(required = true)
+    protected OrganizationXMLImpl subOrganizationXMLImpl;
+
+    @XmlElement(required = true)
+    protected PlaceXMLImpl usesManagedLocation;
+
+    /**
+     * Gets the value of the additionalOrganizationID property.
+     *
+     * @return possible object is {@link OrganizationIDDetailsXMLImpl }
+     */
+    @Override
+    public List<OrganizationIDDetailsXMLImpl> getAdditionalOrganizationID() {
+        return additionalOrganizationID;
+    }
+
+    /**
+     * Sets the value of the additionalOrganizationID property.
+     *
+     * @param value allowed object is {@link OrganizationIDDetailsXMLImpl }
+     */
+    @Override
+    public void setAdditionalOrganizationID(List<OrganizationIDDetailsXMLImpl> value) {
+        this.additionalOrganizationID = value;
+    }
+
+    /**
+     * Gets the value of the additionalOrganizationIdentificationTypeValue property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getAdditionalOrganizationIdentificationTypeValue() {
+        return additionalOrganizationIdentificationTypeValue;
+    }
+
+    /**
+     * Sets the value of the additionalOrganizationIdentificationTypeValue property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAdditionalOrganizationIdentificationTypeValue(String value) {
+        this.additionalOrganizationIdentificationTypeValue = value;
+    }
+
+    /**
+     * Gets the value of the address property.
+     *
+     * @return possible object is {@link PostalAddressXMLImpl }
+     */
+    @Override
+    public PostalAddressXMLImpl getAddress() {
+        return address;
+    }
+
+    /**
+     * Sets the value of the address property.
+     *
+     * @param value allowed object is {@link PostalAddressXMLImpl }
+     */
+    @Override
+    public void setAddress(PostalAddressXMLImpl value) {
+        this.address = value;
+    }
+
+    /**
+     * Gets the value of the afterHoursContact property.
+     *
+     * @return possible object is {@link ContactPointXMLImpl }
+     */
+    @Override
+    public List<ContactPointXMLImpl> getAfterHoursContact() {
+        return afterHoursContact;
+    }
+
+    /**
+     * Sets the value of the afterHoursContact property.
+     *
+     * @param value allowed object is {@link ContactPointXMLImpl }
+     */
+    @Override
+    public void setAfterHoursContact(List<ContactPointXMLImpl> value) {
+        this.afterHoursContact = value;
+    }
+
+    /**
+     * Gets the value of the certification property.
+     *
+     * @return possible object is {@link CertificationDetailsXMLImpl }
+     */
+    @Override
+    public CertificationDetailsXMLImpl getCertification() {
+        return certification;
+    }
+
+    /**
+     * Sets the value of the certification property.
+     *
+     * @param value allowed object is {@link CertificationDetailsXMLImpl }
+     */
+    @Override
+    public void setCertification(CertificationDetailsXMLImpl value) {
+        this.certification = value;
+    }
+
+    /**
+     * Gets the value of the contactPoint property.
+     *
+     * @return possible object is {@link ContactPointXMLImpl }
+     */
+    @Override
+    public List<ContactPointXMLImpl> getContactPoint() {
+        return contactPoint;
+    }
+
+    /**
+     * Sets the value of the contactPoint property.
+     *
+     * @param value allowed object is {@link ContactPointXMLImpl }
+     */
+    @Override
+    public void setContactPoint(List<ContactPointXMLImpl> value) {
+        this.contactPoint = value;
+    }
+
+    /**
+     * Gets the value of the department property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getDepartment() {
+        if (department == null) {
+            department = new LinkedHashMap<>();
+        }
+        return department;
+    }
+
+    /**
+     * Sets the value of the department property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setDepartment(LinkedHashMap<String, String> value) {
+        this.department = value;
+    }
+
+    /**
+     * Gets the value of the glnType property.
+     *
+     * @return possible object is {@link GLNTypeCode }
+     */
+    @Override
+    public GLNTypeCode getGlnType() {
+        return glnType;
+    }
+
+    /**
+     * Sets the value of the glnType property.
+     *
+     * @param value allowed object is {@link GLNTypeCode }
+     */
+    @Override
+    public void setGlnType(GLNTypeCode value) {
+        this.glnType = value;
+    }
+
+    /**
+     * Gets the value of the globalLocationNumber property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getGlobalLocationNumber() {
+        return globalLocationNumber;
+    }
+
+    /**
+     * Sets the value of the globalLocationNumber property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setGlobalLocationNumber(String value) {
+        this.globalLocationNumber = value;
+    }
+
+    /**
+     * Gets the value of the hasPrimaryLocation property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public List<PlaceXMLImpl> getHasPrimaryLocation() {
+        return hasPrimaryLocation;
+    }
+
+    /**
+     * Sets the value of the hasPrimaryLocation property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setHasPrimaryLocation(List<PlaceXMLImpl> value) {
+        this.hasPrimaryLocation = value;
+    }
+
+    /**
+     * Gets the value of the lesseeOf property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public PlaceXMLImpl getLesseeOf() {
+        return lesseeOf;
+    }
+
+    /**
+     * Sets the value of the lesseeOf property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setLesseeOf(PlaceXMLImpl value) {
+        this.lesseeOf = value;
+    }
+
+    /**
+     * Gets the value of the lessorFor property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public PlaceXMLImpl getLessorFor() {
+        return lessorFor;
+    }
+
+    /**
+     * Sets the value of the lessorFor property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setLessorFor(PlaceXMLImpl value) {
+        this.lessorFor = value;
+    }
+
+    /**
+     * Gets the value of the location property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public List<PlaceXMLImpl> getLocation() {
+        return location;
+    }
+
+    /**
+     * Sets the value of the location property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setLocation(List<PlaceXMLImpl> value) {
+        this.location = value;
+    }
+
+    /**
+     * Gets the value of the makesOffer property.
+     *
+     * @return possible object is {@link OfferXMLImpl }
+     */
+    @Override
+    public List<OfferXMLImpl> getMakesOffer() {
+        return makesOffer;
+    }
+
+    /**
+     * Sets the value of the makesOffer property.
+     *
+     * @param value allowed object is {@link OfferXMLImpl }
+     */
+    @Override
+    public void setMakesOffer(List<OfferXMLImpl> value) {
+        this.makesOffer = value;
+    }
+
+    /**
+     * Gets the value of the managedBy property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getManagedBy() {
+        return managedBy;
+    }
+
+    /**
+     * Sets the value of the managedBy property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setManagedBy(OrganizationXMLImpl value) {
+        this.managedBy = value;
+    }
+
+    /**
+     * Gets the value of the manages property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public List<OrganizationXMLImpl> getManages() {
+        return manages;
+    }
+
+    /**
+     * Sets the value of the manages property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setManages(List<OrganizationXMLImpl> value) {
+        this.manages = value;
+    }
+
+    /**
+     * Gets the value of the occupies property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public PlaceXMLImpl getOccupies() {
+        return occupies;
+    }
+
+    /**
+     * Sets the value of the occupies property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setOccupies(PlaceXMLImpl value) {
+        this.occupies = value;
+    }
+
+    /**
+     * Gets the value of the organizationHistory property.
+     *
+     * @return possible object is {@link OrganizationStatusHistoryXMLImpl }
+     */
+    @Override
+    public OrganizationStatusHistoryXMLImpl getOrganizationHistory() {
+        return organizationHistory;
+    }
+
+    /**
+     * Sets the value of the organizationHistory property.
+     *
+     * @param value allowed object is {@link OrganizationStatusHistoryXMLImpl }
+     */
+    @Override
+    public void setOrganizationHistory(OrganizationStatusHistoryXMLImpl value) {
+        this.organizationHistory = value;
+    }
+
+    /**
+     * Gets the value of the organizationName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getOrganizationName() {
+        if (organizationName == null) {
+            organizationName = new LinkedHashMap<>();
+        }
+        return organizationName;
+    }
+
+    /**
+     * Sets the value of the organizationName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setOrganizationName(LinkedHashMap<String, String> value) {
+        this.organizationName = value;
+    }
+
+    /**
+     * Gets the value of the organizationRole property.
+     *
+     * @return possible object is {@link OrganizationRoleType }
+     */
+    @Override
+    public OrganizationRoleType getOrganizationRole() {
+        return organizationRole;
+    }
+
+    /**
+     * Sets the value of the organizationRole property.
+     *
+     * @param value allowed object is {@link OrganizationRoleType }
+     */
+    @Override
+    public void setOrganizationRole(OrganizationRoleType value) {
+        this.organizationRole = value;
+    }
+
+    /**
+     * Gets the value of the ownedBy property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getOwnedBy() {
+        return ownedBy;
+    }
+
+    /**
+     * Sets the value of the ownedBy property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setOwnedBy(OrganizationXMLImpl value) {
+        this.ownedBy = value;
+    }
+
+    /**
+     * Gets the value of the owns property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public List<OrganizationXMLImpl> getOwns() {
+        return owns;
+    }
+
+    /**
+     * Sets the value of the owns property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setOwns(List<OrganizationXMLImpl> value) {
+        this.owns = value;
+    }
+
+    /**
+     * Gets the value of the parentOrganization property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getParentOrganization() {
+        return parentOrganizationXMLImpl;
+    }
+
+    /**
+     * Sets the value of the parentOrganization property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setParentOrganization(OrganizationXMLImpl value) {
+        this.parentOrganizationXMLImpl = value;
+    }
+
+    /**
+     * Gets the value of the partyGLN property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getPartyGLN() {
+        return partyGLN;
+    }
+
+    /**
+     * Sets the value of the partyGLN property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setPartyGLN(String value) {
+        this.partyGLN = value;
+    }
+
+    /**
+     * Gets the value of the replacedByOrganization property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getReplacedByOrganization() {
+        return replacedByOrganizationXMLImpl;
+    }
+
+    /**
+     * Sets the value of the replacedByOrganization property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setReplacedByOrganization(OrganizationXMLImpl value) {
+        this.replacedByOrganizationXMLImpl = value;
+    }
+
+    /**
+     * Gets the value of the replacedOrganization property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getReplacedOrganization() {
+        return replacedOrganizationXMLImpl;
+    }
+
+    /**
+     * Sets the value of the replacedOrganization property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setReplacedOrganization(OrganizationXMLImpl value) {
+        this.replacedOrganizationXMLImpl = value;
+    }
+
+    /**
+     * Gets the value of the responsibleForLocation property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public PlaceXMLImpl getResponsibleForLocation() {
+        return responsibleForLocation;
+    }
+
+    /**
+     * Sets the value of the responsibleForLocation property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setResponsibleForLocation(PlaceXMLImpl value) {
+        this.responsibleForLocation = value;
+    }
+
+    /**
+     * Gets the value of the subOrganization property.
+     *
+     * @return possible object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public OrganizationXMLImpl getSubOrganization() {
+        return subOrganizationXMLImpl;
+    }
+
+    /**
+     * Sets the value of the subOrganization property.
+     *
+     * @param value allowed object is {@link OrganizationXMLImpl }
+     */
+    @Override
+    public void setSubOrganization(OrganizationXMLImpl value) {
+        this.subOrganizationXMLImpl = value;
+    }
+
+    /**
+     * Gets the value of the usesManagedLocation property.
+     *
+     * @return possible object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public PlaceXMLImpl getUsesManagedLocation() {
+        return usesManagedLocation;
+    }
+
+    /**
+     * Sets the value of the usesManagedLocation property.
+     *
+     * @param value allowed object is {@link PlaceXMLImpl }
+     */
+    @Override
+    public void setUsesManagedLocation(PlaceXMLImpl value) {
+        this.usesManagedLocation = value;
+    }
 }

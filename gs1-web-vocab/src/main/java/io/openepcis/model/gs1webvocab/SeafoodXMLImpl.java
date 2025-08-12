@@ -9,6 +9,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.Seafood;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+
 /**
  * Seafood Products including fish and shellfish.
  *
@@ -33,101 +35,107 @@ import jakarta.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "Seafood",
-    propOrder = {"catchZone", "fishType", "freshOrSeawaterFarmed", "minimumFishContent"})
+        name = "Seafood",
+        propOrder = {"catchZone", "fishType", "freshOrSeawaterFarmed", "minimumFishContent"})
 public class SeafoodXMLImpl extends FoodBeverageTobaccoProductXMLImpl
-    implements Seafood<QuantitativeValueXMLImpl> {
+        implements Seafood<QuantitativeValueXMLImpl> {
 
-  @XmlElement(required = true)
-  protected String catchZone;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> catchZone;
 
-  @XmlElement(required = true)
-  protected String fishType;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> fishType;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected FreshOrSeawaterFarmedCode freshOrSeawaterFarmed;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected FreshOrSeawaterFarmedCode freshOrSeawaterFarmed;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl minimumFishContent;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl minimumFishContent;
 
-  /**
-   * Gets the value of the catchZone property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getCatchZone() {
-    return catchZone;
-  }
+    /**
+     * Gets the value of the catchZone property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getCatchZone() {
+        if (catchZone == null) {
+            catchZone = new LinkedHashMap<>();
+        }
+        return catchZone;
+    }
 
-  /**
-   * Sets the value of the catchZone property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setCatchZone(String value) {
-    this.catchZone = value;
-  }
+    /**
+     * Sets the value of the catchZone property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setCatchZone(LinkedHashMap<String, String> value) {
+        this.catchZone = value;
+    }
 
-  /**
-   * Gets the value of the fishType property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getFishType() {
-    return fishType;
-  }
+    /**
+     * Gets the value of the fishType property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getFishType() {
+        if (fishType == null) {
+            fishType = new LinkedHashMap<>();
+        }
+        return fishType;
+    }
 
-  /**
-   * Sets the value of the fishType property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setFishType(String value) {
-    this.fishType = value;
-  }
+    /**
+     * Sets the value of the fishType property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setFishType(LinkedHashMap<String, String> value) {
+        this.fishType = value;
+    }
 
-  /**
-   * Gets the value of the freshOrSeawaterFarmed property.
-   *
-   * @return possible object is {@link FreshOrSeawaterFarmedCode }
-   */
-  @Override
-  public FreshOrSeawaterFarmedCode getFreshOrSeawaterFarmed() {
-    return freshOrSeawaterFarmed;
-  }
+    /**
+     * Gets the value of the freshOrSeawaterFarmed property.
+     *
+     * @return possible object is {@link FreshOrSeawaterFarmedCode }
+     */
+    @Override
+    public FreshOrSeawaterFarmedCode getFreshOrSeawaterFarmed() {
+        return freshOrSeawaterFarmed;
+    }
 
-  /**
-   * Sets the value of the freshOrSeawaterFarmed property.
-   *
-   * @param value allowed object is {@link FreshOrSeawaterFarmedCode }
-   */
-  @Override
-  public void setFreshOrSeawaterFarmed(FreshOrSeawaterFarmedCode value) {
-    this.freshOrSeawaterFarmed = value;
-  }
+    /**
+     * Sets the value of the freshOrSeawaterFarmed property.
+     *
+     * @param value allowed object is {@link FreshOrSeawaterFarmedCode }
+     */
+    @Override
+    public void setFreshOrSeawaterFarmed(FreshOrSeawaterFarmedCode value) {
+        this.freshOrSeawaterFarmed = value;
+    }
 
-  /**
-   * Gets the value of the minimumFishContent property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getMinimumFishContent() {
-    return minimumFishContent;
-  }
+    /**
+     * Gets the value of the minimumFishContent property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getMinimumFishContent() {
+        return minimumFishContent;
+    }
 
-  /**
-   * Sets the value of the minimumFishContent property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setMinimumFishContent(QuantitativeValueXMLImpl value) {
-    this.minimumFishContent = value;
-  }
+    /**
+     * Sets the value of the minimumFishContent property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setMinimumFishContent(QuantitativeValueXMLImpl value) {
+        this.minimumFishContent = value;
+    }
 }

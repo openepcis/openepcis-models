@@ -9,84 +9,104 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.AuthenticityDetails;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+
 /**
- * A set of details about covert or overt security features that may contribute to checking the
- * authenticity of a product or product instance.
+ * A set of details about covert or overt security features that may contribute to checking the authenticity of a product or product instance.
  *
- * <p>Java class for AuthenticityDetails complex type.
+ * <p>Java class for AuthenticityDetails complex type</p>.
  *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.</p>
  *
  * <pre>{@code
  * <complexType name="AuthenticityDetails">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="authenticitySecurityFeatureInstructions" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="authenticitySecurityFeatureInstructionsURL" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         <element name="authenticitySecurityFeatureInstructions" type="{}LangString" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="authenticitySecurityFeatureInstructionsURL" type="{http://www.w3.org/2001/XMLSchema}anyURI"/>
  *         <element name="authenticitySecurityFeatureRegularExpression" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="authenticitySecurityFeatureType" type="{}SecurityMarking"/>
  *         <element name="authenticitySecurityFeatureValue" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       </sequence>
+ *       <attribute name="id" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
  *     </restriction>
  *   </complexContent>
  * </complexType>
  * }</pre>
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "AuthenticityDetails",
-    propOrder = {
-      "authenticitySecurityFeatureInstructions",
-      "authenticitySecurityFeatureInstructionsURL",
-      "authenticitySecurityFeatureRegularExpression",
-      "authenticitySecurityFeatureType",
-      "authenticitySecurityFeatureValue"
-    })
+@XmlType(name = "AuthenticityDetails", propOrder = {
+        "authenticitySecurityFeatureInstructions",
+        "authenticitySecurityFeatureInstructionsURL",
+        "authenticitySecurityFeatureRegularExpression",
+        "authenticitySecurityFeatureType",
+        "authenticitySecurityFeatureValue"
+})
 public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
 
+  protected LinkedHashMap<String, String> authenticitySecurityFeatureInstructions;
   @XmlElement(required = true)
-  protected String authenticitySecurityFeatureInstructions;
-
-  @XmlElement(required = true)
+  @XmlSchemaType(name = "anyURI")
   protected String authenticitySecurityFeatureInstructionsURL;
-
   @XmlElement(required = true)
   protected String authenticitySecurityFeatureRegularExpression;
-
   @XmlElement(required = true)
   @XmlSchemaType(name = "string")
   protected SecurityMarking authenticitySecurityFeatureType;
-
   @XmlElement(required = true)
   protected String authenticitySecurityFeatureValue;
+  @XmlAttribute(name = "id")
+  @XmlSchemaType(name = "anyURI")
+  protected String id;
 
   /**
    * Gets the value of the authenticitySecurityFeatureInstructions property.
    *
-   * @return possible object is {@link String }
+   * <p>This accessor method returns a reference to the live list,
+   * not a snapshot. Therefore any modification you make to the
+   * returned list will be present inside the JAXB object.
+   * This is why there is not a <CODE>set</CODE> method for the authenticitySecurityFeatureInstructions property.</p>
+   *
+   * <p>
+   * For example, to add a new item, do as follows:
+   * </p>
+   * <pre>
+   * getAuthenticitySecurityFeatureInstructions().add(newItem);
+   * </pre>
+   *
+   *
+   * <p>
+   * Objects of the following type(s) are allowed in the list
+   * {@link LinkedHashMap<String, String> }
+   * </p>
+   *
+   *
+   * @return
+   *     The value of the authenticitySecurityFeatureInstructions property.
    */
-  @Override
-  public String getAuthenticitySecurityFeatureInstructions() {
-    return authenticitySecurityFeatureInstructions;
+  public LinkedHashMap<String, String> getAuthenticitySecurityFeatureInstructions() {
+    if (authenticitySecurityFeatureInstructions == null) {
+      authenticitySecurityFeatureInstructions = new LinkedHashMap<>();
+    }
+    return this.authenticitySecurityFeatureInstructions;
   }
 
-  /**
-   * Sets the value of the authenticitySecurityFeatureInstructions property.
-   *
-   * @param value allowed object is {@link String }
-   */
   @Override
-  public void setAuthenticitySecurityFeatureInstructions(String value) {
+  public void setAuthenticitySecurityFeatureInstructions(LinkedHashMap<String, String> value) {
     this.authenticitySecurityFeatureInstructions = value;
   }
 
   /**
    * Gets the value of the authenticitySecurityFeatureInstructionsURL property.
    *
-   * @return possible object is {@link String }
+   * @return
+   *     possible object is
+   *     {@link String }
+   *
    */
-  @Override
   public String getAuthenticitySecurityFeatureInstructionsURL() {
     return authenticitySecurityFeatureInstructionsURL;
   }
@@ -94,9 +114,11 @@ public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
   /**
    * Sets the value of the authenticitySecurityFeatureInstructionsURL property.
    *
-   * @param value allowed object is {@link String }
+   * @param value
+   *     allowed object is
+   *     {@link String }
+   *
    */
-  @Override
   public void setAuthenticitySecurityFeatureInstructionsURL(String value) {
     this.authenticitySecurityFeatureInstructionsURL = value;
   }
@@ -104,9 +126,11 @@ public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
   /**
    * Gets the value of the authenticitySecurityFeatureRegularExpression property.
    *
-   * @return possible object is {@link String }
+   * @return
+   *     possible object is
+   *     {@link String }
+   *
    */
-  @Override
   public String getAuthenticitySecurityFeatureRegularExpression() {
     return authenticitySecurityFeatureRegularExpression;
   }
@@ -114,9 +138,11 @@ public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
   /**
    * Sets the value of the authenticitySecurityFeatureRegularExpression property.
    *
-   * @param value allowed object is {@link String }
+   * @param value
+   *     allowed object is
+   *     {@link String }
+   *
    */
-  @Override
   public void setAuthenticitySecurityFeatureRegularExpression(String value) {
     this.authenticitySecurityFeatureRegularExpression = value;
   }
@@ -124,9 +150,11 @@ public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
   /**
    * Gets the value of the authenticitySecurityFeatureType property.
    *
-   * @return possible object is {@link SecurityMarking }
+   * @return
+   *     possible object is
+   *     {@link SecurityMarking }
+   *
    */
-  @Override
   public SecurityMarking getAuthenticitySecurityFeatureType() {
     return authenticitySecurityFeatureType;
   }
@@ -134,9 +162,11 @@ public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
   /**
    * Sets the value of the authenticitySecurityFeatureType property.
    *
-   * @param value allowed object is {@link SecurityMarking }
+   * @param value
+   *     allowed object is
+   *     {@link SecurityMarking }
+   *
    */
-  @Override
   public void setAuthenticitySecurityFeatureType(SecurityMarking value) {
     this.authenticitySecurityFeatureType = value;
   }
@@ -144,9 +174,11 @@ public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
   /**
    * Gets the value of the authenticitySecurityFeatureValue property.
    *
-   * @return possible object is {@link String }
+   * @return
+   *     possible object is
+   *     {@link String }
+   *
    */
-  @Override
   public String getAuthenticitySecurityFeatureValue() {
     return authenticitySecurityFeatureValue;
   }
@@ -154,10 +186,37 @@ public class AuthenticityDetailsXMLImpl implements AuthenticityDetails {
   /**
    * Sets the value of the authenticitySecurityFeatureValue property.
    *
-   * @param value allowed object is {@link String }
+   * @param value
+   *     allowed object is
+   *     {@link String }
+   *
    */
-  @Override
   public void setAuthenticitySecurityFeatureValue(String value) {
     this.authenticitySecurityFeatureValue = value;
   }
+
+  /**
+   * Gets the value of the id property.
+   *
+   * @return
+   *     possible object is
+   *     {@link String }
+   *
+   */
+  public String getId() {
+    return id;
+  }
+
+  /**
+   * Sets the value of the id property.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link String }
+   *
+   */
+  public void setId(String value) {
+    this.id = value;
+  }
+
 }

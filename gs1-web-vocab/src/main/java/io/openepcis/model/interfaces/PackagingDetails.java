@@ -1,6 +1,7 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.*;
+
 import java.util.List;
 
 public interface PackagingDetails<

@@ -9,6 +9,8 @@ package io.openepcis.model.gs1webvocab;
 import io.openepcis.model.interfaces.Beverage;
 import jakarta.xml.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+
 /**
  * Any potable liquid.
  *
@@ -37,203 +39,209 @@ import jakarta.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "Beverage",
-    propOrder = {
-      "alcoholicBeverageSubregion",
-      "beverageVintage",
-      "isCarbonated",
-      "isDecaffeinated",
-      "isFromConcentrate",
-      "isVintage",
-      "percentageOfAlcoholByVolume",
-      "vintner"
-    })
+        name = "Beverage",
+        propOrder = {
+                "alcoholicBeverageSubregion",
+                "beverageVintage",
+                "isCarbonated",
+                "isDecaffeinated",
+                "isFromConcentrate",
+                "isVintage",
+                "percentageOfAlcoholByVolume",
+                "vintner"
+        })
 public class BeverageXMLImpl extends FoodBeverageTobaccoProductXMLImpl implements Beverage {
 
-  @XmlElement(required = true)
-  protected String alcoholicBeverageSubregion;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> alcoholicBeverageSubregion;
 
-  @XmlElement(required = true)
-  protected String beverageVintage;
+    @XmlElement(required = true)
+    protected String beverageVintage;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode isCarbonated;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode isCarbonated;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode isDecaffeinated;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode isDecaffeinated;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode isFromConcentrate;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode isFromConcentrate;
 
-  @XmlElement(required = true)
-  @XmlSchemaType(name = "string")
-  protected NonbinaryLogicCode isVintage;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
+    protected NonbinaryLogicCode isVintage;
 
-  protected float percentageOfAlcoholByVolume;
+    protected float percentageOfAlcoholByVolume;
 
-  @XmlElement(required = true)
-  protected String vintner;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> vintner;
 
-  /**
-   * Gets the value of the alcoholicBeverageSubregion property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAlcoholicBeverageSubregion() {
-    return alcoholicBeverageSubregion;
-  }
+    /**
+     * Gets the value of the alcoholicBeverageSubregion property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getAlcoholicBeverageSubregion() {
+        if (alcoholicBeverageSubregion == null) {
+            alcoholicBeverageSubregion = new LinkedHashMap<>();
+        }
+        return alcoholicBeverageSubregion;
+    }
 
-  /**
-   * Sets the value of the alcoholicBeverageSubregion property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAlcoholicBeverageSubregion(String value) {
-    this.alcoholicBeverageSubregion = value;
-  }
+    /**
+     * Sets the value of the alcoholicBeverageSubregion property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAlcoholicBeverageSubregion(LinkedHashMap<String, String> value) {
+        this.alcoholicBeverageSubregion = value;
+    }
 
-  /**
-   * Gets the value of the beverageVintage property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getBeverageVintage() {
-    return beverageVintage;
-  }
+    /**
+     * Gets the value of the beverageVintage property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getBeverageVintage() {
+        return beverageVintage;
+    }
 
-  /**
-   * Sets the value of the beverageVintage property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setBeverageVintage(String value) {
-    this.beverageVintage = value;
-  }
+    /**
+     * Sets the value of the beverageVintage property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setBeverageVintage(String value) {
+        this.beverageVintage = value;
+    }
 
-  /**
-   * Gets the value of the isCarbonated property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIsCarbonated() {
-    return isCarbonated;
-  }
+    /**
+     * Gets the value of the isCarbonated property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIsCarbonated() {
+        return isCarbonated;
+    }
 
-  /**
-   * Sets the value of the isCarbonated property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIsCarbonated(NonbinaryLogicCode value) {
-    this.isCarbonated = value;
-  }
+    /**
+     * Sets the value of the isCarbonated property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIsCarbonated(NonbinaryLogicCode value) {
+        this.isCarbonated = value;
+    }
 
-  /**
-   * Gets the value of the isDecaffeinated property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIsDecaffeinated() {
-    return isDecaffeinated;
-  }
+    /**
+     * Gets the value of the isDecaffeinated property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIsDecaffeinated() {
+        return isDecaffeinated;
+    }
 
-  /**
-   * Sets the value of the isDecaffeinated property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIsDecaffeinated(NonbinaryLogicCode value) {
-    this.isDecaffeinated = value;
-  }
+    /**
+     * Sets the value of the isDecaffeinated property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIsDecaffeinated(NonbinaryLogicCode value) {
+        this.isDecaffeinated = value;
+    }
 
-  /**
-   * Gets the value of the isFromConcentrate property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIsFromConcentrate() {
-    return isFromConcentrate;
-  }
+    /**
+     * Gets the value of the isFromConcentrate property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIsFromConcentrate() {
+        return isFromConcentrate;
+    }
 
-  /**
-   * Sets the value of the isFromConcentrate property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIsFromConcentrate(NonbinaryLogicCode value) {
-    this.isFromConcentrate = value;
-  }
+    /**
+     * Sets the value of the isFromConcentrate property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIsFromConcentrate(NonbinaryLogicCode value) {
+        this.isFromConcentrate = value;
+    }
 
-  /**
-   * Gets the value of the isVintage property.
-   *
-   * @return possible object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public NonbinaryLogicCode getIsVintage() {
-    return isVintage;
-  }
+    /**
+     * Gets the value of the isVintage property.
+     *
+     * @return possible object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public NonbinaryLogicCode getIsVintage() {
+        return isVintage;
+    }
 
-  /**
-   * Sets the value of the isVintage property.
-   *
-   * @param value allowed object is {@link NonbinaryLogicCode }
-   */
-  @Override
-  public void setIsVintage(NonbinaryLogicCode value) {
-    this.isVintage = value;
-  }
+    /**
+     * Sets the value of the isVintage property.
+     *
+     * @param value allowed object is {@link NonbinaryLogicCode }
+     */
+    @Override
+    public void setIsVintage(NonbinaryLogicCode value) {
+        this.isVintage = value;
+    }
 
-  /**
-   * Gets the value of the percentageOfAlcoholByVolume property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public float getPercentageOfAlcoholByVolume() {
-    return percentageOfAlcoholByVolume;
-  }
+    /**
+     * Gets the value of the percentageOfAlcoholByVolume property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public float getPercentageOfAlcoholByVolume() {
+        return percentageOfAlcoholByVolume;
+    }
 
-  /**
-   * Sets the value of the percentageOfAlcoholByVolume property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPercentageOfAlcoholByVolume(float value) {
-    this.percentageOfAlcoholByVolume = value;
-  }
+    /**
+     * Sets the value of the percentageOfAlcoholByVolume property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setPercentageOfAlcoholByVolume(float value) {
+        this.percentageOfAlcoholByVolume = value;
+    }
 
-  /**
-   * Gets the value of the vintner property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getVintner() {
-    return vintner;
-  }
+    /**
+     * Gets the value of the vintner property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getVintner() {
+        if (vintner == null) {
+            vintner = new LinkedHashMap<>();
+        }
+        return vintner;
+    }
 
-  /**
-   * Sets the value of the vintner property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setVintner(String value) {
-    this.vintner = value;
-  }
+    /**
+     * Sets the value of the vintner property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setVintner(LinkedHashMap<String, String> value) {
+        this.vintner = value;
+    }
 }

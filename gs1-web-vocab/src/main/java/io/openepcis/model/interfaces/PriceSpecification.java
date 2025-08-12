@@ -1,15 +1,16 @@
 package io.openepcis.model.interfaces;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 
 public interface PriceSpecification<Q extends QuantitativeValue> {
   float getDutyFeeTaxAmount();
 
   void setDutyFeeTaxAmount(float value);
 
-  String getDutyFeeTaxDescription();
+  LinkedHashMap<String, String> getDutyFeeTaxDescription();
 
-  void setDutyFeeTaxDescription(String value);
+  void setDutyFeeTaxDescription(LinkedHashMap<String, String> value);
 
   float getDutyFeeTaxRate();
 

@@ -1,11 +1,13 @@
 package io.openepcis.model.interfaces;
 
+import java.util.LinkedHashMap;
+
 public interface WarrantyPromise<QV extends QuantitativeValue> {
   QV getDurationOfWarranty();
 
   void setDurationOfWarranty(QV value);
 
-  String getWarrantyScopeDescription();
+  LinkedHashMap<String, String> getWarrantyScopeDescription();
 
-  void setWarrantyScopeDescription(String value);
+  void setWarrantyScopeDescription(LinkedHashMap<String, String> value);
 }

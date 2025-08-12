@@ -6,7 +6,6 @@
 
 package io.openepcis.model.gs1webvocab;
 
-import io.openepcis.model.interfaces.*;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 /**

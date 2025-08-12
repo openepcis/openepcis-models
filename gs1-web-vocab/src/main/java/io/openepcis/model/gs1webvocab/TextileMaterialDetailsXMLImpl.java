@@ -12,6 +12,8 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
+import java.util.LinkedHashMap;
+
 /**
  * Details on the composition of any materials used to make a product using textiles.
  *
@@ -36,104 +38,109 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "TextileMaterialDetails",
-    propOrder = {
-      "textileMaterialDescription",
-      "textileMaterialPercentage",
-      "textileMaterialThreadCount",
-      "textileMaterialWeight"
-    })
-public class TextileMaterialDetailsXMLImpl
-    implements TextileMaterialDetails<QuantitativeValueXMLImpl> {
+        name = "TextileMaterialDetails",
+        propOrder = {
+                "textileMaterialDescription",
+                "textileMaterialPercentage",
+                "textileMaterialThreadCount",
+                "textileMaterialWeight"
+        })
+public class TextileMaterialDetailsXMLImpl implements TextileMaterialDetails<QuantitativeValueXMLImpl> {
 
-  @XmlElement(required = true)
-  protected String textileMaterialDescription;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> textileMaterialDescription;
 
-  protected float textileMaterialPercentage;
+    protected float textileMaterialPercentage;
 
-  @XmlElement(required = true)
-  protected String textileMaterialThreadCount;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> textileMaterialThreadCount;
 
-  @XmlElement(required = true)
-  protected QuantitativeValueXMLImpl textileMaterialWeight;
+    @XmlElement(required = true)
+    protected QuantitativeValueXMLImpl textileMaterialWeight;
 
-  /**
-   * Gets the value of the textileMaterialDescription property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getTextileMaterialDescription() {
-    return textileMaterialDescription;
-  }
+    /**
+     * Gets the value of the textileMaterialDescription property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getTextileMaterialDescription() {
+        if (textileMaterialDescription == null) {
+            textileMaterialDescription = new LinkedHashMap<>();
+        }
+        return textileMaterialDescription;
+    }
 
-  /**
-   * Sets the value of the textileMaterialDescription property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setTextileMaterialDescription(String value) {
-    this.textileMaterialDescription = value;
-  }
+    /**
+     * Sets the value of the textileMaterialDescription property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setTextileMaterialDescription(LinkedHashMap<String, String> value) {
+        this.textileMaterialDescription = value;
+    }
 
-  /**
-   * Gets the value of the textileMaterialPercentage property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public float getTextileMaterialPercentage() {
-    return textileMaterialPercentage;
-  }
+    /**
+     * Gets the value of the textileMaterialPercentage property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public float getTextileMaterialPercentage() {
+        return textileMaterialPercentage;
+    }
 
-  /**
-   * Sets the value of the textileMaterialPercentage property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setTextileMaterialPercentage(float value) {
-    this.textileMaterialPercentage = value;
-  }
+    /**
+     * Sets the value of the textileMaterialPercentage property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setTextileMaterialPercentage(float value) {
+        this.textileMaterialPercentage = value;
+    }
 
-  /**
-   * Gets the value of the textileMaterialThreadCount property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getTextileMaterialThreadCount() {
-    return textileMaterialThreadCount;
-  }
+    /**
+     * Gets the value of the textileMaterialThreadCount property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getTextileMaterialThreadCount() {
+        if (textileMaterialThreadCount == null) {
+            textileMaterialThreadCount = new LinkedHashMap<>();
+        }
+        return textileMaterialThreadCount;
+    }
 
-  /**
-   * Sets the value of the textileMaterialThreadCount property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setTextileMaterialThreadCount(String value) {
-    this.textileMaterialThreadCount = value;
-  }
+    /**
+     * Sets the value of the textileMaterialThreadCount property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setTextileMaterialThreadCount(LinkedHashMap<String, String> value) {
+        this.textileMaterialThreadCount = value;
+    }
 
-  /**
-   * Gets the value of the textileMaterialWeight property.
-   *
-   * @return possible object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public QuantitativeValueXMLImpl getTextileMaterialWeight() {
-    return textileMaterialWeight;
-  }
+    /**
+     * Gets the value of the textileMaterialWeight property.
+     *
+     * @return possible object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public QuantitativeValueXMLImpl getTextileMaterialWeight() {
+        return textileMaterialWeight;
+    }
 
-  /**
-   * Sets the value of the textileMaterialWeight property.
-   *
-   * @param value allowed object is {@link QuantitativeValueXMLImpl }
-   */
-  @Override
-  public void setTextileMaterialWeight(QuantitativeValueXMLImpl value) {
-    this.textileMaterialWeight = value;
-  }
+    /**
+     * Sets the value of the textileMaterialWeight property.
+     *
+     * @param value allowed object is {@link QuantitativeValueXMLImpl }
+     */
+    @Override
+    public void setTextileMaterialWeight(QuantitativeValueXMLImpl value) {
+        this.textileMaterialWeight = value;
+    }
 }

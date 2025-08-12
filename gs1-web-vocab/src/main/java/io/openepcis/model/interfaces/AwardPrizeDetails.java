@@ -1,29 +1,30 @@
 package io.openepcis.model.interfaces;
 
 import java.time.Year;
+import java.util.LinkedHashMap;
 
 public interface AwardPrizeDetails<C extends Country> {
-  String getAwardPrizeCode();
+    String getAwardPrizeCode();
 
-  void setAwardPrizeCode(String value);
+    void setAwardPrizeCode(String value);
 
-  C getAwardPrizeCountryCode();
+    C getAwardPrizeCountryCode();
 
-  void setAwardPrizeCountryCode(C value);
+    void setAwardPrizeCountryCode(C value);
 
-  String getAwardPrizeDescription();
+    LinkedHashMap<String, String> getAwardPrizeDescription();
 
-  void setAwardPrizeDescription(String value);
+    void setAwardPrizeDescription(LinkedHashMap<String, String> value);
 
-  String getAwardPrizeJury();
+    LinkedHashMap<String, String> getAwardPrizeJury();
 
-  void setAwardPrizeJury(String value);
+    void setAwardPrizeJury(LinkedHashMap<String, String> value);
 
-  String getAwardPrizeName();
+    LinkedHashMap<String, String> getAwardPrizeName();
 
-  void setAwardPrizeName(String value);
+    void setAwardPrizeName(LinkedHashMap<String, String> value);
 
-  Year getAwardPrizeYear();
+    Year getAwardPrizeYear();
 
-  void setAwardPrizeYear(Year value);
+    void setAwardPrizeYear(Year value);
 }

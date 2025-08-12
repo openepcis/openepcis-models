@@ -1,6 +1,7 @@
 package io.openepcis.model.interfaces;
 
 import io.openepcis.model.gs1webvocab.ReferencedFileTypeCode;
+
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 

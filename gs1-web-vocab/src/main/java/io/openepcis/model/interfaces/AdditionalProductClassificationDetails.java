@@ -1,15 +1,17 @@
 package io.openepcis.model.interfaces;
 
+import java.util.LinkedHashMap;
+
 public interface AdditionalProductClassificationDetails {
-  String getAdditionalProductClassificationCode();
+    String getAdditionalProductClassificationCode();
 
-  void setAdditionalProductClassificationCode(String value);
+    void setAdditionalProductClassificationCode(String value);
 
-  String getAdditionalProductClassificationCodeDescription();
+    LinkedHashMap<String, String> getAdditionalProductClassificationCodeDescription();
 
-  void setAdditionalProductClassificationCodeDescription(String value);
+    void setAdditionalProductClassificationCodeDescription(LinkedHashMap<String, String> value);
 
-  String getAdditionalProductClassificationValue();
+    String getAdditionalProductClassificationValue();
 
-  void setAdditionalProductClassificationValue(String value);
+    void setAdditionalProductClassificationValue(String value);
 }

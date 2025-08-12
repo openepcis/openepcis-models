@@ -11,7 +11,9 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
+
 import java.math.BigInteger;
+import java.util.LinkedHashMap;
 
 /**
  * Food Beverage Tobacco Ingredient is a complex data type that includes an ingredient statement and
@@ -37,68 +39,74 @@ import java.math.BigInteger;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "FoodBeverageTobaccoIngredientDetails",
-    propOrder = {"ingredientContentPercentage", "ingredientName", "ingredientSequence"})
-public class FoodBeverageTobaccoIngredientDetailsXMLImpl
-    implements FoodBeverageTobaccoIngredientDetails {
+        name = "FoodBeverageTobaccoIngredientDetails",
+        propOrder = {"ingredientContentPercentage", "ingredientName", "ingredientSequence"})
+public class FoodBeverageTobaccoIngredientDetailsXMLImpl implements FoodBeverageTobaccoIngredientDetails {
 
-  protected float ingredientContentPercentage;
+    protected float ingredientContentPercentage;
 
-  @XmlElement(required = true)
-  protected String ingredientName;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> ingredientName;
 
-  @XmlElement(required = true)
-  protected BigInteger ingredientSequence;
+    @XmlElement(required = true)
+    protected BigInteger ingredientSequence;
 
-  /** Gets the value of the ingredientContentPercentage property. */
-  @Override
-  public float getIngredientContentPercentage() {
-    return ingredientContentPercentage;
-  }
+    /**
+     * Gets the value of the ingredientContentPercentage property.
+     */
+    @Override
+    public float getIngredientContentPercentage() {
+        return ingredientContentPercentage;
+    }
 
-  /** Sets the value of the ingredientContentPercentage property. */
-  @Override
-  public void setIngredientContentPercentage(float value) {
-    this.ingredientContentPercentage = value;
-  }
+    /**
+     * Sets the value of the ingredientContentPercentage property.
+     */
+    @Override
+    public void setIngredientContentPercentage(float value) {
+        this.ingredientContentPercentage = value;
+    }
 
-  /**
-   * Gets the value of the ingredientName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getIngredientName() {
-    return ingredientName;
-  }
+    /**
+     * Gets the value of the ingredientName property.
+     *
+     * @return possible object is {@link LinkedHashMap }
+     */
+    @Override
+    public LinkedHashMap<String, String> getIngredientName() {
+        if (ingredientName == null) {
+            ingredientName = new LinkedHashMap<>();
+        }
+        return ingredientName;
+    }
 
-  /**
-   * Sets the value of the ingredientName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setIngredientName(String value) {
-    this.ingredientName = value;
-  }
+    /**
+     * Sets the value of the ingredientName property.
+     *
+     * @param value allowed object is {@link LinkedHashMap }
+     */
+    @Override
+    public void setIngredientName(LinkedHashMap<String, String> value) {
+        this.ingredientName = value;
+    }
 
-  /**
-   * Gets the value of the ingredientSequence property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public BigInteger getIngredientSequence() {
-    return ingredientSequence;
-  }
+    /**
+     * Gets the value of the ingredientSequence property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public BigInteger getIngredientSequence() {
+        return ingredientSequence;
+    }
 
-  /**
-   * Sets the value of the ingredientSequence property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setIngredientSequence(BigInteger value) {
-    this.ingredientSequence = value;
-  }
+    /**
+     * Sets the value of the ingredientSequence property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setIngredientSequence(BigInteger value) {
+        this.ingredientSequence = value;
+    }
 }

@@ -12,6 +12,8 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
+import java.util.LinkedHashMap;
+
 /**
  * The location at which a particular organization or person may be found or reached.
  *
@@ -46,344 +48,374 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "PostalAddress",
-    propOrder = {
-      "addressCountry",
-      "addressLocality",
-      "addressRegion",
-      "addressSuburb",
-      "countyCode",
-      "crossStreet",
-      "organizationName",
-      "postOfficeBoxNumber",
-      "postalCode",
-      "postalName",
-      "streetAddress",
-      "streetAddressLine2",
-      "streetAddressLine3",
-      "streetAddressLine4"
-    })
+        name = "PostalAddress",
+        propOrder = {
+                "addressCountry",
+                "addressLocality",
+                "addressRegion",
+                "addressSuburb",
+                "countyCode",
+                "crossStreet",
+                "organizationName",
+                "postOfficeBoxNumber",
+                "postalCode",
+                "postalName",
+                "streetAddress",
+                "streetAddressLine2",
+                "streetAddressLine3",
+                "streetAddressLine4"
+        })
 public class PostalAddressXMLImpl implements PostalAddress<CountryXMLImpl> {
 
-  @XmlElement(required = true)
-  protected CountryXMLImpl addressCountry;
+    @XmlElement(required = true)
+    protected CountryXMLImpl addressCountry;
 
-  @XmlElement(required = true)
-  protected String addressLocality;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> addressLocality;
 
-  @XmlElement(required = true)
-  protected String addressRegion;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> addressRegion;
 
-  @XmlElement(required = true)
-  protected String addressSuburb;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> addressSuburb;
 
-  @XmlElement(required = true)
-  protected String countyCode;
+    @XmlElement(required = true)
+    protected String countyCode;
 
-  @XmlElement(required = true)
-  protected String crossStreet;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> crossStreet;
 
-  @XmlElement(required = true)
-  protected String organizationName;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> organizationName;
 
-  @XmlElement(required = true)
-  protected String postOfficeBoxNumber;
+    @XmlElement(required = true)
+    protected String postOfficeBoxNumber;
 
-  @XmlElement(required = true)
-  protected String postalCode;
+    @XmlElement(required = true)
+    protected String postalCode;
 
-  @XmlElement(required = true)
-  protected String postalName;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> postalName;
 
-  @XmlElement(required = true)
-  protected String streetAddress;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> streetAddress;
 
-  @XmlElement(required = true)
-  protected String streetAddressLine2;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> streetAddressLine2;
 
-  @XmlElement(required = true)
-  protected String streetAddressLine3;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> streetAddressLine3;
 
-  @XmlElement(required = true)
-  protected String streetAddressLine4;
+    @XmlElement(required = true)
+    protected LinkedHashMap<String, String> streetAddressLine4;
 
-  /**
-   * Gets the value of the addressCountry property.
-   *
-   * @return possible object is {@link CountryXMLImpl }
-   */
-  @Override
-  public CountryXMLImpl getAddressCountry() {
-    return addressCountry;
-  }
+    /**
+     * Gets the value of the addressCountry property.
+     *
+     * @return possible object is {@link CountryXMLImpl }
+     */
+    @Override
+    public CountryXMLImpl getAddressCountry() {
+        return addressCountry;
+    }
 
-  /**
-   * Sets the value of the addressCountry property.
-   *
-   * @param value allowed object is {@link CountryXMLImpl }
-   */
-  @Override
-  public void setAddressCountry(CountryXMLImpl value) {
-    this.addressCountry = value;
-  }
+    /**
+     * Sets the value of the addressCountry property.
+     *
+     * @param value allowed object is {@link CountryXMLImpl }
+     */
+    @Override
+    public void setAddressCountry(CountryXMLImpl value) {
+        this.addressCountry = value;
+    }
 
-  /**
-   * Gets the value of the addressLocality property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAddressLocality() {
-    return addressLocality;
-  }
+    /**
+     * Gets the value of the addressLocality property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getAddressLocality() {
+        if (addressLocality == null) {
+            addressLocality = new LinkedHashMap<>();
+        }
+        return addressLocality;
+    }
 
-  /**
-   * Sets the value of the addressLocality property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAddressLocality(String value) {
-    this.addressLocality = value;
-  }
+    /**
+     * Sets the value of the addressLocality property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAddressLocality(LinkedHashMap<String, String> value) {
+        this.addressLocality = value;
+    }
 
-  /**
-   * Gets the value of the addressRegion property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAddressRegion() {
-    return addressRegion;
-  }
+    /**
+     * Gets the value of the addressRegion property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getAddressRegion() {
+        if (addressRegion == null) {
+            addressRegion = new LinkedHashMap<>();
+        }
+        return addressRegion;
+    }
 
-  /**
-   * Sets the value of the addressRegion property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAddressRegion(String value) {
-    this.addressRegion = value;
-  }
+    /**
+     * Sets the value of the addressRegion property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAddressRegion(LinkedHashMap<String, String> value) {
+        this.addressRegion = value;
+    }
 
-  /**
-   * Gets the value of the addressSuburb property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getAddressSuburb() {
-    return addressSuburb;
-  }
+    /**
+     * Gets the value of the addressSuburb property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getAddressSuburb() {
+        if (addressSuburb == null) {
+            addressSuburb = new LinkedHashMap<>();
+        }
+        return addressSuburb;
+    }
 
-  /**
-   * Sets the value of the addressSuburb property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setAddressSuburb(String value) {
-    this.addressSuburb = value;
-  }
+    /**
+     * Sets the value of the addressSuburb property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setAddressSuburb(LinkedHashMap<String, String> value) {
+        this.addressSuburb = value;
+    }
 
-  /**
-   * Gets the value of the countyCode property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getCountyCode() {
-    return countyCode;
-  }
+    /**
+     * Gets the value of the countyCode property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getCountyCode() {
+        return countyCode;
+    }
 
-  /**
-   * Sets the value of the countyCode property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setCountyCode(String value) {
-    this.countyCode = value;
-  }
+    /**
+     * Sets the value of the countyCode property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setCountyCode(String value) {
+        this.countyCode = value;
+    }
 
-  /**
-   * Gets the value of the crossStreet property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getCrossStreet() {
-    return crossStreet;
-  }
+    /**
+     * Gets the value of the crossStreet property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getCrossStreet() {
+        if (crossStreet == null) {
+            crossStreet = new LinkedHashMap<>();
+        }
+        return crossStreet;
+    }
 
-  /**
-   * Sets the value of the crossStreet property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setCrossStreet(String value) {
-    this.crossStreet = value;
-  }
+    /**
+     * Sets the value of the crossStreet property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setCrossStreet(LinkedHashMap<String, String> value) {
+        this.crossStreet = value;
+    }
 
-  /**
-   * Gets the value of the organizationName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getOrganizationName() {
-    return organizationName;
-  }
+    /**
+     * Gets the value of the organizationName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getOrganizationName() {
+        if (organizationName == null) {
+            organizationName = new LinkedHashMap<>();
+        }
+        return organizationName;
+    }
 
-  /**
-   * Sets the value of the organizationName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setOrganizationName(String value) {
-    this.organizationName = value;
-  }
+    /**
+     * Sets the value of the organizationName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setOrganizationName(LinkedHashMap<String, String> value) {
+        this.organizationName = value;
+    }
 
-  /**
-   * Gets the value of the postOfficeBoxNumber property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getPostOfficeBoxNumber() {
-    return postOfficeBoxNumber;
-  }
+    /**
+     * Gets the value of the postOfficeBoxNumber property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getPostOfficeBoxNumber() {
+        return postOfficeBoxNumber;
+    }
 
-  /**
-   * Sets the value of the postOfficeBoxNumber property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPostOfficeBoxNumber(String value) {
-    this.postOfficeBoxNumber = value;
-  }
+    /**
+     * Sets the value of the postOfficeBoxNumber property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setPostOfficeBoxNumber(String value) {
+        this.postOfficeBoxNumber = value;
+    }
 
-  /**
-   * Gets the value of the postalCode property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getPostalCode() {
-    return postalCode;
-  }
+    /**
+     * Gets the value of the postalCode property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public String getPostalCode() {
+        return postalCode;
+    }
 
-  /**
-   * Sets the value of the postalCode property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPostalCode(String value) {
-    this.postalCode = value;
-  }
+    /**
+     * Sets the value of the postalCode property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setPostalCode(String value) {
+        this.postalCode = value;
+    }
 
-  /**
-   * Gets the value of the postalName property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getPostalName() {
-    return postalName;
-  }
+    /**
+     * Gets the value of the postalName property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getPostalName() {
+        if (postalName == null) {
+            postalName = new LinkedHashMap<>();
+        }
+        return postalName;
+    }
 
-  /**
-   * Sets the value of the postalName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setPostalName(String value) {
-    this.postalName = value;
-  }
+    /**
+     * Sets the value of the postalName property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setPostalName(LinkedHashMap<String, String> value) {
+        this.postalName = value;
+    }
 
-  /**
-   * Gets the value of the streetAddress property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getStreetAddress() {
-    return streetAddress;
-  }
+    /**
+     * Gets the value of the streetAddress property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getStreetAddress() {
+        if (streetAddress == null) {
+            streetAddress = new LinkedHashMap<>();
+        }
+        return streetAddress;
+    }
 
-  /**
-   * Sets the value of the streetAddress property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setStreetAddress(String value) {
-    this.streetAddress = value;
-  }
+    /**
+     * Sets the value of the streetAddress property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setStreetAddress(LinkedHashMap<String, String> value) {
+        this.streetAddress = value;
+    }
 
-  /**
-   * Gets the value of the streetAddressLine2 property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getStreetAddressLine2() {
-    return streetAddressLine2;
-  }
+    /**
+     * Gets the value of the streetAddressLine2 property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getStreetAddressLine2() {
+        if (streetAddressLine2 == null) {
+            streetAddressLine2 = new LinkedHashMap<>();
+        }
+        return streetAddressLine2;
+    }
 
-  /**
-   * Sets the value of the streetAddressLine2 property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setStreetAddressLine2(String value) {
-    this.streetAddressLine2 = value;
-  }
+    /**
+     * Sets the value of the streetAddressLine2 property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setStreetAddressLine2(LinkedHashMap<String, String> value) {
+        this.streetAddressLine2 = value;
+    }
 
-  /**
-   * Gets the value of the streetAddressLine3 property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getStreetAddressLine3() {
-    return streetAddressLine3;
-  }
+    /**
+     * Gets the value of the streetAddressLine3 property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getStreetAddressLine3() {
+        if (streetAddressLine3 == null) {
+            streetAddressLine3 = new LinkedHashMap<>();
+        }
+        return streetAddressLine3;
+    }
 
-  /**
-   * Sets the value of the streetAddressLine3 property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setStreetAddressLine3(String value) {
-    this.streetAddressLine3 = value;
-  }
+    /**
+     * Sets the value of the streetAddressLine3 property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setStreetAddressLine3(LinkedHashMap<String, String> value) {
+        this.streetAddressLine3 = value;
+    }
 
-  /**
-   * Gets the value of the streetAddressLine4 property.
-   *
-   * @return possible object is {@link String }
-   */
-  @Override
-  public String getStreetAddressLine4() {
-    return streetAddressLine4;
-  }
+    /**
+     * Gets the value of the streetAddressLine4 property.
+     *
+     * @return possible object is {@link String }
+     */
+    @Override
+    public LinkedHashMap<String, String> getStreetAddressLine4() {
+        if (streetAddressLine4 == null) {
+            streetAddressLine4 = new LinkedHashMap<>();
+        }
+        return streetAddressLine4;
+    }
 
-  /**
-   * Sets the value of the streetAddressLine4 property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  @Override
-  public void setStreetAddressLine4(String value) {
-    this.streetAddressLine4 = value;
-  }
+    /**
+     * Sets the value of the streetAddressLine4 property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    @Override
+    public void setStreetAddressLine4(LinkedHashMap<String, String> value) {
+        this.streetAddressLine4 = value;
+    }
 }
