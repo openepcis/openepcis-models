@@ -29,8 +29,8 @@ public class EPCISNamespacePrefixMapper extends NamespacePrefixMapper {
 
   public static final Map<String, String> EPCIS_NAMESPACE_MAP =
           EPCIS.EPCIS_DEFAULT_NAMESPACES.entrySet().stream()
-                  // skip own and rdfs
-            .filter(e -> !"owl".equals(e.getKey()) && !"rdfs".equals(e.getKey()))
+                  // skip well-known namespaces owl, rdfs and cbvmda
+            .filter(e -> !EPCIS.OWL.equals(e.getKey()) && !EPCIS.RDFS.equals(e.getKey()) && !EPCIS.CBV_MDA.equals(e.getKey()))
           .collect(Collectors.toMap(e -> e.getValue().toString(), Map.Entry::getKey));
 
           /*
