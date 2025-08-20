@@ -77,6 +77,7 @@ public class CommonExtensionModifier {
         if (!StringUtils.isEmpty(namespaceURI)
             && PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
           valueElement = replacePrefix(valueElement);
+          nodeName = valueElement.getNodeName();
 
           // Populate the eventNamespaces with respective URI and Prefix
           namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
