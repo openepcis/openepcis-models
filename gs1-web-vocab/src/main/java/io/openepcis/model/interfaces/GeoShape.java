@@ -1,6 +1,6 @@
 package io.openepcis.model.interfaces;
 
-public interface GeoShape {
+public interface GeoShape extends Geo {
   String getCircle();
 
   void setCircle(String value);

@@ -34,7 +34,18 @@ import java.util.List;
  *         <element name="containsPlace" type="{}Place"/>
  *         <element name="digitalAddress" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="digitalLocationName" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="geo" type="{}Place"/>
+ *          <element name="geo">
+ *             <complexType>
+ *               <complexContent>
+ *                 <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                   <choice>
+ *                     <element name="GeoCoordinates" type="{}GeoCoordinates"/>
+ *                     <element name="GeoShape" type="{}GeoShape"/>
+ *                   </choice>
+ *                 </restriction>
+ *               </complexContent>
+ *             </complexType>
+ *           </element>
  *         <element name="glnType" type="{}GLN_TypeCode"/>
  *         <element name="globalLocationNumber" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="leasedFrom" type="{}Organization"/>
@@ -99,7 +110,8 @@ public class PlaceXMLImpl
         PlaceXMLImpl,
         CertificationDetailsXMLImpl,
         OrganizationXMLImpl,
-        LocationStatusHistoryXMLImpl> {
+        LocationStatusHistoryXMLImpl,
+        PlaceXMLImpl.Geo> {
 
     @XmlElement(required = true)
     protected List<LocationIDDetailsXMLImpl> additionalLocationID;
@@ -132,7 +144,7 @@ public class PlaceXMLImpl
     protected LinkedHashMap<String, String> digitalLocationName;
 
     @XmlElement(required = true)
-    protected PlaceXMLImpl geo;
+    protected PlaceXMLImpl.Geo geo;
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
@@ -393,27 +405,31 @@ public class PlaceXMLImpl
     /**
      * Gets the value of the geo property.
      *
-     * @return possible object is {@link PlaceXMLImpl }
+     * @return possible object is
+     * {@link PlaceXMLImpl.Geo }
+     *
      */
-    @Override
-    public PlaceXMLImpl getGeo() {
+    public PlaceXMLImpl.Geo getGeo() {
         return geo;
     }
 
     /**
      * Sets the value of the geo property.
      *
-     * @param value allowed object is {@link PlaceXMLImpl }
+     * @param value allowed object is
+     *              {@link PlaceXMLImpl.Geo }
+     *
      */
-    @Override
-    public void setGeo(PlaceXMLImpl value) {
+    public void setGeo(PlaceXMLImpl.Geo value) {
         this.geo = value;
     }
 
     /**
      * Gets the value of the glnType property.
      *
-     * @return possible object is {@link GLNTypeCode }
+     * @return possible object is
+     * {@link GLNTypeCode }
+     *
      */
     @Override
     public GLNTypeCode getGlnType() {
@@ -752,4 +768,65 @@ public class PlaceXMLImpl
     public void setResponsibleOrganization(OrganizationXMLImpl value) {
         this.responsibleOrganizationXMLImpl = value;
     }
+
+    /**
+     * <p>Java class for anonymous complex type</p>.
+     *
+     * <p>The following schema fragment specifies the expected content contained within this class.</p>
+     *
+     * <pre>{@code
+     * <complexType>
+     *   <complexContent>
+     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       <choice>
+     *         <element name="GeoCoordinates" type="{}GeoCoordinates"/>
+     *         <element name="GeoShape" type="{}GeoShape"/>
+     *       </choice>
+     *     </restriction>
+     *   </complexContent>
+     * </complexType>
+     * }</pre>
+     *
+     *
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+            "geoCoordinatesOrGeoShape"
+    })
+    public static class Geo implements io.openepcis.model.interfaces.Geo {
+
+        @XmlElements({
+                @XmlElement(name = "GeoCoordinates", type = GeoCoordinatesXMLImpl.class),
+                @XmlElement(name = "GeoShape", type = GeoShapeXMLImpl.class)
+        })
+        protected Object geoCoordinatesOrGeoShape;
+
+        /**
+         * Gets the value of the geoCoordinatesOrGeoShape property.
+         *
+         * @return possible object is
+         * {@link GeoCoordinatesXMLImpl }
+         * {@link GeoShapeXMLImpl }
+         *
+         */
+        public Object getGeoCoordinatesOrGeoShape() {
+            return geoCoordinatesOrGeoShape;
+        }
+
+        /**
+         * Sets the value of the geoCoordinatesOrGeoShape property.
+         *
+         * @param value allowed object is
+         *              {@link GeoCoordinatesXMLImpl }
+         *              {@link GeoShapeXMLImpl }
+         *
+         */
+        public void setGeoCoordinatesOrGeoShape(Object value) {
+            this.geoCoordinatesOrGeoShape = value;
+        }
+
+    }
+
 }
+
+

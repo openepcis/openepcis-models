@@ -13,7 +13,8 @@ public interface Place<
         P extends Place,
         CD extends CertificationDetails,
         O extends Organization,
-        LO extends LocationStatusHistory> {
+        LO extends LocationStatusHistory,
+        GO extends Geo> {
     List<L> getAdditionalLocationID();
 
     void setAdditionalLocationID(List<L> value);
@@ -54,9 +55,9 @@ public interface Place<
 
     void setDigitalLocationName(LinkedHashMap<String, String> value);
 
-    P getGeo();
+    GO getGeo();
 
-    void setGeo(P value);
+    void setGeo(GO value);
 
     GLNTypeCode getGlnType();
 

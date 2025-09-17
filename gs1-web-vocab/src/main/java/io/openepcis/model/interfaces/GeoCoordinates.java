@@ -1,6 +1,6 @@
 package io.openepcis.model.interfaces;
 
-public interface GeoCoordinates {
+public interface GeoCoordinates extends Geo {
   String getCoordinateReferenceSystem();
 
   void setCoordinateReferenceSystem(String value);
