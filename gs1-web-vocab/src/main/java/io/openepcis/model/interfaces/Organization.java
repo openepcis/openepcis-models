@@ -13,7 +13,10 @@ public interface Organization<
     P extends Place,
     O extends Organization,
     OF extends Offer,
-    OS extends OrganizationStatusHistory> {
+    OS extends OrganizationStatusHistory,
+    OM extends Manages,
+    OO extends Owns> {
+
 
   List<OI> getAdditionalOrganizationID();
 
@@ -75,9 +78,9 @@ public interface Organization<
 
   void setManagedBy(O value);
 
-  List<O> getManages();
+  OM getManages();
 
-  void setManages(List<O> value);
+  void setManages(OM value);
 
   P getOccupies();
 
@@ -99,9 +102,9 @@ public interface Organization<
 
   void setOwnedBy(O value);
 
-  List<O> getOwns();
+  OO getOwns();
 
-  void setOwns(List<O> value);
+  void setOwns(OO value);
 
   O getParentOrganization();
 

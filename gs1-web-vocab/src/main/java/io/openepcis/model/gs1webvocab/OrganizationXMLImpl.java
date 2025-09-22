@@ -7,11 +7,9 @@
 package io.openepcis.model.gs1webvocab;
 
 import io.openepcis.model.interfaces.Organization;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import io.openepcis.model.interfaces.Place;
+import jakarta.xml.bind.annotation.*;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -44,13 +42,35 @@ import java.util.List;
  *         <element name="location" type="{}Place"/>
  *         <element name="makesOffer" type="{}Offer"/>
  *         <element name="managedBy" type="{}Organization"/>
- *         <element name="manages" type="{}Organization"/>
+ *         <element name="manages">
+ *           <complexType>
+ *             <complexContent>
+ *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 <choice>
+ *                   <element name="Organization" type="{}Organization"/>
+ *                   <element name="Place" type="{}Place"/>
+ *                 </choice>
+ *               </restriction>
+ *             </complexContent>
+ *          </complexType>
+ *         </element>
  *         <element name="occupies" type="{}Place"/>
  *         <element name="organizationHistory" type="{}OrganizationStatusHistory"/>
  *         <element name="organizationName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="organizationRole" type="{}OrganizationRoleType"/>
  *         <element name="ownedBy" type="{}Organization"/>
- *         <element name="owns" type="{}Organization"/>
+ *         <element name="owns">
+ *             <complexType>
+ *               <complexContent>
+ *                 <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                   <choice>
+ *                     <element name="Organization" type="{}Organization"/>
+ *                     <element name="Place" type="{}Place"/>
+ *                   </choice>
+ *                 </restriction>
+ *             </complexContent>
+ *           </complexType>
+ *         </element>
  *         <element name="parentOrganization" type="{}Organization"/>
  *         <element name="partyGLN" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="replacedByOrganization" type="{}Organization"/>
@@ -107,7 +127,9 @@ public class OrganizationXMLImpl
         PlaceXMLImpl,
         OrganizationXMLImpl,
         OfferXMLImpl,
-        OrganizationStatusHistoryXMLImpl> {
+        OrganizationStatusHistoryXMLImpl,
+        OrganizationXMLImpl.Manages,
+        OrganizationXMLImpl.Owns> {
 
     @XmlElement(required = true)
     protected List<OrganizationIDDetailsXMLImpl> additionalOrganizationID;
@@ -156,7 +178,7 @@ public class OrganizationXMLImpl
     protected OrganizationXMLImpl managedBy;
 
     @XmlElement(required = true)
-    protected List<OrganizationXMLImpl> manages;
+    protected OrganizationXMLImpl.Manages manages;
 
     @XmlElement(required = true)
     protected PlaceXMLImpl occupies;
@@ -175,7 +197,7 @@ public class OrganizationXMLImpl
     protected OrganizationXMLImpl ownedBy;
 
     @XmlElement(required = true)
-    protected List<OrganizationXMLImpl> owns;
+    protected OrganizationXMLImpl.Owns owns;
 
     @XmlElement(required = true)
     protected OrganizationXMLImpl parentOrganizationXMLImpl;
@@ -504,20 +526,24 @@ public class OrganizationXMLImpl
     /**
      * Gets the value of the manages property.
      *
-     * @return possible object is {@link OrganizationXMLImpl }
+     * @return possible object is
+     * {@link OrganizationXMLImpl.Manages }
+     *
      */
     @Override
-    public List<OrganizationXMLImpl> getManages() {
+    public OrganizationXMLImpl.Manages getManages() {
         return manages;
     }
 
     /**
      * Sets the value of the manages property.
      *
-     * @param value allowed object is {@link OrganizationXMLImpl }
+     * @param value allowed object is
+     *              {@link OrganizationXMLImpl.Manages }
+     *
      */
     @Override
-    public void setManages(List<OrganizationXMLImpl> value) {
+    public void setManages(OrganizationXMLImpl.Manages value) {
         this.manages = value;
     }
 
@@ -627,20 +653,24 @@ public class OrganizationXMLImpl
     /**
      * Gets the value of the owns property.
      *
-     * @return possible object is {@link OrganizationXMLImpl }
+     * @return possible object is
+     * {@link OrganizationXMLImpl.Manages }
+     *
      */
     @Override
-    public List<OrganizationXMLImpl> getOwns() {
+    public OrganizationXMLImpl.Owns getOwns() {
         return owns;
     }
 
     /**
      * Sets the value of the owns property.
      *
-     * @param value allowed object is {@link OrganizationXMLImpl }
+     * @param value allowed object is
+     *              {@link OrganizationXMLImpl.Owns }
+     *
      */
     @Override
-    public void setOwns(List<OrganizationXMLImpl> value) {
+    public void setOwns(OrganizationXMLImpl.Owns value) {
         this.owns = value;
     }
 
@@ -783,4 +813,121 @@ public class OrganizationXMLImpl
     public void setUsesManagedLocation(PlaceXMLImpl value) {
         this.usesManagedLocation = value;
     }
+
+    /**
+     * <p>Java class for anonymous complex type</p>.
+     *
+     * <p>The following schema fragment specifies the expected content contained within this class.</p>
+     *
+     * <pre>{@code
+     * <complexType>
+     *   <complexContent>
+     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       <choice>
+     *         <element name="Organization" type="{}OrganizationXMLImpl"/>
+     *         <element name="Place" type="{}PlaceXMLImpl"/>
+     *       </choice>
+     *     </restriction>
+     *   </complexContent>
+     * </complexType>
+     * }</pre>
+     *
+     *
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+            "organizationOrPlace"
+    })
+    public static class Manages implements io.openepcis.model.interfaces.Manages {
+
+        @XmlElements({
+                @XmlElement(name = "Organization", type = OrganizationXMLImpl.class),
+                @XmlElement(name = "Place", type = PlaceXMLImpl.class)
+        })
+        protected Object organizationOrPlace;
+
+        /**
+         * Gets the value of the organizationOrPlace property.
+         *
+         * @return possible object is
+         * {@link OrganizationXMLImpl }
+         * {@link PlaceXMLImpl }
+         *
+         */
+        public Object getOrganizationOrPlace() {
+            return organizationOrPlace;
+        }
+
+        /**
+         * Sets the value of the organizationOrPlace property.
+         *
+         * @param value allowed object is
+         *              {@link OrganizationXMLImpl }
+         *              {@link PlaceXMLImpl }
+         *
+         */
+        public void setOrganizationOrPlace(Object value) {
+            this.organizationOrPlace = value;
+        }
+
+    }
+
+    /**
+     * <p>Java class for anonymous complex type</p>.
+     *
+     * <p>The following schema fragment specifies the expected content contained within this class.</p>
+     *
+     * <pre>{@code
+     * <complexType>
+     *   <complexContent>
+     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       <choice>
+     *         <element name="Organization" type="{}Organization"/>
+     *         <element name="Place" type="{}Place"/>
+     *       </choice>
+     *     </restriction>
+     *   </complexContent>
+     * </complexType>
+     * }</pre>
+     *
+     *
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+            "organizationOrPlace"
+    })
+    public static class Owns implements io.openepcis.model.interfaces.Owns {
+
+        @XmlElements({
+                @XmlElement(name = "Organization", type = OrganizationXMLImpl.class),
+                @XmlElement(name = "Place", type = PlaceXMLImpl.class)
+        })
+        protected Object organizationOrPlace;
+
+        /**
+         * Gets the value of the organizationOrPlace property.
+         *
+         * @return possible object is
+         * {@link Organization }
+         * {@link Place }
+         *
+         */
+        public Object getOrganizationOrPlace() {
+            return organizationOrPlace;
+        }
+
+        /**
+         * Sets the value of the organizationOrPlace property.
+         *
+         * @param value allowed object is
+         *              {@link Organization }
+         *              {@link Place }
+         *
+         */
+        public void setOrganizationOrPlace(Object value) {
+            this.organizationOrPlace = value;
+        }
+
+    }
+
 }
