@@ -64,4 +64,7 @@ public class UserExtensionSchema {
 
   /** Stores the userID of user updating the schema in UUID format */
   private String updatedBy;
+
+  /** This field holds the Custom URL of the JSON-LD context document associated with the schema. */
+  private String jsonldContextUrl;
 }
