@@ -92,9 +92,9 @@ public interface Product<
 
     void setConsumerSafetyInformation(LinkedHashMap<String, String> value);
 
-    ConsumerSalesConditionsCode getConsumerSalesCondition();
+    List<ConsumerSalesConditionsCode> getConsumerSalesConditions();
 
-    void setConsumerSalesCondition(ConsumerSalesConditionsCode value);
+    void setConsumerSalesConditions(List<ConsumerSalesConditionsCode> value);
 
     LinkedHashMap<String, String> getConsumerStorageInstructions();
 
@@ -212,9 +212,9 @@ public interface Product<
 
     void setHealthClaimDescription(LinkedHashMap<String, String> value);
 
-    RF getImage();
+    List<RF> getImages();
 
-    void setImage(RF value);
+    void setImages(List<RF> value);
 
     QV getInPackageDepth();
 
@@ -236,9 +236,9 @@ public interface Product<
 
     void setIncludedAccessories(LinkedHashMap<String, String> value);
 
-    RF getInstructionsForUse();
+    List<RF> getInstructionsForUseFiles();
 
-    void setInstructionsForUse(RF value);
+    void setInstructionsForUseFiles(List<RF> value);
 
     boolean getIsProductRecalled();
 
@@ -384,9 +384,9 @@ public interface Product<
 
     void setSellByDate(LocalDate value);
 
-    SC getSizeCode();
+    List<SC> getSizeCodes();
 
-    void setSizeCode(SC value);
+    void setSizeCodes(List<SC> value);
 
     BigInteger getSupplierSpecifiedMinimumConsumerStorageDays();
 

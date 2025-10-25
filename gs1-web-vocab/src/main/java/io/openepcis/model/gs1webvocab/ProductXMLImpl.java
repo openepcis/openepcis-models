@@ -902,7 +902,6 @@ public class ProductXMLImpl
      *
      * @return possible object is {@link ConsumerSalesConditionsCode }
      */
-    @Override
     public ConsumerSalesConditionsCode getConsumerSalesCondition() {
         return consumerSalesCondition;
     }
@@ -912,9 +911,20 @@ public class ProductXMLImpl
      *
      * @param value allowed object is {@link ConsumerSalesConditionsCode }
      */
-    @Override
     public void setConsumerSalesCondition(ConsumerSalesConditionsCode value) {
         this.consumerSalesCondition = value;
+    }
+
+    // Plural interface methods wrapping legacy single field
+    @Override
+    public java.util.List<ConsumerSalesConditionsCode> getConsumerSalesConditions() {
+        if (consumerSalesCondition == null) return java.util.Collections.emptyList();
+        return java.util.Collections.singletonList(consumerSalesCondition);
+    }
+
+    @Override
+    public void setConsumerSalesConditions(java.util.List<ConsumerSalesConditionsCode> value) {
+        this.consumerSalesCondition = (value != null && !value.isEmpty()) ? value.get(0) : null;
     }
 
     /**
@@ -1523,7 +1533,6 @@ public class ProductXMLImpl
      *
      * @return possible object is {@link ReferencedFileDetailsXMLImpl }
      */
-    @Override
     public ReferencedFileDetailsXMLImpl getImage() {
         return image;
     }
@@ -1533,7 +1542,6 @@ public class ProductXMLImpl
      *
      * @param value allowed object is {@link ReferencedFileDetailsXMLImpl }
      */
-    @Override
     public void setImage(ReferencedFileDetailsXMLImpl value) {
         this.image = value;
     }
@@ -1646,7 +1654,6 @@ public class ProductXMLImpl
      *
      * @return possible object is {@link ReferencedFileDetailsXMLImpl }
      */
-    @Override
     public ReferencedFileDetailsXMLImpl getInstructionsForUse() {
         return instructionsForUse;
     }
@@ -1656,7 +1663,6 @@ public class ProductXMLImpl
      *
      * @param value allowed object is {@link ReferencedFileDetailsXMLImpl }
      */
-    @Override
     public void setInstructionsForUse(ReferencedFileDetailsXMLImpl value) {
         this.instructionsForUse = value;
     }
@@ -2409,7 +2415,6 @@ public class ProductXMLImpl
      *
      * @return possible object is {@link SizeCodeDetailsXMLImpl }
      */
-    @Override
     public SizeCodeDetailsXMLImpl getSizeCode() {
         return sizeCode;
     }
@@ -2419,9 +2424,42 @@ public class ProductXMLImpl
      *
      * @param value allowed object is {@link SizeCodeDetailsXMLImpl }
      */
-    @Override
     public void setSizeCode(SizeCodeDetailsXMLImpl value) {
         this.sizeCode = value;
+    }
+
+    // Plural interface methods wrapping legacy single fields for images, instructionsForUseFiles, sizeCodes
+    @Override
+    public java.util.List<ReferencedFileDetailsXMLImpl> getImages() {
+        if (image == null) return java.util.Collections.emptyList();
+        return java.util.Collections.singletonList(image);
+    }
+
+    @Override
+    public void setImages(java.util.List<ReferencedFileDetailsXMLImpl> value) {
+        this.image = (value != null && !value.isEmpty()) ? value.get(0) : null;
+    }
+
+    @Override
+    public java.util.List<ReferencedFileDetailsXMLImpl> getInstructionsForUseFiles() {
+        if (instructionsForUse == null) return java.util.Collections.emptyList();
+        return java.util.Collections.singletonList(instructionsForUse);
+    }
+
+    @Override
+    public void setInstructionsForUseFiles(java.util.List<ReferencedFileDetailsXMLImpl> value) {
+        this.instructionsForUse = (value != null && !value.isEmpty()) ? value.get(0) : null;
+    }
+
+    @Override
+    public java.util.List<SizeCodeDetailsXMLImpl> getSizeCodes() {
+        if (sizeCode == null) return java.util.Collections.emptyList();
+        return java.util.Collections.singletonList(sizeCode);
+    }
+
+    @Override
+    public void setSizeCodes(java.util.List<SizeCodeDetailsXMLImpl> value) {
+        this.sizeCode = (value != null && !value.isEmpty()) ? value.get(0) : null;
     }
 
     /**
