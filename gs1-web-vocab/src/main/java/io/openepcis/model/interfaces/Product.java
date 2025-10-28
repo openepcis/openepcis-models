@@ -92,9 +92,9 @@ public interface Product<
 
     void setConsumerSafetyInformation(LinkedHashMap<String, String> value);
 
-    List<ConsumerSalesConditionsCode> getConsumerSalesConditions();
+    ConsumerSalesConditionsCode getConsumerSalesCondition();
 
-    void setConsumerSalesConditions(List<ConsumerSalesConditionsCode> value);
+    void setConsumerSalesCondition(ConsumerSalesConditionsCode value);
 
     LinkedHashMap<String, String> getConsumerStorageInstructions();
 
@@ -236,9 +236,9 @@ public interface Product<
 
     void setIncludedAccessories(LinkedHashMap<String, String> value);
 
-    List<RF> getInstructionsForUseFiles();
+    List<RF> getInstructionsForUse();
 
-    void setInstructionsForUseFiles(List<RF> value);
+    void setInstructionsForUse(List<RF> value);
 
     boolean getIsProductRecalled();
 

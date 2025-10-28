@@ -406,7 +406,7 @@ public class ProductXMLImpl
     protected LinkedHashMap<String, String> healthClaimDescription;
 
     @XmlElement(required = true)
-    protected ReferencedFileDetailsXMLImpl image;
+    protected List<ReferencedFileDetailsXMLImpl> images;
 
     @XmlElement(required = true)
     protected QuantitativeValueXMLImpl inPackageDepth;
@@ -424,7 +424,7 @@ public class ProductXMLImpl
     protected LinkedHashMap<String, String> includedAccessories;
 
     @XmlElement(required = true)
-    protected ReferencedFileDetailsXMLImpl instructionsForUse;
+    protected List<ReferencedFileDetailsXMLImpl> instructionsForUse;
 
     protected boolean isProductRecalled;
 
@@ -550,7 +550,7 @@ public class ProductXMLImpl
     protected LocalDate sellByDate;
 
     @XmlElement(required = true)
-    protected SizeCodeDetailsXMLImpl sizeCode;
+    protected List<SizeCodeDetailsXMLImpl> sizeCodes;
 
     @XmlElement(required = true)
     protected BigInteger supplierSpecifiedMinimumConsumerStorageDays;
@@ -902,6 +902,7 @@ public class ProductXMLImpl
      *
      * @return possible object is {@link ConsumerSalesConditionsCode }
      */
+    @Override
     public ConsumerSalesConditionsCode getConsumerSalesCondition() {
         return consumerSalesCondition;
     }
@@ -911,20 +912,9 @@ public class ProductXMLImpl
      *
      * @param value allowed object is {@link ConsumerSalesConditionsCode }
      */
+    @Override
     public void setConsumerSalesCondition(ConsumerSalesConditionsCode value) {
         this.consumerSalesCondition = value;
-    }
-
-    // Plural interface methods wrapping legacy single field
-    @Override
-    public java.util.List<ConsumerSalesConditionsCode> getConsumerSalesConditions() {
-        if (consumerSalesCondition == null) return java.util.Collections.emptyList();
-        return java.util.Collections.singletonList(consumerSalesCondition);
-    }
-
-    @Override
-    public void setConsumerSalesConditions(java.util.List<ConsumerSalesConditionsCode> value) {
-        this.consumerSalesCondition = (value != null && !value.isEmpty()) ? value.get(0) : null;
     }
 
     /**
@@ -1528,22 +1518,14 @@ public class ProductXMLImpl
         this.healthClaimDescription = value;
     }
 
-    /**
-     * Gets the value of the image property.
-     *
-     * @return possible object is {@link ReferencedFileDetailsXMLImpl }
-     */
-    public ReferencedFileDetailsXMLImpl getImage() {
-        return image;
+    @Override
+    public List<ReferencedFileDetailsXMLImpl> getImages() {
+        return images;
     }
 
-    /**
-     * Sets the value of the image property.
-     *
-     * @param value allowed object is {@link ReferencedFileDetailsXMLImpl }
-     */
-    public void setImage(ReferencedFileDetailsXMLImpl value) {
-        this.image = value;
+    @Override
+    public void setImages(List<ReferencedFileDetailsXMLImpl> value) {
+        this.images = value;
     }
 
     /**
@@ -1654,7 +1636,8 @@ public class ProductXMLImpl
      *
      * @return possible object is {@link ReferencedFileDetailsXMLImpl }
      */
-    public ReferencedFileDetailsXMLImpl getInstructionsForUse() {
+    @Override
+    public List<ReferencedFileDetailsXMLImpl> getInstructionsForUse() {
         return instructionsForUse;
     }
 
@@ -1663,7 +1646,8 @@ public class ProductXMLImpl
      *
      * @param value allowed object is {@link ReferencedFileDetailsXMLImpl }
      */
-    public void setInstructionsForUse(ReferencedFileDetailsXMLImpl value) {
+    @Override
+    public void setInstructionsForUse(List<ReferencedFileDetailsXMLImpl> value) {
         this.instructionsForUse = value;
     }
 
@@ -2410,56 +2394,14 @@ public class ProductXMLImpl
         this.sellByDate = value;
     }
 
-    /**
-     * Gets the value of the sizeCode property.
-     *
-     * @return possible object is {@link SizeCodeDetailsXMLImpl }
-     */
-    public SizeCodeDetailsXMLImpl getSizeCode() {
-        return sizeCode;
-    }
-
-    /**
-     * Sets the value of the sizeCode property.
-     *
-     * @param value allowed object is {@link SizeCodeDetailsXMLImpl }
-     */
-    public void setSizeCode(SizeCodeDetailsXMLImpl value) {
-        this.sizeCode = value;
-    }
-
-    // Plural interface methods wrapping legacy single fields for images, instructionsForUseFiles, sizeCodes
     @Override
-    public java.util.List<ReferencedFileDetailsXMLImpl> getImages() {
-        if (image == null) return java.util.Collections.emptyList();
-        return java.util.Collections.singletonList(image);
+    public List<SizeCodeDetailsXMLImpl> getSizeCodes() {
+        return sizeCodes;
     }
 
     @Override
-    public void setImages(java.util.List<ReferencedFileDetailsXMLImpl> value) {
-        this.image = (value != null && !value.isEmpty()) ? value.get(0) : null;
-    }
-
-    @Override
-    public java.util.List<ReferencedFileDetailsXMLImpl> getInstructionsForUseFiles() {
-        if (instructionsForUse == null) return java.util.Collections.emptyList();
-        return java.util.Collections.singletonList(instructionsForUse);
-    }
-
-    @Override
-    public void setInstructionsForUseFiles(java.util.List<ReferencedFileDetailsXMLImpl> value) {
-        this.instructionsForUse = (value != null && !value.isEmpty()) ? value.get(0) : null;
-    }
-
-    @Override
-    public java.util.List<SizeCodeDetailsXMLImpl> getSizeCodes() {
-        if (sizeCode == null) return java.util.Collections.emptyList();
-        return java.util.Collections.singletonList(sizeCode);
-    }
-
-    @Override
-    public void setSizeCodes(java.util.List<SizeCodeDetailsXMLImpl> value) {
-        this.sizeCode = (value != null && !value.isEmpty()) ? value.get(0) : null;
+    public void setSizeCodes(List<SizeCodeDetailsXMLImpl> value) {
+        this.sizeCodes = value;
     }
 
     /**
