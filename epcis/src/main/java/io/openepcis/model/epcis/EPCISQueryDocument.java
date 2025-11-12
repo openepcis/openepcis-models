@@ -21,22 +21,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.constants.CommonConstants;
-import io.openepcis.model.epcis.exception.QueryExecutionException;
 import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
 import io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.time.OffsetDateTime;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static io.openepcis.model.epcis.constants.CommonConstants.CONTEXT_URLS;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -46,90 +47,165 @@ import org.apache.commons.collections4.CollectionUtils;
 @XmlType(propOrder = {"epcisHeader", "epcisBody"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISQueryDocument {
-  @JsonProperty("@context")
-  @XmlTransient
-  private List<Object> context;
 
-  @JsonProperty("id")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  @XmlTransient
-  private String id;
+    @JsonProperty("@context")
+    @XmlTransient
+    private List<Object> context;
 
-  @JsonProperty("type")
-  @XmlTransient
-  private String type;
+    @JsonProperty("id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @XmlTransient
+    private String id;
 
-  @JsonProperty("schemaVersion")
-  @XmlAttribute
-  private String schemaVersion;
+    @JsonProperty("type")
+    @XmlTransient
+    private String type;
 
-  @JsonProperty("creationDate")
-  @XmlAttribute(name = "creationDate")
-  @XmlJavaTypeAdapter(CustomInstantAdapter.class)
-  @JsonSerialize(using = OffsetDateTimeSerializer.class)
-  private OffsetDateTime creationDate;
+    @JsonProperty("schemaVersion")
+    @XmlAttribute
+    private String schemaVersion;
 
-  @JsonProperty("epcisBody")
-  @XmlElement(name = "EPCISBody", required = true)
-  private EPCISQueryBody epcisBody;
+    @JsonProperty("creationDate")
+    @XmlAttribute(name = "creationDate")
+    @XmlJavaTypeAdapter(CustomInstantAdapter.class)
+    @JsonSerialize(using = OffsetDateTimeSerializer.class)
+    private OffsetDateTime creationDate;
 
-  @JsonIgnore
-  @XmlElement(name = "EPCISHeader")
-  private EPCISHeader epcisHeader;
+    @JsonProperty("epcisBody")
+    @XmlElement(name = "EPCISBody", required = true)
+    private EPCISQueryBody epcisBody;
 
-  public EPCISQueryDocument(EPCISQueryBody epcisBody) {
-    this.epcisBody = epcisBody;
-    this.type = CommonConstants.EPCIS_QUERY_DOC;
-    this.schemaVersion = CommonConstants.SCHEMA_VERSION;
-    this.creationDate = OffsetDateTime.now();
-    this.context =
-        getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList());
+    @JsonIgnore
+    @XmlElement(name = "EPCISHeader")
+    private EPCISHeader epcisHeader;
 
-    // Populating the namespaces directly from context during xml query
-    CommonExtensionModifier.populateNamespaces(context);
-  }
+    @JsonIgnore
+    @XmlTransient
+    private String epcisVersionMax;
 
-  private List<Object> getContextInfoFromEventList(List<? extends EPCISEvent> epcisEvents) {
-    final List<Object> contextInfoList = new ArrayList<>();
 
-    contextInfoList.add(CommonConstants.EPCIS_DEFAULT_NAMESPACE);
-    if (CollectionUtils.isEmpty(epcisEvents)) {
-      return contextInfoList;
+    // Regex to detect versioned GS1 EPCIS context URLs
+    private static final Pattern EPCIS_CTX_PATTERN = Pattern.compile(
+            "^https://ref\\.gs1\\.org/standards/epcis/([0-9]+\\.[0-9]+\\.[0-9]+)/epcis-context\\.jsonld$");
+
+
+    public EPCISQueryDocument(EPCISQueryBody epcisBody, Optional<String> epcisVersionMax) {
+        this.epcisBody = epcisBody;
+        this.type = CommonConstants.EPCIS_QUERY_DOC;
+        this.schemaVersion = CommonConstants.SCHEMA_VERSION;
+        this.creationDate = OffsetDateTime.now();
+        this.epcisVersionMax = epcisVersionMax.orElse(null);
+        this.context = getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList(), this.epcisVersionMax);
+
+        // Populating the namespaces directly from context during xml query
+        CommonExtensionModifier.populateNamespaces(context);
     }
 
-    final Map<String, Object> contextInfoMap =
-        epcisEvents.stream()
-            .map(this::convertContextInfoToMap)
-            .filter(map -> !map.isEmpty())
-            .flatMap(map -> map.entrySet().stream())
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a));
+    private static String resolveContextUrl(final String url, final String epcisVersionMax) {
 
-    // Avoid adding the empty map into the context
-    if (!contextInfoMap.isEmpty()) {
-      contextInfoMap.entrySet().stream()
-          .forEach(entry -> contextInfoList.add(Map.of(entry.getKey(), entry.getValue())));
+        final Matcher m = EPCIS_CTX_PATTERN.matcher(url);
+        if (!m.matches()) {
+            return url; // not a recognized GS1 EPCIS context URL
+        }
+
+        final String capturedVersion = m.group(1);
+
+        if (StringUtils.isNotBlank(epcisVersionMax) &&
+                capturedVersion.equals(epcisVersionMax)) {
+            return CommonConstants.EPCIS_DEFAULT_NAMESPACE;
+        }
+        // otherwise keep the versioned URL as is
+        return url;
     }
 
-    epcisEvents.forEach(epcisEvent -> epcisEvent.setContextInfo(null));
-    return contextInfoList;
-  }
+    private List<Object> getContextInfoFromEventList(List<? extends EPCISEvent> events, String epcisVersionMax) {
+        final List<Object> result = new ArrayList<>();
 
-  private HashMap<String, Object> convertContextInfoToMap(EPCISEvent epcisEvent) {
-    // If context is null or empty then return the empty HashMap to avoid  exception.
-    if (epcisEvent.getContextInfo() == null || epcisEvent.getContextInfo().isEmpty()) {
-      return new HashMap<>();
+        // If no events → return default context
+        if (CollectionUtils.isEmpty(events)) {
+            result.add(CommonConstants.EPCIS_DEFAULT_NAMESPACE);
+            return result;
+        }
+
+        final Set<String> urlContexts = new LinkedHashSet<>();
+        final List<Map<String, Object>> mapContexts = new ArrayList<>();
+
+        // Extract context info from each event
+        for (EPCISEvent event : events) {
+            if (event.getContextInfo() == null) continue;
+
+            for (Object ctx : event.getContextInfo()) {
+                if (ctx instanceof String s) {
+                    urlContexts.add(s);
+                    continue;
+                }
+
+                Map<String, Object> map = extractMapContext(ctx);
+                if (map == null) continue;
+
+                extractUrlContexts(map, urlContexts);
+
+                // remove synthetic key
+                map.remove(CONTEXT_URLS);
+
+                if (!map.isEmpty()) {
+                    mapContexts.add(map);
+                }
+            }
+        }
+
+        // Add default context when no URL context is present
+        if (urlContexts.isEmpty()) {
+            result.add(normalizeDefaultContext(epcisVersionMax));
+        }
+
+        // Add normalized URL contexts without duplication
+        urlContexts.stream()
+                .map(url -> resolveContextUrl(url, epcisVersionMax))
+                .filter(url -> !result.contains(url))
+                .forEach(result::add);
+
+        // Add map-based contexts
+        result.addAll(mapContexts);
+
+        // Clear event-level context data
+        events.forEach(e -> e.setContextInfo(null));
+
+        return result;
     }
 
-    return epcisEvent.getContextInfo().stream()
-        .map(m -> new ObjectMapper().convertValue(m, HashMap.class))
-        .toList()
-        .stream()
-        .reduce(
-            (firstMap, secondMap) -> {
-              firstMap.putAll(secondMap);
-              return firstMap;
-            })
-        .orElseThrow(
-            () -> new QueryExecutionException("Error while collecting context Information"));
-  }
+    private void extractUrlContexts(Map<String, Object> map, Set<String> urlContexts) {
+        Object value = map.get(CONTEXT_URLS);
+        if (value instanceof List<?> list) {
+            list.stream()
+                    .filter(item -> item instanceof String)
+                    .map(String.class::cast)
+                    .forEach(urlContexts::add);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private Map<String, Object> extractMapContext(Object ctx) {
+        // Direct Map → convert keys to String
+        if (ctx instanceof Map<?, ?> m) {
+            Map<String, Object> result = new LinkedHashMap<>();
+            m.forEach((k, v) -> result.put(String.valueOf(k), v));
+            return result;
+        }
+
+        // Convert unknown object type via Jackson
+        try {
+            return new ObjectMapper().convertValue(ctx, LinkedHashMap.class);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    private String normalizeDefaultContext(String epcisVersionMax) {
+        if (epcisVersionMax.isEmpty()) {
+            return CommonConstants.EPCIS_DEFAULT_NAMESPACE;
+        }
+        return resolveContextUrl(CommonConstants.EPCIS_DEFAULT_NAMESPACE, epcisVersionMax);
+    }
+
 }

@@ -71,4 +71,5 @@ public class CommonConstants {
   public static final String IS_DUPLICATE = "isDuplicate";
   public static final String CAPTURED_BY = "capturedBy";
   public static final String ERROR_DECLARATION = "errorDeclaration";
+  public static final String CONTEXT_URLS = "contextUrls";
 }
