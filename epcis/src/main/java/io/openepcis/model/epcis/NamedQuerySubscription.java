@@ -16,13 +16,14 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.net.URI;
-import java.time.OffsetDateTime;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.net.URI;
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -30,20 +31,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class NamedQuerySubscription {
-  private UUID subscriptionID;
-  private String wsSessionID;
-  private String queryName;
-  private URI dest;
-  private String signatureToken;
-  private OffsetDateTime minRecordTime;
-  private OffsetDateTime initialRecordTime;
-  private Boolean reportIfEmpty;
-  private Boolean stream;
-  private Schedule schedule;
-  @Builder.Default private Boolean deleted = false;
-  private OffsetDateTime createdAt;
-  private String epcFormat;
-  private String cbvFormat;
-  private String subscribedBy;
-  private String defaultGroup;
+    private UUID subscriptionID;
+    private String wsSessionID;
+    private String queryName;
+    private String epcisVersion;
+    private URI dest;
+    private String signatureToken;
+    private OffsetDateTime minRecordTime;
+    private OffsetDateTime initialRecordTime;
+    private Boolean reportIfEmpty;
+    private Boolean stream;
+    private Schedule schedule;
+    @Builder.Default
+    private Boolean deleted = false;
+    private OffsetDateTime createdAt;
+    private String epcFormat;
+    private String cbvFormat;
+    private String subscribedBy;
+    private String defaultGroup;
 }
