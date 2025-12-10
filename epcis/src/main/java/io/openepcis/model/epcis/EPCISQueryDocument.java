@@ -101,6 +101,17 @@ public class EPCISQueryDocument {
         CommonExtensionModifier.populateNamespaces(context);
     }
 
+    /**
+     * Constructor for backward compatibility.
+     * @param epcisBody the EPCIS query body
+     * @deprecated Use {@link #EPCISQueryDocument(EPCISQueryBody, Optional)} instead.
+     *             This constructor will be removed in a future version.
+     */
+    @Deprecated(forRemoval = true)
+    public EPCISQueryDocument(EPCISQueryBody epcisBody) {
+        this(epcisBody, Optional.empty());
+    }
+
     private static String resolveContextUrl(final String url, final String epcisVersionMax) {
 
         final Matcher m = EPCIS_CTX_PATTERN.matcher(url);
