@@ -17,16 +17,49 @@ package io.openepcis.model.epcis.modifier;
 
 import io.openepcis.constants.EPCIS;
 import io.openepcis.model.epcis.MapWrapper;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.*;
 import javax.xml.namespace.QName;
 
+/**
+ * JAXB XmlAdapter for marshalling/unmarshalling extension Maps.
+ *
+ * <p>This adapter requires a {@link ConversionNamespaceContext} to be provided via constructor.
+ * Use {@code Marshaller.setAdapter(CustomExtensionAdapter.class, new CustomExtensionAdapter(nsContext))}
+ * to inject the context before marshalling/unmarshalling.
+ *
+ * <p>Example usage:
+ * <pre>
+ * ConversionNamespaceContext nsContext = new ConversionNamespaceContext();
+ * Marshaller marshaller = jaxbContext.createMarshaller();
+ * marshaller.setAdapter(CustomExtensionAdapter.class, new CustomExtensionAdapter(nsContext));
+ * marshaller.marshal(object, writer);
+ * </pre>
+ */
 public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, Object>> {
 
-  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-      DefaultJsonSchemaNamespaceURIResolver.getContext();
+  private final ConversionNamespaceContext nsContext;
+
+  /**
+   * Default constructor for JAXB auto-instantiation.
+   * If JAXB auto-instantiates this adapter (instead of using setAdapter()),
+   * operations will work with limited functionality (no namespace resolution).
+   */
+  public CustomExtensionAdapter() {
+    this.nsContext = null;
+  }
+
+  /**
+   * Constructor with namespace context.
+   * Use this constructor with {@code Marshaller.setAdapter()} for full functionality.
+   *
+   * @param nsContext the namespace context to use for resolving namespaces
+   */
+  public CustomExtensionAdapter(ConversionNamespaceContext nsContext) {
+    this.nsContext = nsContext;
+  }
 
   @Override
   public MapWrapper marshal(final Map<String, Object> extensions) {
@@ -48,9 +81,11 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
       String namespaceURI = null;
 
       if (prefix != null) {
-        namespaceURI = EPCIS.EPCIS_DEFAULT_NAMESPACES.get(prefix).toString();
-        if (namespaceURI == null) {
-          Optional<String> namespace = namespaceResolver.findNamespaceByPrefix(prefix);
+        Object defaultNs = EPCIS.EPCIS_DEFAULT_NAMESPACES.get(prefix);
+        namespaceURI = defaultNs != null ? defaultNs.toString() : null;
+        if (namespaceURI == null && nsContext != null) {
+          // Use namespace context if available
+          Optional<String> namespace = nsContext.findNamespaceByPrefix(prefix);
           if (namespace.isPresent()) {
             namespaceURI = namespace.get();
           }
@@ -108,7 +143,7 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
     if (value == null) {
       return Collections.emptyMap();
     }
-    return CommonExtensionModifier.unmarshaller(value.elements);
+    return CommonExtensionModifier.unmarshaller(value.elements, nsContext);
   }
 
   // Creates the QName based on the provided values

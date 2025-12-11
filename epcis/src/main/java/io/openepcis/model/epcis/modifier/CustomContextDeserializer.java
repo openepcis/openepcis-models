@@ -20,16 +20,16 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class CustomContextDeserializer extends JsonDeserializer<List<Object>> {
 
-  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-      DefaultJsonSchemaNamespaceURIResolver.getContext();
   private final ObjectMapper objectMapper = new ObjectMapper();
 
   @Override
@@ -38,22 +38,28 @@ public class CustomContextDeserializer extends JsonDeserializer<List<Object>> {
     final List<Object> namespaceNode =
         objectMapper.readValue(jsonParser, new TypeReference<ArrayList<Object>>() {});
 
-    // If the @Context has been populated with values then write the namespaces to Defaulter's using
-    // the custom deserialize
+    // Get namespace context from DeserializationContext attributes
+    final Optional<ConversionNamespaceContext> nsCtxOpt =
+        ConversionNamespaceContext.fromDeserializationContext(ctxt);
+
+    // If the @Context has been populated with values then write the namespaces to context
     if (namespaceNode != null) {
       namespaceNode.forEach(
           item -> {
             if (item instanceof Map) {
               final Map<String, String> namespaceLoc = (Map<String, String>) item;
               namespaceLoc.forEach(
-                  (key, value) -> namespaceResolver.populateEventNamespaces(value, key));
+                  (key, value) -> nsCtxOpt.ifPresent(ctx -> ctx.populateEventNamespaces(value, key)));
             }
           });
     } else {
       // If context is not populated then during the XML unmarshalling populate based on the values
-      // present in DefaultJsonSchemaNamespaceURIResolver
-      if (!namespaceResolver.getEventNamespaces().isEmpty()) {
-        return new ArrayList<>(namespaceResolver.getEventNamespaces().values());
+      // present in the namespace context
+      final Map<String, String> eventNamespaces = nsCtxOpt
+          .map(ConversionNamespaceContext::getEventNamespaces)
+          .orElse(Collections.emptyMap());
+      if (!eventNamespaces.isEmpty()) {
+        return new ArrayList<>(eventNamespaces.values());
       }
     }
 

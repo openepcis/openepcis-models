@@ -15,7 +15,7 @@
  */
 package io.openepcis.model.epcis.modifier;
 
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.MapUtils;
@@ -34,20 +34,25 @@ import static io.openepcis.constants.EPCIS.PROTECTED_NAMESPACE_OF_CONTEXT;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CommonExtensionModifier {
 
-    public static Map<String, Object> unmarshaller(final List<Object> value) {
+    /**
+     * Unmarshals XML extension elements into a Map structure.
+     *
+     * @param value the list of XML elements to unmarshal
+     * @param nsContext the namespace context to use for resolving/storing namespaces
+     * @return a map representation of the XML elements
+     */
+    public static Map<String, Object> unmarshaller(final List<Object> value, final ConversionNamespaceContext nsContext) {
         if (value == null) {
             return Collections.emptyMap();
         }
 
-        return elementReader(value, "");
+        return elementReader(value, "", nsContext);
     }
 
     // This method reads elements from a list and populates a LinkedHashMap with the elements.
     private static LinkedHashMap<String, Object> elementReader(
-            final List<Object> value, final String parentPrefix) {
+            final List<Object> value, final String parentPrefix, final ConversionNamespaceContext nsContext) {
         final LinkedHashMap<String, Object> multiExtensions = new LinkedHashMap<>();
-        final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-                DefaultJsonSchemaNamespaceURIResolver.getContext();
 
         // Loop over the elements in list
         for (final Object obj : value) {
@@ -67,10 +72,17 @@ public class CommonExtensionModifier {
                     nodeName = parentPrefix + ":" + nodeName;
                 }
 
-                if (!namespaceResolver.getAllNamespaces().containsKey(namespaceURI)
+                // Get all namespaces for checking
+                Map<String, String> allNamespaces = nsContext != null
+                        ? nsContext.getAllNamespaces()
+                        : Collections.emptyMap();
+
+                if (!allNamespaces.containsKey(namespaceURI)
                         && !StringUtils.isEmpty(namespaceURI)
                         && !PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
-                    namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
+                    if (nsContext != null) {
+                        nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
+                    }
                 }
 
                 // If the element contains the default namespace but contains different prefix then replace
@@ -81,7 +93,9 @@ public class CommonExtensionModifier {
                     nodeName = valueElement.getNodeName();
 
                     // Populate the eventNamespaces with respective URI and Prefix
-                    namespaceResolver.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
+                    if (nsContext != null) {
+                        nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
+                    }
                 }
 
                 // Process all the attributes and store them during the conversion from XML to JSON if
@@ -136,7 +150,7 @@ public class CommonExtensionModifier {
                                             ? valueElement.getPrefix()
                                             : parentPrefix;
                             final HashMap<String, Object> childNodes =
-                                    elementReader(List.of(parentNode), complexPrefix);
+                                    elementReader(List.of(parentNode), complexPrefix, nsContext);
                             extensionPopulate(multiExtensions, nodeName, childNodes, hasAttribute);
                         }
                     }
@@ -231,34 +245,34 @@ public class CommonExtensionModifier {
     }
 
     /**
-     * Populates namespaces from JSON-LD context list
+     * Populates namespaces from JSON-LD context list.
      *
      * @param context List of context objects (can contain Maps, Strings, or Lists)
+     * @param nsContext the namespace context to populate
      */
-    public static void populateNamespaces(final List<Object> context) {
-        if (context == null || context.isEmpty()) {
+    public static void populateNamespaces(final List<Object> context, final ConversionNamespaceContext nsContext) {
+        if (context == null || context.isEmpty() || nsContext == null) {
             return;
         }
 
-        final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-                DefaultJsonSchemaNamespaceURIResolver.getContext();
-        namespaceResolver.resetEventNamespaces();
+        // Reset event namespaces
+        nsContext.resetEventNamespaces();
 
         for (final Object item : context) {
-            processContextItem(item, namespaceResolver);
+            processContextItem(item, nsContext);
         }
     }
 
-    private static void processContextItem(Object item, DefaultJsonSchemaNamespaceURIResolver namespaceResolver) {
+    private static void processContextItem(Object item, ConversionNamespaceContext nsContext) {
         // Handle Map (JSON object style contexts)
         if (item instanceof Map<?, ?> mapItem) {
-            mapItem.forEach((key, value) -> processMapEntry(key, value, namespaceResolver));
+            mapItem.forEach((key, value) -> processMapEntry(key, value, nsContext));
             return;
         }
 
         // Handle String (plain URL contexts)
         if (item instanceof String url) {
-            namespaceResolver.populateEventNamespaces(url, null);
+            nsContext.populateEventNamespaces(url, null);
             return;
         }
 
@@ -266,34 +280,42 @@ public class CommonExtensionModifier {
         if (item instanceof List<?> list) {
             list.forEach(element -> {
                 if (element instanceof String stringElement) {
-                    namespaceResolver.populateEventNamespaces(stringElement, null);
+                    nsContext.populateEventNamespaces(stringElement, null);
                 } else if (element instanceof Map<?, ?> innerMap) {
-                    innerMap.forEach((key, value) -> processMapEntry(key, value, namespaceResolver));
+                    innerMap.forEach((key, value) -> processMapEntry(key, value, nsContext));
                 }
             });
         }
     }
 
-    private static void processMapEntry(Object key, Object value, DefaultJsonSchemaNamespaceURIResolver namespaceResolver) {
+    private static void processMapEntry(Object key, Object value, ConversionNamespaceContext nsContext) {
         if (value instanceof String stringValue) {
-            namespaceResolver.populateEventNamespaces(stringValue, String.valueOf(key));
+            nsContext.populateEventNamespaces(stringValue, String.valueOf(key));
         } else if (value instanceof List<?> listValue) {
             listValue.forEach(v -> {
                 if (v instanceof String stringV) {
-                    namespaceResolver.populateEventNamespaces(stringV, String.valueOf(key));
+                    nsContext.populateEventNamespaces(stringV, String.valueOf(key));
                 }
             });
         }
     }
 
 
-    // Method to find the required namespace prefix based on provided namespace URI
-    public static String getNamespacePrefix(final QName namespace) {
-        final DefaultJsonSchemaNamespaceURIResolver instance =
-                DefaultJsonSchemaNamespaceURIResolver.getContext();
+    /**
+     * Finds the required namespace prefix based on provided namespace URI.
+     *
+     * @param namespace the QName containing the namespace URI to look up
+     * @param nsContext the namespace context to search in
+     * @return the qualified name with prefix (e.g., "prefix:localPart")
+     */
+    public static String getNamespacePrefix(final QName namespace, final ConversionNamespaceContext nsContext) {
+        // Get all namespaces from context
+        final Map<String, String> allNamespaces = nsContext != null
+                ? nsContext.getAllNamespaces()
+                : Collections.emptyMap();
 
         // Try to find a prefix directly mapped to the namespace URI
-        String prefix = instance.getAllNamespaces().get(namespace.getNamespaceURI());
+        String prefix = allNamespaces.get(namespace.getNamespaceURI());
 
         // If the prefix is not found then get the prefix from the namespaceURI by extracting the
         // trailing values
@@ -306,7 +328,6 @@ public class CommonExtensionModifier {
             return prefix + ":" + namespace.getLocalPart();
         }
 
-        // final String qualifiedPrefix = StringUtils.isNotBlank(prefix) ? prefix :
         return prefix + ":" + namespace.getLocalPart();
     }
 }
