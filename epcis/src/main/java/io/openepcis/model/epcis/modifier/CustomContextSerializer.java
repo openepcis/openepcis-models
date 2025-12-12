@@ -21,15 +21,14 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import io.openepcis.model.epcis.constants.CommonConstants;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class CustomContextSerializer extends JsonSerializer<List<Object>> {
-
-  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-      DefaultJsonSchemaNamespaceURIResolver.getContext();
 
   @Override
   public void serialize(
@@ -38,6 +37,10 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       final SerializerProvider serializers)
       throws IOException {
     try {
+      // Get namespace context from SerializerProvider attributes
+      final Optional<ConversionNamespaceContext> ctxOpt =
+          ConversionNamespaceContext.fromSerializerProvider(serializers);
+
       // NOTE: This fix is made temporarily until namespaceResolver is improved
       if (contextValue.contains("bareevent")) {
         jsonGenerator.writeStartArray();
@@ -64,7 +67,9 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       } else {
         jsonGenerator.writeStartArray();
 
-        final Map<String, String> modifiedNamespaces = namespaceResolver.getEventNamespaces();
+        final Map<String, String> modifiedNamespaces = ctxOpt
+            .map(ConversionNamespaceContext::getEventNamespaces)
+            .orElse(Collections.emptyMap());
 
         for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
 
@@ -77,7 +82,9 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
         }
 
         jsonGenerator.writeEndArray();
-        namespaceResolver.resetEventNamespaces();
+
+        // Reset event namespaces after serialization
+        ctxOpt.ifPresent(ConversionNamespaceContext::resetEventNamespaces);
       }
     } catch (IOException e) {
       throw new IOException(

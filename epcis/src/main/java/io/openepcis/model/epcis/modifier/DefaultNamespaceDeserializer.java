@@ -23,7 +23,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class will detect any default EPCIS namespaces in userExtension, ilmd, or errorExtension. If
- * the namespaces aren't detected and included in the DefaultJsonSchemaNamespaceURIResolver
+ * the namespaces aren't detected and included in the namespace context
  * EventNamespaces then during the marshalling it produces error
  */
 @Slf4j
@@ -41,8 +41,6 @@ import lombok.extern.slf4j.Slf4j;
 public class DefaultNamespaceDeserializer extends JsonDeserializer<Object> {
 
   private static DefaultNamespaceDeserializer instance;
-  private final DefaultJsonSchemaNamespaceURIResolver namespaceResolver =
-      DefaultJsonSchemaNamespaceURIResolver.getContext();
   private final ObjectMapper objectMapper = new ObjectMapper();
 
   @Override
@@ -50,15 +48,19 @@ public class DefaultNamespaceDeserializer extends JsonDeserializer<Object> {
       throws IOException {
     final JsonToken currentToken = jp.currentToken();
 
+    // Get namespace context from DeserializationContext attributes
+    final Optional<ConversionNamespaceContext> nsCtxOpt =
+        ConversionNamespaceContext.fromDeserializationContext(ctxt);
+
     if (currentToken == JsonToken.START_OBJECT) {
       // Handle Map for ILMD, User Extensions, Error Extensions
       final Map<String, Object> result = objectMapper.readValue(jp, new TypeReference<>() {});
-      processExtensions(result);
+      processExtensions(result, nsCtxOpt.orElse(null));
       return result;
     } else if (currentToken == JsonToken.START_ARRAY) {
       // Handle List for certificationInfo
       final List<Object> result = objectMapper.readValue(jp, new TypeReference<>() {});
-      processListExtensions(result);
+      processListExtensions(result, nsCtxOpt.orElse(null));
       return result;
     } else {
       throw new IOException(
@@ -75,50 +77,55 @@ public class DefaultNamespaceDeserializer extends JsonDeserializer<Object> {
   }
 
   // Process the list extensions to obtain the context for fields such as certificationInfo
-  public void processListExtensions(List<Object> certificationInfo) {
+  public void processListExtensions(List<Object> certificationInfo, ConversionNamespaceContext nsContext) {
     certificationInfo.forEach(
         entry -> {
           if (entry instanceof Map<?, ?>) {
             @SuppressWarnings("unchecked")
             final Map<String, Object> mapEntry = (Map<String, Object>) entry;
-            processExtensions(mapEntry);
+            processExtensions(mapEntry, nsContext);
           } else if (entry instanceof List) {
             @SuppressWarnings("unchecked")
             final List<Object> listEntry = (List<Object>) entry;
-            processListExtensions(listEntry);
+            processListExtensions(listEntry, nsContext);
           } else if (entry instanceof String) {
-            findNamespace((String) entry);
+            findNamespace((String) entry, nsContext);
           }
         });
   }
 
   // Process the Map extension to obtain the context for fields such as ILMD, UserExtensions, Error
   // Extensions
-  public void processExtensions(Map<String, Object> extensionsNode) {
+  public void processExtensions(Map<String, Object> extensionsNode, ConversionNamespaceContext nsContext) {
     extensionsNode.forEach(
         (key, value) -> {
-          findNamespace(key);
+          findNamespace(key, nsContext);
           if (value instanceof Map<?, ?>) {
             @SuppressWarnings("unchecked")
             final Map<String, Object> mapEntry = (Map<String, Object>) value;
-            processExtensions(mapEntry);
+            processExtensions(mapEntry, nsContext);
           } else if (value instanceof List) {
             @SuppressWarnings("unchecked")
             final List<Object> listEntry = (List<Object>) value;
-            processListExtensions(listEntry);
+            processListExtensions(listEntry, nsContext);
           } else if (value instanceof String) {
-            findNamespace(key);
+            findNamespace(key, nsContext);
           }
         });
   }
 
   /**
    * Based on the key present for the extension get the prefix and get corresponding namespaceURI
-   * and if not present already then populate in namespaceResolver
+   * and if not present already then populate in namespace context
    *
    * @param key key of the userExtension gs1:lotNumber, etc.
+   * @param nsContext the namespace context to populate (may be null)
    */
-  private void findNamespace(final String key) {
+  private void findNamespace(final String key, final ConversionNamespaceContext nsContext) {
+    if (nsContext == null) {
+      return; // No context to populate
+    }
+
     final String prefix =
         key != null && key.contains(":") ? key.substring(0, key.indexOf(":")) : "";
     final Optional<String> namespaceOpt =
@@ -127,6 +134,6 @@ public class DefaultNamespaceDeserializer extends JsonDeserializer<Object> {
             .map(entry -> (String) entry.getValue())
             .findFirst();
     namespaceOpt.ifPresent(
-        entry -> namespaceResolver.populateEventNamespaces(namespaceOpt.get(), prefix));
+        entry -> nsContext.populateEventNamespaces(namespaceOpt.get(), prefix));
   }
 }

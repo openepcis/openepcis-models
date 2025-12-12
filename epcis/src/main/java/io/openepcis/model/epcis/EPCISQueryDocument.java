@@ -98,7 +98,7 @@ public class EPCISQueryDocument {
         this.context = getContextInfoFromEventList(epcisBody.getQueryResults().getResultsBody().getEventList(), this.epcisVersionMax);
 
         // Populating the namespaces directly from context during xml query
-        CommonExtensionModifier.populateNamespaces(context);
+        CommonExtensionModifier.populateNamespaces(context, null);
     }
 
     /**

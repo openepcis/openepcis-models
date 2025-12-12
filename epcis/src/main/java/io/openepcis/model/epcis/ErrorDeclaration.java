@@ -78,7 +78,7 @@ public class ErrorDeclaration implements Serializable {
 
     // Detect default EPCIS namespaces (gs1, cbvmda, etc.), if present add namespacesURI that are
     // later used for XML marshalling
-    DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
+    DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions, null);
   }
 
   @JsonAnyGetter

@@ -27,7 +27,6 @@ import io.openepcis.identifiers.converter.util.ConverterUtil;
 import io.openepcis.model.epcis.extension.OpenEPCISExtension;
 import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import io.openepcis.model.epcis.modifier.*;
-import io.openepcis.model.epcis.util.DefaultJsonSchemaNamespaceURIResolver;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
@@ -185,38 +184,15 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
   @JsonDeserialize(using = DefaultNamespaceDeserializer.class)
   public void setUserExtensions(String key, Object value) {
     userExtensions.put(key, value);
-
-    // Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present
-    // add namespacesURI that are later used for XML marshalling
-    DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
+    // Note: Namespace detection is handled by DefaultNamespaceDeserializer during deserialization
+    // when ConversionNamespaceContext is available via Jackson's DeserializationContext attributes.
   }
 
-  // Getter method for the @context field to either set to null if only default namespaces are
-  // present else return all namespaces
+  // Getter method for the @context field.
+  // Note: The CustomContextSerializer handles namespace logic during JSON serialization
+  // using ConversionNamespaceContext from Jackson's SerializerProvider attributes.
   public List<Object> getContextInfo() {
-    // Check if the XML-> JSON conversion has custom namespaces apart from default namespaces
-    final Map<String, String> eventNamespaces =
-        DefaultJsonSchemaNamespaceURIResolver.getContext().getEventNamespaces();
-
-    // Add the namespaces from the contextInfo to the eventNamespaces
-    if (CollectionUtils.isNotEmpty(contextInfo)) {
-      contextInfo.stream()
-          .filter(Objects::nonNull)
-          .filter(obj -> obj instanceof Map<?, ?>)
-          .map(obj -> (Map<?, ?>) obj)
-          .flatMap(map -> map.entrySet().stream())
-          .forEach(
-              entry -> eventNamespaces.put(entry.getValue().toString(), entry.getKey().toString()));
-    }
-
-    // Check if the eventNamespaces contains any custom namespaces or just EPCIS default namespaces
-    final boolean hasCustomNamespace =
-        eventNamespaces.values().stream()
-            .anyMatch(value -> !EPCIS_DEFAULT_NAMESPACES.containsKey(value));
-
-    // If hasCustomNamespace then return all the namespaces
-    // If does not have additional namespaces then do not include the default namespace in json
-    return hasCustomNamespace ? contextInfo : null;
+    return contextInfo;
   }
 
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
@@ -344,9 +320,9 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
           });
     }
 
-    if (!DefaultJsonSchemaNamespaceURIResolver.getContext().getEventNamespaces().isEmpty()) {
-      contextInfo = new ArrayList<>();
-    }
+    // Note: contextInfo population from namespace context is handled by the caller
+    // via the CustomExtensionAdapter which receives ConversionNamespaceContext through
+    // Marshaller.setAdapter().
   }
 
   // Method to check if provided context contains the empty HashMap if so skip them

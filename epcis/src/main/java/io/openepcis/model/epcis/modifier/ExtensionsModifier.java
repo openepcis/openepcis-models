@@ -105,7 +105,11 @@ public class ExtensionsModifier {
   }
 
   public Map<String, Object> createObject(final List<Object> value) {
-    return CommonExtensionModifier.unmarshaller(value);
+    return createObject(value, null);
+  }
+
+  public Map<String, Object> createObject(final List<Object> value, final io.openepcis.model.epcis.util.ConversionNamespaceContext nsContext) {
+    return CommonExtensionModifier.unmarshaller(value, nsContext);
   }
 
   /**
