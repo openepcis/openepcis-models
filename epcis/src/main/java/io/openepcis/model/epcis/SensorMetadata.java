@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.modifier.*;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
+import io.openepcis.model.epcis.util.NamespaceContextAware;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -41,7 +43,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @XmlAccessorType(XmlAccessType.NONE)
-public class SensorMetadata implements Serializable {
+public class SensorMetadata implements Serializable, NamespaceContextAware {
 
   @XmlAttribute
   @XmlJavaTypeAdapter(CustomInstantAdapter.class)
@@ -76,6 +78,19 @@ public class SensorMetadata implements Serializable {
   @XmlAnyAttribute @JsonIgnore @Builder.Default
   private Map<QName, Object> anyAttributes = new HashMap<>();
 
+  @JsonIgnore @XmlTransient
+  private ConversionNamespaceContext namespaceContext;
+
+  @Override
+  public void setNamespaceContext(ConversionNamespaceContext context) {
+    this.namespaceContext = context;
+  }
+
+  @Override
+  public ConversionNamespaceContext getNamespaceContext() {
+    return this.namespaceContext;
+  }
+
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {
     anyAttributes.put(new QName(key), value);
@@ -95,7 +110,7 @@ public class SensorMetadata implements Serializable {
       userExtensions = new HashMap<>();
       anyAttributes.forEach(
           (key, value) ->
-              userExtensions.put(CommonExtensionModifier.getNamespacePrefix(key), value));
+              userExtensions.put(CommonExtensionModifier.getNamespacePrefix(key, namespaceContext), value));
       anyAttributes = new HashMap<>();
     }
   }

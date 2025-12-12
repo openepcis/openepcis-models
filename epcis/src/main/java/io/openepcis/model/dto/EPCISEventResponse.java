@@ -53,7 +53,7 @@ public class EPCISEventResponse {
     this.contextInfo = getContextInfoFromEvent(epcisEvent);
 
     // Populating the namespaces directly from context during xml query
-    CommonExtensionModifier.populateNamespaces(contextInfo);
+    CommonExtensionModifier.populateNamespaces(contextInfo, null);
   }
 
   private List<Object> getContextInfoFromEvent(EPCISEvent epcisEvent) {

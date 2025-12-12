@@ -67,10 +67,6 @@ public class ReadPoint implements Serializable {
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {
     userExtensions.put(key, value);
-
-    // Detect default EPCIS namespaces (gs1, cbvmda, etc.) after json deserialization, if present
-    // add namespacesURI that are later used for XML marshalling
-    DefaultNamespaceDeserializer.getInstance().processExtensions(userExtensions);
   }
 
   @JsonAnyGetter
