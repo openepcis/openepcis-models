@@ -213,7 +213,7 @@ public class EPCISQueryDocument {
     }
 
     private String normalizeDefaultContext(String epcisVersionMax) {
-        if (epcisVersionMax.isEmpty()) {
+        if (epcisVersionMax == null || epcisVersionMax.isEmpty()) {
             return CommonConstants.EPCIS_DEFAULT_NAMESPACE;
         }
         return resolveContextUrl(CommonConstants.EPCIS_DEFAULT_NAMESPACE, epcisVersionMax);
