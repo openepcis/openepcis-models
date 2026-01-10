@@ -27,6 +27,7 @@ import io.openepcis.identifiers.converter.util.ConverterUtil;
 import io.openepcis.model.epcis.extension.OpenEPCISExtension;
 import io.openepcis.model.epcis.extension.OpenEPCISSupport;
 import io.openepcis.model.epcis.modifier.*;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
@@ -262,7 +263,11 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
     // Add all elements from AnyElements to UserExtensions after Unmarshalling before creating JSON
     if (anyElements != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      userExtensions = extensionsModifier.createObject(anyElements);
+      // Retrieve namespace context from unmarshaller if available (for XML->JSON conversion)
+      // This allows namespaces discovered in event extensions to be propagated to the JSON @context
+      final ConversionNamespaceContext nsContext =
+          ConversionNamespaceContext.fromUnmarshaller(m).orElse(null);
+      userExtensions = extensionsModifier.createObject(anyElements, nsContext);
       anyElements = new ArrayList<>();
     }
 

@@ -49,6 +49,12 @@ public class ConversionNamespaceContext {
    */
   public static final String ATTR_KEY = ConversionNamespaceContext.class.getName();
 
+  /**
+   * Property key for storing context in JAXB Unmarshaller.
+   * Used to pass namespace context to afterUnmarshal() callbacks.
+   */
+  public static final String UNMARSHALLER_PROPERTY_KEY = "io.openepcis.conversion.namespaceContext";
+
   private final Map<String, String> documentNamespaces = new ConcurrentHashMap<>();
   private final Map<String, String> eventNamespaces = new ConcurrentHashMap<>();
 
@@ -126,6 +132,27 @@ public class ConversionNamespaceContext {
     Object attr = ctxt.getAttribute(ATTR_KEY);
     if (attr instanceof ConversionNamespaceContext ctx) {
       return Optional.of(ctx);
+    }
+    return Optional.empty();
+  }
+
+  /**
+   * Retrieves the ConversionNamespaceContext from a JAXB Unmarshaller.
+   *
+   * @param unmarshaller the JAXB Unmarshaller
+   * @return the context if available, or empty Optional
+   */
+  public static Optional<ConversionNamespaceContext> fromUnmarshaller(jakarta.xml.bind.Unmarshaller unmarshaller) {
+    if (unmarshaller == null) {
+      return Optional.empty();
+    }
+    try {
+      Object property = unmarshaller.getProperty(UNMARSHALLER_PROPERTY_KEY);
+      if (property instanceof ConversionNamespaceContext ctx) {
+        return Optional.of(ctx);
+      }
+    } catch (jakarta.xml.bind.PropertyException e) {
+      // Property not set or not supported, return empty
     }
     return Optional.empty();
   }
