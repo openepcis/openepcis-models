@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.epcis.modifier;
 
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +27,14 @@ import org.w3c.dom.Element;
 
 public class ExtensionsModifier {
   private final Document document;
+  private final ConversionNamespaceContext nsContext;
 
   public ExtensionsModifier() throws ParserConfigurationException {
+    this(null);
+  }
+
+  public ExtensionsModifier(ConversionNamespaceContext nsContext) throws ParserConfigurationException {
+    this.nsContext = nsContext;
     document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
   }
 
@@ -55,7 +62,7 @@ public class ExtensionsModifier {
         continue;
       }
 
-      final Element rootElement = document.createElement(property.getKey());
+      final Element rootElement = createNamespacedElement(property.getKey());
 
       if (property.getValue() instanceof Map) {
         final Map<String, Object> mapPropertyValues = (Map<String, Object>) property.getValue();
@@ -76,7 +83,7 @@ public class ExtensionsModifier {
       } else if (property.getValue() instanceof ArrayList<?> arrayPropertyValues) {
         for (Object dupItems : arrayPropertyValues) {
           if (dupItems instanceof Map mapElements) {
-            final Element arrayElement = document.createElement(property.getKey());
+            final Element arrayElement = createNamespacedElement(property.getKey());
 
             // Attach attributes to the element based on their values if any entry contains @
             addAttributes(mapElements, arrayElement);
@@ -91,7 +98,7 @@ public class ExtensionsModifier {
                 });
             elements.add(arrayElement);
           } else if (dupItems instanceof String stringValue) {
-            final Element arrayString = document.createElement(property.getKey());
+            final Element arrayString = createNamespacedElement(property.getKey());
             arrayString.setTextContent(stringValue);
             elements.add(arrayString);
           }
@@ -134,5 +141,26 @@ public class ExtensionsModifier {
               final String attributeName = attributeEntry.getKey().substring(1);
               element.setAttribute(attributeName, (String) attributeEntry.getValue());
             });
+  }
+
+  /**
+   * Creates a DOM Element with proper namespace handling for prefixed element names.
+   * For keys like "ext1:name", looks up the namespace URI from the context and uses createElementNS().
+   * For keys without a prefix, uses standard createElement().
+   *
+   * @param qualifiedName the element name, potentially with namespace prefix (e.g., "ext1:name")
+   * @return the created DOM Element with proper namespace binding
+   */
+  private Element createNamespacedElement(final String qualifiedName) {
+    // Check if the name contains a prefix (has a colon)
+    int colonIndex = qualifiedName.indexOf(':');
+    if (colonIndex > 0 && nsContext != null) {
+      String prefix = qualifiedName.substring(0, colonIndex);
+      // Look up the namespace URI from the context
+      return nsContext.findNamespaceByPrefix(prefix)
+          .map(namespaceURI -> document.createElementNS(namespaceURI, qualifiedName))
+          .orElseGet(() -> document.createElement(qualifiedName));
+    }
+    return document.createElement(qualifiedName);
   }
 }

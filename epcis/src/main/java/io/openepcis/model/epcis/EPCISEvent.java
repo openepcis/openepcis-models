@@ -42,7 +42,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = true, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = false, property = "type")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ObjectEvent.class, name = "ObjectEvent"),
   @JsonSubTypes.Type(value = TransformationEvent.class, name = "TransformationEvent"),
@@ -199,7 +199,11 @@ public class EPCISEvent implements Serializable, OpenEPCISSupport {
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
     // Add all elements from UserExtensions to AnyElements before Marshaling & creating XML
     if (userExtensions != null) {
-      final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
+      // Retrieve namespace context from openEPCISExtension (set during JSON->XML conversion)
+      // for creating properly namespaced XML elements
+      final ConversionNamespaceContext nsContext =
+          openEPCISExtension != null ? openEPCISExtension.getConversionNamespaceContext() : null;
+      final ExtensionsModifier extensionsModifier = new ExtensionsModifier(nsContext);
       anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }

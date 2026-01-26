@@ -55,6 +55,22 @@ public class ConversionNamespaceContext {
    */
   public static final String UNMARSHALLER_PROPERTY_KEY = "io.openepcis.conversion.namespaceContext";
 
+  /**
+   * Property key for storing context in JAXB Marshaller.
+   * Used to pass namespace context to beforeMarshal() callbacks for creating properly namespaced XML elements.
+   */
+  public static final String MARSHALLER_PROPERTY_KEY = "io.openepcis.conversion.namespaceContext";
+
+  /**
+   * ThreadLocal for passing namespace context during synchronous JAXB unmarshal operations.
+   * This is used as a fallback when JAXB implementation (like EclipseLink) doesn't support
+   * custom properties on the unmarshaller.
+   *
+   * <p>The ThreadLocal is only used during the blocking unmarshal operation and is cleared
+   * immediately after, so it's safe even in reactive contexts.
+   */
+  private static final ThreadLocal<ConversionNamespaceContext> UNMARSHAL_CONTEXT = new ThreadLocal<>();
+
   private final Map<String, String> documentNamespaces = new ConcurrentHashMap<>();
   private final Map<String, String> eventNamespaces = new ConcurrentHashMap<>();
 
@@ -62,6 +78,23 @@ public class ConversionNamespaceContext {
    * Creates a new empty namespace context.
    */
   public ConversionNamespaceContext() {
+  }
+
+  /**
+   * Creates a new event-scoped namespace context that includes document namespaces
+   * from a parent context. This is used during JSON-to-XML conversion to ensure
+   * each event only gets its own namespaces plus the document-level ones.
+   *
+   * @param documentContext the context containing document-level namespaces
+   * @return a new context with document namespaces copied
+   */
+  public static ConversionNamespaceContext createEventScoped(ConversionNamespaceContext documentContext) {
+    ConversionNamespaceContext eventScoped = new ConversionNamespaceContext();
+    if (documentContext != null) {
+      // Copy document namespaces (stored as prefix -> URI internally)
+      eventScoped.documentNamespaces.putAll(documentContext.documentNamespaces);
+    }
+    return eventScoped;
   }
 
   /**
@@ -137,17 +170,74 @@ public class ConversionNamespaceContext {
   }
 
   /**
+   * Sets the namespace context for the current unmarshal operation.
+   * Call this before JAXB unmarshal and clear it after with {@link #clearUnmarshalContext()}.
+   *
+   * @param context the namespace context for this unmarshal operation
+   */
+  public static void setUnmarshalContext(ConversionNamespaceContext context) {
+    UNMARSHAL_CONTEXT.set(context);
+  }
+
+  /**
+   * Clears the namespace context after unmarshal operation completes.
+   * Always call this in a finally block after unmarshal.
+   */
+  public static void clearUnmarshalContext() {
+    UNMARSHAL_CONTEXT.remove();
+  }
+
+  /**
+   * Gets the current unmarshal context from ThreadLocal.
+   *
+   * @return the context if available, or empty Optional
+   */
+  public static Optional<ConversionNamespaceContext> getUnmarshalContext() {
+    return Optional.ofNullable(UNMARSHAL_CONTEXT.get());
+  }
+
+  /**
    * Retrieves the ConversionNamespaceContext from a JAXB Unmarshaller.
+   * Falls back to ThreadLocal if the unmarshaller doesn't support custom properties
+   * (e.g., EclipseLink JAXB).
    *
    * @param unmarshaller the JAXB Unmarshaller
    * @return the context if available, or empty Optional
    */
   public static Optional<ConversionNamespaceContext> fromUnmarshaller(jakarta.xml.bind.Unmarshaller unmarshaller) {
+    // First try the ThreadLocal (works with all JAXB implementations)
+    ConversionNamespaceContext threadLocalContext = UNMARSHAL_CONTEXT.get();
+    if (threadLocalContext != null) {
+      return Optional.of(threadLocalContext);
+    }
+
+    // Fall back to unmarshaller property (may not be supported by all implementations)
     if (unmarshaller == null) {
       return Optional.empty();
     }
     try {
       Object property = unmarshaller.getProperty(UNMARSHALLER_PROPERTY_KEY);
+      if (property instanceof ConversionNamespaceContext ctx) {
+        return Optional.of(ctx);
+      }
+    } catch (jakarta.xml.bind.PropertyException e) {
+      // Property not set or not supported, return empty
+    }
+    return Optional.empty();
+  }
+
+  /**
+   * Retrieves the ConversionNamespaceContext from a JAXB Marshaller.
+   *
+   * @param marshaller the JAXB Marshaller
+   * @return the context if available, or empty Optional
+   */
+  public static Optional<ConversionNamespaceContext> fromMarshaller(jakarta.xml.bind.Marshaller marshaller) {
+    if (marshaller == null) {
+      return Optional.empty();
+    }
+    try {
+      Object property = marshaller.getProperty(MARSHALLER_PROPERTY_KEY);
       if (property instanceof ConversionNamespaceContext ctx) {
         return Optional.of(ctx);
       }
