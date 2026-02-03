@@ -174,6 +174,7 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
       List<QuantityList> inputQuantityList,
       List<QuantityList> outputQuantityList,
       String transformationID,
+      List<BizTransactionList> bizTransactionList,
       Map<String, Object> ilmdXml,
       Ilmd ilmd,
       OpenEPCISExtension openEPCISExtension) {
@@ -204,6 +205,7 @@ public class TransformationEvent extends EPCISEvent implements XmlSupportExtensi
     this.inputQuantityList = inputQuantityList;
     this.outputQuantityList = outputQuantityList;
     this.transformationID = transformationID;
+    this.bizTransactionList = bizTransactionList;
     this.ilmd = ilmd;
     this.ilmdXml = ilmdXml;
     if (ilmd != null) {

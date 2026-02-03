@@ -72,13 +72,11 @@ public class CommonExtensionModifier {
                     nodeName = parentPrefix + ":" + nodeName;
                 }
 
-                // Get all namespaces for checking
-                Map<String, String> allNamespaces = nsContext != null
-                        ? nsContext.getAllNamespaces()
-                        : Collections.emptyMap();
-
-                if (!allNamespaces.containsKey(namespaceURI)
-                        && !StringUtils.isEmpty(namespaceURI)
+                // Add namespace mapping for this prefix if not protected
+                // Note: We must add ALL prefix->URI mappings, even when multiple prefixes use the same URI
+                // (e.g., ns0, ns3, ns4 all mapping to http://example.com/cbvmda/)
+                // The populateEventNamespaces method uses putIfAbsent to handle duplicate prefixes safely
+                if (!StringUtils.isEmpty(namespaceURI)
                         && !PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
                     if (nsContext != null) {
                         nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());

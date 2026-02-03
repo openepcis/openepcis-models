@@ -327,6 +327,17 @@ public class ConversionNamespaceContext {
   }
 
   /**
+   * Retrieves a copy of the event-level namespaces in prefix -> URI format.
+   * This preserves ALL prefixes, even when multiple prefixes map to the same URI.
+   *
+   * @return map of prefix to URI for event namespaces
+   */
+  public Map<String, String> getEventNamespacesForContext() {
+    // Return a copy of the internal prefix -> URI map (preserves all prefixes)
+    return new HashMap<>(eventNamespaces);
+  }
+
+  /**
    * Retrieves a combined copy of document-level and event-level namespaces.
    * Event namespaces override document namespaces if there are conflicts.
    * Returned in URI -> prefix format for backward compatibility with JAXB.

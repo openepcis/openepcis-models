@@ -67,16 +67,21 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       } else {
         jsonGenerator.writeStartArray();
 
-        final Map<String, String> modifiedNamespaces = ctxOpt
-            .map(ConversionNamespaceContext::getEventNamespaces)
+        // Use getEventNamespacesForContext() which returns prefix -> URI format
+        // This preserves ALL prefixes, even when multiple prefixes map to the same URI
+        // (e.g., ns0, ns3, ns4 all mapping to http://example.com/cbvmda/)
+        final Map<String, String> prefixToUri = ctxOpt
+            .map(ConversionNamespaceContext::getEventNamespacesForContext)
             .orElse(Collections.emptyMap());
 
-        for (final Map.Entry<String, String> entry : modifiedNamespaces.entrySet()) {
+        for (final Map.Entry<String, String> entry : prefixToUri.entrySet()) {
+          final String prefix = entry.getKey();
+          final String uri = entry.getValue();
 
           // Filter and do not add the Default namespaces such as cbvmda to event @context
-          if (!EPCIS_DEFAULT_NAMESPACES.containsValue(entry.getKey())) {
+          if (!EPCIS_DEFAULT_NAMESPACES.containsValue(uri)) {
             jsonGenerator.writeStartObject();
-            jsonGenerator.writeStringField(entry.getValue(), entry.getKey());
+            jsonGenerator.writeStringField(prefix, uri);
             jsonGenerator.writeEndObject();
           }
         }

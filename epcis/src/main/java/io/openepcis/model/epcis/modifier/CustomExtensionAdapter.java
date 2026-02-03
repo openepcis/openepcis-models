@@ -143,7 +143,13 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
     if (value == null) {
       return Collections.emptyMap();
     }
-    return CommonExtensionModifier.unmarshaller(value.elements, nsContext);
+    // Use this.nsContext if available (from setAdapter()), otherwise try ThreadLocal fallback
+    // EclipseLink MOXy may not respect setAdapter() for adapters declared via @XmlJavaTypeAdapter
+    ConversionNamespaceContext ctx = this.nsContext;
+    if (ctx == null) {
+      ctx = ConversionNamespaceContext.getUnmarshalContext().orElse(null);
+    }
+    return CommonExtensionModifier.unmarshaller(value.elements, ctx);
   }
 
   // Creates the QName based on the provided values
