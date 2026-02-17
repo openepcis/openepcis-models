@@ -82,7 +82,9 @@ public class BizLocation implements Serializable {
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
     // Add all elements from UserExtensions to AnyElements before Marshaling/before creating XML
     if (userExtensions != null) {
-      final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
+      final ConversionNamespaceContext nsContext =
+          m.getAdapter(CustomExtensionAdapter.class).getNsContext();
+      final ExtensionsModifier extensionsModifier = new ExtensionsModifier(nsContext);
       anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }

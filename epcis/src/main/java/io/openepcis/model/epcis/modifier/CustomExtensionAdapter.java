@@ -65,6 +65,10 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
     this.nsContext = nsContext;
   }
 
+  public ConversionNamespaceContext getNsContext() {
+    return nsContext;
+  }
+
   @Override
   public MapWrapper marshal(final Map<String, Object> extensions) {
     if (extensions == null) {
