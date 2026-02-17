@@ -22,6 +22,10 @@ import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.*;
 import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * JAXB XmlAdapter for marshalling/unmarshalling extension Maps.
@@ -93,9 +97,14 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
       }
 
       if (value instanceof Map mapValue) {
-        elements.add(
-            new JAXBElement<>(
-                createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
+        // Check for "attributed element" pattern: @-prefixed keys = XML attributes, "value" = text content
+        boolean hasAttrKeys = mapValue.keySet().stream().anyMatch(k -> k.toString().startsWith("@"));
+        if (hasAttrKeys && mapValue.containsKey("value")) {
+          // Create DOM element preserving attributes and text content
+          elements.add(createAttributedElement(localPart, namespaceURI, prefix, mapValue));
+        } else {
+          elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
+        }
       } else if (value instanceof List listValue) {
         for (Object item : listValue) {
           if (item instanceof Map mapValue) {
@@ -143,13 +152,37 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
     if (value == null) {
       return Collections.emptyMap();
     }
-    // Use this.nsContext if available (from setAdapter()), otherwise try ThreadLocal fallback
-    // EclipseLink MOXy may not respect setAdapter() for adapters declared via @XmlJavaTypeAdapter
-    ConversionNamespaceContext ctx = this.nsContext;
-    if (ctx == null) {
-      ctx = ConversionNamespaceContext.getUnmarshalContext().orElse(null);
-    }
+    // Prefer ThreadLocal context (event-scoped) over constructor context (shared).
+    // During XML-to-XML conversion, the ThreadLocal is set to the per-event context so that
+    // namespace discoveries in ILMD (cbvmda, ext1, etc.) are captured in the event-scoped context.
+    ConversionNamespaceContext ctx = ConversionNamespaceContext.getUnmarshalContext().orElse(this.nsContext);
     return CommonExtensionModifier.unmarshaller(value.elements, ctx);
+  }
+
+  // Creates a DOM Element with XML attributes and text content for the "attributed element" pattern.
+  // When CommonExtensionModifier.elementReader() reads e.g. <cbvmda:drainedWeight measurementUnitCode="KGM">3.5</cbvmda:drainedWeight>,
+  // it stores: {"cbvmda:drainedWeight": {"@measurementUnitCode": "KGM", "value": "3.5"}}
+  // A JAXBElement<MapWrapper> would incorrectly create child elements; a DOM Element preserves attributes + text natively.
+  @SuppressWarnings("unchecked")
+  private Element createAttributedElement(String localPart, String namespaceURI, String prefix, Map<?, ?> mapValue) {
+    try {
+      Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+      Element elem = (namespaceURI != null && prefix != null)
+          ? doc.createElementNS(namespaceURI, prefix + ":" + localPart)
+          : doc.createElement(localPart);
+      for (Map.Entry<String, Object> attr : ((Map<String, Object>) mapValue).entrySet()) {
+        if (attr.getKey().startsWith("@")) {
+          elem.setAttribute(attr.getKey().substring(1), attr.getValue().toString());
+        }
+      }
+      Object textContent = mapValue.get("value");
+      if (textContent != null) {
+        elem.setTextContent(textContent.toString());
+      }
+      return elem;
+    } catch (ParserConfigurationException e) {
+      throw new RuntimeException("Failed to create DOM element for attributed extension element", e);
+    }
   }
 
   // Creates the QName based on the provided values
