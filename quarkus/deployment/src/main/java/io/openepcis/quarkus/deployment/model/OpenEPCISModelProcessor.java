@@ -23,6 +23,7 @@ import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.NativeImageConfigBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.NativeImageResourcePatternsBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
+import io.quarkus.deployment.builditem.nativeimage.ServiceProviderBuildItem;
 import io.quarkus.logging.Log;
 import io.quarkus.smallrye.health.deployment.spi.HealthBuildItem;
 import java.io.BufferedReader;
@@ -59,7 +60,8 @@ public class OpenEPCISModelProcessor {
     // loop through context paths and read jaxb.index to add all EPCIS Model Classes
     for (String path : OpenEPCISJAXBContextProducer.CONTEXT_PATH.split(":")) {
       final InputStream jaxbIndex =
-          getClass().getResourceAsStream(path.replace('.', '/') + "/jaxb.index");
+          Thread.currentThread().getContextClassLoader()
+              .getResourceAsStream(path.replace('.', '/') + "/jaxb.index");
       if (jaxbIndex != null) {
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(jaxbIndex))) {
           for (String line = reader.readLine(); line != null; line = reader.readLine()) {
@@ -71,7 +73,7 @@ public class OpenEPCISModelProcessor {
         }
       }
     }
-    // add other classes
+    // EclipseLink and JAXB infrastructure classes
     Stream.of(
             "jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter",
             "jakarta.xml.bind.annotation.adapters.XmlAdapter",
@@ -79,7 +81,6 @@ public class OpenEPCISModelProcessor {
             "jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter",
             "jakarta.xml.bind.JAXBElement",
             "org.eclipse.persistence.asm.ASMFactory",
-            "org.eclipse.persistence.asm.internal.platform.ow2.*",
             "org.eclipse.persistence.eis.EISConnectionSpec",
             "org.eclipse.persistence.eis.EISLogin",
             "org.eclipse.persistence.eis.EISPlatform",
@@ -113,6 +114,28 @@ public class OpenEPCISModelProcessor {
   }
 
   @BuildStep
+  ServiceProviderBuildItem registerJaxbServiceProvider() {
+    return new ServiceProviderBuildItem(
+        "jakarta.xml.bind.JAXBContextFactory",
+        "org.eclipse.persistence.jaxb.XMLBindingContextFactory");
+  }
+
+  @BuildStep
+  ReflectiveClassBuildItem addJaxbAdapterClasses() {
+    return ReflectiveClassBuildItem.builder(
+            "io.openepcis.model.epcis.modifier.CertificationInfoXmlAdapter",
+            "io.openepcis.model.epcis.modifier.CustomContextDeserializer",
+            "io.openepcis.model.epcis.modifier.CustomContextSerializer",
+            "io.openepcis.model.epcis.modifier.CustomExtensionAdapter",
+            "io.openepcis.model.epcis.modifier.CustomInstantAdapter",
+            "io.openepcis.model.epcis.modifier.OffsetDateTimeSerializer")
+        .constructors()
+        .fields()
+        .methods()
+        .build();
+  }
+
+  @BuildStep
   NativeImageConfigBuildItem addNativeImageConfigBuildItem() {
     final NativeImageConfigBuildItem.Builder builder = NativeImageConfigBuildItem.builder();
     Stream.of(
@@ -120,7 +143,6 @@ public class OpenEPCISModelProcessor {
             "sun.rmi.transport.DGCClient",
             "sun.rmi.transport.tcp.TCPEndpoint",
             "java.rmi.server.ObjID",
-            "java.security.SecureRandom",
             "sun.rmi.transport.DGCImpl",
             "org.eclipse.persistence.sessions.coordination.jms.JMSPublishingTransportManager",
             "org.eclipse.persistence.internal.sessions.coordination.jms.JMSTopicRemoteConnection",
