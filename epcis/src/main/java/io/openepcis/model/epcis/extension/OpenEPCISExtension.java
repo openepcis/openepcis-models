@@ -16,6 +16,7 @@
 package io.openepcis.model.epcis.extension;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import jakarta.xml.bind.annotation.XmlTransient;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,13 @@ public class OpenEPCISExtension implements CaptureID, EventHashID, EventSequence
   @XmlTransient @JsonIgnore private Integer sequenceInEPCISDoc;
 
   @XmlTransient @JsonIgnore private String captureID;
+
+  /**
+   * Namespace context for JSON-to-XML conversion.
+   * Holds custom namespace prefix-to-URI mappings (e.g., ext1 -> https://ns.ext.de/epcis/)
+   * so that beforeMarshal() can create properly namespaced XML elements.
+   */
+  @XmlTransient @JsonIgnore private ConversionNamespaceContext conversionNamespaceContext;
 
   public OpenEPCISExtension() {}
 

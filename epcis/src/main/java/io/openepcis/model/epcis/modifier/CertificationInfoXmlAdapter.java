@@ -18,13 +18,14 @@ import org.w3c.dom.NodeList;
  */
 public class CertificationInfoXmlAdapter extends XmlAdapter<Object, Object> {
 
-  // Store the certificationInfo within list accordingly return String or List
-  final List<String> list = new ArrayList<>();
-
   // During the reading of XML handle either simple String or List<String> and assign to
   // certificationInfo field
   @Override
   public Object unmarshal(Object v) {
+    // Store the certificationInfo within list accordingly return String or List
+    // Local variable to avoid accumulation across events (JAXB reuses adapter instances)
+    final List<String> list = new ArrayList<>();
+
     if (v instanceof Element element) {
       final NodeList childNodes = element.getChildNodes();
 
