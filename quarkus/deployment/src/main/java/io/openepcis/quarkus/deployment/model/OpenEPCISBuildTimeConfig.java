@@ -21,11 +21,11 @@ import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithDefault;
 import io.smallrye.config.WithName;
 
-@ConfigMapping(prefix = "openepcis")
+@ConfigMapping(prefix = "openepcis.health")
 @ConfigRoot(phase = ConfigPhase.BUILD_TIME)
 public interface OpenEPCISBuildTimeConfig {
   /** Whether a health check is published in case the smallrye-health extension is present. */
-  @WithName("health.enabled")
+  @WithName("enabled")
   @WithDefault("true")
   boolean healthEnabled();
 }
