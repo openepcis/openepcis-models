@@ -22,8 +22,13 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class DataTypeUtil {
+
+  // Pre-compiled patterns for type detection (avoids exception-driven parsing)
+  private static final Pattern DATE_PREFIX = Pattern.compile("\\d{4}-\\d{2}-\\d{2}.*");
+  private static final Pattern NUMERIC = Pattern.compile("-?\\d+(\\.\\d+)?([eE][+-]?\\d+)?");
 
   private DataTypeUtil() {
     throw new UnsupportedOperationException("Invalid invocation of constructor");
@@ -46,27 +51,13 @@ public class DataTypeUtil {
         || value instanceof ZonedDateTime
         || value instanceof LocalDateTime) return CommonConstants.DATE;
     else if (value instanceof String) {
-      try {
-        ZonedDateTime.parse(value.toString());
+      String s = value.toString();
+      if (DATE_PREFIX.matcher(s).matches()) {
         return CommonConstants.DATE;
-      } catch (Exception e) {
-        try {
-          LocalDateTime.parse(value.toString());
-          return CommonConstants.DATE;
-        } catch (Exception ex) {
-          try {
-            LocalDate.parse(value.toString());
-            return CommonConstants.DATE;
-          } catch (Exception exp) {
-            try {
-              Double.parseDouble(value.toString());
-              return CommonConstants.DOUBLE;
-            } catch (Exception dexp) {
-              return CommonConstants.KEYWORD;
-            }
-          }
-        }
+      } else if (NUMERIC.matcher(s).matches()) {
+        return CommonConstants.DOUBLE;
       }
+      return CommonConstants.KEYWORD;
     } else return CommonConstants.OBJECT;
   }
 

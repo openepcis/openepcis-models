@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.openepcis.model.epcis.modifier.*;
+import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
@@ -84,7 +85,9 @@ public class SensorElementList implements Serializable {
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
     // Add all elements from UserExtensions to AnyElements before Marshaling & creating XML
     if (userExtensions != null) {
-      final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
+      final ConversionNamespaceContext nsContext =
+          m.getAdapter(CustomExtensionAdapter.class).getNsContext();
+      final ExtensionsModifier extensionsModifier = new ExtensionsModifier(nsContext);
       anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
     }
@@ -94,7 +97,8 @@ public class SensorElementList implements Serializable {
     // Add all elements from AnyElements to UserExtensions after Unmarshalling before creating JSON
     if (anyElements != null) {
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier();
-      userExtensions = extensionsModifier.createObject(anyElements);
+      final ConversionNamespaceContext nsContext = ConversionNamespaceContext.fromUnmarshaller(m).orElse(null);
+      userExtensions = extensionsModifier.createObject(anyElements, nsContext);
       anyElements = new ArrayList();
     }
 
