@@ -26,6 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
+
+import static io.openepcis.model.rest.exception.RESTExceptionMessages.*;
 @Slf4j
 public class RESTExceptionMapper {
 
@@ -147,4 +149,5 @@ public class RESTExceptionMapper {
     responseBody.setDetail(exception.getMessage());
     return RestResponse.status(RestResponse.Status.CONFLICT, responseBody);
   }
+
 }
