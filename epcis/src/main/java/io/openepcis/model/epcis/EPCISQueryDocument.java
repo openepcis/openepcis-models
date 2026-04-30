@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.openepcis.constants.EPCISVersion;
 import io.openepcis.model.epcis.constants.CommonConstants;
 import io.openepcis.model.epcis.modifier.CommonExtensionModifier;
 import io.openepcis.model.epcis.modifier.CustomInstantAdapter;
@@ -119,13 +120,26 @@ public class EPCISQueryDocument {
             return url; // not a recognized GS1 EPCIS context URL
         }
 
+        if (StringUtils.isBlank(epcisVersionMax)) {
+            return url;
+        }
+
         final String capturedVersion = m.group(1);
 
-        if (StringUtils.isNotBlank(epcisVersionMax) &&
-                capturedVersion.equals(epcisVersionMax)) {
+        // Normalise to the unversioned (latest) URL whenever the platform
+        // supports at least the captured version. Strict equality was too
+        // narrow: a 2.0.0 captured URL on a 2.0.1 platform should still
+        // collapse to the canonical unversioned form, otherwise mixed-vintage
+        // result sets emit both `.../epcis/epcis-context.jsonld` and
+        // `.../epcis/<version>/epcis-context.jsonld` side by side.
+        final Optional<EPCISVersion> captured = EPCISVersion.fromString(capturedVersion);
+        final Optional<EPCISVersion> platform = EPCISVersion.fromString(epcisVersionMax);
+        if (captured.isPresent() && platform.isPresent()
+                && captured.get().compareTo(platform.get()) <= 0) {
             return CommonConstants.EPCIS_DEFAULT_NAMESPACE;
         }
-        // otherwise keep the versioned URL as is
+
+        // Unknown / future version: keep the versioned URL as is.
         return url;
     }
 
