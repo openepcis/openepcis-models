@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2025 benelog GmbH & Co. KG
+ * Copyright (c) 2022-2026 benelog GmbH & Co. KG
  * All rights reserved.
  *
  * Unauthorized copying, modification, distribution,
