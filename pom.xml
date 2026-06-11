@@ -59,6 +59,7 @@
         <module>rest</module>
         <module>core</module>
         <module>epcis</module>
+        <module>format</module>
         <module>gs1-web-vocab</module>
         <module>quarkus</module>
     </modules>
@@ -83,6 +84,11 @@
             <dependency>
                 <groupId>io.openepcis</groupId>
                 <artifactId>openepcis-model-epcis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.openepcis</groupId>
+                <artifactId>openepcis-model-format</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
