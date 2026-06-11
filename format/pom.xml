@@ -28,6 +28,8 @@
 
     <artifactId>openepcis-model-format</artifactId>
 
+    <name>openepcis-model-format</name>
+
     <description>OpenEPCIS EPCIS event EPC/CBV format-preference translation</description>
     <url>https://github.com/openepcis/openepcis-epcis-model</url>
 

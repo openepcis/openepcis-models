@@ -9,6 +9,8 @@
     </parent>
     <artifactId>openepcis-model-gs1-web-vocab</artifactId>
 
+    <name>openepcis-model-gs1-web-vocab</name>
+
 
     <description>OpenEPCIS Core Model</description>
     <url>https://github.com/openepcis/openepcis-epcis-model</url>

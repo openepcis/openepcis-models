@@ -28,6 +28,8 @@
 
     <artifactId>openepcis-model-core</artifactId>
 
+    <name>openepcis-model-core</name>
+
     <description>OpenEPCIS Core Model</description>
     <url>https://github.com/openepcis/openepcis-core-model</url>
 

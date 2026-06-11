@@ -26,6 +26,8 @@
         <version>999-SNAPSHOT</version>
     </parent>
     <artifactId>openepcis-model-rest</artifactId>
+
+    <name>openepcis-model-rest</name>
     <description>OpenEPCIS Basic REST Model</description>
     <url>https://github.com/openepcis/openepcis-model-rest</url>
 
