@@ -70,10 +70,11 @@ final class IdentifierFormatUtil {
     String canonicalDL = null;
     if (captured.startsWith("urn:")) {
       asURN = captured;
-      canonicalDL =
-          classLevel
-              ? ConverterUtil.toURIForClassLevelIdentifier(captured)
-              : ConverterUtil.toURI(captured);
+      try {
+        canonicalDL = classLevel ? ConverterUtil.toURIForClassLevelIdentifier(captured) : ConverterUtil.toURI(captured);
+      }catch (final ValidationException e){
+        // non-GS1 URN (e.g. urn:epc:id:bic) has no Digital Link; keep it as-is (canonicalDL stays null -> select() falls back to captured)
+      }
     } else if (classLevel) {
       // buildClassLevelEpc does not swallow ValidationException
       final Map<String, String> map = ConverterUtil.toURNForClassLevelIdentifier(captured);
