@@ -102,8 +102,9 @@ final class IdentifierFormatUtil {
       final boolean uriField) {
     final EPCFormat f = format != null ? format : EPCFormat.No_Preference;
     return switch (f) {
-      case Always_GS1_Digital_Link -> canonicalDL;
-      case Always_EPC_URN -> asURN;
+      // if a value that could not be translated or has null asURN/canonicalDL; retain the captured value in every case
+      case Always_GS1_Digital_Link -> StringUtils.isNotBlank(canonicalDL) ? canonicalDL : captured;
+      case Always_EPC_URN -> StringUtils.isNotBlank(asURN) ? asURN : captured;
       case Never_Translates -> captured;
       // getEpcAsExpected (URI fields) falls back to captured; getEpcInExpectedFormat (string) does not
       default -> uriField ? (canonicalDL != null ? canonicalDL : captured) : canonicalDL;
