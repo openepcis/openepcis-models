@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.epcis.modifier;
 
+import io.openepcis.constants.EPCIS;
 import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -37,7 +38,7 @@ public class CommonExtensionModifier {
     /**
      * Unmarshals XML extension elements into a Map structure.
      *
-     * @param value the list of XML elements to unmarshal
+     * @param value     the list of XML elements to unmarshal
      * @param nsContext the namespace context to use for resolving/storing namespaces
      * @return a map representation of the XML elements
      */
@@ -137,24 +138,19 @@ public class CommonExtensionModifier {
                         final Node parentNode = valueList.item(parent);
 
                         // If text node then directly add with value
-                        if (parentNode.getNodeType() == Node.TEXT_NODE
-                                && !StringUtils.isBlank(parentNode.getTextContent())) {
-                            extensionPopulate(
-                                    multiExtensions, nodeName, parentNode.getTextContent().trim(), hasAttribute);
+                        if (parentNode.getNodeType() == Node.TEXT_NODE && !StringUtils.isBlank(parentNode.getTextContent())) {
+                            // Convert the text using the element's xsi:type (integer/double/boolean); falls back to String
+                            final Object typedValue = convertByXsiType(valueElement, parentNode.getTextContent().trim());  // type-aware leaf value
+                            extensionPopulate(multiExtensions, nodeName, typedValue, hasAttribute);
                         } else if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
                             // If complex node then recursively add them
-                            final String complexPrefix =
-                                    StringUtils.isNotBlank(valueElement.getPrefix())
-                                            ? valueElement.getPrefix()
-                                            : parentPrefix;
-                            final HashMap<String, Object> childNodes =
-                                    elementReader(List.of(parentNode), complexPrefix, nsContext);
+                            final String complexPrefix = StringUtils.isNotBlank(valueElement.getPrefix()) ? valueElement.getPrefix() : parentPrefix;
+                            final HashMap<String, Object> childNodes = elementReader(List.of(parentNode), complexPrefix, nsContext);
                             extensionPopulate(multiExtensions, nodeName, childNodes, hasAttribute);
                         }
                     }
                 } else {
-                    extensionPopulate(
-                            multiExtensions, nodeName, valueElement.getTextContent().trim(), hasAttribute);
+                    extensionPopulate(multiExtensions, nodeName, valueElement.getTextContent().trim(), hasAttribute);
                 }
             }
         }
@@ -245,7 +241,7 @@ public class CommonExtensionModifier {
     /**
      * Populates namespaces from JSON-LD context list.
      *
-     * @param context List of context objects (can contain Maps, Strings, or Lists)
+     * @param context   List of context objects (can contain Maps, Strings, or Lists)
      * @param nsContext the namespace context to populate
      */
     public static void populateNamespaces(final List<Object> context, final ConversionNamespaceContext nsContext) {
@@ -327,5 +323,58 @@ public class CommonExtensionModifier {
         }
 
         return prefix + ":" + namespace.getLocalPart();
+    }
+
+    // Reads the element's xsi:type (e.g. xsd:integer) and converts the text to the matching Java type.
+    private static Object convertByXsiType(final Element element, final String textValue) {
+        // Try the namespace-aware lookup first, then fall back to the literal "xsi:type" attribute name
+        String xsiType = element.getAttributeNS(EPCIS.XML_SCHEMA_INSTANCE, "type");
+        if (StringUtils.isBlank(xsiType)) {
+            xsiType = element.getAttribute("xsi:type"); // fallback for non-namespace-aware DOMs
+        }
+        if (StringUtils.isBlank(xsiType)) {
+            return textValue; // No xsi:type, return as String
+        }
+
+        // Strip any prefix so "xsd:integer" and "integer" are treated the same
+        final String type = xsiType.contains(":") ? xsiType.substring(xsiType.indexOf(":") + 1) : xsiType;
+
+        try {
+            switch (type) {
+                // Integer family, prefer Integer and widen to Long only if it overflows
+                case "integer", "int", "long", "short", "byte", "nonNegativeInteger", "positiveInteger", "nonPositiveInteger",
+                        "negativeInteger", "unsignedInt", "unsignedLong", "unsignedShort", "unsignedByte" -> {
+                    try {
+                        return Integer.valueOf(textValue); // "10" -> 10
+                    } catch (final NumberFormatException overflow) {
+                        return Long.valueOf(textValue); // large value -> Long
+                    }
+                }
+
+                // Floating point / decimal family
+                case "double", "float", "decimal" -> {
+                    return Double.valueOf(textValue); // "10.5" -> 10.5
+                }
+
+                // Boolean, accept the XSD-legal 1/0 as well as true/false
+                case "boolean" -> {
+                    if ("true".equalsIgnoreCase(textValue) || "1".equals(textValue)) {
+                        return Boolean.TRUE;
+                    }
+                    if ("false".equalsIgnoreCase(textValue) || "0".equals(textValue)) {
+                        return Boolean.FALSE;
+                    }
+                    return textValue;
+                }
+
+                // dateTime/date/time/string/anyURI and every unknown type stay as String,
+                default -> {
+                    return textValue;
+                }
+            }
+        } catch (final NumberFormatException e) {
+            // If conversion fails, return as String
+            return textValue;
+        }
     }
 }

@@ -76,9 +76,7 @@ public class SensorReport implements Serializable, NamespaceContextAware {
 
   @XmlAttribute private Double meanValue;
 
-  @XmlAttribute
-  @JsonProperty("sDev")
-  private Double sDev;
+  @XmlAttribute private Double sDev;
 
   @XmlAttribute private Double percRank;
 
@@ -126,6 +124,12 @@ public class SensorReport implements Serializable, NamespaceContextAware {
   @UserExtensions(extension = "userExtensions")
   public Map<String, Object> getUserExtensions() {
     return userExtensions;
+  }
+
+  // Explicit getter annotated with the exact JSON name so Jackson does NOT derive a second property "sdev" from Lombok's getSDev().
+  @JsonProperty("sDev")
+  public Double getSDev() {
+    return sDev;
   }
 
   private static final String EXAMPLE = "example:";

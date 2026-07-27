@@ -87,7 +87,7 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
           } else if (dupItems instanceof String stringValue) {
             gen.writeString(stringValue);
           } else if (dupItems instanceof Number numberValue) {
-            gen.writeNumber(numberValue.doubleValue());
+            writeNumberKeepingType(gen, numberValue);
           } else if (dupItems instanceof Date) {
             gen.writeString(value.toString());
           } else if (dupItems instanceof Boolean booleanValue) {
@@ -98,7 +98,8 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
         }
         gen.writeEndArray();
       } else if (extension.getValue() instanceof Number numberValue) {
-        gen.writeNumberField(extension.getKey(), numberValue.doubleValue());
+        gen.writeFieldName(extension.getKey());
+        writeNumberKeepingType(gen, numberValue);
       } else if (extension.getValue() instanceof Date) {
         gen.writeStringField(extension.getKey(), value.toString());
       } else if (extension.getValue() instanceof Boolean booleanValue) {
@@ -108,4 +109,20 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
       }
     }
   }
+
+  // Writes a number keeping its real JSON type: integers stay integers, doubles/decimals stay decimals.
+  private void writeNumberKeepingType(final JsonGenerator gen, final Number number) throws IOException {
+    if (number instanceof Integer intValue) {
+      gen.writeNumber(intValue);           // 12 -> 12
+    } else if (number instanceof Long longValue) {
+      gen.writeNumber(longValue);          // large integer stays an integer
+    } else if (number instanceof java.math.BigInteger bigIntValue) {
+      gen.writeNumber(bigIntValue);        // arbitrary-precision integer
+    } else if (number instanceof java.math.BigDecimal bigDecValue) {
+      gen.writeNumber(bigDecValue);        // arbitrary-precision decimal
+    } else {
+      gen.writeNumber(number.doubleValue()); // Double/Float -> 22.0
+    }
+  }
+
 }
