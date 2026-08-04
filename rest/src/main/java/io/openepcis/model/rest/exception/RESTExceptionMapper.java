@@ -25,8 +25,7 @@ import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
 public class RESTExceptionMapper {
-  private static final java.util.logging.Logger log =
-      java.util.logging.Logger.getLogger(RESTExceptionMapper.class.getName());
+  private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RESTExceptionMapper.class);
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final Exception exception) {
@@ -34,13 +33,13 @@ public class RESTExceptionMapper {
     if (CompositeException.class.isAssignableFrom(exception.getClass())) {
       ex = exception.getCause();
     }
-    log.log(java.util.logging.Level.SEVERE, ex.getMessage(), exception);
+    log.error(ex.getMessage(), exception);
     return createResponse(ex, RestResponse.Status.INTERNAL_SERVER_ERROR);
   }
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final WebApplicationException exception) {
-    log.log(java.util.logging.Level.FINE, exception.getMessage(), exception);
+    log.debug(exception.getMessage(), exception);
     final ProblemResponseBody responseBody = ProblemResponseBody.fromException(exception);
     return RestResponse.status(exception.getResponse().getStatusInfo(), responseBody);
   }
@@ -86,7 +85,7 @@ public class RESTExceptionMapper {
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final ImplementationException exception) {
     log.info(exception.getMessage());
-    log.severe(exception.getMessage());
+    log.error(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
     responseBody.title(SERVER_SIDE_ERROR_OCCURRED);
@@ -119,7 +118,7 @@ public class RESTExceptionMapper {
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final java.lang.SecurityException exception) {
-    log.log(java.util.logging.Level.SEVERE, exception.getMessage(), exception);
+    log.error(exception.getMessage(), exception);
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.title(ACCESS_DENIED);
@@ -130,7 +129,7 @@ public class RESTExceptionMapper {
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final ResourceAlreadyExistsException exception) {
-    log.log(java.util.logging.Level.SEVERE, exception.getMessage(), exception);
+    log.error(exception.getMessage(), exception);
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.title(RESOURCE_ALREADY_EXISTS);

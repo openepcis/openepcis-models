@@ -21,8 +21,7 @@ import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
 public class EPCISExceptionMapper {
-  private static final java.util.logging.Logger log =
-      java.util.logging.Logger.getLogger(EPCISExceptionMapper.class.getName());
+  private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(EPCISExceptionMapper.class);
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final QueryValidationException exception) {
