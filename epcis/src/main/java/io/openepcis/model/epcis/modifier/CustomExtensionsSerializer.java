@@ -24,11 +24,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Object>>
-    implements ContextualSerializer {
+public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Object>> implements ContextualSerializer {
   private String context = "";
 
   public CustomExtensionsSerializer(final String context) {
@@ -36,8 +33,7 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
   }
 
   @Override
-  public JsonSerializer<?> createContextual(
-      final SerializerProvider serializerProvider, final BeanProperty beanProperty) {
+  public JsonSerializer<?> createContextual(final SerializerProvider serializerProvider, final BeanProperty beanProperty) {
     UserExtensions extensions = beanProperty.getAnnotation(UserExtensions.class);
     if (extensions != null) {
       return new CustomExtensionsSerializer(extensions.extension());
@@ -46,24 +42,17 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
   }
 
   @Override
-  public void serialize(
-      final Map<String, Object> value,
-      final JsonGenerator gen,
-      final SerializerProvider serializers)
-      throws IOException {
+  public void serialize(final Map<String, Object> value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException {
     if (this.context.equals("userExtensions")) {
       recursiveSerializer(value, gen);
-    } else if (this.context.equals("ilmd")
-        || this.context.equals("extension")
-        || this.context.equals("certificationInfo")) {
+    } else if (this.context.equals("ilmd") || this.context.equals("extension") || this.context.equals("certificationInfo")) {
       gen.writeStartObject();
       recursiveSerializer(value, gen);
       gen.writeEndObject();
     }
   }
 
-  private void recursiveSerializer(final Map<String, Object> value, final JsonGenerator gen)
-      throws IOException {
+  private void recursiveSerializer(final Map<String, Object> value, final JsonGenerator gen) throws IOException {
     for (Map.Entry<String, Object> extension : value.entrySet()) {
       if (extension.getValue() instanceof Map) {
         // If instance is MAP then call the recursive method
@@ -113,16 +102,18 @@ public class CustomExtensionsSerializer extends JsonSerializer<Map<String, Objec
   // Writes a number keeping its real JSON type: integers stay integers, doubles/decimals stay decimals.
   private void writeNumberKeepingType(final JsonGenerator gen, final Number number) throws IOException {
     if (number instanceof Integer intValue) {
-      gen.writeNumber(intValue);           // 12 -> 12
+      gen.writeNumber(intValue); // 12 -> 12
     } else if (number instanceof Long longValue) {
-      gen.writeNumber(longValue);          // large integer stays an integer
+      gen.writeNumber(longValue); // large integer stays an integer
     } else if (number instanceof java.math.BigInteger bigIntValue) {
-      gen.writeNumber(bigIntValue);        // arbitrary-precision integer
+      gen.writeNumber(bigIntValue); // arbitrary-precision integer
     } else if (number instanceof java.math.BigDecimal bigDecValue) {
-      gen.writeNumber(bigDecValue);        // arbitrary-precision decimal
+      gen.writeNumber(bigDecValue); // arbitrary-precision decimal
     } else {
       gen.writeNumber(number.doubleValue()); // Double/Float -> 22.0
     }
   }
 
+  public CustomExtensionsSerializer() {
+  }
 }

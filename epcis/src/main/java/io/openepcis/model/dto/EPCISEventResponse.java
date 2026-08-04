@@ -27,23 +27,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@Slf4j
 @XmlType(factoryClass = ObjectFactory.class, factoryMethod = "createEpcisEventResponse")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@NoArgsConstructor
 public class EPCISEventResponse {
-
   @JsonProperty("@context")
   @XmlTransient
   private List<Object> contextInfo;
-
   @JsonProperty("event")
   @XmlElement
   private EPCISEvent epcisEvent;
@@ -51,7 +43,6 @@ public class EPCISEventResponse {
   public EPCISEventResponse(final EPCISEvent epcisEvent) {
     this.epcisEvent = epcisEvent;
     this.contextInfo = getContextInfoFromEvent(epcisEvent);
-
     // Populating the namespaces directly from context during xml query
     CommonExtensionModifier.populateNamespaces(contextInfo, null);
   }
@@ -65,16 +56,63 @@ public class EPCISEventResponse {
   }
 
   private HashMap<String, Object> convertContextInfoToMap(EPCISEvent epcisEvent) {
-    return epcisEvent.getContextInfo().stream()
-        .map(m -> new ObjectMapper().convertValue(m, HashMap.class))
-        .toList()
-        .stream()
-        .reduce(
-            (firstMap, secondMap) -> {
-              firstMap.putAll(secondMap);
-              return firstMap;
-            })
-        .orElseThrow(
-            () -> new QueryExecutionException("Error while collecting context Information"));
+    return epcisEvent.getContextInfo().stream().map(m -> new ObjectMapper().convertValue(m, HashMap.class)).toList().stream().reduce((firstMap, secondMap) -> {
+      firstMap.putAll(secondMap);
+      return firstMap;
+    }).orElseThrow(() -> new QueryExecutionException("Error while collecting context Information"));
+  }
+
+  public List<Object> getContextInfo() {
+    return this.contextInfo;
+  }
+
+  public EPCISEvent getEpcisEvent() {
+    return this.epcisEvent;
+  }
+
+  public void setContextInfo(List<Object> contextInfo) {
+    this.contextInfo = contextInfo;
+  }
+
+  public void setEpcisEvent(EPCISEvent epcisEvent) {
+    this.epcisEvent = epcisEvent;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof EPCISEventResponse)) return false;
+    EPCISEventResponse other = (EPCISEventResponse) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$contextInfo = this.getContextInfo();
+    Object other$contextInfo = other.getContextInfo();
+    if (this$contextInfo == null ? other$contextInfo != null : !this$contextInfo.equals(other$contextInfo)) return false;
+    Object this$epcisEvent = this.getEpcisEvent();
+    Object other$epcisEvent = other.getEpcisEvent();
+    if (this$epcisEvent == null ? other$epcisEvent != null : !this$epcisEvent.equals(other$epcisEvent)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof EPCISEventResponse;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $contextInfo = this.getContextInfo();
+    result = result * PRIME + ($contextInfo == null ? 43 : $contextInfo.hashCode());
+    Object $epcisEvent = this.getEpcisEvent();
+    result = result * PRIME + ($epcisEvent == null ? 43 : $epcisEvent.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "EPCISEventResponse(contextInfo=" + this.getContextInfo() + ", epcisEvent=" + this.getEpcisEvent() + ")";
+  }
+
+  public EPCISEventResponse() {
   }
 }

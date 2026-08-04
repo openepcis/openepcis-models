@@ -33,37 +33,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.eclipse.persistence.oxm.annotations.XmlPath;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = {"id", "extension", "anyElements"})
 public class ReadPoint implements Serializable {
-
   private URI id;
-
-  @JsonIgnore @XmlTransient private Map<String, Object> innerUserExtensions;
-
+  @JsonIgnore
+  @XmlTransient
+  private Map<String, Object> innerUserExtensions;
   @XmlPath("extension")
   @XmlJavaTypeAdapter(CustomExtensionAdapter.class)
   @JsonIgnore
   private Map<String, Object> extension;
-
-  @JsonIgnore @XmlTransient @Builder.Default
-  private Map<String, Object> userExtensions = new HashMap<>();
-
+  @JsonIgnore
+  @XmlTransient
+  private Map<String, Object> userExtensions;
   @XmlAnyElement(lax = true)
   @JsonIgnore
-  @Builder.Default
-  private List<Object> anyElements = new ArrayList<>();
+  private List<Object> anyElements;
 
   @JsonAnySetter
   public void setUserExtensions(String key, Object value) {
@@ -80,8 +69,7 @@ public class ReadPoint implements Serializable {
   public void beforeMarshal(Marshaller m) throws ParserConfigurationException {
     // Add all elements from UserExtensions to AnyElements before Marshaling/before creating XML
     if (userExtensions != null) {
-      final ConversionNamespaceContext nsContext =
-          m.getAdapter(CustomExtensionAdapter.class).getNsContext();
+      final ConversionNamespaceContext nsContext = m.getAdapter(CustomExtensionAdapter.class).getNsContext();
       final ExtensionsModifier extensionsModifier = new ExtensionsModifier(nsContext);
       anyElements = extensionsModifier.createXmlElement(userExtensions);
       userExtensions = new HashMap<>();
@@ -96,12 +84,195 @@ public class ReadPoint implements Serializable {
       userExtensions = extensionsModifier.createObject(anyElements, nsContext);
       anyElements = new ArrayList();
     }
-
     // If there are elements in Extension after Unmarshalling then add it to UserExtensions before
     // creating JSON
     if (extension != null) {
       userExtensions.putAll(extension);
       extension = new HashMap<>();
     }
+  }
+
+  private static Map<String, Object> $default$userExtensions() {
+    return new HashMap<>();
+  }
+
+  private static List<Object> $default$anyElements() {
+    return new ArrayList<>();
+  }
+
+
+  public static class ReadPointBuilder {
+    private URI id;
+    private Map<String, Object> innerUserExtensions;
+    private Map<String, Object> extension;
+    private boolean userExtensions$set;
+    private Map<String, Object> userExtensions$value;
+    private boolean anyElements$set;
+    private List<Object> anyElements$value;
+
+    ReadPointBuilder() {
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    public ReadPoint.ReadPointBuilder id(URI id) {
+      this.id = id;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonIgnore
+    public ReadPoint.ReadPointBuilder innerUserExtensions(Map<String, Object> innerUserExtensions) {
+      this.innerUserExtensions = innerUserExtensions;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonIgnore
+    public ReadPoint.ReadPointBuilder extension(Map<String, Object> extension) {
+      this.extension = extension;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonIgnore
+    public ReadPoint.ReadPointBuilder userExtensions(Map<String, Object> userExtensions) {
+      this.userExtensions$value = userExtensions;
+      userExtensions$set = true;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonIgnore
+    public ReadPoint.ReadPointBuilder anyElements(List<Object> anyElements) {
+      this.anyElements$value = anyElements;
+      anyElements$set = true;
+      return this;
+    }
+
+    public ReadPoint build() {
+      Map<String, Object> userExtensions$value = this.userExtensions$value;
+      if (!this.userExtensions$set) userExtensions$value = ReadPoint.$default$userExtensions();
+      List<Object> anyElements$value = this.anyElements$value;
+      if (!this.anyElements$set) anyElements$value = ReadPoint.$default$anyElements();
+      return new ReadPoint(this.id, this.innerUserExtensions, this.extension, userExtensions$value, anyElements$value);
+    }
+
+    @Override
+    public String toString() {
+      return "ReadPoint.ReadPointBuilder(id=" + this.id + ", innerUserExtensions=" + this.innerUserExtensions + ", extension=" + this.extension + ", userExtensions$value=" + this.userExtensions$value + ", anyElements$value=" + this.anyElements$value + ")";
+    }
+  }
+
+  public static ReadPoint.ReadPointBuilder builder() {
+    return new ReadPoint.ReadPointBuilder();
+  }
+
+  public URI getId() {
+    return this.id;
+  }
+
+  public Map<String, Object> getInnerUserExtensions() {
+    return this.innerUserExtensions;
+  }
+
+  public Map<String, Object> getExtension() {
+    return this.extension;
+  }
+
+  public List<Object> getAnyElements() {
+    return this.anyElements;
+  }
+
+  public void setId(URI id) {
+    this.id = id;
+  }
+
+  public void setInnerUserExtensions(Map<String, Object> innerUserExtensions) {
+    this.innerUserExtensions = innerUserExtensions;
+  }
+
+  public void setExtension(Map<String, Object> extension) {
+    this.extension = extension;
+  }
+
+  public void setUserExtensions(Map<String, Object> userExtensions) {
+    this.userExtensions = userExtensions;
+  }
+
+  public void setAnyElements(List<Object> anyElements) {
+    this.anyElements = anyElements;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof ReadPoint)) return false;
+    ReadPoint other = (ReadPoint) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$id = this.getId();
+    Object other$id = other.getId();
+    if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
+    Object this$innerUserExtensions = this.getInnerUserExtensions();
+    Object other$innerUserExtensions = other.getInnerUserExtensions();
+    if (this$innerUserExtensions == null ? other$innerUserExtensions != null : !this$innerUserExtensions.equals(other$innerUserExtensions)) return false;
+    Object this$extension = this.getExtension();
+    Object other$extension = other.getExtension();
+    if (this$extension == null ? other$extension != null : !this$extension.equals(other$extension)) return false;
+    Object this$userExtensions = this.getUserExtensions();
+    Object other$userExtensions = other.getUserExtensions();
+    if (this$userExtensions == null ? other$userExtensions != null : !this$userExtensions.equals(other$userExtensions)) return false;
+    Object this$anyElements = this.getAnyElements();
+    Object other$anyElements = other.getAnyElements();
+    if (this$anyElements == null ? other$anyElements != null : !this$anyElements.equals(other$anyElements)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof ReadPoint;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $id = this.getId();
+    result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+    Object $innerUserExtensions = this.getInnerUserExtensions();
+    result = result * PRIME + ($innerUserExtensions == null ? 43 : $innerUserExtensions.hashCode());
+    Object $extension = this.getExtension();
+    result = result * PRIME + ($extension == null ? 43 : $extension.hashCode());
+    Object $userExtensions = this.getUserExtensions();
+    result = result * PRIME + ($userExtensions == null ? 43 : $userExtensions.hashCode());
+    Object $anyElements = this.getAnyElements();
+    result = result * PRIME + ($anyElements == null ? 43 : $anyElements.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "ReadPoint(id=" + this.getId() + ", innerUserExtensions=" + this.getInnerUserExtensions() + ", extension=" + this.getExtension() + ", userExtensions=" + this.getUserExtensions() + ", anyElements=" + this.getAnyElements() + ")";
+  }
+
+  public ReadPoint() {
+    this.userExtensions = ReadPoint.$default$userExtensions();
+    this.anyElements = ReadPoint.$default$anyElements();
+  }
+
+  public ReadPoint(URI id, Map<String, Object> innerUserExtensions, Map<String, Object> extension, Map<String, Object> userExtensions, List<Object> anyElements) {
+    this.id = id;
+    this.innerUserExtensions = innerUserExtensions;
+    this.extension = extension;
+    this.userExtensions = userExtensions;
+    this.anyElements = anyElements;
   }
 }

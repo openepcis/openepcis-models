@@ -16,18 +16,16 @@
 package io.openepcis.model.epcis.exception;
 
 import static io.openepcis.model.epcis.exception.ExceptionMessages.*;
-
 import io.openepcis.model.rest.ProblemResponseBody;
-import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
-@Slf4j
 public class EPCISExceptionMapper {
+  private static final java.util.logging.Logger log =
+      java.util.logging.Logger.getLogger(EPCISExceptionMapper.class.getName());
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final QueryValidationException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final QueryValidationException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -38,8 +36,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final QueryParameterException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final QueryParameterException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -50,8 +47,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final UnsupportedMediaTypeException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final UnsupportedMediaTypeException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -62,8 +58,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final SubscribeNotPermittedException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final SubscribeNotPermittedException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -74,8 +69,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final SubscriptionControlsException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final SubscriptionControlsException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -86,8 +80,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final CaptureValidationException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final CaptureValidationException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -98,8 +91,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final NoSubscriptionFoundException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final NoSubscriptionFoundException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -110,8 +102,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final NoSuchEventTypeException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final NoSuchEventTypeException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -129,21 +120,18 @@ public class EPCISExceptionMapper {
     responseBody.title("REST Exception");
     responseBody.setStatus(exception.getStatus());
     responseBody.setDetail(exception.getMessage());
-    return RestResponse.status(
-        RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
+    return RestResponse.status(RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final QueryTooLargeException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final QueryTooLargeException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
     responseBody.title(SEARCH_RESULT_SIZE_TOO_LARGE_NARROW_DOWN_THE_SEARCH_CRITERIA);
     responseBody.setStatus(exception.getStatus());
     responseBody.setDetail(exception.getMessage());
-    return RestResponse.status(
-        RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
+    return RestResponse.status(RestResponse.Status.fromStatusCode(exception.getStatus()), responseBody);
   }
 
   @ServerExceptionMapper
@@ -158,8 +146,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final NoEventFoundException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final NoEventFoundException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -170,8 +157,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final NotAcceptedException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final NotAcceptedException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -182,8 +168,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final CaptureLimitExceededException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final CaptureLimitExceededException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -194,8 +179,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final UnsupportedQueryParameterException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final UnsupportedQueryParameterException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -206,8 +190,7 @@ public class EPCISExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final PersistenceException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final PersistenceException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(RestResponse.Status.INTERNAL_SERVER_ERROR.toString());

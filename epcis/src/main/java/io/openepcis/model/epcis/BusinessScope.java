@@ -21,23 +21,56 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "BusinessScope",
-    namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader",
-    propOrder = {"scope"})
+@XmlType(name = "BusinessScope", namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", propOrder = {"scope"})
 public class BusinessScope {
-
-  @XmlElement(
-      name = "Scope",
-      namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader")
+  @XmlElement(name = "Scope", namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader")
   protected List<Scope> scope;
+
+  public List<Scope> getScope() {
+    return this.scope;
+  }
+
+  public void setScope(List<Scope> scope) {
+    this.scope = scope;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof BusinessScope)) return false;
+    BusinessScope other = (BusinessScope) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$scope = this.getScope();
+    Object other$scope = other.getScope();
+    if (this$scope == null ? other$scope != null : !this$scope.equals(other$scope)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof BusinessScope;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $scope = this.getScope();
+    result = result * PRIME + ($scope == null ? 43 : $scope.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "BusinessScope(scope=" + this.getScope() + ")";
+  }
+
+  public BusinessScope() {
+  }
+
+  public BusinessScope(List<Scope> scope) {
+    this.scope = scope;
+  }
 }

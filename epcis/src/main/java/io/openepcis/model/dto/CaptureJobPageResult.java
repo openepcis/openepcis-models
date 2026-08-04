@@ -20,34 +20,60 @@ import io.openepcis.core.model.PaginationSupport;
 import jakarta.xml.bind.annotation.*;
 import java.time.OffsetDateTime;
 import java.util.List;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
 @XmlRootElement(name = "EPCISCaptureJobList", namespace = "urn:epcglobal:epcis:xsd:2")
-@XmlType(
-    propOrder = {"captureJobs"},
-    name = "EPCISCaptureJobList",
-    namespace = "urn:epcglobal:epcis:xsd:2",
-    factoryClass = ObjectFactory.class,
-    factoryMethod = "createCaptureJobPageResult")
+@XmlType(propOrder = {"captureJobs"}, name = "EPCISCaptureJobList", namespace = "urn:epcglobal:epcis:xsd:2", factoryClass = ObjectFactory.class, factoryMethod = "createCaptureJobPageResult")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(CaptureJob.class)
 public class CaptureJobPageResult extends PaginationSupport {
-
   @XmlElement(namespace = "", name = "EPCISCaptureJob")
   private List<CaptureJob> captureJobs;
 
-  public CaptureJobPageResult(
-      final String rel,
-      final String nextPageToken,
-      final OffsetDateTime tokenExpiryTime,
-      final List<CaptureJob> captureJobs) {
+  public CaptureJobPageResult(final String rel, final String nextPageToken, final OffsetDateTime tokenExpiryTime, final List<CaptureJob> captureJobs) {
     super(nextPageToken, rel, tokenExpiryTime);
     this.captureJobs = captureJobs;
+  }
+
+  public List<CaptureJob> getCaptureJobs() {
+    return this.captureJobs;
+  }
+
+  public void setCaptureJobs(List<CaptureJob> captureJobs) {
+    this.captureJobs = captureJobs;
+  }
+
+  @Override
+  public String toString() {
+    return "CaptureJobPageResult(captureJobs=" + this.getCaptureJobs() + ")";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof CaptureJobPageResult)) return false;
+    CaptureJobPageResult other = (CaptureJobPageResult) o;
+    if (!other.canEqual((Object) this)) return false;
+    if (!super.equals(o)) return false;
+    Object this$captureJobs = this.getCaptureJobs();
+    Object other$captureJobs = other.getCaptureJobs();
+    if (this$captureJobs == null ? other$captureJobs != null : !this$captureJobs.equals(other$captureJobs)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof CaptureJobPageResult;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = super.hashCode();
+    Object $captureJobs = this.getCaptureJobs();
+    result = result * PRIME + ($captureJobs == null ? 43 : $captureJobs.hashCode());
+    return result;
+  }
+
+  public CaptureJobPageResult() {
   }
 }

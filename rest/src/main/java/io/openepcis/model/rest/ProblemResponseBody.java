@@ -23,34 +23,26 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
-import lombok.NoArgsConstructor;
 import org.jboss.resteasy.reactive.RestResponse;
 
-/** A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807) */
+/**
+ * A response as specified in [RFC 7807](https://tools.ietf.org/html/rfc7807)
+ */
 @XmlRootElement(name = "EPCISException", namespace = "urn:epcglobal:epcis:xsd:2")
-@NoArgsConstructor
-@XmlType(
-    name = "EPCISException",
-    namespace = "urn:epcglobal:epcis:xsd:2",
-    factoryClass = ObjectFactory.class,
-    factoryMethod = "createProblemResponseBody")
+@XmlType(name = "EPCISException", namespace = "urn:epcglobal:epcis:xsd:2", factoryClass = ObjectFactory.class, factoryMethod = "createProblemResponseBody")
 public class ProblemResponseBody {
   @JsonProperty("type")
   @XmlElement
   private String type = null;
-
   @JsonProperty("title")
   @XmlElement
   private String title = null;
-
   @JsonProperty("status")
   @XmlElement
   private Integer status = null;
-
   @JsonProperty("detail")
   @XmlElement
   private String detail = null;
-
   @JsonProperty("instance")
   @XmlElement
   private String instance = null;
@@ -157,11 +149,7 @@ public class ProblemResponseBody {
       return false;
     }
     ProblemResponseBody rfC7807ProblemResponseBody = (ProblemResponseBody) o;
-    return Objects.equals(this.type, rfC7807ProblemResponseBody.type)
-        && Objects.equals(this.title, rfC7807ProblemResponseBody.title)
-        && Objects.equals(this.status, rfC7807ProblemResponseBody.status)
-        && Objects.equals(this.detail, rfC7807ProblemResponseBody.detail)
-        && Objects.equals(this.instance, rfC7807ProblemResponseBody.instance);
+    return Objects.equals(this.type, rfC7807ProblemResponseBody.type) && Objects.equals(this.title, rfC7807ProblemResponseBody.title) && Objects.equals(this.status, rfC7807ProblemResponseBody.status) && Objects.equals(this.detail, rfC7807ProblemResponseBody.detail) && Objects.equals(this.instance, rfC7807ProblemResponseBody.instance);
   }
 
   @Override
@@ -173,7 +161,6 @@ public class ProblemResponseBody {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RFC7807ProblemResponseBody {\n");
-
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -193,8 +180,7 @@ public class ProblemResponseBody {
     return o.toString().replace("\n", "\n    ");
   }
 
-  public static final <T extends WebApplicationException> ProblemResponseBody fromException(
-      final T exception) {
+  public static final <T extends WebApplicationException> ProblemResponseBody fromException(final T exception) {
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.setTitle(exception.getResponse().getStatusInfo().getReasonPhrase());
@@ -207,18 +193,19 @@ public class ProblemResponseBody {
     return fromException(exception, RestResponse.Status.INTERNAL_SERVER_ERROR);
   }
 
-  public static final ProblemResponseBody fromException(
-      Throwable exception, RestResponse.Status status) {
+  public static final ProblemResponseBody fromException(Throwable exception, RestResponse.Status status) {
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.setTitle(status.getReasonPhrase());
     responseBody.setStatus(status.getStatusCode());
     if (RestResponse.Status.INTERNAL_SERVER_ERROR.equals(status)) {
-      responseBody.setDetail(
-          RESTExceptionMessages.SERVER_SIDE_ERROR_OCCURRED + exception.getMessage());
+      responseBody.setDetail(RESTExceptionMessages.SERVER_SIDE_ERROR_OCCURRED + exception.getMessage());
     } else {
       responseBody.setDetail(exception.getMessage());
     }
     return responseBody;
+  }
+
+  public ProblemResponseBody() {
   }
 }

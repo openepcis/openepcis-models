@@ -21,29 +21,72 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "Partner",
-    namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader",
-    propOrder = {"identifier", "contactInformation"})
+@XmlType(name = "Partner", namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", propOrder = {"identifier", "contactInformation"})
 public class Partner {
-
-  @XmlElement(
-      name = "Identifier",
-      namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader",
-      required = true)
+  @XmlElement(name = "Identifier", namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", required = true)
   protected PartnerIdentification identifier;
-
-  @XmlElement(
-      name = "ContactInformation",
-      namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader")
+  @XmlElement(name = "ContactInformation", namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader")
   protected List<ContactInformation> contactInformation;
+
+  public PartnerIdentification getIdentifier() {
+    return this.identifier;
+  }
+
+  public List<ContactInformation> getContactInformation() {
+    return this.contactInformation;
+  }
+
+  public void setIdentifier(PartnerIdentification identifier) {
+    this.identifier = identifier;
+  }
+
+  public void setContactInformation(List<ContactInformation> contactInformation) {
+    this.contactInformation = contactInformation;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof Partner)) return false;
+    Partner other = (Partner) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$identifier = this.getIdentifier();
+    Object other$identifier = other.getIdentifier();
+    if (this$identifier == null ? other$identifier != null : !this$identifier.equals(other$identifier)) return false;
+    Object this$contactInformation = this.getContactInformation();
+    Object other$contactInformation = other.getContactInformation();
+    if (this$contactInformation == null ? other$contactInformation != null : !this$contactInformation.equals(other$contactInformation)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof Partner;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $identifier = this.getIdentifier();
+    result = result * PRIME + ($identifier == null ? 43 : $identifier.hashCode());
+    Object $contactInformation = this.getContactInformation();
+    result = result * PRIME + ($contactInformation == null ? 43 : $contactInformation.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "Partner(identifier=" + this.getIdentifier() + ", contactInformation=" + this.getContactInformation() + ")";
+  }
+
+  public Partner() {
+  }
+
+  public Partner(PartnerIdentification identifier, List<ContactInformation> contactInformation) {
+    this.identifier = identifier;
+    this.contactInformation = contactInformation;
+  }
 }

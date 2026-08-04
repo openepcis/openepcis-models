@@ -15,11 +15,47 @@
  */
 package io.openepcis.model.epcis;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
 public class EPCISQueryHeader {
   private EPCISMasterData epcisMasterData;
+
+  public EPCISMasterData getEpcisMasterData() {
+    return this.epcisMasterData;
+  }
+
+  public void setEpcisMasterData(EPCISMasterData epcisMasterData) {
+    this.epcisMasterData = epcisMasterData;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof EPCISQueryHeader)) return false;
+    EPCISQueryHeader other = (EPCISQueryHeader) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$epcisMasterData = this.getEpcisMasterData();
+    Object other$epcisMasterData = other.getEpcisMasterData();
+    if (this$epcisMasterData == null ? other$epcisMasterData != null : !this$epcisMasterData.equals(other$epcisMasterData)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof EPCISQueryHeader;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $epcisMasterData = this.getEpcisMasterData();
+    result = result * PRIME + ($epcisMasterData == null ? 43 : $epcisMasterData.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "EPCISQueryHeader(epcisMasterData=" + this.getEpcisMasterData() + ")";
+  }
+
+  public EPCISQueryHeader() {
+  }
 }

@@ -20,23 +20,109 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Ilmd implements Serializable {
   private Map<String, Object> userExtensions;
-
-  @JsonIgnore private Map<String, Object> innerUserExtensions;
+  @JsonIgnore
+  private Map<String, Object> innerUserExtensions;
 
   @JsonAnyGetter
   public Map<String, Object> getUserExtensions() {
     return userExtensions;
+  }
+
+
+  public static class IlmdBuilder {
+    private Map<String, Object> userExtensions;
+    private Map<String, Object> innerUserExtensions;
+
+    IlmdBuilder() {
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    public Ilmd.IlmdBuilder userExtensions(Map<String, Object> userExtensions) {
+      this.userExtensions = userExtensions;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonIgnore
+    public Ilmd.IlmdBuilder innerUserExtensions(Map<String, Object> innerUserExtensions) {
+      this.innerUserExtensions = innerUserExtensions;
+      return this;
+    }
+
+    public Ilmd build() {
+      return new Ilmd(this.userExtensions, this.innerUserExtensions);
+    }
+
+    @Override
+    public String toString() {
+      return "Ilmd.IlmdBuilder(userExtensions=" + this.userExtensions + ", innerUserExtensions=" + this.innerUserExtensions + ")";
+    }
+  }
+
+  public static Ilmd.IlmdBuilder builder() {
+    return new Ilmd.IlmdBuilder();
+  }
+
+  public Map<String, Object> getInnerUserExtensions() {
+    return this.innerUserExtensions;
+  }
+
+  public void setUserExtensions(Map<String, Object> userExtensions) {
+    this.userExtensions = userExtensions;
+  }
+
+  public void setInnerUserExtensions(Map<String, Object> innerUserExtensions) {
+    this.innerUserExtensions = innerUserExtensions;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof Ilmd)) return false;
+    Ilmd other = (Ilmd) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$userExtensions = this.getUserExtensions();
+    Object other$userExtensions = other.getUserExtensions();
+    if (this$userExtensions == null ? other$userExtensions != null : !this$userExtensions.equals(other$userExtensions)) return false;
+    Object this$innerUserExtensions = this.getInnerUserExtensions();
+    Object other$innerUserExtensions = other.getInnerUserExtensions();
+    if (this$innerUserExtensions == null ? other$innerUserExtensions != null : !this$innerUserExtensions.equals(other$innerUserExtensions)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof Ilmd;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $userExtensions = this.getUserExtensions();
+    result = result * PRIME + ($userExtensions == null ? 43 : $userExtensions.hashCode());
+    Object $innerUserExtensions = this.getInnerUserExtensions();
+    result = result * PRIME + ($innerUserExtensions == null ? 43 : $innerUserExtensions.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "Ilmd(userExtensions=" + this.getUserExtensions() + ", innerUserExtensions=" + this.getInnerUserExtensions() + ")";
+  }
+
+  public Ilmd() {
+  }
+
+  public Ilmd(Map<String, Object> userExtensions, Map<String, Object> innerUserExtensions) {
+    this.userExtensions = userExtensions;
+    this.innerUserExtensions = innerUserExtensions;
   }
 }

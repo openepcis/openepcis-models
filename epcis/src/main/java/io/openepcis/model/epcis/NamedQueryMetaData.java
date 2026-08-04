@@ -17,37 +17,23 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Objects;
 
-/** NamedQueryMetaData */
+/**
+ * NamedQueryMetaData
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class NamedQueryMetaData {
   @JsonProperty("name")
-  @Builder.Default
-  private String name = null;
-
+  private String name;
   @JsonProperty("createdAt")
-  @Builder.Default
-  private OffsetDateTime createdAt = null;
-
+  private OffsetDateTime createdAt;
   @JsonProperty("query")
-  @Builder.Default
-  private Map<String, Object> epcisQuery = null;
-
-    @JsonProperty("epcisVersion")
-    @Builder.Default
-    private String epcisVersion = null;
+  private Map<String, Object> epcisQuery;
+  @JsonProperty("epcisVersion")
+  private String epcisVersion;
 
   public NamedQueryMetaData name(String name) {
     this.name = name;
@@ -117,9 +103,7 @@ public class NamedQueryMetaData {
       return false;
     }
     NamedQueryMetaData namedQueryMetaData = (NamedQueryMetaData) o;
-    return Objects.equals(this.name, namedQueryMetaData.name)
-        && Objects.equals(this.createdAt, namedQueryMetaData.createdAt)
-        && Objects.equals(this.epcisQuery, namedQueryMetaData.epcisQuery);
+    return Objects.equals(this.name, namedQueryMetaData.name) && Objects.equals(this.createdAt, namedQueryMetaData.createdAt) && Objects.equals(this.epcisQuery, namedQueryMetaData.epcisQuery);
   }
 
   @Override
@@ -129,17 +113,7 @@ public class NamedQueryMetaData {
 
   @Override
   public String toString() {
-    return "class NamedQueryMetaData {\n"
-        + "    name: "
-        + toIndentedString(name)
-        + "\n"
-        + "    createdAt: "
-        + toIndentedString(createdAt)
-        + "\n"
-        + "    epcisQuery: "
-        + toIndentedString(epcisQuery)
-        + "\n"
-        + "}";
+    return "class NamedQueryMetaData {\n" + "    name: " + toIndentedString(name) + "\n" + "    createdAt: " + toIndentedString(createdAt) + "\n" + "    epcisQuery: " + toIndentedString(epcisQuery) + "\n" + "}";
   }
 
   /**
@@ -150,5 +124,119 @@ public class NamedQueryMetaData {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+  private static String $default$name() {
+    return null;
+  }
+
+  private static OffsetDateTime $default$createdAt() {
+    return null;
+  }
+
+  private static Map<String, Object> $default$epcisQuery() {
+    return null;
+  }
+
+  private static String $default$epcisVersion() {
+    return null;
+  }
+
+
+  public static class NamedQueryMetaDataBuilder {
+    private boolean name$set;
+    private String name$value;
+    private boolean createdAt$set;
+    private OffsetDateTime createdAt$value;
+    private boolean epcisQuery$set;
+    private Map<String, Object> epcisQuery$value;
+    private boolean epcisVersion$set;
+    private String epcisVersion$value;
+
+    NamedQueryMetaDataBuilder() {
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonProperty("name")
+    public NamedQueryMetaData.NamedQueryMetaDataBuilder name(String name) {
+      this.name$value = name;
+      name$set = true;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonProperty("createdAt")
+    public NamedQueryMetaData.NamedQueryMetaDataBuilder createdAt(OffsetDateTime createdAt) {
+      this.createdAt$value = createdAt;
+      createdAt$set = true;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonProperty("query")
+    public NamedQueryMetaData.NamedQueryMetaDataBuilder epcisQuery(Map<String, Object> epcisQuery) {
+      this.epcisQuery$value = epcisQuery;
+      epcisQuery$set = true;
+      return this;
+    }
+
+    /**
+     * @return {@code this}.
+     */
+    @JsonProperty("epcisVersion")
+    public NamedQueryMetaData.NamedQueryMetaDataBuilder epcisVersion(String epcisVersion) {
+      this.epcisVersion$value = epcisVersion;
+      epcisVersion$set = true;
+      return this;
+    }
+
+    public NamedQueryMetaData build() {
+      String name$value = this.name$value;
+      if (!this.name$set) name$value = NamedQueryMetaData.$default$name();
+      OffsetDateTime createdAt$value = this.createdAt$value;
+      if (!this.createdAt$set) createdAt$value = NamedQueryMetaData.$default$createdAt();
+      Map<String, Object> epcisQuery$value = this.epcisQuery$value;
+      if (!this.epcisQuery$set) epcisQuery$value = NamedQueryMetaData.$default$epcisQuery();
+      String epcisVersion$value = this.epcisVersion$value;
+      if (!this.epcisVersion$set) epcisVersion$value = NamedQueryMetaData.$default$epcisVersion();
+      return new NamedQueryMetaData(name$value, createdAt$value, epcisQuery$value, epcisVersion$value);
+    }
+
+    @Override
+    public String toString() {
+      return "NamedQueryMetaData.NamedQueryMetaDataBuilder(name$value=" + this.name$value + ", createdAt$value=" + this.createdAt$value + ", epcisQuery$value=" + this.epcisQuery$value + ", epcisVersion$value=" + this.epcisVersion$value + ")";
+    }
+  }
+
+  public static NamedQueryMetaData.NamedQueryMetaDataBuilder builder() {
+    return new NamedQueryMetaData.NamedQueryMetaDataBuilder();
+  }
+
+  public String getEpcisVersion() {
+    return this.epcisVersion;
+  }
+
+  public void setEpcisVersion(String epcisVersion) {
+    this.epcisVersion = epcisVersion;
+  }
+
+  public NamedQueryMetaData() {
+    this.name = NamedQueryMetaData.$default$name();
+    this.createdAt = NamedQueryMetaData.$default$createdAt();
+    this.epcisQuery = NamedQueryMetaData.$default$epcisQuery();
+    this.epcisVersion = NamedQueryMetaData.$default$epcisVersion();
+  }
+
+  public NamedQueryMetaData(String name, OffsetDateTime createdAt, Map<String, Object> epcisQuery, String epcisVersion) {
+    this.name = name;
+    this.createdAt = createdAt;
+    this.epcisQuery = epcisQuery;
+    this.epcisVersion = epcisVersion;
   }
 }

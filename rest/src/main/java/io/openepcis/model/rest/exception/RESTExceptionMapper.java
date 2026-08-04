@@ -16,18 +16,17 @@
 package io.openepcis.model.rest.exception;
 
 import static io.openepcis.model.rest.exception.RESTExceptionMessages.*;
-
 import io.openepcis.core.exception.*;
 import io.openepcis.core.exception.SecurityException;
 import io.openepcis.model.rest.ProblemResponseBody;
 import io.smallrye.mutiny.CompositeException;
 import jakarta.ws.rs.WebApplicationException;
-import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
-@Slf4j
 public class RESTExceptionMapper {
+  private static final java.util.logging.Logger log =
+      java.util.logging.Logger.getLogger(RESTExceptionMapper.class.getName());
 
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final Exception exception) {
@@ -35,20 +34,18 @@ public class RESTExceptionMapper {
     if (CompositeException.class.isAssignableFrom(exception.getClass())) {
       ex = exception.getCause();
     }
-    log.error(ex.getMessage(), exception);
+    log.log(java.util.logging.Level.SEVERE, ex.getMessage(), exception);
     return createResponse(ex, RestResponse.Status.INTERNAL_SERVER_ERROR);
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final WebApplicationException exception) {
-    log.debug(exception.getMessage(), exception);
+  public final RestResponse<ProblemResponseBody> mapException(final WebApplicationException exception) {
+    log.log(java.util.logging.Level.FINE, exception.getMessage(), exception);
     final ProblemResponseBody responseBody = ProblemResponseBody.fromException(exception);
     return RestResponse.status(exception.getResponse().getStatusInfo(), responseBody);
   }
 
-  public static RestResponse<ProblemResponseBody> createResponse(
-      final Throwable exception, RestResponse.Status status) {
+  public static RestResponse<ProblemResponseBody> createResponse(final Throwable exception, RestResponse.Status status) {
     final ProblemResponseBody responseBody = ProblemResponseBody.fromException(exception, status);
     return RestResponse.status(status, responseBody);
   }
@@ -76,8 +73,7 @@ public class RESTExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final ResourceNotFoundException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final ResourceNotFoundException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -88,10 +84,9 @@ public class RESTExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final ImplementationException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final ImplementationException exception) {
     log.info(exception.getMessage());
-    log.error(exception.getMessage());
+    log.severe(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
     responseBody.title(SERVER_SIDE_ERROR_OCCURRED);
@@ -101,8 +96,7 @@ public class RESTExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final MarshallingException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final MarshallingException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -113,8 +107,7 @@ public class RESTExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final SchemaValidationException exception) {
+  public final RestResponse<ProblemResponseBody> mapException(final SchemaValidationException exception) {
     log.info(exception.getMessage());
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
@@ -125,9 +118,8 @@ public class RESTExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final java.lang.SecurityException exception) {
-    log.error(exception.getMessage(), exception);
+  public final RestResponse<ProblemResponseBody> mapException(final java.lang.SecurityException exception) {
+    log.log(java.util.logging.Level.SEVERE, exception.getMessage(), exception);
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.title(ACCESS_DENIED);
@@ -137,9 +129,8 @@ public class RESTExceptionMapper {
   }
 
   @ServerExceptionMapper
-  public final RestResponse<ProblemResponseBody> mapException(
-      final ResourceAlreadyExistsException exception) {
-    log.error(exception.getMessage(), exception);
+  public final RestResponse<ProblemResponseBody> mapException(final ResourceAlreadyExistsException exception) {
+    log.log(java.util.logging.Level.SEVERE, exception.getMessage(), exception);
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(exception.getClass().getSimpleName());
     responseBody.title(RESOURCE_ALREADY_EXISTS);

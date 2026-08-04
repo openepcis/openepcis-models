@@ -21,23 +21,72 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.xml.namespace.QName;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "EPCISDocumentExtensionType",
-    namespace = "urn:epcglobal:epcis:xsd:2",
-    propOrder = {"any"})
+@XmlType(name = "EPCISDocumentExtensionType", namespace = "urn:epcglobal:epcis:xsd:2", propOrder = {"any"})
 public class EPCISDocumentExtension {
-
   @XmlAnyElement(lax = true)
   protected List<Object> any;
+  @XmlAnyAttribute
+  private Map<QName, String> otherAttributes = new HashMap<>();
 
-  @XmlAnyAttribute private Map<QName, String> otherAttributes = new HashMap<>();
+  public List<Object> getAny() {
+    return this.any;
+  }
+
+  public Map<QName, String> getOtherAttributes() {
+    return this.otherAttributes;
+  }
+
+  public void setAny(List<Object> any) {
+    this.any = any;
+  }
+
+  public void setOtherAttributes(Map<QName, String> otherAttributes) {
+    this.otherAttributes = otherAttributes;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof EPCISDocumentExtension)) return false;
+    EPCISDocumentExtension other = (EPCISDocumentExtension) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$any = this.getAny();
+    Object other$any = other.getAny();
+    if (this$any == null ? other$any != null : !this$any.equals(other$any)) return false;
+    Object this$otherAttributes = this.getOtherAttributes();
+    Object other$otherAttributes = other.getOtherAttributes();
+    if (this$otherAttributes == null ? other$otherAttributes != null : !this$otherAttributes.equals(other$otherAttributes)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof EPCISDocumentExtension;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $any = this.getAny();
+    result = result * PRIME + ($any == null ? 43 : $any.hashCode());
+    Object $otherAttributes = this.getOtherAttributes();
+    result = result * PRIME + ($otherAttributes == null ? 43 : $otherAttributes.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "EPCISDocumentExtension(any=" + this.getAny() + ", otherAttributes=" + this.getOtherAttributes() + ")";
+  }
+
+  public EPCISDocumentExtension() {
+  }
+
+  public EPCISDocumentExtension(List<Object> any, Map<QName, String> otherAttributes) {
+    this.any = any;
+    this.otherAttributes = otherAttributes;
+  }
 }
