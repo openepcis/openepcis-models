@@ -19,14 +19,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.openepcis.model.epcis.exception.CaptureValidationException;
 import java.util.Date;
 import java.util.Objects;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserExtensionField {
   private String name;
   private String type;
@@ -39,27 +33,60 @@ public class UserExtensionField {
 
   @Override
   public boolean equals(Object o) {
-
     // If the object is compared with itself then return true
     if (o == this) {
       return true;
     }
-
     /* Check if o is an instance of UserExtensionField or not
     "null instanceof [type]" also returns false */
     if (!(o instanceof UserExtensionField)) {
       return false;
     }
-
     // typecast o to UserExtensionField so that we can compare data members
     UserExtensionField c = (UserExtensionField) o;
-
     // Compare the data members and return accordingly
     if (c.getName() != null && c.getType() != null) {
       if (c.getName().equals(this.getName()) && c.getType().equals(this.getType())) return true;
-      else if (c.getName().equals(this.getName()) && !c.getType().equals(this.getType()))
-        throw new CaptureValidationException(c.getName() + "expected data type: " + this.getType());
+       else if (c.getName().equals(this.getName()) && !c.getType().equals(this.getType())) throw new CaptureValidationException(c.getName() + "expected data type: " + this.getType());
     }
     return false;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public String getType() {
+    return this.type;
+  }
+
+  public Date getCreatedAt() {
+    return this.createdAt;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  @Override
+  public String toString() {
+    return "UserExtensionField(name=" + this.getName() + ", type=" + this.getType() + ", createdAt=" + this.getCreatedAt() + ")";
+  }
+
+  public UserExtensionField() {
+  }
+
+  public UserExtensionField(String name, String type, Date createdAt) {
+    this.name = name;
+    this.type = type;
+    this.createdAt = createdAt;
   }
 }

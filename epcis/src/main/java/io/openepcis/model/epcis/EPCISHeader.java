@@ -20,28 +20,95 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.xml.namespace.QName;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(
-    name = "EPCISHeaderType",
-    namespace = "urn:epcglobal:epcis:xsd:2",
-    propOrder = {"standardBusinessDocumentHeader", "extension", "any"})
+@XmlType(name = "EPCISHeaderType", namespace = "urn:epcglobal:epcis:xsd:2", propOrder = {"standardBusinessDocumentHeader", "extension", "any"})
 public class EPCISHeader {
-
-  @XmlElement(
-      name = "StandardBusinessDocumentHeader",
-      namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader",
-      required = true)
+  @XmlElement(name = "StandardBusinessDocumentHeader", namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", required = true)
   protected StandardBusinessDocumentHeader standardBusinessDocumentHeader;
-
   protected EPCISHeaderExtension extension;
-
   @XmlAnyElement(lax = true)
   protected List<Object> any;
+  @XmlAnyAttribute
+  private Map<QName, String> otherAttributes = new HashMap<>();
 
-  @XmlAnyAttribute private Map<QName, String> otherAttributes = new HashMap<>();
+  public StandardBusinessDocumentHeader getStandardBusinessDocumentHeader() {
+    return this.standardBusinessDocumentHeader;
+  }
+
+  public EPCISHeaderExtension getExtension() {
+    return this.extension;
+  }
+
+  public List<Object> getAny() {
+    return this.any;
+  }
+
+  public Map<QName, String> getOtherAttributes() {
+    return this.otherAttributes;
+  }
+
+  public void setStandardBusinessDocumentHeader(StandardBusinessDocumentHeader standardBusinessDocumentHeader) {
+    this.standardBusinessDocumentHeader = standardBusinessDocumentHeader;
+  }
+
+  public void setExtension(EPCISHeaderExtension extension) {
+    this.extension = extension;
+  }
+
+  public void setAny(List<Object> any) {
+    this.any = any;
+  }
+
+  public void setOtherAttributes(Map<QName, String> otherAttributes) {
+    this.otherAttributes = otherAttributes;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof EPCISHeader)) return false;
+    EPCISHeader other = (EPCISHeader) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$standardBusinessDocumentHeader = this.getStandardBusinessDocumentHeader();
+    Object other$standardBusinessDocumentHeader = other.getStandardBusinessDocumentHeader();
+    if (this$standardBusinessDocumentHeader == null ? other$standardBusinessDocumentHeader != null : !this$standardBusinessDocumentHeader.equals(other$standardBusinessDocumentHeader)) return false;
+    Object this$extension = this.getExtension();
+    Object other$extension = other.getExtension();
+    if (this$extension == null ? other$extension != null : !this$extension.equals(other$extension)) return false;
+    Object this$any = this.getAny();
+    Object other$any = other.getAny();
+    if (this$any == null ? other$any != null : !this$any.equals(other$any)) return false;
+    Object this$otherAttributes = this.getOtherAttributes();
+    Object other$otherAttributes = other.getOtherAttributes();
+    if (this$otherAttributes == null ? other$otherAttributes != null : !this$otherAttributes.equals(other$otherAttributes)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof EPCISHeader;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $standardBusinessDocumentHeader = this.getStandardBusinessDocumentHeader();
+    result = result * PRIME + ($standardBusinessDocumentHeader == null ? 43 : $standardBusinessDocumentHeader.hashCode());
+    Object $extension = this.getExtension();
+    result = result * PRIME + ($extension == null ? 43 : $extension.hashCode());
+    Object $any = this.getAny();
+    result = result * PRIME + ($any == null ? 43 : $any.hashCode());
+    Object $otherAttributes = this.getOtherAttributes();
+    result = result * PRIME + ($otherAttributes == null ? 43 : $otherAttributes.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "EPCISHeader(standardBusinessDocumentHeader=" + this.getStandardBusinessDocumentHeader() + ", extension=" + this.getExtension() + ", any=" + this.getAny() + ", otherAttributes=" + this.getOtherAttributes() + ")";
+  }
+
+  public EPCISHeader() {
+  }
 }

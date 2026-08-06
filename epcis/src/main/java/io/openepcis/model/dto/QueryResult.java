@@ -19,15 +19,51 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.openepcis.core.model.PaginationSupport;
 import io.openepcis.model.epcis.EpcisQueryResult;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.extern.slf4j.Slf4j;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@EqualsAndHashCode(callSuper = true)
-@Slf4j
 public class QueryResult extends PaginationSupport {
   @JsonProperty("queryResults")
   private EpcisQueryResult queryResults;
+
+  public QueryResult() {
+  }
+
+  public EpcisQueryResult getQueryResults() {
+    return this.queryResults;
+  }
+
+  public void setQueryResults(EpcisQueryResult queryResults) {
+    this.queryResults = queryResults;
+  }
+
+  @Override
+  public String toString() {
+    return "QueryResult(queryResults=" + this.getQueryResults() + ")";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof QueryResult)) return false;
+    QueryResult other = (QueryResult) o;
+    if (!other.canEqual((Object) this)) return false;
+    if (!super.equals(o)) return false;
+    Object this$queryResults = this.getQueryResults();
+    Object other$queryResults = other.getQueryResults();
+    if (this$queryResults == null ? other$queryResults != null : !this$queryResults.equals(other$queryResults)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof QueryResult;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = super.hashCode();
+    Object $queryResults = this.getQueryResults();
+    result = result * PRIME + ($queryResults == null ? 43 : $queryResults.hashCode());
+    return result;
+  }
 }

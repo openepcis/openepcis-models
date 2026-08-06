@@ -17,23 +17,57 @@ package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.xml.bind.annotation.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@NoArgsConstructor
 @XmlRootElement(name = "EPCISBody")
-@XmlType(
-    name = "EPCISQueryBodyType",
-    propOrder = {"queryResults"})
+@XmlType(name = "EPCISQueryBodyType", propOrder = {"queryResults"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISQueryBody {
-
   @XmlElement(name = "QueryResults")
   private EpcisQueryResult queryResults;
 
   public EPCISQueryBody(EpcisQueryResult queryResults) {
     this.queryResults = queryResults;
+  }
+
+  public EpcisQueryResult getQueryResults() {
+    return this.queryResults;
+  }
+
+  public void setQueryResults(EpcisQueryResult queryResults) {
+    this.queryResults = queryResults;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof EPCISQueryBody)) return false;
+    EPCISQueryBody other = (EPCISQueryBody) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$queryResults = this.getQueryResults();
+    Object other$queryResults = other.getQueryResults();
+    if (this$queryResults == null ? other$queryResults != null : !this$queryResults.equals(other$queryResults)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof EPCISQueryBody;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $queryResults = this.getQueryResults();
+    result = result * PRIME + ($queryResults == null ? 43 : $queryResults.hashCode());
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "EPCISQueryBody(queryResults=" + this.getQueryResults() + ")";
+  }
+
+  public EPCISQueryBody() {
   }
 }

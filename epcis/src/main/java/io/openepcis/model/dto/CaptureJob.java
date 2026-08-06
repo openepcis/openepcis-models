@@ -19,35 +19,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.xml.bind.annotation.*;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor
 @XmlRootElement(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlType(name = "EPCISCaptureJob", namespace = "urn:epcglobal:epcis:xsd:2")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(InvalidEPCISEventInfo.class)
 public class CaptureJob extends CaptureData {
-
-  public CaptureJob(
-      final String captureID,
-      final boolean running,
-      final boolean success,
-      final OffsetDateTime createdAt,
-      final String captureErrorBehaviour,
-      final OffsetDateTime finishedAt) {
-    super(
-        captureID,
-        createdAt,
-        finishedAt,
-        running,
-        success,
-        captureErrorBehaviour,
-        new ArrayList<>());
+  public CaptureJob(final String captureID, final boolean running, final boolean success, final OffsetDateTime createdAt, final String captureErrorBehaviour, final OffsetDateTime finishedAt) {
+    super(captureID, createdAt, finishedAt, running, success, captureErrorBehaviour, new ArrayList<>());
   }
 
   public static CaptureJob of(CaptureJob captureJob) {
@@ -62,4 +42,31 @@ public class CaptureJob extends CaptureData {
     return c;
   }
 
+  @Override
+  public String toString() {
+    return "CaptureJob()";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof CaptureJob)) return false;
+    CaptureJob other = (CaptureJob) o;
+    if (!other.canEqual((Object) this)) return false;
+    if (!super.equals(o)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof CaptureJob;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    return result;
+  }
+
+  public CaptureJob() {
+  }
 }

@@ -19,26 +19,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
-
 import jakarta.xml.bind.annotation.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@EqualsAndHashCode(callSuper = false)
 @XmlRootElement(name = "Collection")
-@NoArgsConstructor
 public class TopLevelResource {
-
   @JsonProperty("@context")
   @XmlTransient
   private List<Object> contextInfo;
-
   @JsonProperty("type")
   private String type;
-
   @JsonProperty("member")
   private List<String> member = new ArrayList<>();
 
@@ -46,11 +36,77 @@ public class TopLevelResource {
     this.type = type;
     this.member = member;
     this.contextInfo = context;
-
   }
 
   @Deprecated(forRemoval = true, since = "0.9.4")
   public TopLevelResource(List<String> member, List<Object> context) {
     this("collection", member, context);
+  }
+
+  public List<Object> getContextInfo() {
+    return this.contextInfo;
+  }
+
+  public String getType() {
+    return this.type;
+  }
+
+  public List<String> getMember() {
+    return this.member;
+  }
+
+  public void setContextInfo(List<Object> contextInfo) {
+    this.contextInfo = contextInfo;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public void setMember(List<String> member) {
+    this.member = member;
+  }
+
+  @Override
+  public String toString() {
+    return "TopLevelResource(contextInfo=" + this.getContextInfo() + ", type=" + this.getType() + ", member=" + this.getMember() + ")";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof TopLevelResource)) return false;
+    TopLevelResource other = (TopLevelResource) o;
+    if (!other.canEqual((Object) this)) return false;
+    Object this$contextInfo = this.getContextInfo();
+    Object other$contextInfo = other.getContextInfo();
+    if (this$contextInfo == null ? other$contextInfo != null : !this$contextInfo.equals(other$contextInfo)) return false;
+    Object this$type = this.getType();
+    Object other$type = other.getType();
+    if (this$type == null ? other$type != null : !this$type.equals(other$type)) return false;
+    Object this$member = this.getMember();
+    Object other$member = other.getMember();
+    if (this$member == null ? other$member != null : !this$member.equals(other$member)) return false;
+    return true;
+  }
+
+  protected boolean canEqual(Object other) {
+    return other instanceof TopLevelResource;
+  }
+
+  @Override
+  public int hashCode() {
+    int PRIME = 59;
+    int result = 1;
+    Object $contextInfo = this.getContextInfo();
+    result = result * PRIME + ($contextInfo == null ? 43 : $contextInfo.hashCode());
+    Object $type = this.getType();
+    result = result * PRIME + ($type == null ? 43 : $type.hashCode());
+    Object $member = this.getMember();
+    result = result * PRIME + ($member == null ? 43 : $member.hashCode());
+    return result;
+  }
+
+  public TopLevelResource() {
   }
 }
