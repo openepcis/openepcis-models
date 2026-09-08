@@ -20,11 +20,11 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import io.openepcis.constants.EPCIS;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -335,6 +335,25 @@ public class ConversionNamespaceContext {
   public Map<String, String> getEventNamespacesForContext() {
     // Return a copy of the internal prefix -> URI map (preserves all prefixes)
     return new HashMap<>(eventNamespaces);
+  }
+
+  /**
+   * Retrieves event-level namespaces that are not already defined in the document context, for an embedded @context.
+   */
+  public Map<String, String> getEventOnlyNamespacesForContext(){
+    if(MapUtils.isEmpty(eventNamespaces)) return Collections.emptyMap();
+
+    final Map<String, String> eventOnly = new LinkedHashMap<>();
+    for(final Map.Entry<String, String> entry: eventNamespaces.entrySet()){
+        // Well known namespaces are in the JSON-LD context already, so never in an event @context
+        if(EPCIS.EPCIS_DEFAULT_NAMESPACES.containsValue(entry.getValue())) continue;
+
+        // Redundant only when the document already binds this same prefix to this same URI
+        if(!entry.getValue().equals(documentNamespaces.get(entry.getKey()))){
+            eventOnly.put(entry.getKey(), entry.getValue());
+        }
+    }
+    return eventOnly;
   }
 
   /**
