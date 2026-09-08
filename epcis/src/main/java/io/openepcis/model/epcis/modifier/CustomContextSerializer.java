@@ -67,11 +67,11 @@ public class CustomContextSerializer extends JsonSerializer<List<Object>> {
       } else {
         jsonGenerator.writeStartArray();
 
-        // Use getEventNamespacesForContext() which returns prefix -> URI format
+        // Use getEventOnlyNamespacesForContext() which returns prefix -> URI format
         // This preserves ALL prefixes, even when multiple prefixes map to the same URI
         // (e.g., ns0, ns3, ns4 all mapping to http://example.com/cbvmda/)
         final Map<String, String> prefixToUri = ctxOpt
-            .map(ConversionNamespaceContext::getEventNamespacesForContext)
+            .map(ConversionNamespaceContext::getEventOnlyNamespacesForContext)
             .orElse(Collections.emptyMap());
 
         for (final Map.Entry<String, String> entry : prefixToUri.entrySet()) {
