@@ -124,7 +124,11 @@ public class EPCISQueryDocument {
             return result;
         }
         final Set<String> urlContexts = new LinkedHashSet<>();
-        final List<Map<String, Object>> mapContexts = new ArrayList<>();
+        // Namespace declarations, folded together: every event of a result set
+        // repeats the ones it uses, and appending them verbatim wrote the same
+        // declaration once per event.
+        final Map<String, Object> mergedContext = new LinkedHashMap<>();
+        final List<Map<String, Object>> conflictingContexts = new ArrayList<>();
         // Extract context info from each event
         for (EPCISEvent event : events) {
             if (event.getContextInfo() == null) continue;
@@ -139,7 +143,7 @@ public class EPCISQueryDocument {
                 // remove synthetic key
                 map.remove(CONTEXT_URLS);
                 if (!map.isEmpty()) {
-                    mapContexts.add(map);
+                    mergeContext(map, mergedContext, conflictingContexts);
                 }
             }
         }
@@ -149,11 +153,52 @@ public class EPCISQueryDocument {
         }
         // Add normalized URL contexts without duplication
         urlContexts.stream().map(url -> resolveContextUrl(url, epcisVersionMax)).filter(url -> !result.contains(url)).forEach(result::add);
-        // Add map-based contexts
-        result.addAll(mapContexts);
+        // Add map-based contexts: the shared declarations once, then the
+        // conflicting ones in the order they were met (see mergeContext).
+        if (!mergedContext.isEmpty()) {
+            result.add(mergedContext);
+        }
+        result.addAll(conflictingContexts);
         // Clear event-level context data
         events.forEach(e -> e.setContextInfo(null));
         return result;
+    }
+
+    /**
+     * Folds one event's namespace declarations into the document's.
+     *
+     * <p>A result set repeats every namespace in every event that uses it, so
+     * appending the declarations verbatim listed {@code acme} once per event —
+     * fifty events, fifty identical {@code @context} objects. An identical
+     * declaration is therefore written once.
+     *
+     * <p>They are not merged blindly. Two events may bind the SAME prefix to
+     * DIFFERENT IRIs; collapsing those would drop one binding and expand the
+     * events that used it against the wrong IRI. A conflicting binding stays a
+     * context object of its own, so the later one overrides the earlier — the
+     * JSON-LD rule, and what the previous code did by accident for every entry.
+     */
+    private static void mergeContext(final Map<String, Object> declarations,
+                                     final Map<String, Object> merged,
+                                     final List<Map<String, Object>> conflicting) {
+        Map<String, Object> conflicts = null;
+        for (final Map.Entry<String, Object> declaration : declarations.entrySet()) {
+            final String prefix = declaration.getKey();
+            if (!merged.containsKey(prefix)) {
+                merged.put(prefix, declaration.getValue());
+                continue;
+            }
+            if (Objects.equals(merged.get(prefix), declaration.getValue())) {
+                continue; // the same declaration again — already written
+            }
+            if (conflicts == null) {
+                conflicts = new LinkedHashMap<>();
+            }
+            conflicts.put(prefix, declaration.getValue());
+        }
+        if (conflicts != null) {
+            conflicting.add(conflicts);
+        }
     }
 
     private void extractUrlContexts(Map<String, Object> map, Set<String> urlContexts) {
