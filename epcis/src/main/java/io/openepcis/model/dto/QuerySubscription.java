@@ -17,6 +17,7 @@ package io.openepcis.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.openepcis.model.epcis.Schedule;
 import java.net.URI;
 import java.time.OffsetDateTime;
@@ -28,6 +29,10 @@ public class QuerySubscription {
   private UUID subscriptionID;
   private String queryName;
   private URI dest;
+  // Read from the store, never written back out. The token is the secret the subscriber
+  // generated so it can tell our signature from anybody else's; EPCIS 2.0 says a response
+  // must not reveal it, and a GET on a subscription used to return it in full.
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private String signatureToken;
   private OffsetDateTime initialRecordTime;
   private Boolean reportIfEmpty;

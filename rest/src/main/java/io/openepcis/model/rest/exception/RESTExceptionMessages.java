@@ -16,7 +16,11 @@
 package io.openepcis.model.rest.exception;
 
 public class RESTExceptionMessages {
-  public static final String EPCIS_EXCEPTIONS = "epcisExceptions:";
+  // The prefix of the "type" member of every problem response. EPCIS 2.0 writes it in the
+  // singular throughout its REST bindings (epcisException:ValidationException and so on);
+  // the plural this carried was ours alone and made every error body differ from the
+  // standard in its most machine-readable field.
+  public static final String EPCIS_EXCEPTIONS = "epcisException:";
   public static final String INVALID_URI = "Invalid URI";
   public static final String ACCESS_DENIED = "Access denied.";
   public static final String RESOURCE_DOES_NOT_EXIST = "Resource does not exist.";
