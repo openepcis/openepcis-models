@@ -16,6 +16,7 @@
 package io.openepcis.model.epcis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -25,6 +26,11 @@ import java.util.Objects;
  * NamedQueryMetaData
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+// Older clients still send epcisVersion, which this model carried until the version of the
+// documents a subscriber receives moved to the subscription that delivers them. Such a body is
+// read without it rather than refused, so a tool that has not been updated keeps working. Nothing
+// else unknown is tolerated: a misspelt field is still an error, which is how it should be.
+@JsonIgnoreProperties({"epcisVersion"})
 public class NamedQueryMetaData {
   @JsonProperty("name")
   private String name;
@@ -32,8 +38,6 @@ public class NamedQueryMetaData {
   private OffsetDateTime createdAt;
   @JsonProperty("query")
   private Map<String, Object> epcisQuery;
-  @JsonProperty("epcisVersion")
-  private String epcisVersion;
 
   public NamedQueryMetaData name(String name) {
     this.name = name;
@@ -138,11 +142,6 @@ public class NamedQueryMetaData {
     return null;
   }
 
-  private static String $default$epcisVersion() {
-    return null;
-  }
-
-
   public static class NamedQueryMetaDataBuilder {
     private boolean name$set;
     private String name$value;
@@ -150,8 +149,6 @@ public class NamedQueryMetaData {
     private OffsetDateTime createdAt$value;
     private boolean epcisQuery$set;
     private Map<String, Object> epcisQuery$value;
-    private boolean epcisVersion$set;
-    private String epcisVersion$value;
 
     NamedQueryMetaDataBuilder() {
     }
@@ -189,13 +186,6 @@ public class NamedQueryMetaData {
     /**
      * @return {@code this}.
      */
-    @JsonProperty("epcisVersion")
-    public NamedQueryMetaData.NamedQueryMetaDataBuilder epcisVersion(String epcisVersion) {
-      this.epcisVersion$value = epcisVersion;
-      epcisVersion$set = true;
-      return this;
-    }
-
     public NamedQueryMetaData build() {
       String name$value = this.name$value;
       if (!this.name$set) name$value = NamedQueryMetaData.$default$name();
@@ -203,14 +193,12 @@ public class NamedQueryMetaData {
       if (!this.createdAt$set) createdAt$value = NamedQueryMetaData.$default$createdAt();
       Map<String, Object> epcisQuery$value = this.epcisQuery$value;
       if (!this.epcisQuery$set) epcisQuery$value = NamedQueryMetaData.$default$epcisQuery();
-      String epcisVersion$value = this.epcisVersion$value;
-      if (!this.epcisVersion$set) epcisVersion$value = NamedQueryMetaData.$default$epcisVersion();
-      return new NamedQueryMetaData(name$value, createdAt$value, epcisQuery$value, epcisVersion$value);
+      return new NamedQueryMetaData(name$value, createdAt$value, epcisQuery$value);
     }
 
     @Override
     public String toString() {
-      return "NamedQueryMetaData.NamedQueryMetaDataBuilder(name$value=" + this.name$value + ", createdAt$value=" + this.createdAt$value + ", epcisQuery$value=" + this.epcisQuery$value + ", epcisVersion$value=" + this.epcisVersion$value + ")";
+      return "NamedQueryMetaData.NamedQueryMetaDataBuilder(name$value=" + this.name$value + ", createdAt$value=" + this.createdAt$value + ", epcisQuery$value=" + this.epcisQuery$value + ")";
     }
   }
 
@@ -218,25 +206,15 @@ public class NamedQueryMetaData {
     return new NamedQueryMetaData.NamedQueryMetaDataBuilder();
   }
 
-  public String getEpcisVersion() {
-    return this.epcisVersion;
-  }
-
-  public void setEpcisVersion(String epcisVersion) {
-    this.epcisVersion = epcisVersion;
-  }
-
   public NamedQueryMetaData() {
     this.name = NamedQueryMetaData.$default$name();
     this.createdAt = NamedQueryMetaData.$default$createdAt();
     this.epcisQuery = NamedQueryMetaData.$default$epcisQuery();
-    this.epcisVersion = NamedQueryMetaData.$default$epcisVersion();
   }
 
-  public NamedQueryMetaData(String name, OffsetDateTime createdAt, Map<String, Object> epcisQuery, String epcisVersion) {
+  public NamedQueryMetaData(String name, OffsetDateTime createdAt, Map<String, Object> epcisQuery) {
     this.name = name;
     this.createdAt = createdAt;
     this.epcisQuery = epcisQuery;
-    this.epcisVersion = epcisVersion;
   }
 }
