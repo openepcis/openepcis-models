@@ -23,6 +23,22 @@ import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 public class EPCISExceptionMapper {
   private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(EPCISExceptionMapper.class);
 
+  // Declared before its parent QueryValidationException so the more specific mapper wins.
+  // A named query whose name is taken is not a malformed request: nothing about the body is
+  // wrong, the name is simply in use. EPCIS 2.0 answers that with 409 and the problem type
+  // ResourceAlreadyExistsException, and a client that means to replace a query needs to tell
+  // 409 apart from the 400 it gets for a genuinely invalid one.
+  @ServerExceptionMapper
+  public final RestResponse<ProblemResponseBody> mapException(final DuplicateNameException exception) {
+    log.info(exception.getMessage());
+    final ProblemResponseBody responseBody = new ProblemResponseBody();
+    responseBody.setType(EPCIS_EXCEPTIONS + "ResourceAlreadyExistsException");
+    responseBody.title(RESOURCE_ALREADY_EXISTS);
+    responseBody.setStatus(409);
+    responseBody.setDetail(exception.getMessage());
+    return RestResponse.status(RestResponse.Status.CONFLICT, responseBody);
+  }
+
   @ServerExceptionMapper
   public final RestResponse<ProblemResponseBody> mapException(final QueryValidationException exception) {
     log.info(exception.getMessage());
@@ -53,7 +69,8 @@ public class EPCISExceptionMapper {
     responseBody.title("Unsupported Media Type");
     responseBody.setStatus(415);
     responseBody.setDetail(exception.getMessage());
-    return RestResponse.status(RestResponse.Status.BAD_REQUEST, responseBody);
+    // Was BAD_REQUEST, which contradicted the 415 in the body of the very same response.
+    return RestResponse.status(RestResponse.Status.UNSUPPORTED_MEDIA_TYPE, responseBody);
   }
 
   @ServerExceptionMapper
@@ -62,7 +79,8 @@ public class EPCISExceptionMapper {
     final ProblemResponseBody responseBody = new ProblemResponseBody();
     responseBody.setType(EPCIS_EXCEPTIONS + exception.getClass().getSimpleName());
     responseBody.title(SUBSCRIPTION_DENIED);
-    responseBody.setStatus(400);
+    // The response is 403; the body said 400.
+    responseBody.setStatus(403);
     responseBody.setDetail(exception.getMessage());
     return RestResponse.status(RestResponse.Status.FORBIDDEN, responseBody);
   }
