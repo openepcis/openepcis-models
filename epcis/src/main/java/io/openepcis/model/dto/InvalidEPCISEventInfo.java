@@ -52,23 +52,26 @@ public class InvalidEPCISEventInfo {
   @XmlElement
   private List<Integer> sequenceInEPCISDoc = null;
 
-  /** The validation rule that produced this entry; absent for entries from outside a rule. */
-  @JsonProperty("ruleId")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  @XmlElement
-  private String ruleId = null;
-
-  /** ERROR, WARNING or INFO; absent means ERROR, as every entry was before severities. */
+  /**
+   * HARD_ERROR keeps the event out of the repository; SOFT_ERROR is reported while the event is
+   * stored. Absent means HARD_ERROR, as every entry was before severities.
+   */
   @JsonProperty("severity")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @XmlElement
-  private String severity = null;
+  private Severity severity = null;
 
-  /** JSON Pointer into the event the entry is about, when the rule can name one. */
-  @JsonProperty("path")
+  /** Where the entry points; supersedes {@code sequenceInEPCISDoc}, which stays for older clients. */
+  @JsonProperty("eventLocationsInEPCISDocument")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @XmlElement
-  private String path = null;
+  private List<EventLocationInEPCISDocument> eventLocationsInEPCISDocument = null;
+
+  /** Severity of a validation entry, as in the SmartHub Connect API. */
+  public enum Severity {
+    SOFT_ERROR,
+    HARD_ERROR
+  }
 
   public InvalidEPCISEventInfo() {}
 
@@ -193,43 +196,32 @@ public class InvalidEPCISEventInfo {
     this.sequenceInEPCISDoc = sequenceInEPCISDoc;
   }
 
-  public InvalidEPCISEventInfo ruleId(String ruleId) {
-    this.ruleId = ruleId;
-    return this;
-  }
-
-  public String getRuleId() {
-    return ruleId;
-  }
-
-  public void setRuleId(String ruleId) {
-    this.ruleId = ruleId;
-  }
-
-  public InvalidEPCISEventInfo severity(String severity) {
+  public InvalidEPCISEventInfo severity(Severity severity) {
     this.severity = severity;
     return this;
   }
 
-  public String getSeverity() {
+  public Severity getSeverity() {
     return severity;
   }
 
-  public void setSeverity(String severity) {
+  public void setSeverity(Severity severity) {
     this.severity = severity;
   }
 
-  public InvalidEPCISEventInfo path(String path) {
-    this.path = path;
+  public InvalidEPCISEventInfo eventLocationsInEPCISDocument(
+      List<EventLocationInEPCISDocument> eventLocationsInEPCISDocument) {
+    this.eventLocationsInEPCISDocument = eventLocationsInEPCISDocument;
     return this;
   }
 
-  public String getPath() {
-    return path;
+  public List<EventLocationInEPCISDocument> getEventLocationsInEPCISDocument() {
+    return eventLocationsInEPCISDocument;
   }
 
-  public void setPath(String path) {
-    this.path = path;
+  public void setEventLocationsInEPCISDocument(
+      List<EventLocationInEPCISDocument> eventLocationsInEPCISDocument) {
+    this.eventLocationsInEPCISDocument = eventLocationsInEPCISDocument;
   }
 
   @Override
@@ -263,14 +255,13 @@ public class InvalidEPCISEventInfo {
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    instance: ").append(toIndentedString(instance)).append("\n");
     sb.append("    sequenceInEPCISDoc: ").append(toIndentedString(sequenceInEPCISDoc)).append("\n");
-    if (ruleId != null) {
-      sb.append("    ruleId: ").append(toIndentedString(ruleId)).append("\n");
-    }
     if (severity != null) {
       sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
     }
-    if (path != null) {
-      sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    if (eventLocationsInEPCISDocument != null) {
+      sb.append("    eventLocationsInEPCISDocument: ")
+          .append(toIndentedString(eventLocationsInEPCISDocument))
+          .append("\n");
     }
     sb.append("}");
     return sb.toString();
