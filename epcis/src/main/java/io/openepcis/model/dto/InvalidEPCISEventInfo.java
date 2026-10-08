@@ -15,6 +15,7 @@
  */
 package io.openepcis.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.openepcis.model.rest.ProblemResponseBodyForCapture;
 import jakarta.xml.bind.annotation.*;
@@ -50,6 +51,24 @@ public class InvalidEPCISEventInfo {
   @JsonProperty("sequenceInEPCISDoc")
   @XmlElement
   private List<Integer> sequenceInEPCISDoc = null;
+
+  /** The validation rule that produced this entry; absent for entries from outside a rule. */
+  @JsonProperty("ruleId")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  @XmlElement
+  private String ruleId = null;
+
+  /** ERROR, WARNING or INFO; absent means ERROR, as every entry was before severities. */
+  @JsonProperty("severity")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  @XmlElement
+  private String severity = null;
+
+  /** JSON Pointer into the event the entry is about, when the rule can name one. */
+  @JsonProperty("path")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  @XmlElement
+  private String path = null;
 
   public InvalidEPCISEventInfo() {}
 
@@ -174,6 +193,45 @@ public class InvalidEPCISEventInfo {
     this.sequenceInEPCISDoc = sequenceInEPCISDoc;
   }
 
+  public InvalidEPCISEventInfo ruleId(String ruleId) {
+    this.ruleId = ruleId;
+    return this;
+  }
+
+  public String getRuleId() {
+    return ruleId;
+  }
+
+  public void setRuleId(String ruleId) {
+    this.ruleId = ruleId;
+  }
+
+  public InvalidEPCISEventInfo severity(String severity) {
+    this.severity = severity;
+    return this;
+  }
+
+  public String getSeverity() {
+    return severity;
+  }
+
+  public void setSeverity(String severity) {
+    this.severity = severity;
+  }
+
+  public InvalidEPCISEventInfo path(String path) {
+    this.path = path;
+    return this;
+  }
+
+  public String getPath() {
+    return path;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -205,6 +263,15 @@ public class InvalidEPCISEventInfo {
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    instance: ").append(toIndentedString(instance)).append("\n");
     sb.append("    sequenceInEPCISDoc: ").append(toIndentedString(sequenceInEPCISDoc)).append("\n");
+    if (ruleId != null) {
+      sb.append("    ruleId: ").append(toIndentedString(ruleId)).append("\n");
+    }
+    if (severity != null) {
+      sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
+    }
+    if (path != null) {
+      sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    }
     sb.append("}");
     return sb.toString();
   }
