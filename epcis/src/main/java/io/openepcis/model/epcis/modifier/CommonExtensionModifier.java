@@ -76,16 +76,14 @@ public class CommonExtensionModifier {
                     nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
             }
-            final Object content = elementContent(valueElement, nsContext);
-            if (content != null) {
-                addSibling(multiExtensions, nodeName, content);
-            }
+            addSibling(multiExtensions, nodeName, elementContent(valueElement, nsContext));
         }
         return multiExtensions;
     }
 
     // The JSON value of one element: its text, or a map of its attributes ("@name" / "prefix:name"),
-    // its text ("value") and its children. Returns null for an element without any content.
+    // its text ("value") and its children. An element without any content is the empty string, as
+    // before, so <example:flag/> survives the round trip.
     private static Object elementContent(final Element valueElement, final ConversionNamespaceContext nsContext) {
         // Attributes, except namespace declarations and xsi:*: <ex1:test id="some random value">
         final LinkedHashMap<String, Object> attributes = new LinkedHashMap<>();
@@ -115,7 +113,7 @@ public class CommonExtensionModifier {
 
         if (childElements.isEmpty() && attributes.isEmpty()) {
             // Convert the text using the element's xsi:type (integer/double/boolean); falls back to String
-            return trimmedText.isEmpty() ? null : convertByXsiType(valueElement, trimmedText);
+            return trimmedText.isEmpty() ? "" : convertByXsiType(valueElement, trimmedText);
         }
 
         final LinkedHashMap<String, Object> content = new LinkedHashMap<>(attributes);
@@ -124,7 +122,7 @@ public class CommonExtensionModifier {
             content.put("value", convertByXsiType(valueElement, trimmedText));
         }
         content.putAll(elementReader(childElements, nsContext));
-        return content.isEmpty() ? null : content;
+        return content;
     }
 
     // A second element of the same name at the same level turns the value into a list of all of them.

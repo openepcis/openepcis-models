@@ -180,4 +180,21 @@ class ExtensionElementReaderTest {
             "example:weight", Map.of("@unit", "KGM", "value", "3.5")),
         extensions);
   }
+
+  @Test
+  @DisplayName("an empty extension element stays an empty string, as before")
+  void emptyElementIsKept() throws Exception {
+    final Map<String, Object> extensions =
+        userExtensionsOf(
+            """
+            <ObjectEvent xmlns:example="http://ns.example.com/epcis/">
+              <action>ADD</action>
+              <example:flag/>
+              <example:wrapper><example:inner/></example:wrapper>
+            </ObjectEvent>
+            """);
+    org.junit.jupiter.api.Assertions.assertEquals("", extensions.get("example:flag"), extensions.toString());
+    org.junit.jupiter.api.Assertions.assertEquals(
+        Map.of("example:inner", ""), extensions.get("example:wrapper"), extensions.toString());
+  }
 }
