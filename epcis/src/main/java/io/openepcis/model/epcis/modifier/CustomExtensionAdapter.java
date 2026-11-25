@@ -86,37 +86,14 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
       final Object value = property.getValue();
       final String localPart = getLocalPart(key);
       final String prefix = getPrefix(key);
-      String namespaceURI = null;
-
-      if (prefix != null) {
-        Object defaultNs = EPCIS.EPCIS_DEFAULT_NAMESPACES.get(prefix);
-        namespaceURI = defaultNs != null ? defaultNs.toString() : null;
-        if (namespaceURI == null && nsContext != null) {
-          // Use namespace context if available
-          Optional<String> namespace = nsContext.findNamespaceByPrefix(prefix);
-          if (namespace.isPresent()) {
-            namespaceURI = namespace.get();
-          }
-        }
-      }
+      final String namespaceURI = namespaceOf(prefix);
 
       if (value instanceof Map mapValue) {
-        // Check for "attributed element" pattern: @-prefixed keys = XML attributes, "value" = text content
-        boolean hasAttrKeys = mapValue.keySet().stream().anyMatch(k -> k.toString().startsWith("@"));
-        if (hasAttrKeys && mapValue.containsKey("value")) {
-          // Create DOM element preserving attributes and text content
-          elements.add(createAttributedElement(localPart, namespaceURI, prefix, mapValue));
-        } else {
-          elements.add(new JAXBElement<>(createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal(mapValue)));
-        }
+        elements.add(mapElement(localPart, namespaceURI, prefix, mapValue));
       } else if (value instanceof List listValue) {
         for (Object item : listValue) {
           if (item instanceof Map mapValue) {
-            elements.add(
-                new JAXBElement<>(
-                    createQName(localPart, namespaceURI, prefix),
-                    MapWrapper.class,
-                    marshal(mapValue)));
+            elements.add(mapElement(localPart, namespaceURI, prefix, mapValue));
           } else {
             elements.add(
                 new JAXBElement<>(
@@ -163,30 +140,81 @@ public class CustomExtensionAdapter extends XmlAdapter<MapWrapper, Map<String, O
     return CommonExtensionModifier.unmarshaller(value.elements, ctx);
   }
 
-  // Creates a DOM Element with XML attributes and text content for the "attributed element" pattern.
-  // When CommonExtensionModifier.elementReader() reads e.g. <cbvmda:drainedWeight measurementUnitCode="KGM">3.5</cbvmda:drainedWeight>,
+  // The namespace URI of a key's prefix: the EPCIS default namespaces first, then the context.
+  private String namespaceOf(final String prefix) {
+    if (prefix == null) {
+      return null;
+    }
+    final Object defaultNs = EPCIS.EPCIS_DEFAULT_NAMESPACES.get(prefix);
+    if (defaultNs != null) {
+      return defaultNs.toString();
+    }
+    return nsContext != null ? nsContext.findNamespaceByPrefix(prefix).orElse(null) : null;
+  }
+
+  // A map with attributes ("@name") or text ("#text") is written as a DOM element, see
+  // createAttributedElement; any other map is an element of child elements.
+  @SuppressWarnings("unchecked")
+  private Object mapElement(String localPart, String namespaceURI, String prefix, Map<?, ?> mapValue) {
+    final boolean hasAttrKeys = mapValue.keySet().stream().anyMatch(k -> k.toString().startsWith("@"));
+    if (hasAttrKeys || mapValue.containsKey(CommonExtensionModifier.MIXED_TEXT_KEY)) {
+      return createAttributedElement(localPart, namespaceURI, prefix, mapValue);
+    }
+    return new JAXBElement<>(createQName(localPart, namespaceURI, prefix), MapWrapper.class, marshal((Map<String, Object>) mapValue));
+  }
+
+  // Creates a DOM Element with XML attributes, text and child elements.
+  // When CommonExtensionModifier reads e.g. <cbvmda:drainedWeight measurementUnitCode="KGM">3.5</cbvmda:drainedWeight>,
   // it stores: {"cbvmda:drainedWeight": {"@measurementUnitCode": "KGM", "value": "3.5"}}
   // A JAXBElement<MapWrapper> would incorrectly create child elements; a DOM Element preserves attributes + text natively.
-  @SuppressWarnings("unchecked")
+  // Which key is the text is decided by CommonExtensionModifier.textKey: every other non-@ key, including
+  // a "value" next to other children, is written as a child element.
   private Element createAttributedElement(String localPart, String namespaceURI, String prefix, Map<?, ?> mapValue) {
     try {
-      Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-      Element elem = (namespaceURI != null && prefix != null)
-          ? doc.createElementNS(namespaceURI, prefix + ":" + localPart)
-          : doc.createElement(localPart);
-      for (Map.Entry<String, Object> attr : ((Map<String, Object>) mapValue).entrySet()) {
-        if (attr.getKey().startsWith("@")) {
-          elem.setAttribute(attr.getKey().substring(1), attr.getValue().toString());
-        }
-      }
-      Object textContent = mapValue.get("value");
-      if (textContent != null) {
-        elem.setTextContent(textContent.toString());
-      }
-      return elem;
+      final Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+      return fillElement(doc, newElement(doc, localPart, namespaceURI, prefix), mapValue);
     } catch (ParserConfigurationException e) {
       throw new RuntimeException("Failed to create DOM element for attributed extension element", e);
     }
+  }
+
+  private Element fillElement(final Document doc, final Element elem, final Map<?, ?> mapValue) {
+    final String textKey = CommonExtensionModifier.textKey(mapValue);
+    for (Map.Entry<?, ?> entry : mapValue.entrySet()) {
+      final String key = String.valueOf(entry.getKey());
+      if (key.startsWith("@") && entry.getValue() != null) {
+        elem.setAttribute(key.substring(1), entry.getValue().toString());
+      }
+    }
+    if (textKey != null && mapValue.get(textKey) != null && !mapValue.get(textKey).toString().isEmpty()) {
+      elem.appendChild(doc.createTextNode(mapValue.get(textKey).toString()));
+    }
+    for (Map.Entry<?, ?> entry : mapValue.entrySet()) {
+      final String key = String.valueOf(entry.getKey());
+      if (key.startsWith("@") || key.equals(textKey)) {
+        continue;
+      }
+      final String childPrefix = getPrefix(key);
+      final String childNamespace = namespaceOf(childPrefix);
+      final List<?> items = entry.getValue() instanceof List<?> list ? list : Collections.singletonList(entry.getValue());
+      for (Object item : items) {
+        final Element child = newElement(doc, getLocalPart(key), childNamespace, childPrefix);
+        if (item instanceof Map<?, ?> childMap) {
+          fillElement(doc, child, childMap);
+        } else if (item != null) {
+          child.setTextContent(item.toString());
+        }
+        elem.appendChild(child);
+      }
+    }
+    return elem;
+  }
+
+  // An element in the key's namespace; unqualified when the prefix has no known namespace, as createQName does.
+  private Element newElement(final Document doc, final String localPart, final String namespaceURI, final String prefix) {
+    return (namespaceURI != null && prefix != null)
+        ? doc.createElementNS(namespaceURI, prefix + ":" + localPart)
+        : doc.createElementNS(null, localPart);
   }
 
   // Creates the QName based on the provided values

@@ -82,8 +82,8 @@ public class CommonExtensionModifier {
     }
 
     // The JSON value of one element: its text, or a map of its attributes ("@name" / "prefix:name"),
-    // its text ("value") and its children. An element without any content is the empty string, as
-    // before, so <example:flag/> survives the round trip.
+    // its text ("value" next to attributes only, "#text" next to child elements) and its children.
+    // An element without any content is the empty string, so <example:flag/> survives the round trip.
     private static Object elementContent(final Element valueElement, final ConversionNamespaceContext nsContext) {
         // Attributes, except namespace declarations and xsi:*: <ex1:test id="some random value">
         final LinkedHashMap<String, Object> attributes = new LinkedHashMap<>();
@@ -117,12 +117,54 @@ public class CommonExtensionModifier {
         }
 
         final LinkedHashMap<String, Object> content = new LinkedHashMap<>(attributes);
-        if (!trimmedText.isEmpty()) {
-            // Text next to attributes or child elements is kept under "value"
-            content.put("value", convertByXsiType(valueElement, trimmedText));
+        final LinkedHashMap<String, Object> childContent = elementReader(childElements, nsContext);
+        if (childElements.isEmpty()) {
+            if (!trimmedText.isEmpty()) {
+                // Text next to attributes only: <ex:weight unit="KGM">3.5</ex:weight> -> {"@unit", "value"}
+                content.put(TEXT_KEY, convertByXsiType(valueElement, trimmedText));
+            }
+        } else if (!trimmedText.isEmpty()) {
+            // Text next to child elements goes under "#text", so a child named "value" cannot
+            // overwrite it, nor be written back as the text
+            content.put(MIXED_TEXT_KEY, convertByXsiType(valueElement, trimmedText));
+        } else if (!attributes.isEmpty() && childContent.size() == 1 && isScalar(childContent.get(TEXT_KEY))) {
+            // <ex:a id="1"><value>u</value></ex:a> would be written back as text; an empty "#text"
+            // marks "value" as the child element it is
+            content.put(MIXED_TEXT_KEY, "");
         }
-        content.putAll(elementReader(childElements, nsContext));
+        content.putAll(childContent);
         return content;
+    }
+
+    /** Key of an element's text when it has attributes but no child elements. */
+    public static final String TEXT_KEY = "value";
+
+    /** Key of an element's text when it has child elements (mixed content). */
+    public static final String MIXED_TEXT_KEY = "#text";
+
+    /**
+     * The key of a map that holds the element's text, or null if every non-attribute key is a child
+     * element: "#text" when present; otherwise "value", but only when the map has attributes
+     * ("@name"), "value" is its only other key and it holds a scalar.
+     */
+    public static String textKey(final Map<?, ?> content) {
+        if (content.containsKey(MIXED_TEXT_KEY)) {
+            return MIXED_TEXT_KEY;
+        }
+        boolean hasAttributes = false;
+        for (final Object key : content.keySet()) {
+            final String name = String.valueOf(key);
+            if (name.startsWith("@")) {
+                hasAttributes = true;
+            } else if (!TEXT_KEY.equals(name)) {
+                return null;
+            }
+        }
+        return hasAttributes && isScalar(content.get(TEXT_KEY)) ? TEXT_KEY : null;
+    }
+
+    private static boolean isScalar(final Object value) {
+        return value != null && !(value instanceof Map<?, ?>) && !(value instanceof Collection<?>);
     }
 
     // A second element of the same name at the same level turns the value into a list of all of them.

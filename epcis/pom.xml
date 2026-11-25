@@ -118,6 +118,19 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- the JAXB runtime the model's jaxb.properties select, for marshalling in tests -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.moxy</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- reference XML/JSON document pairs -->
+        <dependency>
+            <groupId>io.openepcis</groupId>
+            <artifactId>openepcis-test-resources</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
