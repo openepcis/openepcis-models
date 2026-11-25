@@ -23,7 +23,8 @@ import jakarta.xml.bind.annotation.*;
 @XmlType(name = "EPCISQueryBodyType", propOrder = {"queryResults"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EPCISQueryBody {
-  @XmlElement(name = "QueryResults")
+  // a global element of the query schema, referenced from EPCISBody as epcisq:QueryResults
+  @XmlElement(name = "QueryResults", namespace = "urn:epcglobal:epcis-query:xsd:2")
   private EpcisQueryResult queryResults;
 
   public EPCISQueryBody(EpcisQueryResult queryResults) {
