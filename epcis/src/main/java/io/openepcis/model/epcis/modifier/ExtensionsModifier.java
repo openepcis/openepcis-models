@@ -18,6 +18,7 @@ package io.openepcis.model.epcis.modifier;
 import io.openepcis.model.epcis.util.ConversionNamespaceContext;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -62,53 +63,44 @@ public class ExtensionsModifier {
         continue;
       }
 
-      final Element rootElement = createNamespacedElement(property.getKey());
-
-      if (property.getValue() instanceof Map) {
-        final Map<String, Object> mapPropertyValues = (Map<String, Object>) property.getValue();
-
-        // Attach attributes to the current element based on their property.getValue() if any entry
-        // contains @
-        addAttributes(mapPropertyValues, rootElement);
-
-        // Recursively add the elements for children/values based on their type
-        final List<Object> mapElements = createXmlElement(mapPropertyValues);
-        mapElements.forEach(
-            innerChildren -> {
-              if (innerChildren instanceof Element element && element.getTextContent() != null) {
-                rootElement.appendChild(document.appendChild((Element) innerChildren));
-              }
-            });
-        elements.add(rootElement);
-      } else if (property.getValue() instanceof ArrayList<?> arrayPropertyValues) {
-        for (Object dupItems : arrayPropertyValues) {
-          if (dupItems instanceof Map mapElements) {
-            final Element arrayElement = createNamespacedElement(property.getKey());
-
-            // Attach attributes to the element based on their values if any entry contains @
-            addAttributes(mapElements, arrayElement);
-
-            final List<Object> arrayMapElements = createXmlElement(mapElements);
-            arrayMapElements.forEach(
-                mapChildren -> {
-                  if (mapChildren instanceof Element arrElement
-                      && arrElement.getTextContent() != null) {
-                    arrayElement.appendChild(document.appendChild((arrElement)));
-                  }
-                });
-            elements.add(arrayElement);
-          } else if (dupItems instanceof String stringValue) {
-            final Element arrayString = createNamespacedElement(property.getKey());
-            arrayString.setTextContent(stringValue);
-            elements.add(arrayString);
+      if (property.getValue() instanceof List<?> arrayPropertyValues) {
+        // N elements of the same name
+        for (final Object item : arrayPropertyValues) {
+          if (item != null) {
+            elements.add(createElement(property.getKey(), item));
           }
         }
       } else {
-        rootElement.setTextContent(String.valueOf(property.getValue()));
-        elements.add(rootElement);
+        elements.add(createElement(property.getKey(), property.getValue()));
       }
     }
     return elements;
+  }
+
+  // One element: a map gives attributes ("@name"), text (see CommonExtensionModifier.textKey) and
+  // child elements, anything else is the text.
+  @SuppressWarnings("unchecked")
+  private Element createElement(final String name, final Object value) {
+    final Element element = createNamespacedElement(name);
+    if (value instanceof Map<?, ?> mapValue) {
+      final Map<String, Object> content = (Map<String, Object>) mapValue;
+      // Attach attributes to the element if any entry contains @
+      addAttributes(content, element);
+      final String textKey = CommonExtensionModifier.textKey(content);
+      final Map<String, Object> children = new LinkedHashMap<>(content);
+      if (textKey != null) {
+        final Object text = children.remove(textKey);
+        if (text != null && !String.valueOf(text).isEmpty()) {
+          element.appendChild(document.createTextNode(String.valueOf(text)));
+        }
+      }
+      for (final Object child : createXmlElement(children)) {
+        element.appendChild((Element) child);
+      }
+    } else {
+      element.setTextContent(String.valueOf(value));
+    }
+    return element;
   }
 
   public Map<String, Object> createObject(final List<Object> value) {
