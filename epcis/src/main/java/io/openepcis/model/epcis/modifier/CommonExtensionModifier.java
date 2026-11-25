@@ -40,93 +40,108 @@ public class CommonExtensionModifier {
         if (value == null) {
             return Collections.emptyMap();
         }
-        return elementReader(value, "", nsContext);
+        return elementReader(value, nsContext);
     }
 
-    // This method reads elements from a list and populates a LinkedHashMap with the elements.
-    private static LinkedHashMap<String, Object> elementReader(final List<Object> value, final String parentPrefix, final ConversionNamespaceContext nsContext) {
+    // Reads the elements of one level into a map. Each element is read completely (attributes, text
+    // and children) before it is added, so that N sibling elements of the same name become a list of N
+    // values rather than one merged object, matching the JSON <-> XML reference pairs.
+    private static LinkedHashMap<String, Object> elementReader(final List<?> value, final ConversionNamespaceContext nsContext) {
         final LinkedHashMap<String, Object> multiExtensions = new LinkedHashMap<>();
-        // Loop over the elements in list
         for (final Object obj : value) {
-            if (obj instanceof Element) {
-                Element valueElement = (Element) obj;
-                boolean hasAttribute = false;
-                // If namespaces not already included then add them
-                final String namespaceURI = valueElement.getNamespaceURI();
-                String nodeName = valueElement.getNodeName();
-                // Check if th element has namespace/prefix and if not then add the parent prefix to its
-                // child elements as well
-                if (StringUtils.isBlank(valueElement.getPrefix()) && StringUtils.isNotBlank(parentPrefix)) {
-                    // If no prefix exists on the element, append parent's prefix, Assuming the format:
-                    // <prefix:name> in getNodeName
-                    nodeName = parentPrefix + ":" + nodeName;
+            if (!(obj instanceof Element)) {
+                continue;
+            }
+            Element valueElement = (Element) obj;
+            final String namespaceURI = valueElement.getNamespaceURI();
+            // An unqualified child (<id> inside <gs1:masterDataAvailableFor>) stays an unprefixed key,
+            // the way the JSON -> XML direction writes an unprefixed key as an unqualified element.
+            String nodeName = valueElement.getNodeName();
+            // Add namespace mapping for this prefix if not protected
+            // Note: We must add ALL prefix->URI mappings, even when multiple prefixes use the same URI
+            // (e.g., ns0, ns3, ns4 all mapping to http://example.com/cbvmda/)
+            // The populateEventNamespaces method uses putIfAbsent to handle duplicate prefixes safely
+            if (!StringUtils.isEmpty(namespaceURI) && !PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
+                if (nsContext != null) {
+                    nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
-                // Add namespace mapping for this prefix if not protected
-                // Note: We must add ALL prefix->URI mappings, even when multiple prefixes use the same URI
-                // (e.g., ns0, ns3, ns4 all mapping to http://example.com/cbvmda/)
-                // The populateEventNamespaces method uses putIfAbsent to handle duplicate prefixes safely
-                if (!StringUtils.isEmpty(namespaceURI) && !PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
-                    if (nsContext != null) {
-                        nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
-                    }
+            }
+            // If the element contains the default namespace but contains different prefix then replace
+            // with right prefix from EPCIS default namespaces
+            if (!StringUtils.isEmpty(namespaceURI) && PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
+                valueElement = replacePrefix(valueElement);
+                nodeName = valueElement.getNodeName();
+                // Populate the eventNamespaces with respective URI and Prefix
+                if (nsContext != null) {
+                    nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
                 }
-                // If the element contains the default namespace but contains different prefix then replace
-                // with right prefix from EPCIS default namespaces
-                if (!StringUtils.isEmpty(namespaceURI) && PROTECTED_NAMESPACE_OF_CONTEXT.contains(namespaceURI)) {
-                    valueElement = replacePrefix(valueElement);
-                    nodeName = valueElement.getNodeName();
-                    // Populate the eventNamespaces with respective URI and Prefix
-                    if (nsContext != null) {
-                        nsContext.populateEventNamespaces(namespaceURI, valueElement.getPrefix());
-                    }
-                }
-                // Process all the attributes and store them during the conversion from XML to JSON if
-                // present
-                if (valueElement.hasAttributes()) {
-                    // Create a new map to store the current element's attribute data <ex1:test id="some
-                    // random value">
-                    final LinkedHashMap<String, Object> elementData = new LinkedHashMap<>();
-                    final NamedNodeMap attributes = valueElement.getAttributes();
-                    for (int attr = 0; attr < attributes.getLength(); attr++) {
-                        final Node attrNode = attributes.item(attr);
-                        final String attrNodeName = attrNode.getNodeName();
-                        final String attributeName = attrNodeName.contains(":") ? attrNodeName.split(":")[1] : attrNodeName;
-                        // Exclude attributes related to namespaces (e.g., xmlns, xsi: or xmlns:prefix)
-                        if (!attributeName.equalsIgnoreCase("xmlns") && !attrNodeName.startsWith("xmlns:") && !attrNodeName.startsWith("xsi:")) {
-                            final String attributeKey = attrNodeName.contains(":") ? attrNodeName : "@" + attrNodeName;
-                            elementData.put(attributeKey, attrNode.getNodeValue().trim());
-                        }
-                    }
-                    // Add all attributes data along with elements values & children if present
-                    if (!MapUtils.isEmpty(elementData)) {
-                        hasAttribute = true;
-                        extensionPopulate(multiExtensions, nodeName, elementData, hasAttribute);
-                    }
-                }
-                // If there are many elements then loop over them and add
-                final NodeList valueList = valueElement.getChildNodes();
-                if (valueList.getLength() > 0) {
-                    // Loop over the valueList and add to Map
-                    for (int parent = 0; parent < valueList.getLength(); parent++) {
-                        final Node parentNode = valueList.item(parent);
-                        // If text node then directly add with value
-                        if (parentNode.getNodeType() == Node.TEXT_NODE && !StringUtils.isBlank(parentNode.getTextContent())) {
-                            // Convert the text using the element's xsi:type (integer/double/boolean); falls back to String
-                            final Object typedValue = convertByXsiType(valueElement, parentNode.getTextContent().trim()); // type-aware leaf value
-                            extensionPopulate(multiExtensions, nodeName, typedValue, hasAttribute);
-                        } else if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
-                            // If complex node then recursively add them
-                            final String complexPrefix = StringUtils.isNotBlank(valueElement.getPrefix()) ? valueElement.getPrefix() : parentPrefix;
-                            final HashMap<String, Object> childNodes = elementReader(List.of(parentNode), complexPrefix, nsContext);
-                            extensionPopulate(multiExtensions, nodeName, childNodes, hasAttribute);
-                        }
-                    }
-                } else {
-                    extensionPopulate(multiExtensions, nodeName, valueElement.getTextContent().trim(), hasAttribute);
-                }
+            }
+            final Object content = elementContent(valueElement, nsContext);
+            if (content != null) {
+                addSibling(multiExtensions, nodeName, content);
             }
         }
         return multiExtensions;
+    }
+
+    // The JSON value of one element: its text, or a map of its attributes ("@name" / "prefix:name"),
+    // its text ("value") and its children. Returns null for an element without any content.
+    private static Object elementContent(final Element valueElement, final ConversionNamespaceContext nsContext) {
+        // Attributes, except namespace declarations and xsi:*: <ex1:test id="some random value">
+        final LinkedHashMap<String, Object> attributes = new LinkedHashMap<>();
+        final NamedNodeMap attributeNodes = valueElement.getAttributes();
+        for (int attr = 0; attributeNodes != null && attr < attributeNodes.getLength(); attr++) {
+            final Node attrNode = attributeNodes.item(attr);
+            final String attrNodeName = attrNode.getNodeName();
+            final String attributeName = attrNodeName.contains(":") ? attrNodeName.split(":")[1] : attrNodeName;
+            if (!attributeName.equalsIgnoreCase("xmlns") && !attrNodeName.startsWith("xmlns:") && !attrNodeName.startsWith("xsi:")) {
+                final String attributeKey = attrNodeName.contains(":") ? attrNodeName : "@" + attrNodeName;
+                attributes.put(attributeKey, attrNode.getNodeValue().trim());
+            }
+        }
+
+        final List<Node> childElements = new ArrayList<>();
+        final StringBuilder text = new StringBuilder();
+        final NodeList children = valueElement.getChildNodes();
+        for (int i = 0; i < children.getLength(); i++) {
+            final Node child = children.item(i);
+            if (child.getNodeType() == Node.ELEMENT_NODE) {
+                childElements.add(child);
+            } else if (child.getNodeType() == Node.TEXT_NODE || child.getNodeType() == Node.CDATA_SECTION_NODE) {
+                text.append(child.getTextContent());
+            }
+        }
+        final String trimmedText = text.toString().trim();
+
+        if (childElements.isEmpty() && attributes.isEmpty()) {
+            // Convert the text using the element's xsi:type (integer/double/boolean); falls back to String
+            return trimmedText.isEmpty() ? null : convertByXsiType(valueElement, trimmedText);
+        }
+
+        final LinkedHashMap<String, Object> content = new LinkedHashMap<>(attributes);
+        if (!trimmedText.isEmpty()) {
+            // Text next to attributes or child elements is kept under "value"
+            content.put("value", convertByXsiType(valueElement, trimmedText));
+        }
+        content.putAll(elementReader(childElements, nsContext));
+        return content.isEmpty() ? null : content;
+    }
+
+    // A second element of the same name at the same level turns the value into a list of all of them.
+    @SuppressWarnings("unchecked")
+    private static void addSibling(final LinkedHashMap<String, Object> multiExtensions, final String nodeName, final Object content) {
+        final Object existingValue = multiExtensions.get(nodeName);
+        if (existingValue == null) {
+            multiExtensions.put(nodeName, content);
+        } else if (existingValue instanceof List<?>) {
+            // element content is a scalar or a map, never a list, so a list here holds earlier siblings
+            ((List<Object>) existingValue).add(content);
+        } else {
+            final List<Object> values = new ArrayList<>();
+            values.add(existingValue);
+            values.add(content);
+            multiExtensions.put(nodeName, values);
+        }
     }
 
     // Based on obtained name and value populate the LinkedHashMap to either simple key, value or
